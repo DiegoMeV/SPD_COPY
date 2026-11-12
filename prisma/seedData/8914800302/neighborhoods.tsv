@@ -1,0 +1,479 @@
+CODIGO_COMUNA	COMUNA	CODIGO_BARRIO	BARRIO
+05	Oriente	010516	Paz Del Rio
+16	San Nicolas	011603	Las Antillas
+11	Olimpica	011133	San Felipe
+06	Universidad	010619	Popular Modelo
+06	Universidad	010617	Los Rosales
+09	Cuba	010910	San Fernando
+06	Universidad	010608	La Aurora
+11	Olimpica	011109	El Campin III
+09	Cuba	010902	Brisas Del Consota
+07	Boston	010724	Olaya Herrera
+09	Cuba	010906	La Playita
+04	Villavicencio	010403	Los Andes
+08	El Jardin	010805	Brasilia
+06	Universidad	010623	San Jose Sur
+08	El Jardin	010816	Los Cedros
+18	Del Cafe	011810	Malaga *1
+18	Del Cafe	011803	Altos de Llano Grande II *2
+18	Del Cafe	011802	Mirador de Llano Grande
+18	Del Cafe	011804	Altos de Los Angeles
+18	Del Cafe	011811	Nuevo Horizonte
+18	Del Cafe	011807	Ciudad Boquia *1
+18	Del Cafe	011814	Sector B
+18	Del Cafe	011808	Ciudadela Comfamiliar Boquia
+02	Rio Otun	010225	Risaralda
+18	Del Cafe	011809	Horizontes
+18	Del Cafe	011806	Carlos Enrique Soto
+02	Rio Otun	010227	Jaime Salazar Robledo
+02	Rio Otun	010233	San Juan de Dios
+02	Rio Otun	010214	Jose Antonio Galan
+18	Del Cafe	011805	Antonio Ricaurte
+18	Del Cafe	011813	Rincon Del Cafe
+02	Rio Otun	010222	Nuevo Penol
+02	Rio Otun	010210	Enrique Millan Rubio
+02	Rio Otun	010218	La Sirena
+18	Del Cafe	011801	Alamos Del Cafe
+18	Del Cafe	011815	Villa Del Cafe
+02	Rio Otun	010231	San Jorge
+18	Del Cafe	011812	Paz Verde
+02	Rio Otun	010236	Zea
+02	Rio Otun	010208	El Progreso
+18	Del Cafe	011816	Villa Los Comunales
+02	Rio Otun	010232	San Juan
+02	Rio Otun	010207	El Prado
+02	Rio Otun	010224	Remigio Antonio Canarte
+02	Rio Otun	010234	Santa Elena
+02	Rio Otun	010212	Gualanday
+02	Rio Otun	010216	La Esperanza
+02	Rio Otun	010235	Santa Teresita
+02	Rio Otun	010226	Salazar Londono
+02	Rio Otun	010213	Jorge Eliecer Gaitan
+02	Rio Otun	010228	Salvador Allende
+02	Rio Otun	010203	Byron Gaviria
+02	Rio Otun	010215	Jose Marti
+02	Rio Otun	010204	Campina del Otun
+02	Rio Otun	010223	Primero de Mayo
+02	Rio Otun	010209	El Triunfo
+02	Rio Otun	010221	Mirasol
+02	Rio Otun	010219	Las Palmas
+02	Rio Otun	010201	America
+02	Rio Otun	010230	San Camilo
+02	Rio Otun	010211	Getsemani
+02	Rio Otun	010205	Colinas Del Triunfo
+02	Rio Otun	010206	Constructores
+02	Rio Otun	010229	San Antonio
+12	Ferrocarril		Gilberto Pel�ez
+02	Rio Otun	010202	Bavaria
+03	Centro	010314	Sector Lago Uribe
+02	Rio Otun	010217	La Palmera
+12	Ferrocarril	011204	Jose Hilario Lopez II
+03	Centro	010310	San Esteban
+03	Centro	010316	Sector Plaza de Bolivar
+03	Centro	010308	Primero de Febrero
+12	Ferrocarril	011202	Gabriel Trujillo
+02	Rio Otun	010220	Los Alcazares
+12	Ferrocarril	011210	Simon Bolivar
+08	El Jardin	010824	Sector 30 de Agosto
+03	Centro	010313	Sector Galeria Central
+12	Ferrocarril	011208	Nacederos
+03	Centro	010315	Sector Parque La Libertad
+12	Ferrocarril	011203	Jose Hilario Lopez I
+03	Centro	010301	Bloques Primero de Febrero
+03	Centro	010317	Turin
+03	Centro	010318	Venecia
+08	El Jardin	010818	Maraya
+12	Ferrocarril	011201	Sureste de la Sierra
+03	Centro	010307	Los Periodistas
+05	Oriente	010515	Ormaza
+12	Ferrocarril	011213	El Plum_n Alto
+12	Ferrocarril	011207	Matecana
+12	Ferrocarril	011212	El Plum_n
+05	Oriente	010520	Santander
+05	Oriente	010513	La Pupi
+12	Ferrocarril	011214	El Plum_n Bajo
+05	Oriente	010501	20 de Julio
+03	Centro	010304	La Victoria
+03	Centro	010312	Sector 30 de Agosto
+03	Centro	010311	Santander
+04	Villavicencio	010404	Villavicencio
+03	Centro	010302	Buenos Aires
+05	Oriente	010518	San Francisco
+08	El Jardin	010806	Caminos de Maraya
+03	Centro	010309	Ricardo Ramirez Carmona
+08	El Jardin	010801	Alcazar de Maraya
+05	Oriente	010511	Hernando Velez Marulanda
+03	Centro	010305	Las Garzas
+03	Centro	010303	La Paz
+11	Olimpica	011118	La Glorieta
+03	Centro	010312	Sector 30 de Agosto
+08	El Jardin	010809	Jardin I
+08	El Jardin	010819	Mayorca
+08	El Jardin	010808	Jardin de Velez Y Velez
+05	Oriente	010507	Castano Robledo
+08	El Jardin	010823	Rincon de Las Quintas
+05	Oriente	010502	Alfonso Lopez
+08	El Jardin	010817	Los Quimbayas
+05	Oriente	010504	Antonio Narino
+05	Oriente	010506	Brisas Del Otun
+11	Olimpica	011135	Santa Monica
+08	El Jardin	010813	Las Mangas
+03	Centro	010306	Los Nogales
+12	Ferrocarril	011211	Torres de San Mateo
+12	Ferrocarril	011209	Catalan
+08	El Jardin	010820	Niza I
+06	Universidad	010622	San Jose
+04	Villavicencio	010402	Corocito
+11	Olimpica	011137	Villa Alicia
+12	Ferrocarril	011205	La Hacienda
+08	El Jardin	010805	Brasilia
+04	Villavicencio	010401	Berlin
+11	Olimpica	011101	Alcazares
+08	El Jardin	010821	Niza II
+08	El Jardin	010812	La Elvira
+11	Olimpica	011104	Altos de Belmonte
+16	San Nicolas	011604	Nuevo Mejico
+11	Olimpica	011106	Canaveral II
+11	Olimpica	011130	Rincon de La Palma
+11	Olimpica	011111	El Pizamo
+12	Ferrocarril	011215	Nueva Esperanza
+11	Olimpica	011127	Pinar de Belmonte
+08	El Jardin	010814	Los Andes
+11	Olimpica	011122	Los Nogales
+08	El Jardin	010810	Jardin II
+11	Olimpica	011120	Los Arrevoles
+11	Olimpica	011105	Belmonte
+16	San Nicolas	011606	San Nicolas
+05	Oriente	010512	Kennedy
+07	Boston	010705	Centenario
+10	Consota	011008	El Rosal
+11	Olimpica	011110	El Palmar
+11	Olimpica	011123	Mirador de La Cien
+16	San Nicolas	011607	Villa Mery
+11	Olimpica	011136	Toluca
+11	Olimpica	011132	Samanes de Belmonte
+08	El Jardin	010827	Villas Del Jardin III
+11	Olimpica	011108	El Campin I-II
+16	San Nicolas	011601	Brisas de Las Americas
+06	Universidad	010610	La Julia
+09	Cuba	010904	Cuba
+16	San Nicolas	011608	Villa Nohemy
+08	El Jardin	010804	Bosques de Santa Elena I
+06	Universidad	010615	Los Alpes
+11	Olimpica	011138	Villa Ilusion
+08	El Jardin	010811	Jardin III
+06	Universidad	010609	La Ensenanza
+11	Olimpica	011124	Multifamiliar La Villa
+05	Oriente	010510	El Pizamo
+11	Olimpica	011139	Obelisco de la VIlla
+11	Olimpica	011115	Bosques de Cantabria
+08	El Jardin	010826	Villas Del Jardin II
+07	Boston	010723	Mejia Robledo
+11	Olimpica	011128	Pinar de Gamma
+08	El Jardin	010825	Villas Del Jardin I
+07	Boston	010717	La Lorena IV
+16	San Nicolas	011605	San Martin de Loba
+05	Oriente	010508	Cesar Nader Nader
+11	Olimpica	011119	La Villa
+08	El Jardin	010815	Los Arrayanes
+08	El Jardin	010822	Portal de Los Cedros
+08	El Jardin	010803	Balcones Condominio
+08	El Jardin	010807	Cedritos
+11	Olimpica	011134	Santa Cruz de Gamma
+11	Olimpica	011112	Fegove
+07	Boston	010722	Los Profesionales
+11	Olimpica	011113	Gamma II
+09	Cuba	010903	Cortes
+11	Olimpica	011103	Alhambra
+07	Boston	010716	La Lorena III
+06	Universidad	010602	Cambulos
+09	Cuba	010907	La Union
+09	Cuba	010905	La Independencia *1
+06	Universidad	010618	Pinares de San Martin
+07	Boston	010715	La Lorena II
+11	Olimpica	011131	Rincon de La Villa
+10	Consota	011011	Los Nogales
+11	Olimpica	011102	Alfa
+07	Boston	010701	Belalcazar
+10	Consota	011007	El Futuro
+11	Olimpica	011114	Gamma III
+19	El Poblado	011906	Poblado II
+05	Oriente	010509	Chico Restrepo
+16	San Nicolas	011602	La Dulcera
+06	Universidad	010621	Quintanar Del Cerro *1, *3
+07	Boston	010714	La Lorena I
+08	El Jardin	010802	Altos de Tananbi
+07	Boston	010718	La Platanera
+07	Boston	010709	El Vergel
+10	Consota	011028	Villa Elena
+07	Boston	010731	Travesuras - La Churria
+07	Boston	010721	Los Almendros
+10	Consota	011002	Antonio Jose de Sucre
+10	Consota	011018	Porvenir
+05	Oriente	010505	Arboleda Del Rio
+07	Boston	010725	Pereira
+10	Consota	011021	Restrepo
+19	El Poblado	011905	Poblado I
+11	Olimpica	011117	Jardines de La Villa
+01	Villa Santana	010101	Bellavista
+11	Olimpica	011125	Olimpico I
+07	Boston	010726	Providencia
+10	Consota	011017	Plan Camilo
+10	Consota	011009	La Divisa
+10	Consota	011027	Villa de La Paz
+10	Consota	011023	Vendedores Ambulantes
+07	Boston	010737	Verona
+06	Universidad	010616	Los Angeles
+10	Consota	011025	Villa Cecilia
+11	Olimpica	011126	Olimpico II
+05	Oriente	010521	Simon Bolivar
+07	Boston	010735	Vasconia
+05	Oriente	010519	San Gregorio
+11	Olimpica	011121	Los Corales
+07	Boston	010736	Venecia
+19	El Poblado	011907	Rocio Bajo
+19	El Poblado	011911	Villa Del Prado
+15	El Oso	011518	Los Cristales
+07	Boston	010707	Ciudad Palermo
+10	Consota	011026	Villa Consota
+15	El Oso	011531	Quintas de Los Sauces
+10	Consota	011015	Normandia
+06	Universidad	010611	La Julita
+10	Consota	011016	Panorama I
+01	Villa Santana	010110	Monserrate
+15	El Oso	011527	Portal de Las Mercedes
+09	Cuba	010908	Rafael Uribe I
+10	Consota	011024	Villa Andrea
+15	El Oso	011519	Los Pinos
+05	Oriente	010514	La Rivera
+01	Villa Santana	010113	Veracruz
+15	El Oso	011534	Sauces I
+15	El Oso	011504	Cinco de Octubre
+19	El Poblado	011901	Balcones de Villa Del Prado
+15	El Oso	011538	Sauces V
+15	El Oso	011501	Alameda
+11	Olimpica	011129	Reserva de La Villa
+10	Consota	011006	Dorado II
+10	Consota	011010	Las Piramides
+11	Olimpica	011107	Colores de La Villa
+09	Cuba	010901	Barberos
+15	El Oso	011535	Sauces II
+15	El Oso	011507	Guadalupe
+13	San Joaquin	011319	La Isla
+19	El Poblado	011910	Villa Del Palmar
+13	San Joaquin	011325	Los Cisnes
+10	Consota	011019	Quintas de Panorama I
+13	San Joaquin	011335	Rafael Uribe II
+15	El Oso	011512	La Floresta
+19	El Poblado	011904	Hamburgo
+05	Oriente	010517	Pimpollo - Libare *2
+07	Boston	010729	Santa Catalina II
+01	Villa Santana	010114	Veracruz II
+15	El Oso	011536	Sauces III
+15	El Oso	011532	San Felipe
+07	Boston	010713	La Laguna
+19	El Poblado	011902	Barajas
+07	Boston	010702	Bosques de La Salle
+10	Consota	011003	Antonio Jose Valencia
+01	Villa Santana	010111	Nuevo Plan
+10	Consota	011022	Sanai II
+07	Boston	010703	Boston
+10	Consota	011005	Dorado I
+15	El Oso	011503	Altos de Panorama
+06	Universidad	010614	Los Alamos
+15	El Oso	011520	Los Prados
+15	El Oso	011543	Villa Elisa
+15	El Oso	011537	Sauces IV
+13	San Joaquin	011336	Rafael Uribe III
+07	Boston	010712	La Florida
+15	El Oso	011513	La Habana
+15	El Oso	011505	El Acuario
+19	El Poblado	011903	Cachipay
+01	Villa Santana	010112	San Vicente
+13	San Joaquin	011320	Laureles I
+10	Consota	011020	Quintas de Panorama II
+13	San Joaquin	011313	El Crucero
+15	El Oso	011529	Quintas de La Acuarela I
+15	El Oso	011533	Santafe
+15	El Oso	011530	Quintas de La Acuarela II
+13	San Joaquin	011324	Letras
+15	El Oso	011510	La Acuarela
+01	Villa Santana	010103	Comfamiliar Villasantana
+06	Universidad	010604	Ciudad Jardin
+13	San Joaquin	011321	Laureles II
+19	El Poblado	011908	Samaria I
+01	Villa Santana	010106	Intermedio
+01	Villa Santana	010109	Las Margaritas
+13	San Joaquin	011301	Altos de Corales
+15	El Oso	011539	Terranova
+15	El Oso	011540	Torres de La Acuarela
+13	San Joaquin	011322	Leningrado II
+15	El Oso	011522	Mirador de Panorama II
+13	San Joaquin	011330	Plan Carvajal
+10	Consota	011014	Naranjito
+14	Perla Del Otun	011412	La Francia
+15	El Oso	011541	Villa Del Bosque
+15	El Oso	011521	Mirador de Panorama I
+13	San Joaquin	011303	Bello Horizonte
+05	Oriente	010503	Altos Del Otun *2, *3
+13	San Joaquin	011339	Santa Clara de Las Villas *4
+15	El Oso	011516	Libertador
+13	San Joaquin	011340	EL Nogal Club Residencial
+15	El Oso	011508	Hacienda Cuba
+14	Perla Del Otun	011407	Gaviria Trujillo
+15	El Oso	011528	Pueblito Paisa
+13	San Joaquin	011331	Portal de Corales
+13	San Joaquin	011323	Leningrado III
+13	San Joaquin	011318	Jose Maria Cordoba
+01	Villa Santana	010105	El Otono
+13			Ciudadela Salamanca
+10	Consota	011001	Aguas Claras
+13	San Joaquin	011307	Codelmar I
+17	El Rocio	011702	Rocio Alto *3
+13	San Joaquin	011329	Perla Del Sur
+07	Boston	010720	Las Gaviotas
+14	Perla Del Otun	011411	La Albania
+13	San Joaquin	011327	Los Geranios
+07	Boston	010706	Central
+14	Perla Del Otun	011409	Heroes II
+13	San Joaquin	011326	Los Conquistadores
+13	San Joaquin	011305	Ciudadela Comfamiliar I
+10	Consota	011004	Bella Sardi
+13	San Joaquin	011308	Codelmar II
+14	Perla Del Otun	011415	Metropolitano
+19	El Poblado	011909	Samaria II
+07	Boston	010732	Tulcan I
+01	Villa Santana	010107	La Isla
+04	Villavicencio	010403	Los Andes
+13	San Joaquin	011302	Atenas
+15	El Oso	011517	Libertador II
+15	El Oso	011514	La Idalia
+15	El Oso	011523	Mirador de Panorama III
+07	Boston	010733	Tulcan II
+14	Perla Del Otun	011418	Villa Kennedy
+14	Perla Del Otun	011411	La Albania
+13	San Joaquin	011309	Codelmar III
+14	Perla Del Otun	011408	Heroes I
+15	El Oso	011547	Vista Hermosa
+07	Boston	010734	Tulcan III
+07	Boston	010739	Villa Del Sol
+07	Boston	010728	San Remo
+13	San Joaquin	011337	San Joaquin
+13	San Joaquin	011317	Guayacanes
+15	El Oso	011511	La Bretana
+13	San Joaquin	011310	Codelmar IV
+14	Perla Del Otun	011404	Departamento
+13	San Joaquin	011306	Ciudadela Comfamiliar II
+10	Consota	011013	El Paraiso
+14	Perla Del Otun	011401	Aranjuez
+10	Consota	011012	Mirador de Bella Sardi
+15	El Oso	011506	Even-Ezer
+15	El Oso	011525	Nueva Colombia
+07	Boston	010727	San Luis Gonzaga
+14	Perla Del Otun	011406	El Paraiso
+07	Boston	010738	Villa Colombia
+14	Perla Del Otun	011402	Carlos Alberto Benavides
+14	Perla Del Otun	011419	Villa Maria
+07	Boston	010730	Terminal
+07	Boston	010719	La Unidad
+01	Villa Santana	010104	El Danubio *2, *4
+15	El Oso	011545	Villa Ligia III
+07	Boston	010708	Ciudad Pereira
+14	Perla Del Otun	011416	Neyra Marquez
+14	Perla Del Otun	011405	El Bosque
+15	El Oso	011515	La Nueva Villa
+14	Perla Del Otun	011417	Sinai
+15	El Oso	011509	Jaime Pardo Leal
+14	Perla Del Otun	011413	La Policia
+06	Universidad	010624	Villa Los Alamos
+01	Villa Santana	010102	Ciudadela Tokio *2
+13	San Joaquin	011314	El Eden
+15	El Oso	011526	Olimpia
+06	Universidad	010603	Canaan
+07	Boston	010711	La Arboleda
+14	Perla Del Otun	011412	La Francia
+14	Perla Del Otun	011420	Villa Rocio
+06	Universidad	010607	Favi Utp
+01	Villa Santana	010108	Las Brisas
+13	San Joaquin	011328	Los Girasoles
+06	Universidad	010613	La Sierra
+15	El Oso	011544	Villa Ligia
+14	Perla Del Otun	011414	Los Almendros
+06	Universidad	010612	La Parcela
+15	El Oso	011502	Alejandria
+06	Universidad	010620	Puerta de Abacanto
+07	Boston	010710	Guaduales de Canaan
+13	San Joaquin	011312	El Cardal
+14	Perla Del Otun	011410	Independientes
+13	San Joaquin	011334	Portales de Birmania
+15	El Oso	011542	Villa Del Sur
+06	Universidad	010605	El Bosque *1, *3
+13	San Joaquin	011315	El Recreo
+06	Universidad	010601	Altos de Canaan
+15	El Oso	011546	Villa Navarra
+13	San Joaquin	011333	Portal de San Joaquin II
+07	Boston	010704	Caminos de Canaan
+13	San Joaquin	011316	Gibraltar
+13	San Joaquin	011332	Portal de San Joaquin I
+13	San Joaquin	011338	San Marcos
+13	San Joaquin	011341	Tinajas
+15	El Oso	011524	Montelibano
+17	El Rocio	011701	Caracol La Curva *4
+			Remanso
+			Puerta de Alcala
+			Altavista
+19	El Poblado	011908	Portal de San Jacinto
+10	Consota	011013	Mirador de Naranjito
+10	Consota	011013	Miraflores *4
+			Villa Verde
+			El Palmar de Villa Verde
+10	Consota	011012	La Idalia II
+13	San Joaquin	011315	Alcala del Campo
+13	San Joaquin	011304	Campo Alegre *3
+13	San Joaquin	011340	Santa Juana de Las Villas
+13	San Joaquin	011311	Coralina
+13	San Joaquin	011311	Bulevar del Bosque
+13	San Joaquin	011311	Bulevar de las Villas
+13	San Joaquin	011311	Bulevar de las Villas
+13	San Joaquin	011311	Bulevar del Cafe
+13	San Joaquin	011311	Quintas de Corazal
+11	Olimpica	011107	Alegrias de la Villa
+11	Olimpica	011107	Rivera Campestre
+			Multifamiliares  Villa Verde
+08	El Jardin	010802	Jardines de Tanambi
+08	El Jardin	010802	Andalucia
+08	El Jardin	010802	Arco Iris de la Colina
+08	El Jardin	010802	La Castellana
+08	El Jardin	010802	Paseo de la Castellana
+11	Olimpica	011121	Coral Plaza
+11	Olimpica	011107	San Sebastian
+11	Olimpica	011110	El Palmar
+11	Olimpica	011110	Olivar de los Vientos II
+11	Olimpica	011139	Villas de La Madrid
+11	Olimpica	011139	Villasol Parque Residencial
+11	Olimpica	011139	Serrezuela
+11	Olimpica	011110	Olivar de los Vientos
+11	Olimpica	011110	Olivar de los Vientos
+11	Olimpica	011110	La Italia
+11	Olimpica	011115	Gamma IV
+11	Olimpica	011115	Rincon de Unicentro
+11	Olimpica	011116	Gamma V
+11	Olimpica	011116	Gamma V
+11	Olimpica	011116	Senderos de Unicentro
+11	Olimpica	011106	Canaveral II
+11	Olimpica	011106	Canaveral
+18	Del Cafe	011808	Comfamiliar Boquia
+18	Del Cafe	011808	Alameda del Cafe
+18	Del Cafe	011808	Luis Alberto Duque
+18	Del Cafe	011808	Portal de Llano Grande
+15	El Oso	011524	Porto Alegre
+15	El Oso	011524	Porto Alegre Etp 2
+15	El Oso	011524	Ciudadela Villa de Leyva
+15	El Oso	011524	Guadacanal
+08	El Jardin	010818	Maraya
+08	El Jardin	010818	Maraya
+08	El Jardin	010818	Conjunto Residencial Tisu
+12	Ferrocarril	011209	Portal de La Villa
+12	Ferrocarril	011209	Portal de La Villa
+11	Olimpica	011105	Belmonte B
+12	Ferrocarril	011206	La Libertad

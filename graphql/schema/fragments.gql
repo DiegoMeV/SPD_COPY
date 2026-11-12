@@ -1,0 +1,823 @@
+fragment Entity on Entity {
+  id
+  createdAt
+  updatedAt
+  code
+  name
+  isActive
+  hasManualBudget
+  startDate
+  endDate
+  parentId
+}
+
+fragment DevPlan on DevPlan {
+  id
+  createdAt
+  updatedAt
+  code
+  name
+  isActive
+  startDate
+  endDate
+  governmentName
+  governmentStartDate
+  governmentEndDate
+  config
+  goalActivitySource
+}
+
+fragment DevPlanLevel on DevPlanLevel {
+  id
+  key
+  createdAt
+  updatedAt
+  devPlanId
+  code
+  name
+  isActive
+  parentId
+  weighting
+  level
+  productCatalogId
+}
+
+fragment MonitoringConfig on MonitoringConfig {
+  id
+  createdAt
+  updatedAt
+  devPlanId
+  isActive
+  period
+  subperiod
+  periodicity
+  spentDocs
+  weightingType
+  status
+  statusDates
+  datesConfig
+  colorsConfig
+  monitoringResourcesOrigin
+  supportProductMonitoring
+  sgpDiscriminated
+  usedFor
+  goalTypes
+}
+
+fragment Ods on Ods {
+  id
+  name
+}
+
+fragment Unit on Unit {
+  id
+  name
+  initials
+}
+
+fragment Goal on Goal {
+  id
+  createdAt
+  updatedAt
+  devPlanLevelId
+  parentGoalId
+  code
+  name
+  isActive
+  entityId
+  extraEntityIds
+  goalType
+  indicator
+  description
+  accumulationType
+  baseValue
+  goalValue
+  unitsFactor
+  unitsName
+  piBaseValue
+  piGoalValue
+  piUnitsFactor
+  piUnitsName
+  isBaseValueNotAvailable
+  odsIds
+  publicPoliticId
+  publicPoliticComponentId
+  peacePoliticId
+  victimsPoliticId
+  productCatalogId
+  startDate
+  endDate
+  weighting
+  macroProjectId
+  formula
+  projectCode
+}
+
+fragment GoalHistory on GoalHistory {
+  id
+  goalId
+  monitoringRecordId
+  event
+  description
+  createdAt
+  createdBy
+}
+
+fragment GoalTypeCount on GoalTypeCount {
+  goalType
+  count
+}
+
+fragment PublicPoliticComponent on PublicPoliticComponent {
+  id
+  code
+  name
+  description
+  isActive
+  createdAt
+  updatedAt
+}
+
+fragment PublicPolitic on PublicPolitic {
+  id
+  createdAt
+  updatedAt
+  category
+  code
+  name
+  description
+  isActive
+  fromYear
+  toYear
+}
+
+fragment ProductCatalog on ProductCatalog {
+  id
+  createdAt
+  updatedAt
+  isActive
+  code
+  name
+  description
+  unitsName
+  parentId
+  isPrincipal
+  isNational
+  isTerritorial
+  isLeaf
+}
+
+fragment MonitoringRecord on MonitoringRecord {
+  id
+  createdAt
+  updatedAt
+  monitoringConfigId
+  goalId
+  period
+  goalValue
+  piGoalValue
+  fromMonth
+  toMonth
+  goalAchievedValue
+  piGoalAchievedValue
+  recordStatus
+  weighting
+  notes
+  questionHow
+  questionResult
+  questionEvidence
+  questionProblem
+  physicalIndicator
+  totalPeople
+  targetMatrix
+  createdAt
+  createdBy
+  updatedAt
+  updatedBy
+}
+
+fragment MonitoringRecordWithStatus on MonitoringRecordWithStatus {
+  id
+  createdAt
+  updatedAt
+  monitoringConfigId
+  goalId
+  period
+  goalValue
+  piGoalValue
+  fromMonth
+  toMonth
+  goalAchievedValue
+  piGoalAchievedValue
+  recordStatus
+  goalStatus
+  weighting
+  notes
+  questionHow
+  questionResult
+  questionEvidence
+  questionProblem
+  physicalIndicator
+  createdAt
+  createdBy
+  updatedAt
+  updatedBy
+}
+
+fragment MonitoringRecordResource on MonitoringRecordResource {
+  id
+  monitoringRecordId
+  resourceType
+  capital
+  cd
+  cn
+  credit
+  de
+  operation
+  management
+  monopoly
+  others
+  rp
+  sgp
+  sgpEducation
+  sgpHealt
+  sgpWater
+  sgpCulture
+  sgpSport
+  sgpFreeInvestment
+  sgpFreeDestination
+  sgpSchoolFeeding
+  sgpMagdalenaRiver
+  sgpEarlyChildhood
+  sgr
+  resourcesTotal
+  financialIndicator
+  createdAt
+  createdBy
+  updatedAt
+  updatedBy
+}
+
+fragment UserAccount on UserAccount {
+  id
+  createdAt
+  updatedAt
+  tenantId
+  email
+  docNumber
+  firstName
+  lastName
+  phone
+  isActive
+  entityId
+  role
+}
+
+fragment UserLoggedIn on UserLoggedIn {
+  id
+  createdAt
+  updatedAt
+  tenantId
+  email
+  docNumber
+  firstName
+  lastName
+  phone
+  isActive
+  entityId
+  role
+  token
+  tenant {
+    key
+    name
+  }
+  entity {
+    hasManualBudget
+    name
+    code
+  }
+}
+
+fragment GetGoalTypeStatsResponse on GetGoalTypeStatsResponse {
+  goalType
+  total
+  scheduled
+  noScheduled
+  reported
+  noReported
+}
+
+fragment SiifProyecto on SiifProyecto {
+  id
+  createdAt
+  updatedAt
+  plan
+  programa
+  sector
+  eje
+  nitCompania
+  proyecto
+  nombre
+  fechaRegistro
+  objetivos
+  descripcion
+  presentadoPor
+  fechaEvaluacion
+  evaluadoPor
+  valor
+  verDesde
+  estado
+  codigoEntPry
+  vialibilizadoPor
+  fechaViabilidad
+  estadoProceso
+  usuario
+  fechaCreacion
+  observacion
+  subprograma
+  idEntidadPresenta
+}
+
+fragment Proyecto on Proyecto {
+  item
+  plan
+  programa
+  sector
+  eje
+  nitCompania
+  proyecto
+  nombre
+  avanceCualitativo
+  rubroFut
+  ano
+  codigo
+  fechaRegistro
+  objetivos
+  descripcion
+  presentadoPor
+  formuladoPor
+  fechaEvaluacion
+  evaluadoPor
+  valor
+  verDesde
+  estado
+  codigoEntPry
+  codPrograma
+  codSector
+  subprogramaPry
+  migrado
+  codigoEntPryPresen
+  recurso1
+  recurso2
+  valRec1
+  valRec2
+  metaProducto
+  recurso3
+  valRec3
+  ficticio
+  estadoProceso
+  usuario
+  fechaCreacion
+  observacion
+  subprograma
+  fechaViabilidad
+  viabilizadoPor
+  idSesion
+  idEntidadPresenta
+  viableTecnicamente
+  viableEconomicamente
+  viableFinancieramente
+  viableInstitucionalmente
+  viableAmbientalmente
+  viableSostenibilidad
+  nombreProyecto
+  idPlan
+  descPlan
+  diaRegistro
+  mesRegistro
+  txtMesRegistro
+  nombreMesRegistro
+  anoRegistro
+  vigencia
+  fechaRadicacion
+  fechaRadicacionFmt
+  idSubprograma
+  descSubprograma
+  descSubprogramaCap
+  nombreSubprograma
+  descPrograma
+  descProgramaCap
+  nombrePrograma
+  nombreSector
+  descSector
+  descSectorCap
+  codigoSectorFut
+  nombreSectorFut
+  descSectorFut
+  descSectorFutCap
+  descEje
+  nombreEje
+  descEjeCap
+  valorProyecto
+  valorProyectoFmt
+  valorVigencia
+  valorVigenciaFmt
+  idEntidad
+  nombreEntPry
+  nombreentidad
+  nombreEntidad
+  nombresecretaria
+  nombreSecretaria
+  fechaDev
+  fechaAct
+  presupuestoDef
+  presupuestoDefFmt
+  solicitudAcum
+  solicitudAcumFmt
+  saldoPpto
+  saldoPptoFmt
+  viableTecnicamenteTxt
+  viableEconomicamenteTxt
+  viableFinancieramenteTxt
+  viableInstitucionalmenteTxt
+  viableAmbientalmenteTxt
+  viableSostenibilidadTxt
+  firmaUsuario
+  codigoEntidadPresenta
+  nombreEntidadPresenta
+  vigenciaInicial
+  vigenciaFinal
+  emailDestinatarios
+}
+
+fragment VActividadesPry on VActividadesPry {
+  nitCompania
+  plan
+  proyecto
+  nombreProyecto
+  codigoAct
+  descripcion
+  etapa
+  componente
+  codigoUnd
+  cantidad
+  activa
+  id
+  idMeta
+  idProducto
+  descripcionTxt
+  nombreMeta
+  codigoMeta
+  nombreProducto
+  codigoProducto
+}
+
+fragment VActividadesPryWithGoals on VActividadesPryWithGoals {
+  nitCompania
+  plan
+  proyecto
+  nombreProyecto
+  codigoAct
+  descripcion
+  etapa
+  componente
+  codigoUnd
+  cantidad
+  activa
+  id
+  idMeta
+  idProducto
+  descripcionTxt
+  nombreMeta
+  codigoMeta
+  nombreProducto
+  codigoProducto
+  goal {
+    ...Goal
+    entity {
+      ...Entity
+    }
+  }
+  linkedGoalId
+  linkedGoal {
+    ...Goal
+    entity {
+      ...Entity
+    }
+  }
+}
+
+fragment GoalData on Goal {
+  ...Goal
+  entity {
+    ...Entity
+  }
+  devPlanLevel {
+    ...DevPlanLevel
+    devPlan {
+      ...DevPlan
+    }
+  }
+  history {
+    ...GoalHistory
+    monitoringRecord {
+      ...MonitoringRecord
+    }
+    createdByAccount {
+      ...UserAccount
+    }
+  }
+  schedule {
+    ...MonitoringRecord
+    resources {
+      ...MonitoringRecordResource
+    }
+  }
+  tracking {
+    ...MonitoringRecord
+    resources {
+      ...MonitoringRecordResource
+    }
+  }
+  activities {
+    ...SiifActividadMeta
+  }
+  monitoringRecords {
+    ...MonitoringRecordWithStatus
+    attachments {
+      ...MonitoringRecordAttachment
+      downloadLink
+    }
+  }
+  actividad {
+    ...VActividadesPry
+  }
+  proyecto {
+    ...Proyecto
+  }
+}
+
+fragment Insumo on InsumosPry {
+  nitCompania
+  proyecto
+  codigoAct
+  codigoIns
+  tipoInsumo
+  subtipoInsumo
+  nombreSubtipo
+  codigoUnd
+  valor1995
+  valor1996
+  valor1997
+  valor1998
+  valor1999
+  valor2000
+  valor2001
+  valor2002
+  valor2003
+  valor2004
+  valor2005
+  valor2006
+  valor2007
+  valor2008
+  valor2009
+  valor2010
+  valor2011
+  valor2012
+  valor2013
+  valor2014
+  valor2015
+  valor2016
+  valor2017
+  valor2018
+  valor2019
+  valor2020
+  valor2021
+  valor2022
+  valor2023
+  valor2024
+  valor2025
+  valor2026
+  valor2027
+  valor2028
+  valor2029
+  valor2030
+  valorTotal
+  id
+  idTipoinsumoMgaweb
+}
+
+fragment SiifActividad on SiifActividad {
+  id
+  createdAt
+  updatedAt
+  nitCompania
+  proyecto
+  codigoAct
+  descripcion
+  etapa
+  componente
+  codigoUnd
+  cantidad
+  codSubact
+  activa
+  codigo
+  idMeta
+  idProducto
+}
+
+fragment SiifActividadMeta on SiifActividadMeta {
+  id
+  createdAt
+  updatedAt
+  nitCompania
+  proyecto
+  codigoAct
+  goalId
+  weighting
+}
+
+fragment SiifActividadMetaAccion on SiifActividadMetaAccion {
+  id
+  actividadMetaId
+  descripcion
+}
+
+fragment GetGoalResourcesResponse on GetGoalResourcesResponse {
+  resourceType
+  capital
+  cd
+  cn
+  credit
+  de
+  operation
+  management
+  monopoly
+  others
+  rp
+  sgp
+  sgpEducation
+  sgpHealt
+  sgpWater
+  sgpCulture
+  sgpSport
+  sgpFreeInvestment
+  sgpFreeDestination
+  sgpSchoolFeeding
+  sgpMagdalenaRiver
+  sgpEarlyChildhood
+  sgr
+}
+
+fragment MacroProject on MacroProject {
+  id
+  code
+  name
+  description
+  isActive
+  createdAt
+  updatedAt
+}
+
+fragment GeoLocation on GeoLocation {
+  id
+  code
+  name
+  locationType
+}
+
+fragment MonitoringRecordAttachment on MonitoringRecordAttachment {
+  id
+  createdAt
+  updatedAt
+  monitoringRecordId
+  s3Path
+  name
+  description
+  createdBy
+  updatedBy
+}
+
+fragment CreateMonitoringRecordAttachmentLinkResponse on CreateMonitoringRecordAttachmentLinkResponse {
+  id
+  createdAt
+  updatedAt
+  monitoringRecordId
+  s3Path
+  name
+  description
+  createdBy
+  updatedBy
+  uploadURL
+}
+
+fragment PlanDesarrollo on PlanDesarrollo {
+  nitCompania
+  plan
+  nombre
+  fechaInicio
+  fechaFin
+  objetivo
+  gobernante
+  id
+  etiquetaEjeSingular
+  etiquetaEjePlural
+  etiquetaSectorSingular
+  etiquetaSectorPlural
+  etiquetaProgramaSingular
+  etiquetaProgramaPlural
+  etiquetaSubprogramaSingular
+  etiquetaSubprogramaPlural
+  manejaSector
+  nivelMr
+  nivelMp
+}
+
+fragment EjeEstructurante on EjeEstructurante {
+  plan
+  nitCompania
+  eje
+  nombre
+  id
+  codigo
+  activo
+}
+
+fragment Sector on Sector {
+  plan
+  eje
+  nitCompania
+  sector
+  nombre
+  id
+  codigo
+  activo
+  sectorDnp
+}
+
+fragment ProgramaPry on ProgramaPry {
+  plan
+  eje
+  sector
+  nitCompania
+  programa
+  nombre
+  id
+  codigo
+  activo
+}
+
+fragment SubprogramaPry on SubprogramaPry {
+  plan
+  eje
+  sector
+  nitCompania
+  programa
+  nombre
+  subprogramaPry
+  id
+  subprograma
+  codigo
+  codigoAlt
+  activo
+  idSectorFut
+}
+
+fragment VSpdMeta on VSpdMeta {
+  id
+  nitCompania
+  idPlan
+  idEntidad
+  codigo
+  tipo
+  nombre
+  descripcion
+  ponderacion
+  indicador
+  unidad
+  periodo
+  valorBase
+  factorBase
+  comparador
+  valorMeta
+  factorMeta
+  valorProgramado
+  mesInicio
+  mesFin
+  accion
+  idFut
+  idPlanAccion
+  proyecto
+  idPadre
+  idPlanDesarrollo
+  codigoPlanDesarrollo
+  codigoNivelPlan
+  nombreNivelPlan
+}
+
+fragment GoalToActivity on GoalToActivity {
+  id
+  goalId
+  activityId
+  createdAt
+}

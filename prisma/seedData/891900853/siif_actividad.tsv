@@ -1,0 +1,528 @@
+"NIT_COMPANIA"	"PROYECTO"	"CODIGO_ACT"	"DESCRIPCION"	"ETAPA"	"COMPONENTE"	"CODIGO_UND"	"CANTIDAD"	"COD_SUBACT"	"ACTIVA"	"CODIGO"	"ID"	"ID_META"	"ID_PRODUCTO"
+"891900853"	1129	1	"Adquisición fertilizantes simples, compuestos, elementos menores gallinaza, herbicidas, insecticidas, fungicidas, droga veterinaria, alimento para el cuidado de animales y tierra del vivero."	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	6986		
+"891900853"	11119	1	"Planeación y difusión de la actividad"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6987		
+"891900853"	11119	2	"Compra de medios educativos audiovisuales"	"EJECUCION"	"OTROS"	5	1	""	"S"	""	6988		
+"891900853"	11119	3	"Realización del evento Immersion Day"	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	5	1	""	"S"	""	6989		
+"891900853"	11210	1	"Desarrollar proyectos de investigación para la acreditación de la calidad de la educación superior"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6990		
+"891900853"	11210	2	"Adquisición de gallinas ponedoras e insumos agropecuarios para cuidado de animales y tierra del vivero"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	6991		
+"891900853"	11210	3	"Construcción y adecuación de instalaciones locativas y espacios agropecuarios"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	6992		
+"891900853"	1113	3	"Movilidad capacitador"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7489	36265	
+"891900853"	11212	1	"Adquisición de libros (físicos - virtuales)"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	5	""	"S"	""	6994		
+"891900853"	11212	3	"Renovación de bases de datos actuales"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	6	""	"S"	""	6996		
+"891900853"	1113	4	"Alojamiento, alimentación y refrigerios"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7490	36265	
+"891900853"	11212	5	"Renovación soporte técnico del software SIABUC"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	6998		
+"891900853"	1113	5	"Materiales de apoyo"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7491	36265	
+"891900853"	11212	7	"Mantenimiento de colecciones"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	2	""	"S"	""	7000		
+"891900853"	11212	8	"Adquisición de cuña libros metálicos grandes (20 x 20)"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7001		
+"891900853"	1113	6	"Asistencia a capacitaciones externas"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7492	36265	
+"891900853"	11212	12	"Carro transportador de libros"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7005		
+"891900853"	22230	1	"Planeación y Presentación del Proyecto."	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7110		
+"891900853"	22230	2	"Solicitud comprobante de pago membresía y pago."	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7111		
+"891900853"	22230	3	"Evaluación del aporte de la membresía a la Facultad."	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7112		
+"891900853"	22231	1	"Renovación de la afiliación 2021 a ACOFADE"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7113		
+"891900853"	22231	2	"Afiliación a ASCOFAPSI"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7114		
+"891900853"	22231	3	"Asistencia a encuentro, asamblea o congresos de Decanos y/o directores de programa"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	2	""	"S"	""	7115		
+"891900853"	22232	2	"Cuota de afiliación 2021 a ACOFI"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7117		
+"891900853"	22232	3	"Asistencia a EIEI 2021"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7118		
+"891900853"	22232	5	"Renovación afiliación academia Cisco"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7120		
+"891900853"	22232	6	"Membresía a redes"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7121		
+"891900853"	22233	1	"Adquisición de las membresías de acuerdo a las necesidades de cada programa"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7122		
+"891900853"	31134	1	"Contratación del servicio de consultoría para el diagnóstico e implementación del sistema de gestión de la calidad"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7123		
+"891900853"	31134	2	"Realizar auditorías al sistema de gestión de la calidad"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7124		
+"891900853"	31134	3	"Recertificar el sistema de gestión de la calidad en la Institución"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7125		
+"891900853"	31134	4	"Capacitación de docentes y administrativos de la Institución"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7126		
+"891900853"	31136	1	"Realización diagnóstico ambiental de los aspectos e impactos ambientales de la UCEVA"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7130		
+"891900853"	31136	2	"Implementar estrategias para separación en la fuente, aprovechamiento y optimización de los residuos sólidos."	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7131		
+"891900853"	31136	3	"Recolección, transporte y disposición final de Residuos Sólidos Peligrosos"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7132		
+"891900853"	31136	4	"Implementación de sistemas de riego que permitan un uso eficiente del agua."	"EJECUCION"	"MANTENIMIENTO"	5	1	""	"S"	""	7133		
+"891900853"	31136	5	"Optimización del consumo de la energía en la infraestructura física institucional."	"EJECUCION"	"MANTENIMIENTO"	5	1	""	"S"	""	7134		
+"891900853"	31136	6	"Realizar  inventarios de Fauna y Flora"	"EJECUCION"	"ESTUDIOS"	5	1	""	"S"	""	7135		
+"891900853"	31136	7	"Realizar acciones de conservación encaminados a proteger las especies biológicas."	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	5	1	""	"S"	""	7136		
+"891900853"	31136	8	"Capacitar al personal encargado de la UCEVA, en compras verdes y practicas sostenibles"	"EJECUCION"	"CAPACITACION Y ASISTENCIA"	6	1	""	"S"	""	7137		
+"891900853"	31136	11	"Realización de eventos, actividades lúdicas en espacios naturales capacitaciones, jornadas ambientales, con el fin de concienciar a la población universitaria en el manejo adecuado del medio ambiente y los recursos naturales."	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	5	1	""	"S"	""	7140		
+"891900853"	11211	1	"Proceso de compra de equipos"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7477		
+"891900853"	12423	1	"Participación evento internacional"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7478		
+"891900853"	12423	2	"Misión a Otras Universidades"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7479		
+"891900853"	12423	3	"Salidas Académicas"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7480		
+"891900853"	31239	1	"Etapa I. Fase de diagnóstico"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7155		
+"891900853"	31239	2	"Etapa II. Entrega de productos"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7156		
+"891900853"	12320	1	"Subsidiar proyecto por modalidad de internacionalización del currículo en cada facultad"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	3	""	"S"	""	7402		
+"891900853"	12320	2	"Realizar una escuela de capacitación en internacionalización del currículo con líderes de la internacionalización institucional"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7403		
+"891900853"	12320	3	"Desarrollar evento académico a partir de experiencia de internacionalización del currículo"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7404		
+"891900853"	12320	4	"Realizar taller sobre aprendizaje Colaborativo COIL"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7405		
+"891900853"	12422	1	"Generar misiones académicas con estudiantes y docentes"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	3	""	"S"	""	7406		
+"891900853"	12422	2	"Subsidiar docente nacional experto desarrollo de eventos de docencia o investigación de las facultades"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7407		
+"891900853"	12422	3	"Subsidiar estudiantes por programa académico para la ejecución de su movilidad académica"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	5	""	"S"	""	7408		
+"891900853"	12422	4	"Subsidiar miembros del personal administrativo de la UCEVA para visita técnica a universidades nacionales o internacionales"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	2	""	"S"	""	7409		
+"891900853"	12422	5	"Invitar docente internacional por facultad, para el desarrollo de un evento de docencia o investigación"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	5	""	"S"	""	7410		
+"891900853"	31240	10	"Auxilio para lentes empleados y docentes del 10% SMLV. 130 beneficiarios."	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7166		
+"891900853"	32141	1	"Desarrollo de pautas publicitarias para la promoción del evento"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7167		
+"891900853"	32141	2	"Contratación de las pantallas para la presentación del evento"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7168		
+"891900853"	32141	3	"Contratar el equipo de sonido para el desarrollo del evento"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7169		
+"891900853"	32141	4	"Contar con hidratación para la comunidad asistente al evento"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7170		
+"891900853"	31136	13	"Divulgación de los resultados del proyecto por medio de (2) socializaciones, (1) folleto."	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7142		
+"891900853"	31237	1	"Adecuación y mantenimiento"	"EJECUCION"	"ADECUACION"	5	1	""	"S"	""	7144		
+"891900853"	31237	2	"Interventoría"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7145		
+"891900853"	31238	1	"Desarrollo de actividades de obra física"	"EJECUCION"	"OBRA FISICA"	5	1	""	"S"	""	7146		
+"891900853"	31238	2	"Interventoría"	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	5	1	""	"S"	""	7147		
+"891900853"	11213	9	"Programa de apoyo a estudiantes con los modulos a traves de la plataforma moodle"	"PREINVERSION"	"APOYO INSTITUCIONAL"	126	10	""	"S"	""	7422		
+"891900853"	11213	10	"Capacitacion a los estudiantes de ultimos semestres en temas relacinados con su ingreso al mercado laboral"	"PREINVERSION"	"CAPACITACION Y ASISTENCIA"	97	2	""	"S"	""	7423		
+"891900853"	11213	5	"Inscripcion y seguimiento a los estudiantes merecedores de estimulos financieros por participacion en deporte, arte y cultura"	"PREINVERSION"	"OTROS"	5	2	""	"S"	""	7418		
+"891900853"	11213	8	"Seleccion de docentes y realizacion del cronograma de tutorias"	"PREINVERSION"	"APOYO INSTITUCIONAL"	126	5	""	"S"	""	7421		
+"891900853"	11213	11	"Programa de capacitacion para estudiantes en competencias genericas Uceva - pro"	"PREINVERSION"	"CAPACITACION Y ASISTENCIA"	97	1	""	"S"	""	7424		
+"891900853"	11213	12	"Olimpiadas Uceva"	"PREINVERSION"	"EVENTOS"	97	1	""	"S"	""	7425		
+"891900853"	11213	13	"Programa de Inclusion: Abrazando la diferencia"	"PREINVERSION"	"EVENTOS"	97	1	""	"S"	""	7426		
+"891900853"	11213	14	"Programa de acompañamiento a colegios y/o Instituciones de educacion media en los procesos de orientacion vocacional"	"PREINVERSION"	"OTROS"	97	4	""	"S"	""	7427		
+"891900853"	11212	24	"Estación de trabajo RFID (para grabar las etiquetas y hacer préstamo y devolución)"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7485		
+"891900853"	11212	25	"Etiquetas RFID ¡Code SLI-X2 pp 80* 50 mm (1000 piezas por rollo)"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7486		
+"891900853"	11212	26	"Sistema de Clasificación Decimal Dewey - Webdewey."	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7487		
+"891900853"	11215	3	"Comprar la póliza para la comunidad estudiantil: Póliza de accidentes escolares."	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7037		
+"891900853"	11215	22	"Realizar proceso implementación de la historia clínica electrónica según ley 2015 del 31 de enero de 2020   expedida por el Ministerio de Salud y Protección Social."	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7442		
+"891900853"	11215	23	"Implementación de software para la prestación del servicio en el área de atención integral en salud según decreto ley 2106 del 2019, incluyendo software de gestión de inventarios."	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7443		
+"891900853"	11215	24	"Prestación del servicio de área protegida con cubrimiento de todos los eventos institucionales y para la atención de salud."	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	10	""	"S"	""	7444		
+"891900853"	11215	25	"Diseño de ruta y señalización para el área protegida institucional."	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7446		
+"891900853"	11212	27	"Cables VGA y extensiones HDMI, convertidores de VGA a HDMI para los auditorios de audiovisuales"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7488		
+"891900853"	11110	1	"Celebración día del idioma"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7498		
+"891900853"	11110	2	"Material ludico bibliografico y didactico para el club de lectura infantil"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7499		
+"891900853"	11110	3	"Refrigerios"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7500		
+"891900853"	11110	4	"Taller de alfabetización informacional"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7501		
+"891900853"	11215	13	"Prestación de servicio de enfermería en la atención de promoción de la salud y prevención de la enfermedad y prestación de servicio médico, brindando apoyo a la gestión de los programas de salud ocupacional."	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7047		
+"891900853"	11215	14	"Acompañamiento psicosocial y realización de campañas de salud mental a los estudiantes."	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7048		
+"891900853"	11110	5	"Capacitación del talento humano de Biblioteca"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7502		
+"891900853"	31240	21	"Ayudas Academicas al personal administrativo y docentes de la UCEVA"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7504		
+"891900853"	11213	15	"Diseño de estrategias para la insercion de la Vicerrectoria de bienestar con la region"	"PREINVERSION"	"EVENTOS"	120	4	""	"S"	""	7428		
+"891900853"	11243	1	"Diseñar el portafolio de servicios del CDAF"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7060		
+"891900853"	11243	2	"Realizar inventario y mantenimiento de los equipos existentes en el CDAF para la oferta de servicios."	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7061		
+"891900853"	11243	3	"Compra, instalación y capacitación de equipos."	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7062		
+"891900853"	11243	4	"Publicidad del CDAF como centro de servicios"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7063		
+"891900853"	11244	1	"Hacer las respectivas cotizaciones del (los) software a adquirir"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7064		
+"891900853"	11244	2	"Presentar las alternativas de compra: teniendo claro el número de licencias a adquirir para hace un buen uso del software"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7065		
+"891900853"	11244	3	"Adquirir el (los) software que atiendan las necesidades de formación de los estudiantes de la Facultad"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7066		
+"891900853"	11244	4	"Instalar el (los) software adquiridos y determinar las licencias de uso"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7067		
+"891900853"	11213	16	"Realizar el cronograma de las capacitaciones"	"PREINVERSION"	"OTROS"	6	1	""	"S"	""	7429		
+"891900853"	11213	17	"Capacitaciones a los profesionales del área de apoyo a estudiantes"	"PREINVERSION"	"CAPACITACION Y ASISTENCIA"	97	2	""	"S"	""	7430		
+"891900853"	11213	19	"Conferencias del Bienestar Universitario"	"PREINVERSION"	"CAPACITACION Y ASISTENCIA"	97	4	""	"S"	""	7432		
+"891900853"	12117	1	"Generación de eventos académicos de fomento a la cultura de la internacionalización"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	4	""	"S"	""	7433		
+"891900853"	12117	2	"Generación de charlas con organismos gestores de becas nacionales e internacionales"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	2	""	"S"	""	7434		
+"891900853"	12421	1	"Movilidad con dos Instituciones nacionales"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7082		
+"891900853"	12421	2	"Movilidad con una institución internacional"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7083		
+"891900853"	12424	1	"Movilidad académica Nacional"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7091		
+"891900853"	12424	2	"Movilidad académica Internacional"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7092		
+"891900853"	21228	1	"Desarrollo de Eventos académicos"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7096		
+"891900853"	21228	2	"Realización del evento académico tipo 2, conferenciante pagado."	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7097		
+"891900853"	22127	1	"Creación y/o fortalecimiento de medios de comunicación efectivos (1 aplicación)"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7103		
+"891900853"	22127	4	"Capacitaciones ofrecidas a egresados"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7106		
+"891900853"	22129	1	"Proyectos de Educación Continuada"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7107		
+"891900853"	22129	2	"Proyectos de Proyección social"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7108		
+"891900853"	22129	3	"Convenios Interinstitucionales"	"EJECUCION"	"CONVENIOS"	5	1	""	"S"	""	7109		
+"891900853"	1111	2	"Preparación y realización de cuatro (4) actividades de complementación académica"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6922		
+"891900853"	1112	1	"Movilidad a reuniones a redes"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6923	35863	
+"891900853"	1112	3	"Inscripciones a eventos de formación de redes regionales y nacionales"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6925	35863	
+"891900853"	1112	4	"Movilidad de directivos y docentes de los programas académicos a eventos regionales y nacionales"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6926	35863	
+"891900853"	1112	5	"Renovación de registros calificados ""Apoyo a los equipos de trabajo de las facultades de ciencias administrativas, económicas y contables, Ciencias de la Salud, Juridicas, e ingenieria"""	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6927	35863	
+"891900853"	1112	12	"Apoyo a los equipos de trabajo de los programas acreditables"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6934	35863	
+"891900853"	1112	14	"Honorarios apoyo a estudios de pertinencia y factibilidad para nuevos programas académicos."	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6936	35863	
+"891900853"	1112	15	"Honorarios apoyo para actualización de normatividad académica institucional."	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6937		
+"891900853"	1112	16	"Honorarios apoyo para las acciones de Aseguramiento de la Calidad"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6938		
+"891900853"	1113	2	"Honorarios capacitador"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6940	36265	
+"891900853"	1114	1	"Contratación del personal experto en competencias Saber Pro"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6970		
+"891900853"	1114	2	"Capacitación a los docentes de la Facultad de Ciencias de la Educación en competencias Genéricas y Específicas de la Prueba Saber Pro"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6971		
+"891900853"	1114	3	"Capacitación a los estudiantes de la Facultad de Ciencias de la Educación en competencias Genéricas y Específicas de la Prueba Saber Pro."	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6972		
+"891900853"	1114	4	"Capacitación a los docentes de la Facultad de Ciencias de la Educación en competencias Genéricas y Específicas de la Prueba Saber Pro"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6973		
+"891900853"	1115	1	"Formación docente nivel doctorado"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6974		
+"891900853"	1126	1	"Mantenimiento, actualización o soporte técnico del Ecosistema Digital de la UCEVA."	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	6975		
+"891900853"	1126	2	"Adquisición e implementación de soluciones tecnológicas."	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	6976		
+"891900853"	1126	3	"Apropiación del Ecosistema Digital de la UCEVA"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6977		
+"891900853"	1126	4	"Implementación de la Política de Gobierno Digital"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6978		
+"891900853"	1127	1	"Radicación propuesta"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6979		
+"891900853"	1127	2	"Aprobación propuesta"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6980		
+"891900853"	1127	3	"Contratación"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	6981		
+"891900853"	1127	4	"Adecuaciones"	"EJECUCION"	"ADECUACION"	5	1	""	"S"	""	6982		
+"891900853"	1128	1	"Solicitud de cotizaciones"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6983		
+"891900853"	1128	2	"Compra de materiales y equipos para dotación del Laboratorio Integrado de Psicología"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	6984		
+"891900853"	1128	3	"Dotación del espacio"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6985		
+"891900853"	1111	1	"Diseño y elaboración de dos (2) Documentos Maestros para nueva oferta Académica en la modalidad de Educación Virtual y a Distancia."	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	6921		
+"891900853"	21126	3	"Publicaciones"	"EJECUCION"	"GESTION"	96	50	""	"S"	""	7374		
+"891900853"	32242	1	"Ejecución de campañas de divulgación de oferta académica en los municipios del sur occidente del país"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	7	""	"S"	""	7384		
+"891900853"	31135	1	"Intervención del Fondo Acumulado para la conformación del Archivo Histórico e implementación de las  Tablas de Valoración documental para el período 2004 a 2006"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7376		
+"891900853"	32242	2	"Visibilización de las acciones institucionales a través de los canales de comunicación Institucionales."	"EJECUCION"	"APOYO INSTITUCIONAL"	5	11	""	"S"	""	7385		
+"891900853"	32242	3	"Propiciar la implementación de nuevos desarrollos tecnológicos en los medios de comunicación institucionales"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	5	""	"S"	""	7386		
+"891900853"	11213	1	"Programa de induccion y reinduccion Institucional para facilitar la adaptacion a la vida universitaria"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	2	""	"S"	""	7411		
+"891900853"	11212	20	"Suscripción APP Myloft"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7476		
+"891900853"	11213	3	"Realizacion del plan de caracterizacion a la poblacion estudiantil que ingresa por primera vez a la institucion"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	2	""	"S"	""	7413		
+"891900853"	11213	4	"Preinscripcion al programa de jovenes en accion convocatoria y acompañamiento a los estudiantes interesados de generacion E"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	11	""	"S"	""	7414		
+"891900853"	11212	22	"Sistema de seguridad Diamond Premium RFID de 1 pasillo con contador de personas"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7483		
+"891900853"	221210	2	"Equipos de Computo, dotación equipos cientifico y biomédicos automatizados"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	5	8	""	"S"	""	7506		
+"891900853"	21126	4	"Pago de Monitores"	"EJECUCION"	"APOYO INSTITUCIONAL"	96	30	""	"S"	""	7378		
+"891900853"	21126	5	"Formación en procesos de investigación"	"EJECUCION"	"GESTION"	96	50	""	"S"	""	7379		
+"891900853"	21126	7	"Participación en encuentros de semilleros de investigación a nivel nacional e internacional"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	96	6	""	"S"	""	7381		
+"891900853"	1114	5	"Capacitación a los estudiantes de la Facultad de Ciencias de la Educación en competencias Genéricas y Específicas de la Prueba Saber Pro"	"PREINVERSION"	"INGENIERIA Y ADMINISTRACION"			""	"S"	""	7472		
+"891900853"	31240	11	"Realizar actividades encaminadas al cuidado de la salud, Dotación de elementos de seguridad y brigada de emergencia, Recarga de extintores"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	12	""	"S"	""	7389		
+"891900853"	31240	12	"Sensibilización permanente para prevenir el Riesgo Psicosocial"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	12	""	"S"	""	7390		
+"891900853"	31240	13	"Desarrollo del programa de Preparación y Acompañamiento al Pre pensionado"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	12	""	"S"	""	7391		
+"891900853"	31240	14	"Actividad cultural de reconocimiento a la mujer Ucevista"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7392		
+"891900853"	31240	16	"Reconocimiento, acto cultural y artístico con los docentes de la Institución"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7394		
+"891900853"	221210	1	"Desarrollo y Adecuación de Edificios (300 mts2)"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	2	300	""	"S"	""	7505		
+"891900853"	31240	19	"Actividad recreativa y cultural que fomente el bienestar social de la familia UCEVA"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7397		
+"891900853"	31240	20	"Actividad de reconocimiento y estímulos a empleados por desempeño laboral"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	2	""	"S"	""	7398		
+"891900853"	221210	3	"Muebles y enseres"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	26	100	""	"S"	""	7507		
+"891900853"	221210	4	"Proceso de Autoevaluación e inscripción como prestador"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	5	1	""	"S"	""	7508		
+"891900853"	221210	5	"Gestión software especializado (laboratorio clínica y médico - historia clínica y registros-)"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	5	1	""	"S"	""	7509		
+"891900853"	221210	6	"Talento Humano"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7510		
+"891900853"	221210	7	"Seguros, Membresías y Redes"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	26	100	""	"S"	""	7511		
+"891900853"	221210	8	"Viáticos y gastos de viaje"	"PREINVERSION"	"GESTION"	5	5	""	"S"	""	7512		
+"891900853"	1129	2	"Adecuación y mantenimiento de espacios agropecuarios."	"PREINVERSION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7445		
+"891900853"	11214	1	"Cotizacion y seleccion de materiales e implementos deportivos"	"PREINVERSION"	"OTROS"	6	1	""	"S"	""	7447		
+"891900853"	11214	2	"Compra de materiales e implementos deportivos"	"PREINVERSION"	"DOTACION"	6	231	""	"S"	""	7448		
+"891900853"	11214	3	"Pago de anualidad de ASCUNDEPORTES"	"PREINVERSION"	"OTROS"	6	1	""	"S"	""	7449		
+"891900853"	11214	4	"Inscripcion y participacion de las selecciones representativas en deportes en juegos universitarios y/o de ASCUNDEPORTES"	"PREINVERSION"	"EVENTOS"	97	3	""	"S"	""	7450		
+"891900853"	11214	5	"Programar las actividades deportivas, ludicas recreaticas con la comunidad academica de la Uceva"	"PREINVERSION"	"EVENTOS"	97	8	""	"S"	""	7451		
+"891900853"	11214	6	"Realizar las actividades deportivas, ludicas, recreativas con la comunidad academica de la Uceva"	"PREINVERSION"	"EVENTOS"	97	8	""	"S"	""	7452		
+"891900853"	11111	1	"Adquisición de reactivos e insumos"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7496		
+"891900853"	11111	2	"Mantenimiento preventivo y correctivo de equipos y adquisición de repuestos."	"EJECUCION"	"MANTENIMIENTO"	5	1	""	"S"	""	7497		
+"891900853"	32242	4	"Evaluación de la funcionalidad e impacto de los medios de comunicaciones institucionales"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	4	""	"S"	""	7388		
+"891900853"	11216	6	"Realizacion de la XIII jornada de Rumba Aerobica"	"PREINVERSION"	"EVENTOS"	97	1	""	"S"	""	7459		
+"891900853"	11216	7	"Ejecutar la programacion establecida de la Semana del Bienestar"	"PREINVERSION"	"EVENTOS"	97	1	""	"S"	""	7460		
+"891900853"	11216	8	"Pago anualidad de ASCUNCULTURA"	"PREINVERSION"	"OTROS"	5	1	""	"S"	""	7461		
+"891900853"	11216	9	"Inscripcion y participacion en eventos internacionales"	"PREINVERSION"	"EVENTOS"	104	1	""	"S"	""	7462		
+"891900853"	11216	10	"Participacion en actividades culturales locales"	"PREINVERSION"	"EVENTOS"	6	5	""	"S"	""	7463		
+"891900853"	11216	11	"Compra de los vestuarios para danza folclorica"	"PREINVERSION"	"OTROS"	5	1	""	"S"	""	7464		
+"891900853"	11216	12	"Compra de los vestuarios para baile moderno"	"PREINVERSION"	"OTROS"	5	1	""	"S"	""	7465		
+"891900853"	11216	13	"Compra de los instrumentos musicales"	"PREINVERSION"	"OTROS"	5	1	""	"S"	""	7466		
+"891900853"	12424	3	"Establecimiento de los contactos empresariales para la realización de las visitas: nacionales e internacionales"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	5	1	""	"S"	""	7513		
+"891900853"	12424	4	"Cotizar transporte interno para visitas nacionales"	"PREINVERSION"	"OTROS"	5	1	""	"S"	""	7514		
+"891900853"	11216	1	"Realizar el XII festival de teatro universitario Lino Mora"	"PREINVERSION"	"EVENTOS"	97	1	""	"S"	""	7453		
+"891900853"	21126	1	"Financiación para ejecución de proyectos de investigacioin presentados en convocatorias internas y externas"	"EJECUCION"	"APOYO INSTITUCIONAL"	96	14	""	"S"	""	7372		
+"891900853"	21126	2	"Participación en eventos de investigación nacionales e internacionales"	"EJECUCION"	"GESTION"	96	25	""	"S"	""	7373		
+"891900853"	11213	7	"Realizar el programa de tutorias y refuerzo academico institucional"	"PREINVERSION"	"APOYO INSTITUCIONAL"	126	80	""	"S"	""	7420		
+"891900853"	12218	1	"Ejecución de misión académica para firma de convenios con universidades nacionales e internacionales"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	2	""	"S"	""	7399		
+"891900853"	12218	2	"Afiliación y mantenimiento a redes u organizaciones nacionales e internacionales"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	2	""	"S"	""	7400		
+"891900853"	12218	3	"Vinculación a convocatorias aprobadas nacionales e internacionales"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	2	""	"S"	""	7401		
+"891900853"	12525	1	"Gestionar la creación de memorias por eventos académicos en el campo de la internacionalización"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	2	""	"S"	""	7415		
+"891900853"	12525	2	"Realizar jornada de capacitación en cooperación internacional y presentación de proyectos a convocatorias"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	3	""	"S"	""	7416		
+"891900853"	12525	3	"Generar eventos académicos de investigación en internacionalización"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	3	""	"S"	""	7417		
+"891900853"	11213	6	"Programa Institucional para estudiantes buena nota, estimulos e incentivos y otros"	"PREINVERSION"	"ADQ. BIENES Y SERVICIOS"	5	3	""	"S"	""	7419		
+"891900853"	11215	16	"Compra de elementos, insumos y medicamentos para el botiquín de primeros auxilios."	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7436		
+"891900853"	11215	17	"Dar cumplimiento al Decreto 055 del 14 de enero de 2015 afiliación de los estudiantes a la ARL."	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	12	""	"S"	""	7437		
+"891900853"	11215	19	"Seminario Internacional de Psicología clínica y deportiva"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7439		
+"891900853"	11215	20	"Realizar proceso de habilitación de servicios de salud del área de atención integral en salud, según Resolución 3100 del 25 de noviembre de 2019 expedida por el Ministerio de Salud y Protección Social, con entrega de protocolos, guías y demás documentos necesarios."	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	8	""	"S"	""	7440		
+"891900853"	11216	2	"Realizar el XVII festival universitario de la Imagen y la Palabra"	"PREINVERSION"	"EVENTOS"	97	1	""	"S"	""	7454		
+"891900853"	11216	3	"Realizar el XVI Concurso de Oratoria ¿Enrique Uribe White¿"	"PREINVERSION"	"EVENTOS"	97	1	""	"S"	""	7455		
+"891900853"	11216	4	"Realizar el VIII Concurso Universitario de la Cancion Uceva 2021"	"PREINVERSION"	"EVENTOS"	97	1	""	"S"	""	7456		
+"891900853"	11216	5	"Realizar el VII Concurso de dibujo y el V de pintura UCEVARTE 2021."	"PREINVERSION"	"EVENTOS"	97	1	""	"S"	""	7457		
+"891900853"	1129	4	"Compra de maquinaria, equipos y mangueras de conducción."	"PREINVERSION"	"INGENIERIA Y ADMINISTRACION"	5	1	""	"S"	""	7468		
+"891900853"	1129	3	"Labores agrícolas"	"PREINVERSION"	"INGENIERIA Y ADMINISTRACION"	5	1	""	"S"	""	7467		
+"891900853"	1129	5	"Mantenimiento  maquinaria."	"PREINVERSION"	"INGENIERIA Y ADMINISTRACION"	5	1	""	"S"	""	7469		
+"891900853"	11210	4	"Compra de maquinaria, equipos y mangueras de conducción."	"PREINVERSION"	"INGENIERIA Y ADMINISTRACION"	5	1	""	"S"	""	7470		
+"891900853"	11210	5	"Mantenimiento maquinaria"	"PREINVERSION"	"INGENIERIA Y ADMINISTRACION"	5	1	""	"S"	""	7471		
+"891900853"	11212	21	"Esterilizador de libros"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7482		
+"891900853"	1116	1	"Proceso de compra de equipos, y otros elementos para dotación del laboratorio de ingeniería industrial"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	5	1	""	"S"	""	7503		
+"891900853"	12424	5	"Reservas hoteleras para las visitas nacionales"	"PREINVERSION"	"OTROS"	5	1	""	"S"	""	7515		
+"891900853"	12424	6	"Cotización transporte Tuluá - ciudad Panamá - Tuluá"	"PREINVERSION"	"OTROS"	5	1	""	"S"	""	7516		
+"891900853"	12424	7	"Reservas hoteleras en Panamá"	"PREINVERSION"	"OTROS"	5	1	""	"S"	""	7517		
+"891900853"	20222301102528	1	"Fortalecimiento de la señalética de seguridad y salud en el trabajo de la institución"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	7562		
+"891900853"	20222301102528	3	"Fortalecimiento de la brigada de emergencias institucional"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	7564		
+"891900853"	20222301103513	2	"Apoyo a la certificación de docentes en exámenes de proficiencia en lengua extranjera de acuerdo al MCER - Marco Común Europeo de Referencia"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6		""	"S"	""	7619		
+"891900853"	20222301102528	2	"Adquisición de elementos ergonómicos"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	7563		
+"891900853"	20222301102528	4	"Desarrollo de actividades culturales, recreativas y artísticas para el mejoramiento del clima organizacional"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	7565		
+"891900853"	20222301102528	5	"Fomento de hábitos, estilos de vida y un entorno saludable"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	7566		
+"891900853"	20222301102528	6	"Ejecucion de acciones de reconocimiento a los miembros de la comunidad institucional"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	2	""	"S"	""	7567		
+"891900853"	20222301102528	7	"Formación y capacitación del talento humano conforme el PIC"	"EJECUCION"	"CAPACITACION Y ASISTENCIA"	26	1	""	"S"	""	7568		
+"891900853"	20222301140008	1	"Desarrollo de créditos deportivos para la población estudiantil"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	500	""	"S"	""	7569		
+"891900853"	20222301140008	2	"Participación representativa deportiva en juegos universitarios, departamentales, regionales, Nacionales de Ascundeportes."	"EJECUCION"	"APOYO INSTITUCIONAL"	6	2	""	"S"	""	7570		
+"891900853"	20222301140010	1	"Actividades de promoción de la salud y prevencion de la enfermedad"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	10	""	"S"	""	7573		
+"891900853"	20222301140010	2	"Ampliación del portafolio de Servicios del Área de Atención Integral en Salud.			"	"PREINVERSION"	"ADQ. BIENES Y SERVICIOS"	6	2	""	"S"	""	7574		
+"891900853"	20222301140010	3	"Provisión de todo lo necesario para la prestación del servicio de salud			"	"PREINVERSION"	"DOTACION"	26	100	""	"S"	""	7575		
+"891900853"	20222301140010	4	"Prestación del Servicio de Área protegida con cubrimiento de todos los eventos Institucionales y para la atención de Salud			"	"PREINVERSION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	7576		
+"891900853"	20222301130016	1	"Categorización y consolidación de los grupos de investigación de acuerdo a la convocatoria MinCiencias"	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	20	14	""	"S"	""	7582		
+"891900853"	20222301130016	2	"Categorización y consolidación de docentes investigadores de acuerdo a la convocatoria MinCiencias"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	6	20	""	"S"	""	7583		
+"891900853"	20222301130016	3	"Financiación para la ejecución de proyectos de investigación aprobados para convocatorias internas"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	26	100	""	"S"	""	7584		
+"891900853"	20222301130016	4	"Publicación de productos de investigación"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	6	25	""	"S"	""	7585		
+"891900853"	20222301140009	1	"Desarrollo de la estrategia UCEVAPRO	"	"EJECUCION"	"CAPACITACION Y ASISTENCIA"	6	1	""	"S"	""	7586		
+"891900853"	20222301130016	5	"Acompañamiento en la participación institucional en convocatorias de investigación nacionales e internacionales"	"PREINVERSION"	"GESTION"	26	100	""	"S"	""	7587		
+"891900853"	20222301140009	2	"Consolidación del Sistema de Alertas Tempranas			"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	1	""	"S"	""	7588		
+"891900853"	20222301130016	6	"Consolidación de relaciones interinstitucionales para participación en convocatorias externas"	"PREINVERSION"	"GESTION"	26	100	""	"S"	""	7589		
+"891900853"	20222301140009	3	"Disposición de los elementos necesarios para salvaguardar a los estudiantes en los escenarios académicos			"	"EJECUCION"	"OTROS"	6	1	""	"S"	""	7590		
+"891900853"	20222301140009	4	"Desarrollo de la consejería y orientación psicológica a través del programa Preser			"	"EJECUCION"	"APOYO INSTITUCIONAL"	26	1	""	"S"	""	7591		
+"891900853"	20222301140009	5	"Ejecución de eventos académicos y psicosociales dirigidos a la comunidad ucevista y grupos de interés			"	"EJECUCION"	"EVENTOS"	6	1	""	"S"	""	7592		
+"891900853"	20222301140009	6	"Implementación de estrategias de apoyo académico y psicosocial 			"	"PREINVERSION"	"APOYO INSTITUCIONAL"	6	1	""	"S"	""	7593		
+"891900853"	20222301130018	1	"Implementación del portafolio de educación continuada"	"PREINVERSION"	"GESTION"	6	15	""	"S"	""	7599		
+"891900853"	20222301130018	2	"Desarrollo de proyectos de intervención y transferencia y apropiación del conocimiento a la comunidad"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	6	6	""	"S"	""	7600		
+"891900853"	20222301130018	3	"Ejecución de acciones formativas en extensión y proyección social"	"PREINVERSION"	"GESTION"	6	200	""	"S"	""	7601		
+"891900853"	20222301130018	4	"Ejecución de las acciones de emprendimiento, innovación y relación con las ""N"" hélices"	"PREINVERSION"	"GESTION"	6	20	""	"S"	""	7602		
+"891900853"	20222301103513	1	"Realización de Escuela de capacitación en internacionalización del currículo con miembros de la comunidad universitaria"	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	6		""	"S"	""	7618		
+"891900853"	20222301103513	3	"Desarrollo de una convocatoria de internacionalización del currículo para construir cursos institucionales por cooperación"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6		""	"S"	""	7620		
+"891900853"	20222301103513	4	"Apoyo a la generación de actividades académicas que promuevan la internacionalización en casa de los programas"	"PREINVERSION"	"ADQ. BIENES Y SERVICIOS"	6		""	"S"	""	7621		
+"891900853"	20222301103514	1	"Apoyar la movilidad de docentes de las facultades de la UCEVA hacia universidades nacionales y extranjeras"	"EJECUCION"	"APOYO INSTITUCIONAL"	6		""	"S"	""	7622		
+"891900853"	20222301103514	2	"Apoyar la movilidad de estudiantes de las facultades de la UCEVA hacia universidades nacionales y extranjeras"	"EJECUCION"	"APOYO INSTITUCIONAL"	6		""	"S"	""	7623		
+"891900853"	20222301103514	3	"Apoyar la movilidad de docentes de universidades nacionales y extranjeras hacia las facultades de la UCEVA"	"PREINVERSION"	"APOYO INSTITUCIONAL"	6		""	"S"	""	7624		
+"891900853"	20222301103514	4	"Apoyar la movilidad de estudiantes de universidades nacionales y extranjeras hacia las facultades de la UCEVA"	"EJECUCION"	"APOYO INSTITUCIONAL"	6		""	"S"	""	7625		
+"891900853"	20222301101526	4	"Desarrollar esquemas institucionales de participación democrática"	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	6	1	""	"S"	""	7654		
+"891900853"	20222301101526	5	"Articulación UCEVA - Región"	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	6	1	""	"S"	""	7655		
+"891900853"	20222301101526	6	"Seguimiento a Grupos de Interés"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	6	1	""	"S"	""	7656		
+"891900853"	20222301101526	7	"Compromiso con la Responsabilidad Social de la Región"	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	6	1	""	"S"	""	7657		
+"891900853"	20222301101526	8	"Implementación de mecanismos de inclusión, respeto por la diversidad y garantía de sostenibilidad institucional"	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	6	1	""	"S"	""	7658		
+"891900853"	20222301110006	1	"Adquisición de libros (físicos - virtuales)"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26		""	"S"	""	7659		
+"891900853"	20222301110006	2	"Adquisición de mobiliario para la Biblioteca"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26		""	"S"	""	7660		
+"891900853"	20222301110006	3	"Adquisición de herramientas tecnológicas para la Biblioteca"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26		""	"S"	""	7661		
+"891900853"	20222301110006	4	"Renovación de bases de datos actuales"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26		""	"S"	""	7662		
+"891900853"	312310	1	"Adecuación y dotación cafeterías"	"PREINVERSION"	"INGENIERIA Y ADMINISTRACION"	5	1	""	"S"	""	7519		
+"891900853"	312310	2	"Interventoría Adecuación y dotación cafeterías"	"PREINVERSION"	"INGENIERIA Y ADMINISTRACION"	5	1	""	"S"	""	7520		
+"891900853"	312310	3	"Mantenimiento infraestructura física, espacios dotacionales y viales de los diferentes predios de la institución"	"PREINVERSION"	"INGENIERIA Y ADMINISTRACION"	5	1	""	"S"	""	7521		
+"891900853"	221213	3	"Desarrollo de evento: Conversatorio"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7530		
+"891900853"	221213	1	"Desarrollo de evento: Conferencia"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7528		
+"891900853"	221213	2	"Desarrollo de evento: Foro"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7529		
+"891900853"	221213	4	"Desarrollo de evento: Seminario Internacional"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7531		
+"891900853"	221213	5	"Jornada Cultural y artística sobre Derechos Humanos"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7532		
+"891900853"	20222301103029	1	"Contratación de personal de apoyo para la implementación de estrategias de posicionamiento de marca y difusión de oferta educativa en todos los niveles"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	2	""	"S"	""	7549		
+"891900853"	20222301103029	2	"Implementación de campaña publicitaria para la oferta educativa institucional"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	3	""	"S"	""	7550		
+"891900853"	20222301103029	3	"Desarrollo de eventos presenciales para la promoción de la oferta educativa	"	"EJECUCION"	"EVENTOS"	6	2	""	"S"	""	7551		
+"891900853"	20222301103029	4	"Implementación de marketing para la difusión de oferta educativa institucional"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	7552		
+"891900853"	20222301103029	5	"Desarrollo de eventos virtuales para la promoción de la formación posgradual"	"EJECUCION"	"EVENTOS"	6	2	""	"S"	""	7553		
+"891900853"	20222301103029	6	"Desarrollo de eventos virtuales para la promoción de la formación pregradual"	"EJECUCION"	"EVENTOS"	6	4	""	"S"	""	7554		
+"891900853"	20222301103029	7	"Ejecución de acciones encaminadas al posicionamiento de marca"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	7555		
+"891900853"	20222301130017	1	"Formación de la Comunidad Universitaria en Investigación"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	6	60	""	"S"	""	7594		
+"891900853"	20222301130017	2	"Capacitación en actividades de investigación, manejo, dominio, escritura de bases de datos y artículos científicos a la comunidad universitaria - formalización hojas de vida de investigadores"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	6	10	""	"S"	""	7595		
+"891900853"	20222301130017	3	"Generación de incentivos para docentes y estudiantes enfocado al fortalecimiento de los procesos investigativos"	"PREINVERSION"	"GESTION"	26	100	""	"S"	""	7596		
+"891900853"	20222301130019	1	"Aplicación de estrategias para el recaudo, sistematización y consolidación de la información respecto a egresados"	"PREINVERSION"	"GESTION"	6	1000	""	"S"	""	7603		
+"891900853"	20222301130019	2	"Gestión institucional para reencuentro de egresados UCEVA"	"PREINVERSION"	"GESTION"	6	5	""	"S"	""	7604		
+"891900853"	20222301130019	3	"Fortalecimiento de las estrategias para la consolidación de la bolsa de empleo"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	6	20	""	"S"	""	7605		
+"891900853"	20222301130019	4	"Fomento y realización estratégica de capacitaciones en procura del perfil profesional de los egresados de las diferentes facultades"	"PREINVERSION"	"GESTION"	6	22	""	"S"	""	7606		
+"891900853"	20222301104504	1	"Mantenimiento, actualización o soporte técnico del Ecosistema Digital de la UCEVA"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	7607		
+"891900853"	20222301104504	2	"Apropiación del Ecosistema Digital de la UCEVA"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	500	""	"S"	""	7608		
+"891900853"	20222301104504	3	"Adquisición e implementación de soluciones tecnológicas."	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	7609		
+"891900853"	20222301104504	4	"Fortalecimiento tecnológico de procesos misionales"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	7610		
+"891900853"	20222301104521	1	"Mantenimiento, actualización o soporte técnico del Ecosistema Digital de la UCEVA."	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	7611		
+"891900853"	20222301104521	2	"Apropiación del Ecosistema Digital de la UCEVA"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	250	""	"S"	""	7612		
+"891900853"	20222301104521	3	"Adquisición e implementación de soluciones tecnológicas."	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	7613		
+"891900853"	20222301104521	4	"Implementación de la Política de Gobierno y Seguridad Digital"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	7614		
+"891900853"	20222301103512	1	"Desarrollo de misiones académicas para firma de convenios con universidades naconales e internacionales"	"EJECUCION"	"CONVENIOS"	6		""	"S"	""	7615		
+"891900853"	20222301103512	2	"Apoyo al financiamiento de proyectos de cooperacion nacional o internacional que presentan las dependencias uceva"	"EJECUCION"	"APOYO INSTITUCIONAL"	6		""	"S"	""	7616		
+"891900853"	20222301103512	3	"Afiliación y mantenimiento a redes u organizaciones nacionales e internacionales de la Uceva"	"EJECUCION"	"APOYO INSTITUCIONAL"	6		""	"S"	""	7617		
+"891900853"	20222301110005	1	"Actualización de equipos de audio a demanda de la comunidad universitaria"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	1	""	"S"	""	7638		
+"891900853"	20222301110005	2	"Actualización de equipos de video a demanda de la comunidad universitaria"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	1	""	"S"	""	7639		
+"891900853"	20222301110005	3	"Adquisición de repuestos para equipos audiovisuales"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	1	""	"S"	""	7640		
+"891900853"	20222301110005	4	"Mantenimiento preventivo y correctivo de equipos audiovisuales"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	1	""	"S"	""	7641		
+"891900853"	20222301101522	1	"Fortalecimiento de la cultura organizacional a la comunidad universitaria"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	45	""	"S"	""	7663	36299	
+"891900853"	20222301101522	2	"Proceso de Auditoria de recertificación del Sistema de Gestiòn de Calidad del Departamento de Idiomas bajo las Normas Técnicas Colombianas NTC 5555 y NTC 5580"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	7664		
+"891900853"	20222301101522	3	"Desarrollar estrategias para la  implementación de las acciones para el Sistema de Gestiòn Integral"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	6	""	"S"	""	7665		
+"891900853"	20222301101522	4	"Generar espacios de apropiabilidad del Sistema de Gestiòn Integral"	"EJECUCION"	"GESTION"	6	3	""	"S"	""	7666		
+"891900853"	20222301110003	1	"Gestión para el mantenimiento operacional de los espacios de práctica en las Granjas"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	1	""	"S"	""	7671		
+"891900853"	1113	7	"Pago posgraduales"	"PREINVERSION"	"ESTUDIOS"	6	1	""	"S"	""	7518	36265	
+"891900853"	1117	1	"Elaboración de estudios previos"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7522		
+"891900853"	1117	2	"Contratación servicio de calibración y mantenimiento equipos biomédicos laboratorio de simulación UCEVA"	"PREINVERSION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7523		
+"891900853"	1118	1	"Elaboración de estudios previos"	"PREINVERSION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	7524		
+"891900853"	1118	2	"Compra de equipos e insumos para el laboratorio de simulación clínica de la facultad Ciencias de la Salud UCEVA"	"PREINVERSION"	"ADQ. BIENES Y SERVICIOS"	5	1	""	"S"	""	7525		
+"891900853"	11211	2	"Actividades de formación"	"PREINVERSION"	"INGENIERIA Y ADMINISTRACION"			""	"S"	""	7533		
+"891900853"	11211	3	"Prueba"	"PREINVERSION"	"INGENIERIA Y ADMINISTRACION"			""	"S"	""	7534		
+"891900853"	11211	4	"Otro"	"PREINVERSION"	"INGENIERIA Y ADMINISTRACION"			""	"S"	""	7535		
+"891900853"	11211	5	"gg"	"PREINVERSION"	"INGENIERIA Y ADMINISTRACION"			""	"S"	""	7536		
+"891900853"	312311	1	"Desarrollo de actividades de obra física"	"EJECUCION"	"OBRA FISICA"	5	1	""	"S"	""	7537		
+"891900853"	312311	2	"Interventoría"	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	5	1	""	"S"	""	7538		
+"891900853"	21126	8	"Presentación de proyectos de investigación, convocatoria interna"	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	96	50	""	"S"	""	7539		
+"891900853"	20222301140008	3	"Participación representativa deportiva de selecciones Uceva en eventos deportivos con la comunidad externa (universidades, Clubes deportivos, Colegios y escuelas deportivas, etc.)"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	3	""	"S"	""	7571		
+"891900853"	20222301140008	4	"Organizacion de jornadas lúdicas, deportivas y recreativas que fomenten la participación de la comunidad universitaria de la Uceva."	"EJECUCION"	"APOYO INSTITUCIONAL"	6	6	""	"S"	""	7572		
+"891900853"	20222301140007	1	"Fortalecer las actividades artísticas y culturales para la comunidad universitaria y grupos de interés			"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	6	""	"S"	""	7577		
+"891900853"	20222301140007	2	"Fortalecer la creatividad artística y cultural.			"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	2	""	"S"	""	7578		
+"891900853"	20222301140007	3	"Participar en eventos artísticos y/o culturales nacionales y/o internacionales			"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	3	""	"S"	""	7579		
+"891900853"	20222301140007	4	"Vincular la Institución a redes culturales 			"	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	6	1	""	"S"	""	7580		
+"891900853"	20222301140007	5	"Consolidar la oferta del área de Arte y Cultura del Bienestar Universitario			"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	2	""	"S"	""	7581		
+"891900853"	20222301103511	1	"Generación de eventos académicos de fomento a la cultura de la internacionalización"	"EJECUCION"	"APOYO INSTITUCIONAL"	6		""	"S"	""	7597		
+"891900853"	20222301103511	2	"Generación de charlas con organismos gestores de becas nacionales e internacionales"	"EJECUCION"	"APOYO INSTITUCIONAL"	6		""	"S"	""	7598		
+"891900853"	20222301103515	1	"Apoyo en la generación de productos de investigación UCEVA en entornos internacionales"	"PREINVERSION"	"INGENIERIA Y ADMINISTRACION"	6		""	"S"	""	7626		
+"891900853"	20222301103515	2	"Fomento de actividades académicas de internacionalización de la investigación por facultad"	"EJECUCION"	"APOYO INSTITUCIONAL"	6		""	"S"	""	7627		
+"891900853"	20222301103515	3	"Desarrollar escuela de capacitación para captación de recursos de financiación internacional"	"PREINVERSION"	"APOYO INSTITUCIONAL"	6		""	"S"	""	7628		
+"891900853"	20222301101523	1	"Adecuar los espacios para uso general y zonas verdes"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	7629		
+"891900853"	20222301101523	2	"Mejorar la infraestructura tecnológica de los procesos misionales"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	7630		
+"891900853"	20222301101523	3	"Mejorar los espacios físicos para la academia"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	7631		
+"891900853"	20222301101523	4	"Actualizar los espacios para docencia"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	7632		
+"891900853"	20222301101523	5	"Actualizar los espacios para investigación"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	7633		
+"891900853"	20222301101523	6	"Actualizar los espacios para extensión y proyección social"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	7634		
+"891900853"	20222301101523	7	"Adecuar los espacios para el bienestar universitario"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	7635		
+"891900853"	20222301101523	8	"Mejorar los espacios físicos para la innovación pedagógica"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	7636		
+"891900853"	20222301101523	9	"Mejorar la infraestructura tecnológica y el equipamiento para la innovación pedagógica"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	7637		
+"891900853"	20222301101524	1	"Adquisición (dotación) de mobiliario y equipo"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	7642		
+"891900853"	20222301101524	2	"Adecuación y acondicionamiento de espacios educativos"	"EJECUCION"	"ADECUACION"	6	1	""	"S"	""	7643		
+"891900853"	20222301101524	3	"Construcción de espacios educativos"	"EJECUCION"	"CONSTRUCCION"	6	1	""	"S"	""	7644		
+"891900853"	20222301101524	4	"Mantenimiento de espacios físicos misionales"	"EJECUCION"	"MANTENIMIENTO"	6	1	""	"S"	""	7645		
+"891900853"	20222301101524	5	"Acondicionamiento de instalaciones eléctricas y de red de datos"	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	6	1	""	"S"	""	7646		
+"891900853"	20222301101524	6	"Acondicionamiento de instalaciones hidráulicas y otros"	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	6	1	""	"S"	""	7647		
+"891900853"	20222301101525	1	"Adecuar la cancha de fútbol"	"EJECUCION"	"OBRA FISICA"	6	1	""	"S"	""	7649		
+"891900853"	20222301101525	2	"Restaurar el coliseo cubierto"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	7650		
+"891900853"	20222301101526	1	"Consolidación del Modelo de Gestión (implementación de nuevas políticas de Gestión Estadística y demás)"	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	6	1	""	"S"	""	7651		
+"891900853"	20222301101526	2	"Desarrollo de mecanismos continuos y generales de participación en procesos institucionales (Audiencia y Rendición de Cuentas)"	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	6	1	""	"S"	""	7652		
+"891900853"	20222301101526	3	"Concientización sobre el componente normativo y la importancia de la consolidación de la democracia en el desarrollo social"	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	6	1	""	"S"	""	7653		
+"891900853"	20222301110001	1	"Desarrollo de eventos académicos orientados a Pedagogía universitaria"	"PREINVERSION"	"CAPACITACION Y ASISTENCIA"	6	1	""	"S"	""	7679		
+"891900853"	20222301110001	2	"Fortalecimiento de la formación en lengua extranjera"	"PREINVERSION"	"CAPACITACION Y ASISTENCIA"	6	1	""	"S"	""	7680		
+"891900853"	20222301110001	3	"Desarrollo de Diplomados en pedagogía"	"PREINVERSION"	"CAPACITACION Y ASISTENCIA"	6	1	""	"S"	""	7681		
+"891900853"	20222301110001	4	"Actividades de capacitación y formación docente"	"PREINVERSION"	"CAPACITACION Y ASISTENCIA"	6	1	""	"S"	""	7682		
+"891900853"	20222301110001	5	"Apoyar el número de docentes tiempo completo en la formación posgradual"	"PREINVERSION"	"CAPACITACION Y ASISTENCIA"	6	1	""	"S"	""	7683		
+"891900853"	20222301110002	1	"Consolidación de los procedimientos de registro calificado"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	26	1	""	"S"	""	7684		
+"891900853"	20222301110002	2	"Consolidación de los procedimientos de acreditación"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	26	1	""	"S"	""	7685		
+"891900853"	20222301110002	3	"Acompañamiento y apoyo a la gestión de la Vicerrectoría Académica en los procesos de Aseguramiento de la Calidad"	"PREINVERSION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	7686		
+"891900853"	20222301110002	4	"Participación institucional en procesos de fortalecimiento de competencias en aseguramiento de la calidad"	"PREINVERSION"	"APOYO INSTITUCIONAL"	26	1	""	"S"	""	7687		
+"891900853"	20222301110003	2	"Mantenimiento de los equipos del CDAF"	"PREINVERSION"	"MANTENIMIENTO"	6	1	""	"S"	""	7672		
+"891900853"	20222301110003	3	"Gestión para el mantenimiento operacional del Laboratorio de Simulacion Clinica de la UCEVA"	"PREINVERSION"	"MANTENIMIENTO"	26	1	""	"S"	""	7673		
+"891900853"	20222301110003	4	"Gestion para el mantenimiento operacional de Laboratorios Integrados"	"PREINVERSION"	"MANTENIMIENTO"	26	1	""	"S"	""	7674		
+"891900853"	20222301110003	5	"Fortalecimiento de los espacios de práctica en las Granjas"	"PREINVERSION"	"ADQ. BIENES Y SERVICIOS"	26	1	""	"S"	""	7675		
+"891900853"	20222301110003	6	"Fortalecimiento de los laboratorios y espacios de práctica de la Facultad de Ingeniería"	"PREINVERSION"	"ADQ. BIENES Y SERVICIOS"	26	1	""	"S"	""	7676		
+"891900853"	20222301110003	7	"Fortalecimiento de Laboratorios Integrados"	"PREINVERSION"	"ADQ. BIENES Y SERVICIOS"	26	1	""	"S"	""	7677		
+"891900853"	20222301110003	8	"Adquisición de implementos necesarios para la realización de las prácticas para el programa de Licenciatura en Educación Fisica, recreación y deporte"	"PREINVERSION"	"ADQ. BIENES Y SERVICIOS"	26	1	""	"S"	""	7678		
+"891900853"	20222301100520	1	"Aplicación de las acciones de saneamiento ambiental"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	8537		
+"891900853"	20222301100520	2	"Dotación de mobiliario y equipo para la conservación documental"	"EJECUCION"	"DOTACION"	6	1	""	"S"	""	8538		
+"891900853"	20222301100520	3	"Contratación de personal calificado que apoye los procedimientos operativos en la organización documental"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	1	""	"S"	""	8539		
+"891900853"	20222301100520	4	"Diseño e implementación del sistema de gestión de documentos electrónicos de Archivo"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	8540		
+"891900853"	20222301100520	5	"Capacitación específica para el personal del Área de Gestión Documental y Archivo en temas estratégicos de Archivo"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	8541		
+"891900853"	20222301100520	6	"Ejecución de estrategias para la apropiación de temas archivísticos a todo el personal administrativo de la institución"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	8542		
+"891900853"	20222301101524	8	"Mantenimiento de espacios fisicos no misionales"	"PREINVERSION"	"MANTENIMIENTO"	6	1	""	"S"	""	7805		
+"891900853"	20222301104504	5	"Implementación de la Política de Gobierno y Seguridad Digital"	"PREINVERSION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	8623		
+"891900853"	20232301101523	2	"Desarrollo de mecanismos continuos y generales de participación en procesos institucionales (Audiencia y Rendición de Cuentas)"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	9113		
+"891900853"	20232301101523	3	"UCEVA Región articulada con el compromiso de la Responsabilidad Social, inclusión, diversidad y sostenibilidad"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	10	""	"S"	""	9114		
+"891900853"	20232301103025	1	"Disponer de medios y canales de comunicación efectivos"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	4	""	"S"	""	9107		
+"891900853"	20232301103025	2	"Ejecutar acciones de apropiación y uso de los protocolos de comunicación interna y externa"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	3	""	"S"	""	9108		
+"891900853"	20232301103025	3	"Desarrollar contenidos físicos y digitales de calidad y efectividad"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	9109		
+"891900853"	20232301103025	4	"Implementar estrategias de posicionamiento de marca"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	9110		
+"891900853"	20232301103025	5	"Implementar campañas publicitarias y de difusión de la oferta educativa institucional"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	9111		
+"891900853"	20232301101523	1	"Consolidación del Modelo de Gestión (implementación de nuevas políticas de Gestión Estadística y demás)"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	9112		
+"891900853"	20232301101523	4	"Implementación de mecanismos de participación y concientización de la democracia bajo la inclusión, respeto por la diversidad y garantía de sostenibilidad institucional"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	9115		
+"891900853"	20232301101521	1	"Adecuar los espacios para uso general y zonas verdes"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	9116		
+"891900853"	20232301101521	2	"Mejorar la infraestructura tecnológica de los procesos misionales"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	9117		
+"891900853"	20232301101521	3	"Mejorar los espacios físicos para la academia"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	9118		
+"891900853"	20232301101521	4	"Actualizar los espacios para docencia"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	9119		
+"891900853"	20232301101521	5	"Actualizar los espacios para investigación"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	9120		
+"891900853"	20232301101521	6	"Actualizar los espacios para extensión y proyección social"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	9121		
+"891900853"	20232301101521	7	"Adecuar los espacios para el bienestar universitario"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	9122		
+"891900853"	20232301101521	8	"Mejorar los espacios físicos para la innovación pedagógica"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	9123		
+"891900853"	20232301101521	9	"Mejorar la infraestructura tecnológica y el equipamiento para la innovación"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	9124		
+"891900853"	20232301101522	1	"Adquisición (dotación) de mobiliario y equipo	"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	9125		
+"891900853"	20232301101522	2	"Adecuación y acondicionamiento de espacios educativos	"	"EJECUCION"	"ADECUACION"	2	3000	""	"S"	""	9126		
+"891900853"	20232301101522	3	"Construcción de espacios educativos	"	"EJECUCION"	"CONSTRUCCION"	6	1	""	"S"	""	9127		
+"891900853"	20232301100518	1	"Aplicar acciones para desarrollar medición ambiental 	"	"EJECUCION"	"CONTROL AMBIENTAL"	26	100	""	"S"	""	9140		
+"891900853"	20232301100518	2	"Gestión para la conservación documental como dotación de mobiliario y equipo y mantenimiento de los existentes	"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	9141		
+"891900853"	20232301100518	3	"Garantizar personal calificado como apoyo a los procedimientos operativos en la organización documental	"	"EJECUCION"	"APOYO INSTITUCIONAL"	26	100	""	"S"	""	9142		
+"891900853"	20232301100518	4	"Mejorar la Gestión Documental en medios digitales 	"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	9143		
+"891900853"	20232301100518	5	"Gestionar capacitaciones específicas para el personal del Área de Gestión Documental y Archivo en temas estratégicos de Archivo	"	"EJECUCION"	"CAPACITACION Y ASISTENCIA"	6	1	""	"S"	""	9144		
+"891900853"	20232301100518	6	"Ejecutar estrategias para la apropiación de temas archivísticos a todo el personal administrativo de la institución	"	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	6	1	""	"S"	""	9145		
+"891900853"	20232301140008	1	"Hacer seguimiento al sistema de alertas tempranas"	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	6	8	""	"S"	""	8884		
+"891900853"	20232301140008	2	"Disponer de los elementos necesarios para salvaguardar a los estudiantes en los eccenario academicos"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	8885		
+"891900853"	20232301140008	3	"Ejecutar actividades academicas y psicosociales dirigidas a la comunidad ucevista y grupos de interes"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	9	""	"S"	""	8886		
+"891900853"	20232301140008	4	"Desarrollar estrategias para la promocion y mantenimiento de la salud"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	12	""	"S"	""	8887		
+"891900853"	20232301140008	5	"Provisionar de todo lo necesario  para la prestacion integral del servicio de salud"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	8888		
+"891900853"	20232301140008	6	"Disponer del servicio de area protegida con cubrimiento de todos los eventos institucionales y para la atencion de salud"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	8889		
+"891900853"	20232301140007	1	"Consolidar la oferta del área de Arte y Cultura del Bienestar Universitario"	"EJECUCION"	"COMPONENTE INSTITUCIONAL"	6	300	""	"S"	""	8962		
+"891900853"	20232301140007	2	"Garantizar créditos deportivos para la población estudiantil con calidad"	"EJECUCION"	"COMPONENTE INSTITUCIONAL"	6	700	""	"S"	""	8963		
+"891900853"	20232301140007	3	"Apoyar la participación representativa deportiva en juegos universitarios, departamentales, regionales, Nacionales de Ascundeportes"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	4	""	"S"	""	8964		
+"891900853"	20232301140007	4	"Contribuir en la participación representativa deportiva de selecciones Uceva en eventos deportivos con la comunidad externa (universidades, Clubes deportivos, Colegios y escuelas deportivas, etc.)"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	5	""	"S"	""	8965		
+"891900853"	20232301140007	5	"Fortalecer la creatividad artística y cultural en la comunidad universitaria y grupos de interés"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	3	""	"S"	""	8966		
+"891900853"	20232301140007	6	"Organizar jornadas lúdicas, deportivas y recreativas que fomenten la participación de la comunidad universitaria de la Uceva"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	6	""	"S"	""	8967		
+"891900853"	20232301140007	7	"Participar en eventos artísticos y/o culturales nacionales y/o internacionales	"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	2	""	"S"	""	8968		
+"891900853"	20232301140007	8	"Generar apropiabilidad del arte y la cultura mediante la cohesión con grupos gestores del tema"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	1	""	"S"	""	8969		
+"891900853"	20232301103509	1	"Fomentar charlas con organismos gestores de becas nacionales e internacionales	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	100	""	"S"	""	9412		
+"891900853"	20232301103509	2	"Generar iniciativas académicas curriculares y extracuriculares que fomenten la cultura de la internacionalización en la UCEVA 	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	6	""	"S"	""	9413		
+"891900853"	20232301103509	3	"Promover el empoderamiento institucional de la internacionalización Ucevista	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	700	""	"S"	""	9414		
+"891900853"	20232301103509	4	"Promover el posicionamiento institucional a partir de la promoción de la UCEVA en ferias y eventos de orden nacional e internacional.	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	3	""	"S"	""	9415		
+"891900853"	20232301130014	3	"Apoyar la ejecución de proyectos de investigación en convocatorias internas"	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	26	40	""	"S"	""	9582		
+"891900853"	20232301130014	4	"Financiar la publicación de productos significativos de investigación"	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	6	17	""	"S"	""	9583		
+"891900853"	20232301130014	5	"Brindar acompañamiento a la participación institucional en convocatorias de investigación nacionales e internacionales"	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	26	100	""	"S"	""	9584		
+"891900853"	20232301130014	6	"Consolidar las relaciones interinstitucionales para participación en convocatorias externas"	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	26	100	""	"S"	""	9585		
+"891900853"	20232301130016	1	"Impulsar el portafolio de educación continuada"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	6	15	""	"S"	""	9586		
+"891900853"	20232301130016	2	"Desarrollar proyectos de intervención y transferencia y apropiación del conocimiento a la comunidad"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	6	10	""	"S"	""	9587		
+"891900853"	20232301130016	3	"Ejecutar acciones formativas en extensión y proyección social"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	6	400	""	"S"	""	9588		
+"891900853"	20232301130016	4	"Ejecutar acciones de emprendimiento, innovación y relación con las ""N"" hélices"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	6	25	""	"S"	""	9589		
+"891900853"	20232301101520	1	"Fortalecimiento de la cultura organizacional a la comunidad universitaria"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	9590		
+"891900853"	20232301101520	2	"Proceso de Auditoria de Seguimiento Certificación del Sistema de Gestiòn de Calidad del Departamento de Idiomas bajo las Normas Técnicas Colombianas NTC 5555 y NTC 5580"	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	5	1	""	"S"	""	9591		
+"891900853"	20232301101520	3	"Desarrollar estrategias para la implementación de las acciones para  el Sistema de Gestión Integrado ¿ SGI, el Modelo Integrado de Planeación y Gestión - MIPG y los Objetivos de Desarollo Sostenible - ODS."	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	5	1	""	"S"	""	9592		
+"891900853"	20232301103511	1	"Generar una estrategia formativa en internacionalización del currículo con miembros de la comunidad universitaria	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	25	""	"S"	""	9420		
+"891900853"	20232301103511	2	"Apoyar la convocatoria de proyectos de internacionalización del currículo para el diseño e implementación de cursos internacionales 	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	4	""	"S"	""	9421		
+"891900853"	20232301103511	3	"Apoyar la certificación de docentes en exámenes de proficiencia en lengua extranjera de acuerdo al MCER - Marco Común Europeo de Referencia	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	10	""	"S"	""	9422		
+"891900853"	20232301103511	4	"Apoyar la generación de actividades académicas que promuevan la comparación curricular  de los programas académicos de la UCEVA con IES nacionales e internacionales 	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	10	""	"S"	""	9423		
+"891900853"	20232301103512	1	"Apoyar la movilidad de docentes de las facultades de la UCEVA hacia universidades u organizaciones nacionales e internacionales en las tipologías de estancia de docencia y asistencia a eventos 	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	20	""	"S"	""	9424		
+"891900853"	20232301103512	2	"Apoyar la movilidad de estudiantes de las facultades de la UCEVA hacia universidades u organizacionales nacionales e internacionales en las tipologías de semestre académico y participación en eventos académicos 	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	20	""	"S"	""	9425		
+"891900853"	20232301103512	3	"Apoyar la movilidad de administrativos UCEVA hacia universidades u organizaciones nacionales e internacionales en el marco de las tipologías del Acuerdo 003 2022.	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	5	""	"S"	""	9426		
+"891900853"	20232301103512	4	"Apoyar salidas académicas que realicen las facultades de la UCEVA en el marco del Acuerdo Académico 004 2016. 	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	7	""	"S"	""	9427		
+"891900853"	20232301103512	5	"Apoyar la movilidad de docentes de universidades u organizaciones nacionales e internacionales hacia la UCEVA en el marco de las tipologías del Acuerdo 003 2022.	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	20	""	"S"	""	9428		
+"891900853"	20232301103512	6	"Apoyar la movilidad de estudiantes de universidades nacionales e internacionales hacia las facultades de la UCEVA en el marco de las tipologías del Acuerdo 003 2022.	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	40	""	"S"	""	9429		
+"891900853"	20232301110001	1	"Apoyar los docentes tiempo completo en  formación posgradual a nivel de especialización y maestría"	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	5	1	""	"S"	""	9568		
+"891900853"	20232301110001	2	"Apoyar los docentes tiempo completo en  formación posgradual a nivel de doctorado y postdoctorado"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	5	1	""	"S"	""	9569		
+"891900853"	20232301110001	3	"Desarrollar iniciativas de educación continua"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	5	1	""	"S"	""	9570		
+"891900853"	20232301110001	4	"Ejecutar eventos académicos orientados a Pedagogía universitaria"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	5	1	""	"S"	""	9571		
+"891900853"	20232301110001	5	"Fortalecer los niveles de educación docente en en lengua extranjera"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	5	1	""	"S"	""	9572		
+"891900853"	20232301110002	1	"Consolidar los procedimientos de registro calificado"	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	5	1	""	"S"	""	9573		
+"891900853"	20232301110002	2	"Consolidar los procedimientos de acreditación"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	5	1	""	"S"	""	9574		
+"891900853"	20232301103510	1	"Suscribir y renovar afiliaciones a redes u organizaciones de cooperación nacionales e internacionales	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	23	""	"S"	""	9416		
+"891900853"	20232301103510	2	"Desarrollar iniciativas de alcance internacional en alianza con IES u organizaciones como Sociedad civil, Empresa, Estado, para el alcance e intercambio de conocimientos y experiencias sobre los Objetivos de Desarrollo Sostenible ODS 	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	3	""	"S"	""	9417		
+"891900853"	20232301103510	3	"Desarrollar misiones académicas para oficializar convenios y alianzas cooperativas con pares y distintas organizaciones nacionales e internacionales	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	3	""	"S"	""	9418		
+"891900853"	20232301103510	4	"Apoyar proyectos de cooperación nacional o internacional que presentan las unidades académicas y administrativas de la UCEVA	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	3	""	"S"	""	9419		
+"891900853"	20232301103513	1	"Apoyar a grupos o redes de investigación en procesos de transferencia de conocimiento 	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	5	""	"S"	""	9430		
+"891900853"	20232301103513	2	"Apoyar  investigadores UCEVA que desarrollen cátedras de  investigación o trabajos  de grado en colaboración con  universidades nacionales y/o internacionales	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	3	""	"S"	""	9431		
+"891900853"	20232301103513	3	"Apoyar la participación de estudiantes de las facultades de la UCEVA en programas de estancia de investigación nacional e internacional 	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	10	""	"S"	""	9432		
+"891900853"	20232301103513	4	"Apoyar estudiantes  nacionales e internacionales que realicen su pasantía en los grupos de investigación de la UCEVA 	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	9	""	"S"	""	9433		
+"891900853"	20232301103513	5	"Desarrollar una estrategia para la cooperación científica de la UCEVA en colaboración con IES nacionales e internacionales 	"	"EJECUCION"	"APOYO INSTITUCIONAL"	6	50	""	"S"	""	9434		
+"891900853"	20232301110002	3	"Obtener acompañamiento y apoyo a la gestión de la Vicerrectoría Académica en los procesos de Aseguramiento de la Calidad"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	5	1	""	"S"	""	9575		
+"891900853"	20232301110002	4	"Motivar la participación institucional en procesos de fortalecimiento de competencias en aseguramiento de la calidad"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	5	1	""	"S"	""	9576		
+"891900853"	20232301130015	1	"Formar la Comunidad Universitaria en Investigación"	"EJECUCION"	"CAPACITACION Y ASISTENCIA"	6	70	""	"S"	""	9577		
+"891900853"	20232301130015	2	"Capacitar en planeación, desarrollo, producción y control de la investigación a los docentes para generar ventajas competitivas en la institución"	"PREINVERSION"	"CAPACITACION Y ASISTENCIA"	6	10	""	"S"	""	9578		
+"891900853"	20232301130015	3	"Generar incentivos para docentes y estudiantes enfocado al fortalecimiento de los procesos investigativos"	"PREINVERSION"	"DESARROLLO INSTITUCIONAL"	6	2	""	"S"	""	9579		
+"891900853"	20232301130014	1	"Consolidar los grupos de investigación de la UCEVA"	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	6	15	""	"S"	""	9580		
+"891900853"	20232301130014	2	"Consolidar los docentes investigadores de la UCEVA"	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	6	38	""	"S"	""	9581		
+"891900853"	20232301104504	1	"Actualizar el ecosistema digital de la gestión académica de la UCEVA"	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	26	100	""	"S"	""	9643		
+"891900853"	20232301104504	2	"Brindar mantenimiento y/o soporte técnico al  Ecosistema Digital de la gestión académica de la UCEVA"	"EJECUCION"	"MANTENIMIENTO"	26	100	""	"S"	""	9644		
+"891900853"	20232301104504	3	"Fortalecer la tecnología de los procesos misionales y de apoyo de la UCEVA"	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	26	80	""	"S"	""	9645		
+"891900853"	20232301104504	4	"Implementar soluciones tecnológicas a la gestión académica institucional"	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	26	100	""	"S"	""	9646		
+"891900853"	20232301104504	5	"Desarrollar acciones de apropiación y uso de los recursos tecnológicos que dispone el Ecosistema Digital de la UCEVA"	"EJECUCION"	"CAPACITACION Y ASISTENCIA"	26	80	""	"S"	""	9647		
+"891900853"	20232301104504	6	"Impulsar acciones de racionalización y mejoramiento integral de los trámites, procedimientos y servicios de la UCEVA"	"EJECUCION"	"APOYO INSTITUCIONAL"	26	100	""	"S"	""	9648		
+"891900853"	20232301101522	4	"Mantenimiento de espacios físicos misionales"	"EJECUCION"	"MANTENIMIENTO"	26	100	""	"S"	""	9655		
+"891900853"	20232301101522	5	"Acondicionamiento de instalaciones eléctricas y de red de datos"	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	6	1	""	"S"	""	9656		
+"891900853"	20232301101522	6	"Acondicionamiento de instalaciones hidráulicas y otros"	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	6	1	""	"S"	""	9657		
+"891900853"	20232301101522	7	"Mantenimiento de espacios físicos no misionales"	"EJECUCION"	"MANTENIMIENTO"	26	100	""	"S"	""	9658		
+"891900853"	20232301104519	1	"Actualizar el ecosistema digital de la gestión administrativa de la UCEVA"	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	26	100	""	"S"	""	9649		
+"891900853"	20232301104519	2	"Brindar mantenimiento y/o soporte técnico al  Ecosistema Digital de la gestión académica de la UCEVA"	"EJECUCION"	"MANTENIMIENTO"	26	100	""	"S"	""	9650		
+"891900853"	20232301104519	3	"Fortalecer la tecnología de los procesos estratégicos, de apoyo y evaluación y seguimiento de la UCEVA"	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	26	80	""	"S"	""	9651		
+"891900853"	20232301104519	4	"Implementar soluciones tecnológicas a la gestión administrativa institucional"	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	26	100	""	"S"	""	9652		
+"891900853"	20232301104519	5	"Implementación de la Política de Gobierno y Seguridad Digital"	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	26	100	""	"S"	""	9653		
+"891900853"	20232301104519	6	"Desarrollar acciones de apropiación y uso de los recursos tecnológicos de que dispone el Ecosistema Digital de la UCEVA"	"EJECUCION"	"CAPACITACION Y ASISTENCIA"	26	80	""	"S"	""	9654		
+"891900853"	1127	5	"valor instructivo"	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	6	12	""	"S"	""	10030		
+"891900853"	1127	6	"nuevo"	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	6	10	""	"S"	""	10031		
+"891900853"	20232301130017	1	"Aplicar la estrategia de recaudo, sistematización y consolidación de la información respecto a egresados"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	9594		
+"891900853"	20232301130017	2	"Desarrollar acciones de capacitación y formación en competencias de acuerdo al perfil profesional de los egresados de las diferentes facultades"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	9595		
+"891900853"	20232301130017	3	"Desarrollar acciones de apropiabilidad y compromiso en la relación UCEVA-Egresado"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	9596		
+"891900853"	20232301130017	4	"Fortalecer las estrategias para la consolidación de la bolsa de empleo"	"EJECUCION"	"APOYO INSTITUCIONAL"	5	1	""	"S"	""	9597		
+"891900853"	20232301	1	"prueba 1"	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	4	4	""	"S"	""	10035		
+"891900853"	20232301	2	"prueba 2"	"EJECUCION"	"OTROS"	5	10	""	"S"	""	10036		
+"891900853"	20232301	3	"prueba 3"	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	1	20	""	"S"	""	10037		
+"891900853"	20232301110005	1	"Mantener en óptimo funcionamiento los equipos de audio en los diferentes espacios de la UCEVA"	"EJECUCION"	"MANTENIMIENTO"	26	100	""	"S"	""	9682		
+"891900853"	20232301110005	2	"Adquirir herramientas de audio para reposición y/o actualización"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	9683		
+"891900853"	20232301110005	3	"Actualizar los equipos de video, a demanda de la comunidad universitaria"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	9684		
+"891900853"	20232301110005	4	"Adquirir repuestos y elementos necesarios para el adecuado funcionamiento de los equipos audiovisuales"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	9685		
+"891900853"	20232301110005	5	"Realizar mantenimiento preventivo y diagnóstico de las condiciones actuales de los equipos audiovisuales institucionales"	"EJECUCION"	"MANTENIMIENTO"	26	100	""	"S"	""	9686		
+"891900853"	20232301110005	6	"Realizar mantenimiento correctivo de equipos audiovisuales"	"EJECUCION"	"MANTENIMIENTO"	26	100	""	"S"	""	9687		
+"891900853"	20232301110006	1	"Adquirir libros digitales en los diferentes núcleos de conocimiento"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	9688		
+"891900853"	20232301110006	2	"Disponer de bases de datos de calidad"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	10	""	"S"	""	9689		
+"891900853"	20232301110006	3	"Adquirir libros físicos pertinentes a los programas académicos en la institución"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	9690		
+"891900853"	20232301110006	4	"Obtener otros elementos y recursos bibliográficos físicos que contribuyan al proceso formativo"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	9691		
+"891900853"	20232301110006	5	"Disponer de herramientas tecnológicas en la  Biblioteca que optimicen los servicios"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	6	4	""	"S"	""	9692		
+"891900853"	20232301110006	6	"Optimizar la tecnología existente para promocionar y generar apropiación de los recursos bibliográficos con que cuenta la UCEVA"	"EJECUCION"	"OTROS"	6	4	""	"S"	""	9693		
+"891900853"	20232301110006	7	"Mejorar las condiciones físicas y funcionales para la prestación del servicio en la Biblioteca"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	9694		
+"891900853"	20232301110006	8	"Optimizar el almacenamiento"	"EJECUCION"	"OTROS"	6	1	""	"S"	""	9695		
+"891900853"	20232301101520	4	"Generar espacios de apropiabilidad del Sistema de Gestiòn Integrado"	"EJECUCION"	"INGENIERIA Y ADMINISTRACION"	5	1	""	"S"	""	9593		
+"891900853"	20232301110003	1	"Gestión para el mantenimiento operacional de los espacios de práctica en las Granjas"	"EJECUCION"	"MANTENIMIENTO"	26	100	""	"S"	""	9661		
+"891900853"	20232301110003	2	"Gestión para el mantenimiento operacional de espacios de práctica de la Facultad de Ingeniería en el campus universitario"	"EJECUCION"	"MANTENIMIENTO"	26	100	""	"S"	""	9662		
+"891900853"	20232301110003	3	"Gestión para el mantenimiento operacional del Laboratorio de Simulación Clínica"	"EJECUCION"	"MANTENIMIENTO"	26	100	""	"S"	""	9663		
+"891900853"	20232301110003	4	"Gestión para el mantenimiento operacional del Laboratorio de Morfología"	"EJECUCION"	"MANTENIMIENTO"	26	100	""	"S"	""	9664		
+"891900853"	20232301110003	5	"Gestión para el mantenimiento operacional del Laboratorio de Psicología"	"EJECUCION"	"MANTENIMIENTO"	26	100	""	"S"	""	9665		
+"891900853"	20232301110003	6	"Gestión para el mantenimiento operacional de espacios de práctica de la Facultad de Educación"	"EJECUCION"	"MANTENIMIENTO"	26	100	""	"S"	""	9666		
+"891900853"	20232301110003	7	"Gestión para el mantenimiento operacional de Laboratorios Integrados"	"EJECUCION"	"MANTENIMIENTO"	26	100	""	"S"	""	9667		
+"891900853"	20232301110003	8	"Mejora de la cobertura, actualización y pertinencia de los ambientes de aprendizaje,  laboratorios y/o espacios de práctica de la Facultad de Ingeniería"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	9668		
+"891900853"	20232301110003	9	"Mejora de la cobertura, actualización y pertinencia de los ambientes de aprendizaje,  laboratorios y/o espacios de práctica de la Facultad de Ciencias Administrativas, Económicas y Contables"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	9669		
+"891900853"	20232301110003	10	"Mejora de la cobertura, actualización y pertinencia de los ambientes de aprendizaje,  laboratorios y/o espacios de práctica de la Facultad de Ciencias de la Educación"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	9670		
+"891900853"	20232301110003	11	"Mejora de la cobertura, actualización y pertinencia de los ambientes de aprendizaje,  laboratorios y/o espacios de práctica de la Facultad de Ciencias Jurídicas y Humanísticas"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	9671		
+"891900853"	20232301110003	12	"Mejora de la cobertura, actualización y pertinencia de los ambientes de aprendizaje,  laboratorios y/o espacios de práctica de la Facultad de Ciencias de la Salud"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	9672		
+"891900853"	20232301110003	13	"Mejora de la cobertura, actualización y pertinencia de los ambientes de aprendizaje,  laboratorios y/o espacios de práctica digitales e institucionales"	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	9673		
+"891900853"	20232301102524	1	"Fortalecimiento del Plan de Emergencias Institucional"	"EJECUCION"	"APOYO INSTITUCIONAL"	26	100	""	"S"	""	9674		
+"891900853"	20232301102524	2	"Desarrollar la estrategia de disposición y reposición de elementos ergonómicos y Elementos de Protección Personal para funcionarios de la Institución."	"EJECUCION"	"ADQ. BIENES Y SERVICIOS"	26	100	""	"S"	""	9675		
+"891900853"	20232301102524	3	"Apoyar las iniciativas de educación formal y educación para el trabajo y el desarrollo humano del personal administrativo"	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	26	100	""	"S"	""	9676		
+"891900853"	20232301102524	4	"Desarrollar capacitación del talento humano conforme el PIC"	"EJECUCION"	"CAPACITACION Y ASISTENCIA"	26	100	""	"S"	""	9677		
+"891900853"	20232301102524	5	"Desarrollar actividades culturales, recreativas y artísticas para el mejoramiento del clima organizacional y que tambien  promuevan la inclusión y la diversidad"	"EJECUCION"	"EVENTOS"	26	100	""	"S"	""	9678		
+"891900853"	20232301102524	6	"Fortalecer las actividades de Medicina Preventiva y del trabajo  conforme en lo establecido en la normatividad legal vigente, fomentando plan de hábitos, estilos de vida y entorno saludable"	"EJECUCION"	"APOYO INSTITUCIONAL"	26	100	""	"S"	""	9679		
+"891900853"	20232301102524	7	"Ejecutar acciones de reconocimiento a los miembros de la comunidad institucional"	"EJECUCION"	"OTROS"	6	2	""	"S"	""	9680		
+"891900853"	20232301102524	8	"Fortalecer los procesos Institucionales desde la gestión estrategica del Telento Humano, para garantizar la eficacia y efectividad, dando cumplimeinto a las metas institucionales"	"EJECUCION"	"DESARROLLO INSTITUCIONAL"	26	100	""	"S"	""	9681		

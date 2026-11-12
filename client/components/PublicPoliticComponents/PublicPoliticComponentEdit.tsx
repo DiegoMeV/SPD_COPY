@@ -1,0 +1,121 @@
+import React, { useEffect, useState } from "react";
+import { Form, Input, Space, Drawer, Switch, Button } from "antd";
+import { PublicPoliticComponentFragment } from "../../../graphql/gen/ops";
+import { ButtonEdit, FormButtonContainer } from "../Buttons";
+import { useStoreActions } from "../../store";
+import { useUpdatePublicPoliticComponentMutation } from "../../../graphql/gen/hooks";
+
+type Props = {
+  data: PublicPoliticComponentFragment;
+};
+
+const PublicPoliticComponentEdit: React.FC<Props> = ({ data }) => {
+  const [open, setOpen] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const { sendNotification } = useStoreActions((actions) => actions.notifications);
+  const [form] = Form.useForm();
+  const [updateComponent] = useUpdatePublicPoliticComponentMutation();
+
+  useEffect(() => {
+    form.setFieldsValue(data);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
+
+  const formItemLayout = {
+    labelCol: { span: 4 },
+    wrapperCol: { span: 14 },
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
+
+  const onSave = () => {
+    onFinish(form.getFieldsValue());
+    form.resetFields();
+  };
+
+  const onFinish = async (values: Record<string, any>) => {
+    try {
+      setSaving(true);
+      const variables = {
+        data: {
+          id: data.id,
+          code: values.code,
+          name: values.name,
+          description: values.description,
+          isActive: values.isActive,
+        },
+      };
+      const result = await updateComponent({ variables });
+      sendNotification({
+        type: "success",
+        message: "Componente editado",
+        description: `Se ha editado correctamente el componente ${result.data?.updatePublicPoliticComponent?.code}`,
+      });
+      form.resetFields();
+      setOpen(false);
+    } catch (e) {
+      sendNotification({
+        type: "error",
+        message: "Creando componente",
+        description: `${e}`,
+      });
+    } finally {
+      setSaving(false);
+      setOpen(false);
+    }
+  };
+
+  return (
+    <Space>
+      <ButtonEdit onClick={() => setOpen(true)} title={`Editar componente`} />
+      <Drawer
+        title={`Editar componente`}
+        placement="right"
+        size="large"
+        onClose={onClose}
+        open={open}
+        extra={
+          <FormButtonContainer>
+            <Button onClick={onClose}>Cancelar</Button>
+            <Button type="primary" loading={saving} onClick={onSave}>
+              Guardar
+            </Button>
+          </FormButtonContainer>
+        }
+      >
+        <Form
+          form={form}
+          layout="horizontal"
+          onFinish={onFinish}
+          {...formItemLayout}
+          requiredMark={true}
+          initialValues={{ ...data }}
+          disabled={saving}
+        >
+          <Form.Item name="code" label="Código">
+            <Input placeholder="Código" style={{ width: 200 }} />
+          </Form.Item>
+          <Form.Item name="name" required label="Nombre">
+            <Input placeholder="Nombre" />
+          </Form.Item>
+          <Form.Item name="description" label="Descripción">
+            <Input placeholder="Descripción" />
+          </Form.Item>
+          <Form.Item name="isActive" label="Activo" valuePropName="checked">
+            <Switch />
+          </Form.Item>
+          <Form.Item
+            wrapperCol={{
+              xs: { span: 24, offset: 0 },
+              sm: { span: 14, offset: 10 },
+            }}
+          ></Form.Item>
+        </Form>
+      </Drawer>
+    </Space>
+  );
+};
+
+export { PublicPoliticComponentEdit };

@@ -1,0 +1,11 @@
+-- AlterTable
+ALTER TABLE "monitoring_record_resource" ADD COLUMN     "sgp_culture" DOUBLE PRECISION DEFAULT 0,
+ADD COLUMN     "sgp_early_childhood" DOUBLE PRECISION DEFAULT 0,
+ADD COLUMN     "sgp_education" DOUBLE PRECISION DEFAULT 0,
+ADD COLUMN     "sgp_free_destination" DOUBLE PRECISION DEFAULT 0,
+ADD COLUMN     "sgp_free_investment" DOUBLE PRECISION DEFAULT 0,
+ADD COLUMN     "sgp_health" DOUBLE PRECISION DEFAULT 0,
+ADD COLUMN     "sgp_magdalena_river" DOUBLE PRECISION DEFAULT 0,
+ADD COLUMN     "sgp_school_feeding" DOUBLE PRECISION DEFAULT 0,
+ADD COLUMN     "sgp_sport" DOUBLE PRECISION DEFAULT 0,
+ADD COLUMN     "sgp_water" DOUBLE PRECISION DEFAULT 0;

@@ -1,0 +1,61 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      # Login on docker hub
+      - echo $DOCKER_HUB_TOKEN | docker login --username $DOCKER_HUB_USER --password-stdin
+  pre_build:
+    commands:
+      # Get Account ID
+      - |
+        data=(${CODEBUILD_BUILD_ARN//:/ })
+        ACCOUNT_ID=${data[4]}
+      # Create variables
+      - |
+        ECR_URI=$ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+        REPOSITORY_URI=$ECR_URI/ecr-$PROJECT-$ENVIRONMENT-$SERVICE
+        IMAGE_TAG=0.$CODEBUILD_BUILD_NUMBER
+       # Get service secret json
+      - |
+        SECRET=$(aws secretsmanager get-secret-value --secret-id "secm-${PROJECT}-${ENVIRONMENT}-${SERVICE}")
+        API_URL=$(echo $SECRET | jq -r '.SecretString' | jq -r '.API_URL')
+        APP_URL=$(echo $SECRET | jq -r '.SecretString' | jq -r '.APP_URL')
+        DATABASE_URL=$(echo $SECRET | jq -r '.SecretString' | jq -r '.DATABASE_URL')
+        DPI_DEBUG_LEVEL=$(echo $SECRET | jq -r '.SecretString' | jq -r '.DPI_DEBUG_LEVEL')
+        NEXT_PUBLIC_SPD_CUSTOM_TITLE=$(echo $SECRET | jq -r '.SecretString' | jq -r '.NEXT_PUBLIC_SPD_CUSTOM_TITLE')
+        S3_ACCESS_KEY_ID=$(echo $SECRET | jq -r '.SecretString' | jq -r '.S3_ACCESS_KEY_ID')
+        S3_BUCKET=$(echo $SECRET | jq -r '.SecretString' | jq -r '.S3_BUCKET')
+        S3_REGION=$(echo $SECRET | jq -r '.SecretString' | jq -r '.S3_REGION')
+        S3_SECRET_ACCESS_KEY=$(echo $SECRET | jq -r '.SecretString' | jq -r '.S3_SECRET_ACCESS_KEY')
+        SIIF_CONNECTION_STRING_8913800073=$(echo $SECRET | jq -r '.SecretString' | jq -r '.SIIF_CONNECTION_STRING_8913800073')
+        SIIF_REST_API_URL_8914800302=$(echo $SECRET | jq -r '.SecretString' | jq -r '.SIIF_REST_API_URL_8914800302')
+        TOKEN_SECRET=$(echo $SECRET | jq -r '.SecretString' | jq -r '.TOKEN_SECRET')
+      # Loging on docker with AWS ECR
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_URI
+  build:
+    commands:
+      # Build docker image
+      - docker build
+        --build-arg API_URL="${API_URL}"
+        --build-arg CORS_ORIGINS="${CORS_ORIGINS}"
+        --build-arg APP_URL="${APP_URL}"
+        --build-arg DATABASE_URL="${DATABASE_URL}"
+        --build-arg DPI_DEBUG_LEVEL="${DPI_DEBUG_LEVEL}"
+        --build-arg NEXT_PUBLIC_SPD_CUSTOM_TITLE="${NEXT_PUBLIC_SPD_CUSTOM_TITLE}"
+        --build-arg S3_ACCESS_KEY_ID="${S3_ACCESS_KEY_ID}"
+        --build-arg S3_BUCKET="${S3_BUCKET}"
+        --build-arg S3_REGION="${S3_REGION}"
+        --build-arg S3_SECRET_ACCESS_KEY="${S3_SECRET_ACCESS_KEY}"
+        --build-arg SIIF_CONNECTION_STRING_8913800073="${SIIF_CONNECTION_STRING_8913800073}"
+        --build-arg SIIF_REST_API_URL_8914800302="${SIIF_REST_API_URL_8914800302}"
+        --build-arg TOKEN_SECRET="${TOKEN_SECRET}"
+        -t $REPOSITORY_URI:latest 
+        -t $REPOSITORY_URI:$IMAGE_TAG .
+  post_build:
+    commands:
+      # Push docker image
+      - docker push $REPOSITORY_URI --all-tags
+      # Create image definitions file
+      - printf '[{"name":"%s","imageUri":"%s"}]' $SERVICE $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+artifacts:
+  files: imagedefinitions.json

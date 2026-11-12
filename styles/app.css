@@ -1,0 +1,93 @@
+.site-tree-search-value {
+  color: #f50;
+}
+
+.btn-delete:hover,
+.btn-delete:focus,
+.btn-delete:active {
+  color: #ff4d4f;
+  border-color: #ff4d4f;
+}
+
+.input-money .ant-input-number-input {
+  text-align: right;
+}
+
+.input-number .ant-input-number-input {
+  text-align: right;
+}
+
+#dashboard iframe {
+  width: 100%;
+  height: 700px;
+  border: 0;
+  overflow: hidden;
+}
+
+.plan-card {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.plan-card .ant-card-head-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #1890ff;
+  overflow: visible;
+  white-space: normal;
+  text-align: center;
+  height: 3.2em;
+}
+
+.plan-card .ant-card-body p {
+  margin: 0;
+  padding: 4px 0;
+  font-size: 1.1em;
+}
+
+.plan-card .ant-card-body p.card-subtitle {
+  font-size: 1em;
+  height: 4.4em;
+}
+
+.card-title {
+  overflow: visible;
+  white-space: normal;
+}
+
+.card-actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.wizard-text {
+  color: #1677ff;
+}
+
+.ant-menu {
+  font-size: 0.9rem;
+}
+
+.editable-cell {
+  position: relative;
+}
+
+.editable-cell-value-wrap {
+  padding: 5px 12px;
+  cursor: pointer;
+}
+
+.editable-row:hover .editable-cell-value-wrap {
+  padding: 4px 11px;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  min-height: 1.2rem;
+}
+
+.monitoring-review .ant-card-body {
+  margin: 0;
+  padding: 4px;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

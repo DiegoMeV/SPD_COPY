@@ -1,0 +1,87 @@
+services:
+  app:
+    container_name: spd-app
+    image: spd-app-dev
+    restart: always
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+      - NEXT_TELEMETRY_DISABLED=1
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    working_dir: /app
+    # Mount host directory to docker container to support watch mode
+    volumes:
+      - .:/app
+      # This ensures that the NextJS container manages the node_modules folder
+      # rather than synchronizes it with the host machine
+      - /app/node_modules
+      - /app/.next
+    env_file:
+      - .env.local
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+      # - oracle
+    networks:
+      - spd_network
+
+  postgres:
+    image: postgres:13.16
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - spd_network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  # oracle:
+  #   image: container-registry.oracle.com/database/enterprise:19.19.0.0
+  #   environment:
+  #     - ORACLE_SID=ORCLCDB
+  #     - ORACLE_PDB=ORCLPDB1
+  #     - ORACLE_PWD=oracle
+  #     - ORACLE_CHARACTERSET=WE8MSWIN1252
+  #   ports:
+  #     - 1521:1521
+  #   volumes:
+  #     - oracle-data:/opt/oracle/oradata
+  #     - oracle-backup:/opt/oracle/backup
+  #     - /Users/fredygil/data/oracle:/home/oracle/data
+  #   healthcheck:
+  #     test:
+  #       [
+  #         "CMD",
+  #         "sqlplus",
+  #         "-L",
+  #         "sys/oracle@//localhost:1521/ORCLCDB as sysdba",
+  #         "@healthcheck.sql",
+  #       ]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 5
+  #   networks:
+  #     - spd_network
+
+  # adminer:
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 8080:8080
+
+volumes:
+  pgdata:
+  # oracle-data:
+  # oracle-backup:
+
+networks:
+  spd_network:
+    external: true

@@ -1,0 +1,633 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model Tenant {
+  id                      Int                      @id @default(autoincrement())
+  name                    String
+  key                     String
+  isActive                Boolean                  @default(true) @map("is_active")
+  createdAt               DateTime                 @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt               DateTime?                @default(now()) @map("updated_at") @db.Timestamptz(6)
+  userAccounts            UserAccount[]
+  entities                Entity[]
+  developmentPlans        DevPlan[]
+  publicPolitics          PublicPolitic[]
+  publicPoliticComponents PublicPoliticComponent[]
+  monitoringConfigs       MonitoringConfig[]
+  macroProjects           MacroProject[]
+  locations               GeoLocation[]
+  GoalToActivity          GoalToActivity[]
+
+  @@unique(fields: [key], name: "uqTenantKey")
+  @@map("tenant")
+}
+
+enum SPDRole {
+  OPERATOR
+  VALIDATOR
+  AUDITOR
+  ADMIN
+}
+
+model UserAccount {
+  id        Int       @id @default(autoincrement())
+  tenantId  Int       @map("tenant_id")
+  tenant    Tenant    @relation(fields: [tenantId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_tenant")
+  isActive  Boolean   @default(true) @map("is_active")
+  email     String
+  docNumber String    @map("doc_number")
+  firstName String    @map("first_name")
+  lastName  String?   @map("last_name")
+  phone     String?
+  password  String
+  entityId  Int?      @map("entity_id")
+  entity    Entity?   @relation(fields: [entityId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_account_entity")
+  role      SPDRole?
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime? @default(now()) @map("updated_at") @db.Timestamptz(6)
+
+  @@unique([tenantId, email], name: "uqUserTenantEmail")
+  @@map("user_account")
+}
+
+model Entity {
+  id               Int           @id @default(autoincrement())
+  tenantId         Int           @map("tenant_id")
+  tenant           Tenant        @relation(fields: [tenantId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "entity_tenant")
+  isActive         Boolean       @default(true) @map("is_active")
+  hasManualBudget  Boolean?      @default(false) @map("has_manual_budget")
+  code             String
+  name             String
+  managerName      String?
+  startDate        DateTime?     @default(now()) @map("start_date") @db.Timestamptz(6)
+  endDate          DateTime?     @default(now()) @map("end_date") @db.Timestamptz(6)
+  parentId         Int?          @map("parent_id")
+  parentEntity     Entity?       @relation("parentEntity", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "entity_itself")
+  createdAt        DateTime      @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt        DateTime?     @default(now()) @map("updated_at") @db.Timestamptz(6)
+  childrenEntities Entity[]      @relation("parentEntity")
+  goals            Goal[]
+  userAccounts     UserAccount[]
+  originId         Int?          @map("origin_id")
+
+  @@map("entity")
+}
+
+enum GoalActivitySource {
+  MANUAL
+  SIIF
+}
+
+model DevPlan {
+  id                  Int                 @id @default(autoincrement())
+  tenantId            Int                 @map("tenant_id")
+  tenant              Tenant              @relation(fields: [tenantId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "dev_plan_tenant")
+  isActive            Boolean             @default(true) @map("is_active")
+  code                String
+  name                String
+  startDate           DateTime?           @default(now()) @map("start_date") @db.Timestamptz(6)
+  endDate             DateTime?           @default(now()) @map("end_date") @db.Timestamptz(6)
+  governmentName      String              @map("government_name")
+  governmentStartDate DateTime            @map("government_start_date") @db.Timestamptz(6)
+  governmentEndDate   DateTime            @map("government_end_date") @db.Timestamptz(6)
+  createdAt           DateTime            @default(now()) @map("created_at") @db.Timestamptz(6)
+  createdBy           Int?                @map("created_by")
+  updatedAt           DateTime?           @default(now()) @map("updated_at") @db.Timestamptz(6)
+  updatedBy           Int?                @map("updated_by")
+  config              Json?
+  goalActivitySource  GoalActivitySource? @default(SIIF) @map("goal_activity_source")
+  devPlanLevels       DevPlanLevel[]
+  monitoringConfigs   MonitoringConfig[]
+
+  @@map("dev_plan")
+}
+
+model DevPlanLevel {
+  id                 Int             @id @default(autoincrement())
+  isActive           Boolean         @default(true) @map("is_active")
+  devPlanId          Int             @map("dev_plan_id")
+  devPlan            DevPlan         @relation(fields: [devPlanId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "dev_plan_level_dev_plan")
+  code               String
+  name               String
+  level              Int?
+  parentId           Int?            @map("parent_id")
+  parentDevPlanLevel DevPlanLevel?   @relation("parentDevPlanLevel", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "dev_plan_level_itself")
+  childrenLevels     DevPlanLevel[]  @relation("parentDevPlanLevel")
+  weighting          Float?
+  productCatalogId   Int?            @map("product_catalog_id")
+  productCatalog     ProductCatalog? @relation(fields: [productCatalogId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "devplanlevel_product_catalog")
+  createdAt          DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt          DateTime?       @default(now()) @map("updated_at") @db.Timestamptz(6)
+  goals              Goal[]
+  originId           Int?            @map("origin_id")
+
+  @@map("dev_plan_level")
+}
+
+model ProductCatalog {
+  id                   Int              @id @default(autoincrement())
+  isActive             Boolean          @default(true) @map("is_active")
+  code                 String
+  name                 String
+  description          String?
+  unitsName            String?          @map("units_name")
+  parentId             Int?             @map("parent_id")
+  isPrincipal          Boolean?         @map("is_principal")
+  isNational           Boolean?         @map("is_national")
+  isTerritorial        Boolean?         @map("is_territorial")
+  isLeaf               Boolean?         @default(false) @map("is_leaf")
+  parentProductCatalog ProductCatalog?  @relation("parentProductCatalog", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "product_catalog_itself")
+  childrenCatalog      ProductCatalog[] @relation("parentProductCatalog")
+  createdAt            DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt            DateTime?        @default(now()) @map("updated_at") @db.Timestamptz(6)
+  goals                Goal[]
+  devPlanLevels        DevPlanLevel[]
+
+  @@map("product_catalog")
+}
+
+enum GoalType {
+  PRODUCT
+  RESULT
+  ACTIVITY
+  PROJECT
+  WELL_BEING
+  IMPACT
+  PUBLIC_POLITIC
+  ACTION_PLAN
+  ACTION_PLAN_ACTIVITY
+}
+
+enum AccumulationType {
+  STOCK
+  FLOW
+  ACCUMULATED
+  NO_ACCUMULATED
+  CAPACITY
+  REDUCTION
+  ANNUAL_REDUCTION
+}
+
+model MacroProject {
+  id          Int       @id @default(autoincrement())
+  tenantId    Int       @map("tenant_id")
+  tenant      Tenant    @relation(fields: [tenantId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "macro_project_tenant")
+  code        String?
+  name        String
+  description String?
+  isActive    Boolean   @default(true) @map("is_active")
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  createdBy   Int?      @map("created_by")
+  updatedAt   DateTime? @default(now()) @map("updated_at") @db.Timestamptz(6)
+  updatedBy   Int?      @map("updated_by")
+  goals       Goal[]    @relation("goal_macro_project")
+
+  @@map("macro_project")
+}
+
+model Goal {
+  id                       Int                     @id @default(autoincrement())
+  tenantId                 Int?                    @map("tenant_id")
+  parentGoalId             Int?                    @map("parent_goal_id")
+  parentGoal               Goal?                   @relation("parentGoal", fields: [parentGoalId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "goal_itself")
+  childrenGoals            Goal[]                  @relation("parentGoal")
+  isActive                 Boolean                 @default(true) @map("is_active")
+  devPlanId                Int?                    @map("dev_plan_id")
+  devPlanLevelId           Int?                    @map("dev_plan_level_id")
+  devPlanLevel             DevPlanLevel?           @relation(fields: [devPlanLevelId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "goal_dev_plan_level")
+  entityId                 Int                     @map("entity_id")
+  entity                   Entity                  @relation(fields: [entityId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "goal_entity")
+  extraEntityIds           Json?                   @map("extra_entity_ids")
+  goalType                 GoalType                @map("goal_type")
+  code                     String
+  name                     String?
+  indicator                String?
+  description              String?
+  accumulationType         AccumulationType        @map("accumulation_type")
+  baseValue                Float?                  @map("base_value")
+  goalValue                Float?                  @map("goal_value")
+  unitsFactor              Int                     @map("units_factor")
+  unitsName                String?                 @map("units_name")
+  isBaseValueNotAvailable  Boolean                 @default(false) @map("is_base_value_not_available")
+  odsIds                   Json?                   @map("ods_ids")
+  publicPoliticId          Int?                    @map("public_politic_id")
+  publicPolitic            PublicPolitic?          @relation("public_politic", fields: [publicPoliticId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "goal_public_politic")
+  publicPoliticComponentId Int?                    @map("public_politic_component_id")
+  publicPoliticComponent   PublicPoliticComponent? @relation("goal_public_politic_component", fields: [publicPoliticComponentId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "goal_public_politic_component")
+  peacePoliticId           Int?                    @map("peace_politic_id")
+  peacePolitic             PublicPolitic?          @relation("peace_politic", fields: [peacePoliticId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "goal_peace_politic")
+  victimsPoliticId         Int?                    @map("victims_politic_id")
+  victimsPolitic           PublicPolitic?          @relation("victims_politic", fields: [victimsPoliticId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "goal_victims_politic")
+  productCatalogId         Int?                    @map("product_catalog_id")
+  productCatalog           ProductCatalog?         @relation(fields: [productCatalogId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "goal_product_catalog")
+  weighting                Float?
+  piBaseValue              Float?                  @map("pi_base_value")
+  piGoalValue              Float?                  @map("pi_goal_value")
+  piUnitsFactor            Int?                    @map("pi_units_factor")
+  piUnitsName              String?                 @map("pi_units_name")
+  startDate                DateTime?               @default(now()) @map("start_date") @db.Timestamptz(6)
+  endDate                  DateTime?               @default(now()) @map("end_date") @db.Timestamptz(6)
+  createdAt                DateTime                @default(now()) @map("created_at") @db.Timestamptz(6)
+  createdBy                Int?                    @map("created_by")
+  updatedAt                DateTime?               @default(now()) @map("updated_at") @db.Timestamptz(6)
+  updatedBy                Int?                    @map("updated_by")
+  linkedGoalIds            Json?                   @map("linked_goal_ids")
+  formula                  String?
+  macroProjectId           Int?                    @map("macro_project_id")
+  macroProject             MacroProject?           @relation("goal_macro_project", fields: [macroProjectId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "goal_macro_project")
+  activityId               Int?                    @map("activity_id")
+  projectCode              String?                 @map("project_code")
+  monitoringRecords        MonitoringRecord[]
+  goalHistory              GoalHistory[]
+  siifActividadMetas       SiifActividadMeta[]
+  originId                 Int?                    @map("origin_id")
+  activities               GoalToActivity[]
+
+  @@unique([devPlanId, code], name: "uqGoalCode")
+  @@map("goal")
+}
+
+enum SpentDoc {
+  COMMITMENT
+  OBLIGATION
+  PAYMENT
+}
+
+enum WeightingType {
+  FINANCIAL
+  HIERARCHY
+  MANUAL
+}
+
+enum MonitoringStatus {
+  CREATED
+  SCHEDULING
+  REPORTING
+  VALIDATING
+  REVIEWING
+  CLOSED
+}
+
+enum MonitoringResourcesOrigin {
+  FINANCIAL
+  USER
+  USER_AND_FINANCIAL
+}
+
+enum MonitoringConfigUsedFor {
+  DEVELOPMENT_PLANS
+  PUBLIC_POLITICS
+}
+
+model MonitoringConfig {
+  id                        Int                        @id @default(autoincrement())
+  usedFor                   MonitoringConfigUsedFor?   @default(DEVELOPMENT_PLANS) @map("used_for")
+  tenantId                  Int?                       @map("tenant_id")
+  tenant                    Tenant?                    @relation(fields: [tenantId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "monitoring_config_tenant")
+  isActive                  Boolean                    @default(true) @map("is_active")
+  devPlanId                 Int?                       @map("dev_plan_id")
+  devPlan                   DevPlan?                   @relation(fields: [devPlanId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "monitoring_config_dev_plan")
+  period                    Int
+  subperiod                 Int
+  periodicity               Int                        @default(3)
+  spentDocs                 SpentDoc[]                 @map("spent_docs")
+  weightingType             WeightingType?             @default(FINANCIAL) @map("weighting_type")
+  datesConfig               Json?                      @map("dates_config")
+  colorsConfig              Json?                      @map("colors_config")
+  status                    MonitoringStatus
+  monitoringResourcesOrigin MonitoringResourcesOrigin? @default(FINANCIAL) @map("monitoring_resources_origin")
+  supportProductMonitoring  Boolean?                   @default(false) @map("support_product_monitoring")
+  sgpDiscriminated          Boolean?                   @default(false) @map("sgp_discriminated")
+  createdAt                 DateTime                   @default(now()) @map("created_at") @db.Timestamptz(6)
+  createdBy                 Int?                       @map("created_by")
+  updatedAt                 DateTime?                  @default(now()) @map("updated_at") @db.Timestamptz(6)
+  updatedBy                 Int?                       @map("updated_by")
+  monitoringRecords         MonitoringRecord[]
+  goalTypes                 GoalType[]                 @map("goal_types")
+
+  @@map("monitoring_config")
+}
+
+model Ods {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  @@map("ods")
+}
+
+model Unit {
+  id       Int     @id @default(autoincrement())
+  name     String
+  initials String?
+
+  @@map("unit")
+}
+
+enum PublicPoliticCategory {
+  TERRITORY
+  PEACE
+  VICTIMS
+}
+
+model PublicPoliticComponent {
+  id             Int             @id @default(autoincrement())
+  tenantId       Int             @map("tenant_id")
+  tenant         Tenant          @relation(fields: [tenantId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "public_politic_component_tenant")
+  code           String?
+  name           String
+  description    String?
+  isActive       Boolean         @default(true) @map("is_active")
+  createdAt      DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
+  createdBy      Int?            @map("created_by")
+  updatedAt      DateTime?       @default(now()) @map("updated_at") @db.Timestamptz(6)
+  updatedBy      Int?            @map("updated_by")
+  publicPolitics PublicPolitic[] @relation("public_politic_to_component")
+  goals          Goal[]          @relation("goal_public_politic_component")
+
+  @@map("public_politic_component")
+}
+
+model PublicPolitic {
+  id                  Int                      @id @default(autoincrement())
+  tenantId            Int                      @map("tenant_id")
+  tenant              Tenant                   @relation(fields: [tenantId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "public_politic_tenant")
+  category            PublicPoliticCategory
+  code                String?
+  name                String
+  description         String?
+  isActive            Boolean                  @default(true) @map("is_active")
+  fromYear            Int?                     @map("from_year")
+  toYear              Int?                     @map("to_year")
+  createdAt           DateTime                 @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt           DateTime?                @default(now()) @map("updated_at") @db.Timestamptz(6)
+  publicPoliticGoals  Goal[]                   @relation("public_politic")
+  peacePoliticGoals   Goal[]                   @relation("peace_politic")
+  victimsPoliticGoals Goal[]                   @relation("victims_politic")
+  components          PublicPoliticComponent[] @relation("public_politic_to_component")
+
+  @@map("public_politic")
+}
+
+enum MonitoringRecordStatus {
+  COPIED
+  PLANNED
+  REPORTED
+  VALIDATED
+  REVIEWED
+  APPROVED
+  REJECTED
+}
+
+enum MonitoringResourceType {
+  MANUAL
+  DEFINITIVE
+  COMMITMENT
+  OBLIGATION
+  PAYMENT
+}
+
+model MonitoringRecord {
+  id                  Int                          @id @default(autoincrement())
+  monitoringConfigId  Int                          @map("monitoring_config_id")
+  monitoringConfig    MonitoringConfig             @relation(fields: [monitoringConfigId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "monitoring_record_config")
+  goalId              Int                          @map("goal_id")
+  goal                Goal                         @relation(fields: [goalId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "monitoring_record_goal")
+  period              Int
+  goalValue           Float?                       @map("goal_value")
+  piGoalValue         Float?                       @map("pi_goal_value")
+  fromMonth           Int                          @default(1) @map("from_month")
+  toMonth             Int                          @default(12) @map("to_month")
+  goalAchievedValue   Float?                       @map("goal_achieved_value")
+  piGoalAchievedValue Float?                       @map("pi_goal_achieved_value")
+  recordStatus        MonitoringRecordStatus       @map("record_status")
+  weighting           Float?
+  notes               String?                      @db.Text
+  questionHow         String?                      @map("question_how") @db.Text
+  questionResult      String?                      @map("question_result") @db.Text
+  questionEvidence    String?                      @map("question_evidence") @db.Text
+  questionProblem     String?                      @map("question_problem") @db.Text
+  physicalIndicator   Float?                       @map("physical_indicator")
+  totalPeople         Int?                         @map("total_people")
+  targetMatrix        Json?                        @map("target_matrix")
+  createdAt           DateTime                     @default(now()) @map("created_at") @db.Timestamptz(6)
+  createdBy           Int?                         @map("created_by")
+  updatedAt           DateTime?                    @default(now()) @map("updated_at") @db.Timestamptz(6)
+  updatedBy           Int?                         @map("updated_by")
+  goalHistory         GoalHistory[]
+  resources           MonitoringRecordResource[]
+  attachments         MonitoringRecordAttachment[]
+
+  @@map("monitoring_record")
+}
+
+model MonitoringRecordResource {
+  id                 Int                    @id @default(autoincrement())
+  monitoringRecordId Int                    @map("monitoring_record_id")
+  monitoringRecord   MonitoringRecord       @relation(fields: [monitoringRecordId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "monitoring_record_resource")
+  resourceType       MonitoringResourceType @map("resource_type")
+  capital            Float                  @default(0) @map("capital")
+  cd                 Float                  @default(0) @map("cd")
+  cn                 Float                  @default(0) @map("cn")
+  credit             Float                  @default(0) @map("credit")
+  de                 Float                  @default(0) @map("de")
+  operation          Float                  @default(0) @map("operation")
+  management         Float                  @default(0) @map("management")
+  monopoly           Float                  @default(0) @map("monopoly")
+  others             Float                  @default(0) @map("others")
+  rp                 Float                  @default(0) @map("rp")
+  sgp                Float                  @default(0) @map("sgp")
+  sgpEducation       Float?                 @default(0) @map("sgp_education")
+  sgpHealt           Float?                 @default(0) @map("sgp_health")
+  sgpWater           Float?                 @default(0) @map("sgp_water")
+  sgpCulture         Float?                 @default(0) @map("sgp_culture")
+  sgpSport           Float?                 @default(0) @map("sgp_sport")
+  sgpFreeInvestment  Float?                 @default(0) @map("sgp_free_investment")
+  sgpFreeDestination Float?                 @default(0) @map("sgp_free_destination")
+  sgpSchoolFeeding   Float?                 @default(0) @map("sgp_school_feeding")
+  sgpMagdalenaRiver  Float?                 @default(0) @map("sgp_magdalena_river")
+  sgpEarlyChildhood  Float?                 @default(0) @map("sgp_early_childhood")
+  sgr                Float                  @default(0) @map("sgr")
+  financialIndicator Float?                 @map("financial_indicator")
+  createdAt          DateTime               @default(now()) @map("created_at") @db.Timestamptz(6)
+  createdBy          Int?                   @map("created_by")
+  updatedAt          DateTime?              @default(now()) @map("updated_at") @db.Timestamptz(6)
+  updatedBy          Int?                   @map("updated_by")
+
+  @@map("monitoring_record_resource")
+}
+
+model MonitoringRecordAttachment {
+  id                 Int              @id @default(autoincrement())
+  monitoringRecordId Int              @map("monitoring_record_id")
+  monitoringRecord   MonitoringRecord @relation(fields: [monitoringRecordId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "monitoring_record_resource")
+  s3Path             String           @map("s3_path")
+  name               String
+  description        String?
+  createdAt          DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
+  createdBy          Int?             @map("created_by")
+  updatedAt          DateTime?        @default(now()) @map("updated_at") @db.Timestamptz(6)
+  updatedBy          Int?             @map("updated_by")
+
+  @@map("monitoring_record_attachment")
+}
+
+enum GoalHistoryEvent {
+  CREATED
+  UPDATED
+  SCHEDULED
+  MONITORED
+  VALIDATED
+  REVIEWED
+  REJECTED
+}
+
+model GoalHistory {
+  id                 Int               @id @default(autoincrement())
+  goalId             Int?              @map("goal_id")
+  goal               Goal?             @relation(fields: [goalId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "goal_history")
+  monitoringRecordId Int?              @map("monitoring_record_id")
+  monitoringRecord   MonitoringRecord? @relation(fields: [monitoringRecordId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "goal_history_monitoring_record")
+  event              GoalHistoryEvent
+  description        String?
+  createdAt          DateTime          @default(now()) @map("created_at") @db.Timestamptz(6)
+  createdBy          Int?              @map("created_by")
+
+  @@map("goal_history")
+}
+
+model SiifProyecto {
+  id                Int             @id @default(autoincrement())
+  plan              Int
+  programa          Int
+  sector            Int
+  eje               Int
+  nitCompania       String          @map("nit_compania")
+  proyecto          String
+  nombre            String
+  fechaRegistro     DateTime?       @map("fecha_registro") @db.Timestamptz(6)
+  objetivos         String?         @db.Text
+  descripcion       String?         @db.Text
+  presentadoPor     String?         @map("presentado_por")
+  fechaEvaluacion   DateTime?       @map("fecha_evaluacion") @db.Timestamptz(6)
+  evaluadoPor       String?         @map("evaluado_por")
+  valor             Float?
+  verDesde          Int?            @map("ver_desde")
+  estado            String?
+  codigoEntPry      String?         @map("codigo_ent_pry")
+  vialibilizadoPor  String?         @map("viabilizado_por")
+  fechaViabilidad   DateTime?       @map("fecha_viabilidad") @db.Timestamptz(6)
+  estadoProceso     String?         @map("estado_proceso")
+  usuario           String?
+  fechaCreacion     DateTime?       @map("fecha_creacion") @db.Timestamptz(6)
+  observacion       String?         @db.Text
+  subprograma       Int?
+  idEntidadPresenta Int?            @map("id_entidad_presenta")
+  createdAt         DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
+  createdBy         Int?            @map("created_by")
+  actividades       SiifActividad[]
+
+  @@unique([nitCompania, proyecto], name: "uqSiifProyecto")
+  @@map("siif_proyecto")
+}
+
+model SiifActividad {
+  id                 Int
+  nitCompania        String              @map("nit_compania")
+  proyecto           String
+  siifProyecto       SiifProyecto        @relation(fields: [nitCompania, proyecto], references: [nitCompania, proyecto], onDelete: NoAction, onUpdate: NoAction, map: "siif_actividad_proyecto")
+  codigoAct          Int                 @map("codigo_act")
+  descripcion        String
+  etapa              String
+  componente         String
+  codigoUnd          Int?                @map("codigo_und")
+  cantidad           Int?
+  codSubact          Int?                @map("cod_subact")
+  activa             String?
+  codigo             String?
+  idMeta             Int?                @map("id_meta")
+  idProducto         Int?                @map("id_producto")
+  createdAt          DateTime            @default(now()) @map("created_at") @db.Timestamptz(6)
+  createdBy          Int?                @map("created_by")
+  siifActividadMetas SiifActividadMeta[]
+
+  @@unique([nitCompania, proyecto, codigoAct], name: "uqSiifActividad")
+  @@map("siif_actividad")
+}
+
+model SiifActividadMeta {
+  id          Int                       @id @default(autoincrement())
+  nitCompania String                    @map("nit_compania")
+  proyecto    String
+  codigoAct   Int                       @map("codigo_act")
+  actividad   SiifActividad             @relation(fields: [nitCompania, proyecto, codigoAct], references: [nitCompania, proyecto, codigoAct], onDelete: NoAction, onUpdate: NoAction, map: "siif_actividad_meta_actividad")
+  goalId      Int                       @map("goal_id")
+  goal        Goal                      @relation(fields: [goalId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "siif_actividad_meta_goal")
+  weighting   Float                     @default(100.0)
+  createdAt   DateTime                  @default(now()) @map("created_at") @db.Timestamptz(6)
+  createdBy   Int?                      @map("created_by")
+  acciones    SiifActividadMetaAccion[]
+
+  @@unique([nitCompania, proyecto, codigoAct, goalId], name: "uqSiifActividadMeta")
+  @@map("siif_actividad_meta")
+}
+
+model SiifActividadMetaAccion {
+  id              Int               @id @default(autoincrement())
+  actividadMetaId Int               @map("actividad_meta_id")
+  actividadMeta   SiifActividadMeta @relation(fields: [actividadMetaId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "siif_actividad_meta_accion")
+  descripcion     String
+  createdAt       DateTime          @default(now()) @map("created_at") @db.Timestamptz(6)
+  createdBy       Int?              @map("created_by")
+
+  @@map("siif_actividad_meta_accion")
+}
+
+enum LocationType {
+  DEPARTMENT // Departamento
+  MUNICIPALITY // Municipio
+  TOWNSHIP // Corregimiento
+  RURAL_SETTLEMENT // Vereda
+  DISTRICT // Comuna
+  NEIGHBORHOOD // Barrio
+  OTHER // Otro
+}
+
+model GeoLocation {
+  id                Int           @id @default(autoincrement())
+  tenantId          Int           @map("tenant_id")
+  tenant            Tenant        @relation(fields: [tenantId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "location_tenant")
+  code              String?
+  name              String
+  locationType      LocationType  @map("location_type")
+  parentLocationId  Int?          @map("parent_location_id")
+  parentLocation    GeoLocation?  @relation("parentLocation", fields: [parentLocationId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "location_itself")
+  childrenLocations GeoLocation[] @relation("parentLocation")
+  createdAt         DateTime      @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt         DateTime?     @default(now()) @map("updated_at") @db.Timestamptz(6)
+
+  @@map("geo_location")
+}
+
+model GoalToActivity {
+  id         Int      @id @default(autoincrement())
+  tenantId   Int      @map("tenant_id")
+  tenant     Tenant   @relation(fields: [tenantId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "goal_to_activity_tenant")
+  goalId     Int      @map("goal_id")
+  goal       Goal     @relation(fields: [goalId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "goal_to_activity_goal")
+  activityId Int      @map("activity_id")
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  createdBy  Int?     @map("created_by")
+
+  @@unique([goalId, activityId], name: "uqGoalToActivity")
+  @@map("goal_to_activity")
+}

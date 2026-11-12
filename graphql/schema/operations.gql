@@ -1,0 +1,1145 @@
+query GetEntities {
+  getEntities {
+    ...Entity
+  }
+}
+
+query SearchEntities($data: SearchEntity!) {
+  searchEntities(data: $data) {
+    count
+    items {
+      ...Entity
+    }
+  }
+}
+
+query GetEntity($id: Int!) {
+  getEntity(id: $id) {
+    ...Entity
+  }
+}
+
+mutation CreateEntity($data: CreateEntity!) {
+  createEntity(data: $data) {
+    ...Entity
+  }
+}
+
+mutation UpdateEntity($data: UpdateEntity!) {
+  updateEntity(data: $data) {
+    ...Entity
+  }
+}
+
+mutation DeleteEntity($id: Int!) {
+  deleteEntity(id: $id)
+}
+
+query GetDevPlans {
+  getDevPlans {
+    ...DevPlan
+    levels {
+      ...DevPlanLevel
+    }
+  }
+}
+
+query GetDevPlan($id: Int!) {
+  getDevPlan(id: $id) {
+    ...DevPlan
+    levels {
+      ...DevPlanLevel
+    }
+  }
+}
+
+query GetDevPlanByCode($code: String!) {
+  getDevPlanByCode(code: $code) {
+    ...DevPlan
+    levels {
+      ...DevPlanLevel
+    }
+  }
+}
+
+mutation CreateDevPlan($data: CreateDevPlan!) {
+  createDevPlan(data: $data) {
+    ...DevPlan
+  }
+}
+
+mutation UpdateDevPlan($data: UpdateDevPlan!) {
+  updateDevPlan(data: $data) {
+    ...DevPlan
+  }
+}
+
+mutation DeleteDevPlan($id: Int!) {
+  deleteDevPlan(id: $id) {
+    ...DevPlan
+  }
+}
+
+mutation CopyDevPlan($data: CopyDevPlan!) {
+  copyDevPlan(data: $data) {
+    ...DevPlan
+    levels {
+      ...DevPlanLevel
+    }
+  }
+}
+
+mutation CreateDevPlanLevel($data: CreateDevPlanLevel!) {
+  createDevPlanLevel(data: $data) {
+    ...DevPlanLevel
+  }
+}
+
+query GetDevPlanLevels($devPlanId: Int!) {
+  getDevPlanLevels(devPlanId: $devPlanId) {
+    ...DevPlanLevel
+    goalCount {
+      ...GoalTypeCount
+    }
+  }
+}
+
+mutation UpdateDevPlanLevel($data: UpdateDevPlanLevel!) {
+  updateDevPlanLevel(data: $data) {
+    ...DevPlanLevel
+    goalCount {
+      ...GoalTypeCount
+    }
+  }
+}
+
+mutation DeleteDevPlanLevel($id: Int!) {
+  deleteDevPlanLevel(id: $id) {
+    ...DevPlanLevel
+  }
+}
+
+mutation DeleteDevPlanLevels($ids: [Int!]!) {
+  deleteDevPlanLevels(ids: $ids)
+}
+
+query GetDevPlanLevel($id: Int!) {
+  getDevPlanLevel(id: $id) {
+    ...DevPlanLevel
+    goalCount {
+      ...GoalTypeCount
+    }
+  }
+}
+
+query SearchDevPlanLevels($data: SearchDevPlanLevel!) {
+  searchDevPlanLevels(data: $data) {
+    ...DevPlanLevel
+    goalCount {
+      ...GoalTypeCount
+    }
+  }
+}
+
+query GetDevPlanLevelsTree($devPlanId: Int!, $getRootAsNode: Boolean) {
+  getDevPlanLevelsTree(devPlanId: $devPlanId, getRootAsNode: $getRootAsNode) {
+    ...DevPlanLevel
+    goalCount {
+      ...GoalTypeCount
+    }
+    children {
+      ...DevPlanLevel
+      goalCount {
+        ...GoalTypeCount
+      }
+      children {
+        ...DevPlanLevel
+        goalCount {
+          ...GoalTypeCount
+        }
+        children {
+          ...DevPlanLevel
+          goalCount {
+            ...GoalTypeCount
+          }
+          children {
+            ...DevPlanLevel
+            goalCount {
+              ...GoalTypeCount
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetMonitoringConfigs($data: GetMonitoringConfig) {
+  getMonitoringConfigs(data: $data) {
+    ...MonitoringConfig
+    devPlan {
+      ...DevPlan
+    }
+  }
+}
+
+query GetMonitoringConfig($id: Int!) {
+  getMonitoringConfig(id: $id) {
+    ...MonitoringConfig
+    devPlan {
+      ...DevPlan
+    }
+  }
+}
+
+query GetActiveMonitoringConfig($data: GetMonitoringConfig) {
+  getActiveMonitoringConfig(data: $data) {
+    ...MonitoringConfig
+    devPlan {
+      ...DevPlan
+    }
+  }
+}
+
+mutation CreateMonitoringConfig($data: CreateMonitoringConfig!) {
+  createMonitoringConfig(data: $data) {
+    ...MonitoringConfig
+    devPlan {
+      ...DevPlan
+    }
+  }
+}
+
+mutation CopyMonitoringConfigPreviousSchedule($data: CopyMonitoringConfigPreviousSchedule!) {
+  copyMonitoringConfigPreviousSchedule(data: $data) {
+    ...MonitoringRecord
+    resources {
+      ...MonitoringRecordResource
+    }
+  }
+}
+
+mutation UpdateMonitoringConfig($data: UpdateMonitoringConfig!) {
+  updateMonitoringConfig(data: $data) {
+    ...MonitoringConfig
+    devPlan {
+      ...DevPlan
+    }
+  }
+}
+
+mutation SetActiveMonitoringConfig($data: SetActiveMonitoringConfig!) {
+  setActiveMonitoringConfig(data: $data) {
+    ...MonitoringConfig
+    devPlan {
+      ...DevPlan
+    }
+  }
+}
+
+mutation DeleteMonitoringConfig($id: Int!) {
+  deleteMonitoringConfig(id: $id) {
+    ...MonitoringConfig
+    devPlan {
+      ...DevPlan
+    }
+  }
+}
+
+query GetOdss {
+  getOdss {
+    ...Ods
+  }
+}
+
+query GetOds($getOdsId: Int!) {
+  getOds(id: $getOdsId) {
+    ...Ods
+  }
+}
+
+query GetUnits {
+  getUnits {
+    ...Unit
+  }
+}
+
+query GetUnit($getUnitId: Int!) {
+  getUnit(id: $getUnitId) {
+    ...Unit
+  }
+}
+
+query GetGoals($devPlanLevelId: Int!, $goalTypes: [GoalType!]) {
+  getGoals(devPlanLevelId: $devPlanLevelId, goalTypes: $goalTypes) {
+    ...Goal
+    children {
+      ...Goal
+    }
+    entity {
+      ...Entity
+    }
+    devPlanLevel {
+      ...DevPlanLevel
+      devPlan {
+        ...DevPlan
+      }
+    }
+    history {
+      ...GoalHistory
+      createdByAccount {
+        ...UserAccount
+      }
+    }
+    schedule {
+      ...MonitoringRecord
+      resources {
+        ...MonitoringRecordResource
+      }
+    }
+    tracking {
+      ...MonitoringRecord
+      resources {
+        ...MonitoringRecordResource
+      }
+    }
+    activities {
+      ...SiifActividadMeta
+    }
+    monitoringRecords {
+      ...MonitoringRecordWithStatus
+    }
+  }
+}
+
+query GetPublicPoliticGoals($publicPoliticId: Int!) {
+  getPublicPoliticGoals(publicPoliticId: $publicPoliticId) {
+    ...Goal
+    children {
+      ...Goal
+    }
+    entity {
+      ...Entity
+    }
+    schedule {
+      ...MonitoringRecord
+      resources {
+        ...MonitoringRecordResource
+      }
+    }
+    tracking {
+      ...MonitoringRecord
+      resources {
+        ...MonitoringRecordResource
+      }
+    }
+    monitoringRecords {
+      ...MonitoringRecordWithStatus
+    }
+  }
+}
+
+query GetGoalsWithSchedule($devPlanLevelId: Int!) {
+  getGoals(devPlanLevelId: $devPlanLevelId) {
+    ...Goal
+    children {
+      ...Goal
+    }
+    entity {
+      ...Entity
+    }
+    devPlanLevel {
+      ...DevPlanLevel
+      devPlan {
+        ...DevPlan
+      }
+    }
+
+    schedule {
+      ...MonitoringRecord
+      resources {
+        ...MonitoringRecordResource
+      }
+    }
+    tracking {
+      ...MonitoringRecord
+      resources {
+        ...MonitoringRecordResource
+      }
+    }
+    activities {
+      ...SiifActividadMeta
+    }
+    monitoringRecords {
+      ...MonitoringRecordWithStatus
+    }
+    actividad {
+      ...VActividadesPry
+    }
+    proyecto {
+      ...Proyecto
+    }
+  }
+}
+
+query GetParentLevelGoals($devPlanLevelId: Int!) {
+  getParentLevelGoals(devPlanLevelId: $devPlanLevelId) {
+    ...Goal
+    children {
+      ...Goal
+    }
+    entity {
+      ...Entity
+    }
+  }
+}
+
+query GetGoal($id: Int!) {
+  getGoal(id: $id) {
+    ...Goal
+    children {
+      ...Goal
+    }
+    entity {
+      ...Entity
+    }
+    ods {
+      ...Ods
+    }
+    publicPolitic {
+      ...PublicPolitic
+    }
+    peacePolitic {
+      ...PublicPolitic
+    }
+    victimsPolitic {
+      ...PublicPolitic
+    }
+    productCatalog {
+      ...ProductCatalog
+    }
+    devPlanLevel {
+      ...DevPlanLevel
+      devPlan {
+        ...DevPlan
+      }
+    }
+    history {
+      ...GoalHistory
+      monitoringRecord {
+        ...MonitoringRecord
+      }
+      createdByAccount {
+        ...UserAccount
+      }
+    }
+    schedule {
+      ...MonitoringRecord
+      resources {
+        ...MonitoringRecordResource
+      }
+    }
+    tracking {
+      ...MonitoringRecord
+      resources {
+        ...MonitoringRecordResource
+      }
+    }
+    activities {
+      ...SiifActividadMeta
+    }
+    monitoringRecords {
+      ...MonitoringRecordWithStatus
+    }
+    actividad {
+      ...VActividadesPry
+    }
+    proyecto {
+      ...Proyecto
+    }
+  }
+}
+
+query SearchGoals($data: SearchGoals!) {
+  searchGoals(data: $data) {
+    count
+    countByType {
+      ...GoalTypeCount
+    }
+    items {
+      ...GoalData
+      children {
+        ...GoalData
+      }
+    }
+    filters
+  }
+}
+
+query SearchGoalsSummary($data: SearchGoals!) {
+  searchGoals(data: $data) {
+    count
+    countByType {
+      ...GoalTypeCount
+    }
+    items {
+      ...Goal
+      entity {
+        ...Entity
+      }
+      devPlanLevel {
+        ...DevPlanLevel
+        devPlan {
+          ...DevPlan
+        }
+      }
+    }
+    filters
+  }
+}
+
+query SearchGoalsFormat($data: SearchGoalsFormat!) {
+  searchGoalsFormat(data: $data)
+}
+
+query DashboardGoalsFormat($data: SearchGoalsFormat!) {
+  dashboardGoalsFormat(data: $data)
+}
+
+mutation CreateGoal($data: CreateGoal!) {
+  createGoal(data: $data) {
+    ...Goal
+    children {
+      ...Goal
+    }
+    entity {
+      ...Entity
+    }
+    ods {
+      ...Ods
+    }
+    publicPolitic {
+      ...PublicPolitic
+    }
+    peacePolitic {
+      ...PublicPolitic
+    }
+    victimsPolitic {
+      ...PublicPolitic
+    }
+    productCatalog {
+      ...ProductCatalog
+    }
+    actividad {
+      ...VActividadesPry
+    }
+    proyecto {
+      ...Proyecto
+    }
+  }
+}
+
+mutation UpdateGoal($data: UpdateGoal!) {
+  updateGoal(data: $data) {
+    ...Goal
+    children {
+      ...Goal
+    }
+    entity {
+      ...Entity
+    }
+    ods {
+      ...Ods
+    }
+    publicPolitic {
+      ...PublicPolitic
+    }
+    peacePolitic {
+      ...PublicPolitic
+    }
+    victimsPolitic {
+      ...PublicPolitic
+    }
+    productCatalog {
+      ...ProductCatalog
+    }
+    actividad {
+      ...VActividadesPry
+    }
+    proyecto {
+      ...Proyecto
+    }
+  }
+}
+
+mutation DeleteGoal($id: Int!) {
+  deleteGoal(id: $id) {
+    ...Goal
+    children {
+      ...Goal
+    }
+  }
+}
+
+query GetPublicPolitics {
+  getPublicPolitics {
+    ...PublicPolitic
+    goalCount
+    components {
+      ...PublicPoliticComponent
+    }
+  }
+}
+
+query SearchPublicPolitics($data: SearchPublicPolitic!) {
+  searchPublicPolitics(data: $data) {
+    count
+    filters
+    items {
+      ...PublicPolitic
+      goalCount
+      components {
+        ...PublicPoliticComponent
+      }
+    }
+  }
+}
+
+query GetPublicPolitic($id: Int!) {
+  getPublicPolitic(id: $id) {
+    ...PublicPolitic
+    components {
+      ...PublicPoliticComponent
+    }
+  }
+}
+
+mutation CreatePublicPolitic($data: CreatePublicPolitic!) {
+  createPublicPolitic(data: $data) {
+    ...PublicPolitic
+    components {
+      ...PublicPoliticComponent
+    }
+  }
+}
+
+mutation UpdatePublicPolitic($data: UpdatePublicPolitic!) {
+  updatePublicPolitic(data: $data) {
+    ...PublicPolitic
+    components {
+      ...PublicPoliticComponent
+    }
+  }
+}
+
+mutation DeletePublicPolitic($id: Int!) {
+  deletePublicPolitic(id: $id) {
+    ...PublicPolitic
+  }
+}
+
+query GetPublicPoliticComponents {
+  getPublicPoliticComponents {
+    ...PublicPoliticComponent
+  }
+}
+
+query GetPublicPoliticComponent($id: Int!) {
+  getPublicPoliticComponent(id: $id) {
+    ...PublicPoliticComponent
+  }
+}
+
+mutation CreatePublicPoliticComponent($data: CreatePublicPoliticComponent!) {
+  createPublicPoliticComponent(data: $data) {
+    ...PublicPoliticComponent
+  }
+}
+
+mutation UpdatePublicPoliticComponent($data: UpdatePublicPoliticComponent!) {
+  updatePublicPoliticComponent(data: $data) {
+    ...PublicPoliticComponent
+  }
+}
+
+mutation DeletePublicPoliticComponent($id: Int!) {
+  deletePublicPoliticComponent(id: $id) {
+    ...PublicPoliticComponent
+  }
+}
+
+query GetMacroProjects {
+  getMacroProjects {
+    ...MacroProject
+  }
+}
+
+query GetMacroProject($id: Int!) {
+  getMacroProject(id: $id) {
+    ...MacroProject
+  }
+}
+
+mutation CreateMacroProject($data: CreateMacroProject!) {
+  createMacroProject(data: $data) {
+    ...MacroProject
+  }
+}
+
+mutation UpdateMacroProject($data: UpdateMacroProject!) {
+  updateMacroProject(data: $data) {
+    ...MacroProject
+  }
+}
+
+mutation DeleteMacroProject($id: Int!) {
+  deleteMacroProject(id: $id) {
+    ...MacroProject
+  }
+}
+
+query GetProductIndicators {
+  getProductIndicators {
+    count
+    items {
+      id
+      code
+      name
+    }
+  }
+}
+
+query GetProductSectors {
+  getProductSectors {
+    count
+    items {
+      id
+      code
+      name
+    }
+  }
+}
+
+query SearchProductIndicators($data: SearchProductCatalog!) {
+  searchProductIndicators(data: $data) {
+    count
+    items {
+      ...ProductCatalog
+      product {
+        ...ProductCatalog
+        program {
+          ...ProductCatalog
+          sector {
+            ...ProductCatalog
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation CreateMonitoringRecord($data: CreateMonitoringRecord!) {
+  createMonitoringRecord(data: $data) {
+    ...MonitoringRecord
+  }
+}
+
+# mutation CreateMonitoringRecords($data: [CreateMonitoringRecord!]!) {
+#   createMonitoringRecords(data: $data) {
+#     ...MonitoringRecord
+#   }
+# }
+
+mutation UpdateMonitoringRecord($data: UpdateMonitoringRecord!) {
+  updateMonitoringRecord(data: $data) {
+    ...MonitoringRecord
+  }
+}
+
+query GetUserAccounts {
+  getUserAccounts {
+    ...UserAccount
+    entity {
+      ...Entity
+    }
+  }
+}
+
+query GetUserAccount($id: Int!) {
+  getUserAccount(id: $id) {
+    ...UserAccount
+    entity {
+      ...Entity
+    }
+  }
+}
+
+mutation ChangeUserAccountPassword($data: ChangeUserAccountPassword!) {
+  changeUserAccountPassword(data: $data) {
+    ...UserAccount
+    entity {
+      ...Entity
+    }
+  }
+}
+
+mutation AdminChangeUserAccountPassword($data: AdminChangeUserAccountPassword!) {
+  adminChangeUserAccountPassword(data: $data) {
+    ...UserAccount
+    entity {
+      ...Entity
+    }
+  }
+}
+
+mutation CreateUserAccount($data: CreateUserAccount!) {
+  createUserAccount(data: $data) {
+    ...UserAccount
+    entity {
+      ...Entity
+    }
+  }
+}
+
+mutation UpdateUserAccount($data: UpdateUserAccount!) {
+  updateUserAccount(data: $data) {
+    ...UserAccount
+    entity {
+      ...Entity
+    }
+  }
+}
+
+query SearchUserAccounts($data: SearchUserAccount!) {
+  searchUserAccounts(data: $data) {
+    count
+    items {
+      ...UserAccount
+      entity {
+        ...Entity
+      }
+    }
+  }
+}
+mutation DeleteUserAccount($id: Int!) {
+  deleteUserAccount(id: $id)
+}
+
+query UserLogin($data: LoginUserAccount!) {
+  userLogin(data: $data) {
+    ...UserLoggedIn
+    entity {
+      ...Entity
+    }
+  }
+}
+
+query RefreshToken {
+  refreshToken {
+    ...UserLoggedIn
+    entity {
+      ...Entity
+    }
+  }
+}
+
+mutation SavePlannedMonitoringRecord($data: SavePlannedMonitoringRecord!) {
+  savePlannedMonitoringRecord(data: $data) {
+    ...MonitoringRecord
+    goal {
+      ...GoalData
+    }
+    resources {
+      ...MonitoringRecordResource
+    }
+  }
+}
+
+query GetMonitoringRecord($data: GetMonitoringRecord!) {
+  getMonitoringRecord(data: $data) {
+    ...MonitoringRecord
+    resources {
+      ...MonitoringRecordResource
+    }
+  }
+}
+
+mutation SaveTrackingMonitoringRecord($data: SaveTrackingMonitoringRecord!) {
+  saveTrackingMonitoringRecord(data: $data) {
+    ...MonitoringRecord
+    resources {
+      ...MonitoringRecordResource
+    }
+  }
+}
+
+query GetGoalTypeStats($data: GetGoalTypeStats!) {
+  getGoalTypeStats(data: $data) {
+    ...GetGoalTypeStatsResponse
+  }
+}
+
+query SearchSiifProyectos($data: SearchSiifProyecto!) {
+  searchSiifProyectos(data: $data) {
+    count
+    items {
+      ...SiifProyecto
+      entity {
+        ...Entity
+      }
+      # actividades {
+      #   id
+      #   codigoAct
+      #   descripcion
+      #   siifActividadMetas {
+      #     goalId
+      #     weighting
+      #   }
+      # }
+    }
+  }
+}
+
+query SearchProyectos($data: SearchProyecto!) {
+  searchProyectos(data: $data) {
+    count
+    items {
+      ...Proyecto
+      entity {
+        ...Entity
+      }
+      devPlan {
+        ...DevPlan
+      }
+    }
+  }
+}
+
+query GetProyectosForSchedule($data: SearchProyectoForSchedule!) {
+  getProyectosForSchedule(data: $data) {
+    count
+    filters
+    items {
+      ...Proyecto
+      entity {
+        ...Entity
+      }
+      goal {
+        ...Goal
+        schedule {
+          ...MonitoringRecord
+          resources {
+            ...MonitoringRecordResource
+          }
+        }
+      }
+      actividades {
+        ...VActividadesPryWithGoals
+        goal {
+          ...Goal
+          schedule {
+            ...MonitoringRecord
+            resources {
+              ...MonitoringRecordResource
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetProyecto($codigo: String!) {
+  getProyecto(codigo: $codigo) {
+    ...Proyecto
+    entity {
+      ...Entity
+    }
+    devPlan {
+      ...DevPlan
+    }
+    actividades {
+      ...VActividadesPryWithGoals
+      insumos {
+        ...Insumo
+      }
+    }
+  }
+}
+
+query GetActividades($proyecto: String!) {
+  getActividades(proyecto: $proyecto) {
+    ...VActividadesPry
+    insumos {
+      ...Insumo
+    }
+  }
+}
+
+query GetSiifActividades($proyecto: String!) {
+  getSiifActividades(proyecto: $proyecto) {
+    ...SiifActividad
+    siifActividadMetas {
+      # id
+      # goalId
+      # weighting
+      ...SiifActividadMeta
+      acciones {
+        ...SiifActividadMetaAccion
+      }
+    }
+  }
+}
+
+query GetSiifActividadMetas($codigoAct: Int!, $proyecto: String!) {
+  getSiifActividadMetas(codigoAct: $codigoAct, proyecto: $proyecto) {
+    ...SiifActividadMeta
+    acciones {
+      ...SiifActividadMetaAccion
+    }
+  }
+}
+
+mutation SaveSiifActividadMeta($data: [CreateSiifActividadMeta!]!) {
+  saveSiifActividadMeta(data: $data) {
+    ...SiifActividadMeta
+  }
+}
+
+mutation DeleteSiifActividadMetas($data: DeleteSiifActividadMetas!) {
+  deleteSiifActividadMetas(data: $data) {
+    ...SiifActividadMeta
+  }
+}
+
+query GetGoalResources($data: GetGoalResources!) {
+  GetGoalResources(data: $data) {
+    ...GetGoalResourcesResponse
+  }
+}
+
+mutation SaveSiifActividadMetaAccion($data: [CreateSiifActividadMetaAccion!]!) {
+  saveSiifActividadMetaAccion(data: $data) {
+    ...SiifActividadMetaAccion
+  }
+}
+
+mutation DeleteSiifActividadMetaAcciones($data: DeleteSiifActividadMetaAcciones!) {
+  deleteSiifActividadMetaAcciones(data: $data) {
+    ...SiifActividadMetaAccion
+  }
+}
+
+query GetGeoLocationsTree {
+  getGeoLocationsTree {
+    ...GeoLocation
+    children {
+      ...GeoLocation
+      children {
+        ...GeoLocation
+      }
+    }
+  }
+}
+
+mutation CreateMonitoringRecordAttachmentLink($data: CreateMonitoringRecordAttachmentLink!) {
+  createMonitoringRecordAttachmentLink(data: $data) {
+    ...CreateMonitoringRecordAttachmentLinkResponse
+    downloadLink
+  }
+}
+
+query GetMonitoringRecordAttachments($monitoringRecordId: Int!) {
+  getMonitoringRecordAttachments(monitoringRecordId: $monitoringRecordId) {
+    ...MonitoringRecordAttachment
+    downloadLink
+  }
+}
+
+query GetMonitoringRecordAttachment($id: Int!) {
+  getMonitoringRecordAttachment(id: $id) {
+    ...MonitoringRecordAttachment
+    downloadLink
+  }
+}
+
+mutation DeleteMonitoringRecordAttachment($id: Int!) {
+  deleteMonitoringRecordAttachment(id: $id) {
+    ...MonitoringRecordAttachment
+    downloadLink
+  }
+}
+
+mutation GetSupersetGuestToken($data: GetSupersetGuestTokenParams!) {
+  getSupersetGuestToken(data: $data)
+}
+
+query GetPlanesDesarrollo {
+  getPlanesDesarrollo {
+    ...PlanDesarrollo
+    ejes {
+      ...EjeEstructurante
+    }
+  }
+}
+
+query GetPlanDesarrolloByCode($code: String!) {
+  getPlanDesarrolloByCode(code: $code) {
+    ...PlanDesarrollo
+    ejes {
+      ...EjeEstructurante
+      sectores {
+        ...Sector
+        programas {
+          ...ProgramaPry
+          subprogramas {
+            ...SubprogramaPry
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetGoalsToCopyFromSIIF($devPlanId: Float!) {
+  getGoalsToCopyFromSIIF(devPlanId: $devPlanId) {
+    countGoalsSIIF
+    countGoalsSPD
+    goalstoCopyFromSIIF {
+      ...VSpdMeta
+    }
+  }
+}
+
+query GetMetas($data: SearchSpdMeta!) {
+  getMetas(data: $data) {
+    ...VSpdMeta
+  }
+}
+
+mutation CopyGoalsFromSIIF($devPlanId: Float!) {
+  copyGoalsFromSIIF(devPlanId: $devPlanId) {
+    ...Goal
+    children {
+      ...Goal
+    }
+    entity {
+      ...Entity
+    }
+    devPlanLevel {
+      ...DevPlanLevel
+      devPlan {
+        ...DevPlan
+      }
+    }
+  }
+}
+
+mutation LinkGoalToActivity($data: LinkGoalToActivity!) {
+  linkGoalToActivity(data: $data) {
+    ...GoalToActivity
+    goal {
+      ...Goal
+    }
+  }
+}

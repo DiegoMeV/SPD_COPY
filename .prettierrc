@@ -1,0 +1,35 @@
+{
+  "jsxBracketSameLine": false,
+  "printWidth": 100,
+  "singleQuote": false,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "proseWrap": "always",
+  "useTabs": false,
+  "overrides": [
+    {
+      "files": "**/*.js",
+      "options": {
+        "parser": "babel"
+      }
+    },
+    {
+      "files": "**/*.css",
+      "options": {
+        "parser": "css"
+      }
+    },
+    {
+      "files": "**/*.json",
+      "options": {
+        "parser": "json"
+      }
+    },
+    {
+      "files": "**/*.{ts,tsx}",
+      "options": {
+        "parser": "typescript"
+      }
+    }
+  ]
+}

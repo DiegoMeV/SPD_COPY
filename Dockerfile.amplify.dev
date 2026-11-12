@@ -1,0 +1,69 @@
+FROM oraclelinux:9
+
+ENV NVM_DIR /root/.nvm
+ENV NODE_VERSION 18.19.0
+
+ARG release=19
+ARG update=19
+
+RUN  dnf -y install oracle-instantclient-release-el9 && \
+     dnf -y install oracle-instantclient${release}.${update}-basic oracle-instantclient${release}.${update}-devel oracle-instantclient${release}.${update}-sqlplus && \
+     dnf -y install git && \
+     dnf -y install wget && \
+     dnf -y install bash && \
+     rm -rf /var/cache/dnf
+# Install Docker Engine
+# Install necessary dependencies
+RUN yum install -y yum-utils device-mapper-persistent-data lvm2
+
+# Add Docker repository
+RUN yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+# Install Docker
+RUN yum install -y docker-ce docker-ce-cli containerd.io
+
+# Copy script to start Docker daemon
+COPY scripts/start-docker.sh /
+
+# Set execute permissions for the script
+RUN chmod +x /start-docker.sh
+
+RUN  curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash 
+
+RUN source $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
+
+ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
+ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+
+# Install yarn package manager
+RUN npm install -g yarn
+
+# Set environment variable for Oracle Instant Client
+RUN echo /usr/lib/oracle/${release}.${update}/client64/lib > /etc/ld.so.conf.d/oracle-instantclient.conf && ldconfig
+
+# Create symlinks
+RUN ln -s /usr/lib/oracle/${release}.${update}/client64/lib/*.so /usr/lib64/ && \
+    ln -s /usr/lib/oracle/${release}.${update}/client64/lib/*.so.* /usr/lib64/
+
+
+# Verify installations
+RUN node -v && npm -v  && yarn -v && git --version && ssh -V && bash --version
+
+# Start Docker daemon
+CMD ["/start-docker.sh"]
+
+# Build command
+# docker buildx build --platform linux/amd64 -f Dockerfile.amplify.dev -t fredygilsolinfo/aws-amplify-oraclelinux:latest .
+# Tag the image
+# docker tag fredygilsolinfo/aws-amplify-oraclelinux:latest fredygilsolinfo/aws-amplify-oraclelinux:latest
+# Login to docker hub
+# docker login
+# Push the image
+# docker push fredygilsolinfo/aws-amplify-oraclelinux:latest
+# Test the image
+# docker run -it --platform linux/amd64 fredygilsolinfo/aws-amplify-oraclelinux:latest
+
+

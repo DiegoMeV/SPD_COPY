@@ -1,0 +1,155 @@
+"devPlanId"	"devPlanLevelCode"	"entityId"	"goalType"	"code"	"indicator"	"baseValue"	"unitsName"	"accumulationType"	"unitsFactor"	"goalValue"	"goal2020"	"goal2021"	"goal2022"	"goal2023"
+7	"1.1"	36	"WELL_BEING"	"B1.1.1"	"Tasa de cobertura Neta"	95%	"Porcentaje"	"STOCK"	100	95%	95%	95%	95%	95%
+7	"1.1"	36	"WELL_BEING"	"B1.1.2"	"Tasa de cobertura Neta Transición"	63%	"Porcentaje"	"STOCK"	100	63%	63%	63%	63%	63%
+7	"1.1"	36	"WELL_BEING"	"B1.1.3"	"Tasa de cobertura Neta Primaria"	87%	"Porcentaje"	"STOCK"	100	87%	87%	87%	87%	87%
+7	"1.1"	36	"WELL_BEING"	"B1.1.4"	"Tasa de cobertura Neta Secundaria"	86%	"Porcentaje"	"STOCK"	100	86%	86%	86%	86%	86%
+7	"1.1"	36	"WELL_BEING"	"B1.1.5"	"Tasa de cobertura Neta Media"	53%	"Porcentaje"	"STOCK"	100	53%	53%	53%	53%	53%
+7	"1.1"	36	"WELL_BEING"	"B1.1.6"	"Tasa de cobertura Neta Básica"	93%	"Porcentaje"	"STOCK"	100	93%	93%	93%	93%	93%
+7	"1.1"	36	"WELL_BEING"	"B1.1.7"	"Tasa de cobertura bruta"	110%	"Porcentaje"	"STOCK"	100	108%	108%	108%	108%	108%
+7	"1.1"	36	"WELL_BEING"	"B1.1.8"	"Tasa de cobertura bruta Transición"	89%	"Porcentaje"	"STOCK"	100	89%	89%	89%	89%	89%
+7	"1.1"	36	"WELL_BEING"	"B1.1.9"	"Tasa de cobertura bruta Primaria"	103%	"Porcentaje"	"STOCK"	100	103%	103%	103%	103%	103%
+7	"1.1"	36	"WELL_BEING"	"B1.1.10"	"Tasa de cobertura bruta Secundaria"	125%	"Porcentaje"	"STOCK"	100	125%	125%	125%	125%	125%
+7	"1.1"	36	"WELL_BEING"	"B1.1.11"	"Tasa de cobertura Bruta Media"	109%	"Porcentaje"	"STOCK"	100	109%	109%	109%	109%	109%
+7	"1.1"	36	"WELL_BEING"	"B1.1.12"	"Porcentaje de planteles oficiales con clasificación A o A+ (Saber 11°)"	45%	"Porcentaje"	"STOCK"	100	45%	45%	45%	45%	45%
+7	"1.1"	36	"WELL_BEING"	"B1.1.13"	"Puntaje promedio Pruebas Saber 11 Lectura crítica"	55%	"Porcentaje"	"STOCK"	100	55%	55%	55%	55%	55%
+7	"1.1"	36	"WELL_BEING"	"B1.1.14"	"Puntaje promedio Pruebas Saber 11 Matemáticas"	52%	"Porcentaje"	"STOCK"	100	52%	52%	52%	52%	52%
+7	"1.1"	36	"WELL_BEING"	"B1.1.15"	"Tasa de deserción oficial"	5.6%	"Porcentaje"	"REDUCTION"	100	4.7%	5.4%	5.2%	4.9%	4.7%
+7	"1.1"	36	"WELL_BEING"	"B1.1.16"	"Numero de Estrategias Implementadas para el acceso de la población a la Educación Superior"	2	"Número"	"STOCK"	1	3	3	3	3	3
+7	"1.2"	59	"WELL_BEING"	"B1.2.1"	"Numero de Personas que tienen acceso a las actividades y espacios culturales"	136,793	"Número"	"STOCK"	1	140,000	140,000	140,000	140,000	140,000
+7	"1.2"	59	"WELL_BEING"	"B1.2.2"	"Comisión de Patrimonio sesionando periódicamente"	1	"Número"	"STOCK"	1	1	1	1	1	1
+7	"1.3"	54	"WELL_BEING"	"B1.3.1"	"Porcentaje de personas de 18 a 64 años que cumplen con las recomendaciones en actividad física."	48.00%	"Porcentaje"	"FLOW"	100	51.00%	48.00%	49.00%	50.00%	51.00%
+7	"1.3"	54	"WELL_BEING"	"B1.3.2"	"Porcentaje de adolescentes hombres de 13 a 17 años que cumplen las recomendaciones de actividad física"	18.70%	"Porcentaje"	"FLOW"	100	20.00%	18.70%	19.70%	20.70%	20.00%
+7	"1.3"	54	"WELL_BEING"	"B1.3.3"	"Porcentaje de hombres de 18 a 64 años que cumplen con las recomendaciones en actividad física."	61.10%	"Porcentaje"	"FLOW"	100	62.10%	61.10%	62.10%	62.10%	62.10%
+7	"1.3"	54	"WELL_BEING"	"B1.3.4"	"Porcentaje de mujeres de 18 a 64 años que cumplen con las recomendaciones en actividad física."	42.70%	"Porcentaje"	"FLOW"	100	46.70%	42.70%	43.70%	45.70%	46.70%
+7	"1.3"	54	"WELL_BEING"	"B1.3.5"	"Porcentaje de adolecentes que cumplen las recomendaciones de actividad física"	15.60%	"Porcentaje"	"FLOW"	100	18.60%	15.60%	16.60%	17.60%	18.60%
+7	"1.3"	54	"WELL_BEING"	"B1.3.6"	"Porcentaje de adolescentes mujeres de 13 a 17 años que cumplen las recomendaciones de actividad física"	7.60%	"Porcentaje"	"FLOW"	100	12.00%	7.60%	10.60%	11.60%	12.00%
+7	"1.4"	53	"WELL_BEING"	"B1.4.1"	"Tasa de Letalidad por dengue"	2%	"Porcentaje"	"STOCK"	100	2%	2%	2%	2%	2%
+7	"1.4"	53	"WELL_BEING"	"B1.4.2"	"Tasa de Incidencia por rabia humana"	0	"Porcentaje"	"STOCK"	100	0	0	0	0	0
+7	"1.4"	53	"WELL_BEING"	"B1.4.3"	"Tasa de mortalidad por Leptospirosis"	0.42	"Tasa"	"STOCK"	100000	0.42	0.42	0.42	0.42	0.42
+7	"1.4"	53	"WELL_BEING"	"B1.4.4"	"Tasa de mortalidad autóctona por Malaria"	0	"Porcentaje"	"STOCK"	100	0	0	0	0	0
+7	"1.4"	53	"WELL_BEING"	"B1.4.5"	"Numero de líneas de base y dx construidas en salud pública para el análisis de la situación de salud de la población de Pereira"	3	"Número"	"FLOW"	1	3	0	1	1	1
+7	"1.4"	53	"WELL_BEING"	"B1.4.6"	"Tasa de mortalidad por Infección Respiratoria Aguda( IRA) en menores de cinco años"	3	"Tasa"	"STOCK"	100000	3	3	3	3	3
+7	"1.4"	53	"WELL_BEING"	"B1.4.7"	"Porcentaje de familias con disminución de factores de riesgo"	25%	"Porcentaje"	"FLOW"	100	28%	5%	15%	20%	28%
+7	"1.4"	53	"WELL_BEING"	"B1.4.8"	"Porcentaje de Prevalencia de vida en consumo de marihuana en menores e iguales a 19 años"	5.70%	"Porcentaje"	"STOCK"	100	5.70%	5.70%	5.70%	5.70%	5.70%
+7	"1.4"	53	"WELL_BEING"	"B1.4.9"	"Porcentaje de nacidos vivos de madres adolescentes ( Embarazo a temprana edad entre 15 y 19 años)"	16.50%	"Porcentaje"	"STOCK"	100	16%	16%	16%	16%	16%
+7	"1.4"	53	"WELL_BEING"	"B1.4.10"	"Tasa de incidencia de sífilis congénita"	0.9	"Tasa"	"STOCK"	1000	1	1	1	1	1
+7	"1.4"	53	"WELL_BEING"	"B1.4.11"	"Tasa de mortalidad por cáncer de cérvix"	14.4	"Tasa"	"STOCK"	100000	14.4	14.4	14.4	14.4	14.4
+7	"1.4"	53	"WELL_BEING"	"B1.4.12"	"tasa de mortalidad por cáncer de mama"	20	"Tasa"	"STOCK"	100000	20	20	20	20	20
+7	"1.4"	53	"WELL_BEING"	"B1.4.13"	"Razón de mortalidad materna"	30.5	"Tasa"	"STOCK"	100000	30.5	30.5	30.5	30.5	30.5
+7	"1.4"	53	"WELL_BEING"	"B1.4.14"	"Tasa de mortalidad por VIH-SIDA"	14.1	"Tasa"	"STOCK"	100000	14	14	14	14	14
+7	"1.4"	53	"WELL_BEING"	"B1.4.15"	"Tasa de mortalidad neonatal (desde la semana 22 de gestación hasta el día 7 de nacido)"	4.8	"Tasa"	"STOCK"	1000	4.8	4.8	4.8	4.8	4.8
+7	"1.4"	53	"WELL_BEING"	"B1.4.16"	"Tasa de suicidio"	8.8	"Tasa"	"STOCK"	100000	8.8	8.8	8.8	8.8	8.8
+7	"1.4"	53	"WELL_BEING"	"B1.4.17"	"Tasa de mortalidad por Tuberculosis"	2.7	"Tasa"	"STOCK"	100000	2.7	2.7	2.7	2.7	2.7
+7	"1.4"	53	"WELL_BEING"	"B1.4.18"	"Porcentaje de éxito terapéutico"	68	"Porcentaje"	"STOCK"	100	85%	85%	85%	85%	85%
+7	"1.4"	53	"WELL_BEING"	"B1.4.19"	"Tasa de Mortalidad por enfermedades inmunoprevenibles en menores de cinco años"	0.3	"Tasa"	"STOCK"	10000	0.3	0.3	0.3	0.3	0.3
+7	"1.4"	53	"WELL_BEING"	"B1.4.20"	"Cobertura útil de vacunación anual con terceras dosis de pentavalente con población menor de un año"	95%	"Porcentaje"	"STOCK"	100	95%	95%	95%	95%	95%
+7	"1.4"	53	"WELL_BEING"	"B1.4.21"	"Tasa de Mortalidad en menores de 5 años"	1.6	"Tasa"	"STOCK"	100000	1.6	1.6	1.6	1.6	1.6
+7	"1.4"	53	"WELL_BEING"	"B1.4.22"	"Tasa de mortalidad infantil"	7	"Tasa"	"STOCK"	1000	7	7	7	7	7
+7	"1.4"	53	"WELL_BEING"	"B1.4.23"	"Porcentaje de desnutrición aguda en menores de 5 años"	5.76%	"Porcentaje"	"STOCK"	100	5.76%	5.76%	5.76%	5.76%	5.76%
+7	"1.4"	53	"WELL_BEING"	"B1.4.24"	"Porcentaje de Retraso en talla para la edad en menores de 5 años"	8.90%	"Porcentaje"	"STOCK"	100	8.9%	8.9%	8.9%	8.9%	8.9%
+7	"1.4"	53	"WELL_BEING"	"B1.4.25"	"Porcentaje de Desnutrición global en menores de 5 años"	3.8	"Porcentaje"	"STOCK"	100	3.8%	3.8%	3.8%	3.8%	3.8%
+7	"1.4"	53	"WELL_BEING"	"B1.4.26"	"Porcentaje de Prevalencia de obesidad y pre obesidad en población menor de 28 años"	34.50%	"Porcentaje"	"STOCK"	100	30%	30%	30%	30%	30%
+7	"1.4"	53	"WELL_BEING"	"B1.4.27"	"Número de brotes por enfermedades transmitidas por alimentos"	4	"Número"	"STOCK"	1	4	4	4	4	4
+7	"1.4"	53	"WELL_BEING"	"B1.4.28"	"Tasa de mortalidad por Enfermedad Diarreica aguda en menores de 5 años"	0	"Porcentaje"	"STOCK"	100	0	0	0	0	0
+7	"1.4"	53	"WELL_BEING"	"B1.4.29"	"tasa de mortalidad prematura por diabetes (por 100.000 habitantes de 30 a 60 años)"	10	"Tasa"	"STOCK"	100000	10	10	10	10	10
+7	"1.4"	53	"WELL_BEING"	"B1.4.30"	"Tasa de mortalidad prematura por enfermedades no transmisibles cardiovasculares (por 100.000 habitantes de 30 a 60 años)"	58.4	"Tasa"	"STOCK"	100000	58.4	58.4	58.4	58.4	58.4
+7	"1.4"	53	"WELL_BEING"	"B1.4.31"	"Mantener por debajo de 1,6 el índice COP modificado en población de 12 años de edad"	1.6	"Porcentaje"	"STOCK"	100	1.6	1.6	1.6	1.6	1.6
+7	"1.4"	53	"WELL_BEING"	"B1.4.32"	"Porcentaje de Cumplimiento de implementación del programa de seguridad del paciente en IPS públicas y privadas"	80%	"Porcentaje"	"CAPACITY"	100	85%	80%	82%	84%	85%
+7	"1.4"	53	"WELL_BEING"	"B1.4.33"	"Porcentaje de Cumplimiento del sistema obligatorio de garantía de la calidad en IPS públicas y privadas"	89%	"Porcentaje"	"FLOW"	100	90%	89%	90%	90%	90%
+7	"1.4"	53	"WELL_BEING"	"B1.4.34"	"Cobertura de aseguramiento en el sistema de seguridad social en salud"	100%	"Porcentaje"	"STOCK"	100	100%	100%	100%	100%	100%
+7	"1.4"	53	"WELL_BEING"	"B1.4.35"	"Porcentaje de personas que consideran que la calidad de la prestación del servicio de salud (medicina general, medicina especializada, odontología, etc.) fue “buena” o “muy buena"" en la ESE Salud"	90.00%	"Porcentaje"	"FLOW"	100	90.00%	75.00%	80.00%	85.00%	90.00%
+7	"1.5"	63	"WELL_BEING"	"B1.5.1"	"Déficit de vivienda cuantitativo"	7515	"Número"	"REDUCTION"	1	5,171	7235	6751	5921	5171
+7	"1.5"	63	"WELL_BEING"	"B1.5.2"	"Déficit de cualitativo"	17920	"Número"	"REDUCTION"	1	16,920	17770	17520	17220	16920
+7	"1.5"	32	"WELL_BEING"	"B1.5.3"	"Índice de continuidad del servicio de acueducto"	99.66%	"Porcentaje"	"STOCK"	100	99.7%	99.7%	99.7%	99.7%	99.7%
+7	"1.5"	32	"WELL_BEING"	"B1.5.4"	"Cumplimiento del PSMV"	99.80%	"Porcentaje"	"STOCK"	100	100.0%	100.0%	100.0%	100.0%	100.0%
+7	"1.5"	32	"WELL_BEING"	"B1.5.5"	"Cobertura del servicio de alcantarillado en la zona urbana"	"98.64%"	"Porcentaje"	"STOCK"	100	"98.64%"	"98.64%"	"98.64%"	"98.64%"	"98.64%"
+7	"1.5"	32	"WELL_BEING"	"B1.5.6"	"Cobertura del servicio de acueducto en la zona urbana"	"99.75%"	"Porcentaje"	"STOCK"	100	"99.75%"	"99.75%"	"99.75%"	"99.75%"	"99.75%"
+7	"1.5"	32	"WELL_BEING"	"B1.5.7"	"Índice de riesgo de la calidad del agua para consumo humano (IRCA)"	"0.20%"	"Porcentaje"	"STOCK"	100	"0.20%"	"0.20%"	"0.20%"	"0.20%"	"0.20%"
+7	"1.5"	32	"WELL_BEING"	"B1.5.8"	"Índice de agua no contabilizada"	"30.77%"	"Porcentaje"	"STOCK"	100	"30.77%"	"30.77%"	"30.77%"	"30.77%"	"30.77%"
+7	"1.5"	32	"WELL_BEING"	"B1.5.9"	"Índice de pérdidas por usuario facturado (m3/usuario)"	"5.8"	"Número"	"STOCK"	1	"5.8"	"5.8"	"5.8"	"5.8"	"5.8"
+7	"1.5"	35	"WELL_BEING"	"B1.5.10"	"Sistemas de suministro de agua potable fortalecidos en la zona rural"	8	"Número"	"ACCUMULATED"	1	10	3	2	3	2
+7	"1.5"	49	"WELL_BEING"	"B1.5.11"	"M3 de disposición final de escombros que garantice la atención de una emergencia y la limpieza de la ciudad"	350000	"Número"	"CAPACITY"	1	355600	352400	353600	354600	355600
+7	"1.5"	60	"WELL_BEING"	"B1.5.12"	"Porcentaje de Planes de gestión integral de residuos sólidos actualizado"	100%	"Porcentaje"	"ACCUMULATED"	100	100%	25%	25%	25%	25%
+7	"1.5"	60	"WELL_BEING"	"B1.5.13"	"Porcentaje de residuos sólidos aprovechados en el municipio"	0.67%	"Porcentaje"	"FLOW"	100	4%	1%	2%	3%	4%
+7	"1.6"	34	"WELL_BEING"	"B1.6.1"	"Porcentaje de personas que declaran hechos victimizantes y víctimas del conflicto armado con atención, asistencia y acompañamiento psicosocial"	100%	"Porcentaje"	"STOCK"	100	100%	100%	100%	100%	100%
+7	"1.6"	34	"WELL_BEING"	"B1.6.2"	"Porcentaje de espacios de participación de la población víctima fortalecidos"	100%	"Porcentaje"	"STOCK"	100	100%	100%	100%	100%	100%
+7	"1.6"	34	"WELL_BEING"	"B1.6.3"	"Tasa de violencia contra niños y niñas de 0 a 5 años por cada 100.000 habitantes"	44.78	"Tasa"	"ANNUAL_REDUCTION"	100000	42.78	44.28	43.78	43.28	42.78
+7	"1.6"	34	"WELL_BEING"	"B1.6.4"	"Tasa de violencia contra niños y niñas de 6 a 11 años por cada 100.000 habitantes"	80.90	"Tasa"	"ANNUAL_REDUCTION"	100000	78.90	80.40	79.90	"79.40"	78.90
+7	"1.6"	34	"WELL_BEING"	"B1.6.5"	"Tasa de violencia en adolescencia (12-17 años) por cada 100.000 habitantes"	118.06	"Tasa"	"ANNUAL_REDUCTION"	100000	116.06	117.56	117.06	116.56	116.06
+7	"1.6"	34	"WELL_BEING"	"B1.6.6"	"Tasa de violencia en pareja cuando la víctima es menor de 18 años (12-17 años) por cada 100.000 habitantes"	36.14	"Tasa"	"ANNUAL_REDUCTION"	100000	34.14	35.64	35.14	34.64	34.14
+7	"1.6"	34	"WELL_BEING"	"B1.6.7"	"Tasa de exámenes médico legales por presunto delito sexual contra niños y niñas de 0 a 5 años por cada 100.000 habitantes"	226.33	"Tasa"	"ANNUAL_REDUCTION"	100000	224.33	225.83	225.33	224.83	224.33
+7	"1.6"	34	"WELL_BEING"	"B1.6.8"	"Tasa de exámenes médico legales por presunto delito sexual contra niños y niñas de 6 a 11 años por cada 100.000 habitantes"	326.07	"Tasa"	"ANNUAL_REDUCTION"	100000	324.07	325.57	325.07	324.57	324.07
+7	"1.6"	34	"WELL_BEING"	"B1.6.9"	"Tasa de exámenes médico legales por presunto delito sexual contra adolescentes (12 a 17 años) por cada 100.000 habitantes"	320.44	"Tasa"	"ANNUAL_REDUCTION"	100000	318.44	319.94	319.44	318.94	318.44
+7	"1.6"	34	"WELL_BEING"	"B1.6.10"	"Porcentaje de espacios de participación de niños, niñas y adolescentes fortalecidos"	100%	"Porcentaje"	"STOCK"	100	100%	100%	100%	100%	100%
+7	"1.6"	34	"WELL_BEING"	"B1.6.11"	"Porcentaje de reincidencia del delito en el Sistema de Responsabilidad Penal para Adolescentes"	7.72%	"Porcentaje"	"ANNUAL_REDUCTION"	100	5.72%	7.22%	6.72%	6.22%	5.72%
+7	"1.6"	34	"WELL_BEING"	"B1.6.12"	"Tasa de violencia de pareja cuando la víctima está entre los 18 y 28 años por cada 100.000 habitantes"	253.04	"Tasa"	"ANNUAL_REDUCTION"	100000	251.04	252.54	252.04	251.54	251.04
+7	"1.6"	34	"WELL_BEING"	"B1.6.13"	"Tasa de exámenes médico legales por presunto delito sexual cuando la víctima está entre 18 y 28 años por cada 100.000 habitantes"	43.17	"Tasa"	"ANNUAL_REDUCTION"	100000	41.17	42.67	42.17	41.67	41.17
+7	"1.6"	34	"WELL_BEING"	"B1.6.14"	"Proporción de jóvenes (18 - 28 años) candidatos sobre el total de personas candidatizadas para las Corporaciones Públicas (Concejos municipales, Asambleas departamentales)"	14.42%	"Porcentaje"	"FLOW"	100	16.50%	0	0	0	16.50%
+7	"1.6"	34	"WELL_BEING"	"B1.6.15"	"Porcentaje de Jóvenes intervenidos en procesos de promoción de derechos y de factores protectores para la disminución del riesgo"	4.35%	"Porcentaje"	"CAPACITY"	100	6.27%	4.80%	5.29%	5.78%	6.27%
+7	"1.6"	34	"WELL_BEING"	"B1.6.16"	"Porcentaje de familias en vulnerabilidad que acceden a bienes, servicios, información y orientación para la satisfacción de necesidades"	"N.D"	"Porcentaje"	"STOCK"	100	100%	100%	100%	100%	100%
+7	"1.6"	34	"WELL_BEING"	"B1.6.17"	"Porcentaje de menores de 1 año con registro civil x lugar de residencia"	100%	"Porcentaje"	"STOCK"	100	100%	100%	100%	100%	100%
+7	"1.6"	34	"WELL_BEING"	"B1.6.18"	"Tasa de violencia contra la mujer a nivel intrafamiliar por cada 100.000 habitantes"	209.88	"Tasa"	"ANNUAL_REDUCTION"	100000	207.88	209.38	208.88	208.38	207.88
+7	"1.6"	34	"WELL_BEING"	"B1.6.19"	"Porcentaje de ejecución de la política pública de diversidad sexual"	0	"Porcentaje"	"FLOW"	100	30%	0%	10%	20%	30%
+7	"1.6"	34	"WELL_BEING"	"B1.6.20"	"Porcentaje de población afrodescendiente con atención y asistencia para el restablecimiento de derechos"	45%	"Porcentaje"	"CAPACITY"	100	50%	46.25%	47.50%	48.75%	50%
+7	"1.6"	34	"WELL_BEING"	"B1.6.21"	"Porcentaje de espacios de participación que incluyen población afrodescendiente"	62%	"Porcentaje"	"CAPACITY"	100	77%	62%	67%	77%	77%
+7	"1.6"	34	"WELL_BEING"	"B1.6.22"	"Porcentaje de espacios de participación que incluyen población indígena"	50%	"Porcentaje"	"CAPACITY"	100	75%	50%	58%	67%	75%
+7	"1.6"	34	"WELL_BEING"	"B1.6.23"	"Porcentaje de población indígena con atención y asistencia para el restablecimiento de derechos"	100%	"Porcentaje"	"STOCK"	100	100%	100%	100%	100%	100%
+7	"1.6"	34	"WELL_BEING"	"B1.6.24"	"Porcentaje de personas con discapacidad, familias y cuidadores que acceden a bienes y servicios para la superación de barreras"	31%	"Porcentaje"	"CAPACITY"	100	37.53%	32.76%	34.35%	35.94%	37.53%
+7	"1.6"	34	"WELL_BEING"	"B1.6.25"	"Porcentaje de espacios de participación que incluyen población en condición de discapacidad"	54%	"Porcentaje"	"CAPACITY"	100	77%	54%	62%	69%	77%
+7	"1.6"	34	"WELL_BEING"	"B1.6.26"	"Porcentaje de adultos mayores con asistencia y atención individual, familiar y comunitaria"	43%	"Porcentaje"	"CAPACITY"	100	50%	45%	47%	49%	50%
+7	"1.6"	34	"WELL_BEING"	"B1.6.27"	"Porcentaje de Habitantes de calle con proceso exitoso de atención a través del modelo de atención integral"	0%	"Porcentaje"	"FLOW"	100	28%	7%	14%	21%	28%
+7	"1.6"	34	"WELL_BEING"	"B1.6.28"	"Porcentaje de población migrante con atención y orientación"	100%	"Porcentaje"	"STOCK"	100	100%	100%	100%	100%	100%
+7	"1.7"	70	"WELL_BEING"	"B1.7.1"	"Porcentaje de Implementación de la Política Pública de Derechos Humanos Paz y Reconciliación"	0	"Porcentaje"	"FLOW"	100	40%	10%	20%	30%	40%
+7	"2.1"	34	"WELL_BEING"	"B2.1.1"	"Tasa de violencia intrafamiliar por cada 100.000 habitantes"	175.27	"Tasa"	"ANNUAL_REDUCTION"	100000	173.27	174.77	174.27	173.77	173.27
+7	"2.1"	38	"WELL_BEING"	"B2.1.2"	"Tasa de homicidios por cada cien mil habitantes"	23.92	"Tasa"	"ANNUAL_REDUCTION"	100000	21.52	23.32	22.72	22.12	21.52
+7	"2.1"	38	"WELL_BEING"	"B2.1.3"	"Número de hurtos"	2,254.00	"Número"	"ANNUAL_REDUCTION"	1	2,028	2,198	2,141	2,085	2,028
+7	"2.1"	38	"WELL_BEING"	"B2.1.4"	"Tasa de riñas"	315.2	"Número"	"ANNUAL_REDUCTION"	1	283.68	307.32	299.44	291.56	283.68
+7	"2.1"	38	"WELL_BEING"	"B2.1.5"	"Tasa de violencia contra niños, niñas y adolescentes"	34.2	"Porcentaje"	"ANNUAL_REDUCTION"	100	30.78	33.3	32.5	31.6	30.8
+7	"2.1"	38	"WELL_BEING"	"B2.1.6"	"Tasa de homicidios de personas entre los 18 – 28 años"	48.3	"Porcentaje"	"ANNUAL_REDUCTION"	100	43.47	47.09	45.89	44.68	43.47
+7	"2.2"	70	"WELL_BEING"	"B2.2.1"	"Número de instancias de participación comunitaria y política fortalecidas"	2	"Número"	"STOCK"	1	2	2	2	2	2
+7	"2.2"	64	"WELL_BEING"	"B2.2.2"	"Participación activa y democrática en las 19 comunas y 12 corregimientos del Municipio de Pereira"	31	"Número"	"STOCK"	1	31	31	31	31	31
+7	"2.3"	62	"WELL_BEING"	"B2.3.1"	"Índice de Desempeño Institucional"	68.9	"Número"	"STOCK"	1	80	80	80	80	80
+7	"2.3"	62	"WELL_BEING"	"B2.3.2"	"Nivel de Satisfacción del cliente interno y externo en la Administración Municipal"	4	"Número"	"STOCK"	1	4	4	4	4	4
+7	"2.3"	72	"WELL_BEING"	"B2.3.3"	"Porcentaje de Adopción e implementación por parte de la Alcaldía Municipal del MIPG (Decreto 288 de 2019)"	100%	"Porcentaje"	"STOCK"	100	100%	100%	100%	100%	100%
+7	"2.3"	33	"WELL_BEING"	"B2.3.4"	"Porcentaje de implementación y mejoramiento de la gestión institucional del IMP"	100%	"Porcentaje"	"ACCUMULATED"	100	100%	15%	25%	30%	30%
+7	"2.3"	32	"WELL_BEING"	"B2.3.5"	"Índice de satisfacción del cliente en Aguas y Aguas"	92%	"Porcentaje"	"CAPACITY"	100	95%	93%	94%	95%	95%
+7	"2.3"	69	"WELL_BEING"	"B2.3.6"	"Nivel de Satisfacción del cliente en el Diagnosticentro SAS variable (0-5)"	3.5	"Número"	"CAPACITY"	1	4.5	4	4.2	4.3	4.5
+7	"2.3"	69	"WELL_BEING"	"B2.3.7"	"porcentaje de vehículos atendidos por el Diagnosticentro SAS para revisión técnico mecánica y emisiones contaminantes"	8%	"Porcentaje"	"CAPACITY"	100	12%	9%	10%	11%	12%
+7	"2.3"	39	"WELL_BEING"	"B2.3.8"	"Implementación de la política de prevención del daño antijurídico."	100%	"Porcentaje"	"STOCK"	100	100%	100%	100%	100%	100%
+7	"2.4"	33	"WELL_BEING"	"B2.4.1"	"Numero de Instrumentos de Planificación, Gestión y financiación del suelo formulados con enfoques de desarrollo económico y social y desarrollo sostenible"	9	"Número"	"ACCUMULATED"	1	10	0	4	3	3
+7	"2.4"	32	"WELL_BEING"	"B2.4.2"	"Porcentaje de pereiranos satisfechos con el espacio público"	50%	"Porcentaje"	"CAPACITY"	100	54%	51%	52%	53%	54%
+7	"2.4"	32	"WELL_BEING"	"B2.4.3"	"Numero de recuperación de m2 de espacio público por ventas informales y formales en el Municipio de Pereira."	725	"Número"	"ACCUMULATED"	1	2920	730	730	730	730
+7	"2.4"	32	"WELL_BEING"	"B2.4.4"	"Numero de Recuperación de m2 por asentamientos humanos informales"	105930	"Número"	"ACCUMULATED"	1	400,000	100,000	100,000	100,000	100,000
+7	"2.4"	32	"WELL_BEING"	"B2.4.5"	"Espacio publico efectivo por Habitante"	1.76	"Número"	"CAPACITY"	1	2.1	1.76	1.86	1.96	2.1
+7	"2.5"	57	"WELL_BEING"	"B2.5.1"	"Calificación del Índice de competitividad turística regional"	6.41	"Número"	"STOCK"	1	6.41	6.41	6.41	6.41	6.41
+7	"2.6"	70	"WELL_BEING"	"B2.6.1"	"Eficiencia del Tamaño de mercado"	4.36	"Número"	"CAPACITY"	1	5.36	4.36	4.61	"4.86"	5.36
+7	"2.6"	70	"WELL_BEING"	"B2.6.2"	"Eficiencia del mercado Laboral"	6.36	"Número"	"FLOW"	1	6.83	6.33	6.5	6.66	6.83
+7	"2.6"	70	"WELL_BEING"	"B2.6.3"	"Tase de desempleo"	8.3	"Porcentaje"	"STOCK"	100	8.30%	8.30%	8.30%	8.30%	8.30%
+7	"2.6"	70	"WELL_BEING"	"B2.6.4"	"Tasa de trabajo infantil"	3.00%	"Porcentaje"	"STOCK"	100	3.00%	3.00%	3.00%	3.00%	3.00%
+7	"2.6"	70	"WELL_BEING"	"B2.6.5"	"Tasa de desempleo de jóvenes"	10	"Porcentaje"	"STOCK"	100	10%	10%	10%	10%	10%
+7	"2.6"	70	"WELL_BEING"	"B2.6.6"	"Tasa de población ocupada informal"	51%	"Porcentaje"	"STOCK"	100	51%	51%	51%	51%	51%
+7	"2.6"	70	"WELL_BEING"	"B2.6.7"	"Tasa de desempleo femenina"	"10.2%"	"Porcentaje"	"STOCK"	100	"10.2%"	"10.2%"	"10.2%"	"10.2%"	"10.2%"
+7	"2.7"	60	"WELL_BEING"	"B2.7.1"	"Participación de pequeños productores en mercados formales (compras públicas, agricultura por contrato, etc.)"	35	"Número"	"ACCUMULATED"	1	350	200	50	50	50
+7	"2.8"	41	"WELL_BEING"	"B2.8.1"	"Porcentaje de satisfacción de los usuarios que se movilizan en: carro, moto, bicicleta y a pie"	84%	"Porcentaje"	"CAPACITY"	100	90%	85%	86%	87%	90%
+7	"2.8"	51	"WELL_BEING"	"B2.8.2"	"Numero de Pasajeros Movilizados en el AIM"	1,913,617	"Número"	"ACCUMULATED"	1	" 6,050,000    "	" 700,000    "	" 1,500,000    "	" 1,850,000    "	" 2,000,000    "
+7	"2.8"	52	"WELL_BEING"	"B2.8.3"	"Cobertura transporte masivo"	60%	"Porcentaje"	"CAPACITY"	100	80%	60%	65%	70%	80%
+7	"2.8"	52	"WELL_BEING"	"B2.8.4"	"Número de personas que utilizan el sistema de cable como medio de transporte diariamente"	0	"Número"	"CAPACITY"	1	8000	6000	6500	7000	8000
+7	"2.8"	68	"WELL_BEING"	"B2.8.5"	"Acciones para el mejoramiento y control de la Movilidad en la ciudad"	"95.36%"	"Porcentaje"	"ACCUMULATED"	100	90%	"22.5%"	"22.5%"	"22.5%"	"22.5%"
+7	"2.8"	68	"WELL_BEING"	"B2.8.6"	"Numero de Accidentes de transito"	1131	"Número"	"ANNUAL_REDUCTION"	1	950	1080	1030	980	950
+7	"2.8"	68	"WELL_BEING"	"B2.8.7"	"Porcentaje de viajes en vehículo particular"	36.80%	"Porcentaje"	"REDUCTION"	100	31.85%	35.57%	34.33%	33.09%	31.85%
+7	"2.8"	68	"WELL_BEING"	"B2.8.8"	"Porcentaje de viajes en transporte público"	22.90%	"Porcentaje"	"CAPACITY"	100	27.90%	24.15%	25.40%	26.65%	27.90%
+7	"2.8"	68	"WELL_BEING"	"B2.8.9"	"Porcentaje de viajes en bicicleta"	1.26%	"Porcentaje"	"CAPACITY"	100	5.26%	2.26%	3.26%	4.26%	5.26%
+7	"2.8"	68	"WELL_BEING"	"B2.8.10"	"Porcentaje de viajes que se realizan a pie"	35.0%	"Porcentaje"	"STOCK"	100	35.00%	35.00%	35.00%	35.00%	35.00%
+7	"3.1"	57	"WELL_BEING"	"B3.1.1"	"Índice del pilar de innovación y dinámica empresarial en el ICC"	3.66	"Número"	"CAPACITY"	1	4	3.66	3.69	3.8	4
+7	"3.2"	58	"WELL_BEING"	"B3.2.1"	"Porcentaje de la población accesando internet por medio de las zonas WiFI"	22.2%	"Porcentaje"	"FLOW"	100	28%	22%	24%	26%	28%
+7	"3.2"	58	"WELL_BEING"	"B3.2.2"	"Porcentaje de la población usando la infraestructura software y física del Estado local"	7.24%	"Porcentaje"	"CAPACITY"	100	10%	7.24%	8%	9%	10%
+7	"3.3"	60	"WELL_BEING"	"B3.3.1"	"Porcentaje de los suelos con ecosistemas estratégicos bajo alguna figura de protección"	51%	"Porcentaje"	"CAPACITY"	100	54%	51%	52%	53%	54%
+7	"3.3"	60	"WELL_BEING"	"B3.3.2"	"Número de habitantes por árbol en la zona urbana de la ciudad de Pereira"	5.9	"Número"	"ANNUAL_REDUCTION"	1	5.8	5.7	5.5	5.3	5
+7	"3.3"	35	"WELL_BEING"	"B3.3.3"	"Porcentaje de implementación del esquema de pagos por servicios ambientales (PSA) e incentivos a la conservación"	0	"Porcentaje"	"ACCUMULATED"	100	100%	25%	25%	25%	25%
+7	"3.3"	35	"WELL_BEING"	"B3.3.4"	"Proporción de área rural sin conflicto de uso del suelo"	41.77%	"Porcentaje"	"STOCK"	100	41.77%	41.77%	41.77%	41.77%	41.77%
+7	"3.3"	60	"WELL_BEING"	"B3.3.5"	" Número de personas sensibilizadas por procesos pedagógicos y culturales ambientales "	" 117,536    "	"Número"	"CAPACITY"	1	" 160,000    "	" 130,000    "	" 140,000    "	" 150,000    "	" 160,000    "
+7	"3.3"	35	"WELL_BEING"	"B3.3.6"	"Número de acciones para el fomento de la producción que cumple con criterios de crecimiento verde"	1	"Número"	"ACCUMULATED"	1	4	1	1	1	1
+7	"3.3"	35	"WELL_BEING"	"B3.3.7"	"porcentaje de Acciones desarrolladas para la adaptación al cambio climático frente a las Planeadas"	1	"Porcentaje"	"ACCUMULATED"	100	100%	25%	25%	25%	25%
+7	"3.4"	35	"WELL_BEING"	"B3.4.1"	"Porcentaje de Implementación de la Política Pública de Protección y Bienestar Animal"	0%	"Porcentaje"	"FLOW"	100	40%	10%	20%	30%	40%
+7	"3.5"	41	"WELL_BEING"	"B3.5.1"	"Porcentaje de cumplimiento de los requerimientos del programa de ciudades resilientes frente a desastre de las naciones unidas."	76%	"Porcentaje"	"CAPACITY"	100	78%	76.50%	77.50%	77.75%	78.00%
+7	"3.6"	41	"WELL_BEING"	"B3.6.1"	"Número de solicitudes de reparación del alumbrado público"	2,000	"Número"	"ANNUAL_REDUCTION"	1	1,000	1,800	1,500	1,300	1,000

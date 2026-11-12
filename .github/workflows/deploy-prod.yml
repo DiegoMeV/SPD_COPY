@@ -1,0 +1,73 @@
+name: Deploy SPD to Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      NODE_ENV: production
+      PRISMA_CLI_BINARY_TARGETS: ${{ vars.PRISMA_CLI_BINARY_TARGETS }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Build docker image
+        run: sudo docker build -t fredygilsolinfo/spd-prod:latest .
+      - name: Login to DockerHub
+        run:
+          sudo docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD
+          }}
+      - name: Publish Docker image
+        run: sudo docker push fredygilsolinfo/spd-prod:latest
+
+  deploy:
+    needs: build
+    runs-on: [self-hosted, production]
+
+    steps:
+      - name: Prune unused Docker objects
+        run: |
+          sudo docker image prune -af
+          sudo docker container prune -f
+          sudo docker volume prune -f
+          sudo docker network prune -f
+      - name: Deploy to EC2
+        env:
+          NODE_ENV: production
+          API_URL: ${{ vars.PROD_API_URL }}
+          APP_URL: ${{ vars.PROD_APP_URL }}
+          DATABASE_URL: ${{ vars.PROD_DATABASE_URL }}
+          S3_ACCESS_KEY_ID: ${{ secrets.PROD_S3_ACCESS_KEY_ID }}
+          S3_BUCKET: ${{ vars.PROD_S3_BUCKET }}
+          S3_REGION: ${{ vars.PROD_S3_REGION }}
+          S3_SECRET_ACCESS_KEY: ${{ secrets.PROD_S3_SECRET_ACCESS_KEY }}
+          SIIF_CONNECTION_STRING_8913800073: ${{ vars.PROD_SIIF_CONNECTION_STRING_8913800073 }}
+          SIIF_CONNECTION_STRING_8914800302: ${{ vars.PROD_SIIF_CONNECTION_STRING_8914800302 }}
+          SIIF_REST_API_URL_8914800302: ${{ vars.PROD_SIIF_REST_API_URL_8914800302 }}
+          TOKEN_SECRET: ${{ secrets.PROD_TOKEN_SECRET }}
+          PRISMA_CLI_BINARY_TARGETS: ${{ vars.PRISMA_CLI_BINARY_TARGETS }}
+        run: |
+          sudo docker stop spd-prod || true
+          sudo docker rm spd-prod || true
+          sudo docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+          sudo docker pull fredygilsolinfo/spd-prod:latest
+          sudo docker run -d -p 80:3000 --name spd-prod \
+            -e "NODE_ENV=${{ env.NODE_ENV }}" \
+            -e "API_URL=${{ env.API_URL }}" \
+            -e "APP_URL=${{ env.APP_URL }}" \
+            -e "DATABASE_URL=${{ env.DATABASE_URL }}" \
+            -e "S3_ACCESS_KEY_ID=${{ env.S3_ACCESS_KEY_ID }}" \
+            -e "S3_BUCKET=${{ env.S3_BUCKET }}" \
+            -e "S3_REGION=${{ env.S3_REGION }}" \
+            -e "S3_SECRET_ACCESS_KEY=${{ env.S3_SECRET_ACCESS_KEY }}" \
+            -e "SIIF_CONNECTION_STRING_8913800073=${{ env.SIIF_CONNECTION_STRING_8913800073 }}" \
+            -e "SIIF_CONNECTION_STRING_8914800302=${{ env.SIIF_CONNECTION_STRING_8914800302 }}" \
+            -e "SIIF_REST_API_URL_8914800302=${{ env.SIIF_REST_API_URL_8914800302 }}" \
+            -e "TOKEN_SECRET=${{ env.TOKEN_SECRET }}" \
+            -e "PRISMA_CLI_BINARY_TARGETS=${{ env.PRISMA_CLI_BINARY_TARGETS }}" \
+            fredygilsolinfo/spd-prod:latest

@@ -1,0 +1,110 @@
+ID	CODIGO_CORREGIMIENTO	CORREGIMIENTO	CODIGO_VEREDA	VEREDA
+1	0008	La Florida	000808	Porvenir
+2	0007	La Bella	000701	Canceles
+3	0007	La Bella	000707	Morron
+4	0007	La Bella	000702	El Chocho
+5	0006	Tribunas Corcega	000607	El Jordan
+6	0006	Tribunas Corcega	000613	Laguneta
+7	0006	Tribunas Corcega	000603	Cantamonos
+8	0008	La Florida	000806	Libare
+9	0008	La Florida	000809	San Jose
+10	0007	La Bella	000708	Mundo Nuevo
+11	0003	Morelia	000304	El Retiro
+12	0003	Morelia	000310	Santa Teresa
+13	0003	Morelia	000306	La Bamba
+14	0004	Altagracia	000404	El Jazmin
+15	0004	Altagracia	000408	La Linda
+16	0005	Arabia	000504	El Hogar
+17	0005	Arabia	000505	Miralindo
+18	0004	Altagracia	000407	Guadualito
+19	0005	Arabia	000509	Tres Esquinas
+20	0005	Arabia	000501	Arabia
+21	0005	Arabia	000502	Betulia
+22	0012	La Estrella - La Palmilla	001205	La Estrella
+23	0012	La Estrella - La Palmilla	001208	La Selva
+24	0012	La Estrella - La Palmilla	001202	El Aguacate
+25	0012	La Estrella - La Palmilla	001203	El Contento
+26	0006	Tribunas Corcega	000608	El Manzano
+27	0008	La Florida	000803	La Florida
+28	0008	La Florida	000807	Plan el Manzano
+29	0008	La Florida	000804	La Laguna
+30	0006	Tribunas Corcega	000611	Huertas
+31	0006	Tribunas Corcega	000604	Caracol la Curva
+32	0006	Tribunas Corcega	000609	El Rocio
+33	0003	Morelia	000308	Morelia
+34	0004	Altagracia	000403	El Estanquillo
+35	0008	La Florida	000802	La Bananera
+36	0008	La Florida	000805	La Suiza
+37	0008	La Florida	000801	El Bosque
+38	0007	La Bella	000706	La Estrella Morron
+39	0007	La Bella	000705	La Colonia
+40	0007	La Bella	000704	La Bella
+41	0007	La Bella	000709	Vista Hermosa
+42	0007	La Bella	000703	El Rincon
+43	0006	Tribunas Corcega	000616	Tribunas Consota
+44	0006	Tribunas Corcega	000618	Yarumito
+45	0010	Combia Alta	001006	La Esperanza
+46	0012	La Estrella - La Palmilla	001206	La Mecenia
+47	0005	Arabia	000503	Betulia Alta
+48	0003	Morelia	000303	El Congolo
+49	0003	Morelia	000309	San Joaquin
+50	0005	Arabia	000510	Yarumal
+51	0005	Arabia	000506	Perez Alto
+52	0005	Arabia	000507	Perez Bajo
+53	0005	Arabia	000508	Santa Cruz de Barba
+54	0012	La Estrella - La Palmilla	001207	La Palmilla
+55	0003	Morelia	000302	El Brillante
+56	0003	Morelia	000305	Frascate
+57	0004	Altagracia	000402	Canaveral
+58	0006	Tribunas Corcega	000617	Tribunas Corcega
+59	0006	Tribunas Corcega	000610	Guayabal
+60	0006	Tribunas Corcega	000612	La Graminea
+61	0006	Tribunas Corcega	000605	Condina
+62	0006	Tribunas Corcega	000601	Alegrias
+63	0006	Tribunas Corcega	000615	Naranjito
+64	0006	Tribunas Corcega	000602	Altamira
+65	0006	Tribunas Corcega	000614	Montelargo
+66	0006	Tribunas Corcega	000606	El Guayabo
+67	0004	Altagracia	000409	La Una
+68	0004	Altagracia	000410	Tinajas
+69	0004	Altagracia	000401	Altagracia
+70	0009	Combia Baja	000909	La Siria
+71	0009	Combia Baja	000902	El Chaquiro
+72	0010	Combia Alta	001002	Amoladora Alta
+73	0010	Combia Alta	001008	Minas del Socorro
+74	0010	Combia Alta	001005	La Convencion
+75	0010	Combia Alta	001011	San Vicente
+76	0010	Combia Alta	001010	San Luis
+77	0009	Combia Baja	000911	Maracaibo
+78	0010	Combia Alta	001004	Betania
+79	0010	Combia Alta	001003	Amoladora Baja
+80	0010	Combia Alta	001009	Pital de Combia
+81	0009	Combia Baja	000903	El Eden
+82	0009	Combia Baja	000908	La Renta
+83	0010	Combia Alta	001007	Llano Grande
+84	0010	Combia Alta	001001	Alto Erazo
+85	0009	Combia Baja	000906	La Bodega
+86	0009	Combia Baja	000912	San Marino
+87	0009	Combia Baja	000910	La Suecia
+88	0009	Combia Baja	000905	Honda
+89	0009	Combia Baja	000913	Santander
+90	0009	Combia Baja	000907	La Carmelita
+91	0009	Combia Baja	000901	Crucero de Combia
+92	0009	Combia Baja	000904	El Pomo
+93	0002	Cerritos	000204	Estacion Villegas
+94	0002	Cerritos	000201	Belmonte Bajo
+95	0001	Caimalito	000103	La Carbonera
+96	0001	Caimalito	000102	Caimalito
+97	0012	La Estrella - La Palmilla	001204	El Gurrio
+98	0011	Puerto Caldas	001101	Puerto Caldas
+99	0001	Caimalito	000104	La Paz
+100	0002	Cerritos	000206	Quimbayita
+101	0002	Cerritos	000203	Esperanza Galicia
+102	0003	Morelia	000307	Los Planes
+103	0001	Caimalito	000101	Azufral
+104	0002	Cerritos	000202	Cerritos
+105	0002	Cerritos	000205	Galicia Alta
+106	0003	Morelia	000311	Tres Puertas
+107	0003	Morelia	000301	Calle Larga
+108	0004	Altagracia	000406	Filobonito
+109	0004	Altagracia	000405	El Kiosko

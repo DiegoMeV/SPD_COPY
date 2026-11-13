@@ -16,6 +16,8 @@
 -- Ejecutar como SIIF, después de siif_base_tables.sql y spd_seed.sql.
 -- =============================================================================
 
+set define off
+
 begin
   for t in (select table_name from user_tables
              where table_name in ('GEN_OPCIONES_SISTEMA_LOCAL', 'OPCIONES_X_COMPANIA',

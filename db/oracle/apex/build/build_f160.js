@@ -1,12 +1,27 @@
 // Construye la app 160 (SIIF_SPD) = base SIIF Web (f154, APEX 24.2) + páginas SPD (f100, APEX 24.1).
-// Resultado en formato 24.1: se importa en el contenedor local y luego se reexporta con apex_export.
+// Uso: node build_f160.js <salida.sql> [--24.1]
+//   Por defecto el resultado es para APEX 24.2 (la versión de producción y del contenedor local).
+//   Con --24.1 se convierte la base a 24.1 (p_attributes -> p_attribute_NN, sin p_dialog_resizable,
+//   modo de compatibilidad 21.2), para importarla en un APEX 24.1.
+// Se importa en el contenedor local (run_import_160.sh) y luego se reexporta con apex_export (export_160.sql).
 const fs = require('fs');
-const F154 = 'C:/Users/diego/OneDrive/Desktop/APEX_LOCAL/f154.sql';
-const F100 = 'd:/Trabajo/SOLinfo/Proyectos/SPD_COPY/db/oracle/apex/f100.sql';
+const path = require('path');
+const F154 = path.join(__dirname, '..', 'f154');      // export split de la app 154 (install.sql + application/)
+const F100 = path.join(__dirname, '..', 'f100.sql');
 const OUT = process.argv[2];
+const TARGET_241 = process.argv.includes('--24.1');
 
-function sections(path) {
-  const txt = fs.readFileSync(path, 'utf8').replace(/\r\n/g, '\n');
+// Un export split se lee concatenando sus archivos en el orden de install.sql:
+// cada archivo empieza con su propio "prompt --application/...".
+function readExport(p) {
+  if (!fs.statSync(p).isDirectory()) return fs.readFileSync(p, 'utf8');
+  // El export split viene en Latin-1 (tildes en install.sql, prompts y comentarios).
+  return fs.readFileSync(path.join(p, 'install.sql'), 'latin1').split(/\r?\n/)
+    .filter(l => l.startsWith('@@')).map(l => fs.readFileSync(path.join(p, l.slice(2).trim()), 'latin1')).join('\n');
+}
+
+function sections(p) {
+  const txt = readExport(p).replace(/\r\n/g, '\n');
   const parts = txt.split(/(?=^prompt --application\/)/m);
   const m = new Map();
   for (const p of parts.filter(x => x.startsWith("prompt --application/"))) m.set(p.split('\n', 1)[0].slice('prompt --application/'.length).trim(), p);
@@ -120,7 +135,9 @@ const fixItems = t => t.replace(/wwv_flow_imp_page\.create_page_item\([\s\S]*?\n
     .map(([, k, v]) => `\n,p_attribute_${String(map[k]).padStart(2, '0')}=>'${v}'`).join('');
   return blk.replace(m[0], lines);
 });
-const base = k => fixItems(remapTpl(need(B, k))).replace(/^,p_dialog_resizable=>.*\n/gm, '');
+const base = k => TARGET_241
+  ? fixItems(remapTpl(need(B, k))).replace(/^,p_dialog_resizable=>.*\n/gm, '')
+  : remapTpl(need(B, k));
 const keys = (M, pre) => [...M.keys()].filter(k => k.startsWith(pre));
 
 const out = [];
@@ -133,7 +150,7 @@ out.push(head, need(S, 'delete_application'));
 let flow = base('create_application')
   .replace(/get_application_name,'[^']*'\)/, "get_application_name,'SIIF_SPD')")
   .replace(/get_application_alias,'[^']*'\)/, "get_application_alias,'SIIF-SPD')")
-  .replace("p_compatibility_mode=>'24.2'", "p_compatibility_mode=>'21.2'")
+  .replace("p_compatibility_mode=>'24.2'", TARGET_241 ? "p_compatibility_mode=>'21.2'" : "p_compatibility_mode=>'24.2'")
   .replace(/^,p_(version_scn|files_version|last_updated_on|last_updated_by|checksum_salt)=>.*\n/gm, '');
 out.push(flow, base('user_interfaces'));
 keys(B, 'shared_components/navigation/lists/').forEach(k => out.push(base(k)));
@@ -170,7 +187,9 @@ const pages = [];
 [...B.keys()].filter(k => /^pages\/page_\d+$/.test(k)).forEach(k => pages.push([+k.slice(11), base(k)]));
 for (const p of PAGES) pages.push([NEW.get(p[0]), transformPage(p, need(S, 'pages/page_' + String(p[0]).padStart(5, '0')))]);
 pages.sort((a, b) => a[0] - b[0]).forEach(([, t]) => out.push(t));
-['deployment/definition', 'deployment/checks', 'deployment/buildoptions', 'end_environment'].forEach(k => out.push(need(B, k)));
+// deployment/* es opcional: el export split de la 154 no lo trae.
+['deployment/definition', 'deployment/checks', 'deployment/buildoptions'].forEach(k => { if (B.has(k)) out.push(B.get(k)); });
+out.push(need(B, 'end_environment'));
 
 const res = out.join('');
 fs.writeFileSync(OUT, res);

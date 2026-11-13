@@ -38,5 +38,8 @@ next-env.d.ts
 # turbo
 .turbo
 
+# app 160: archivo intermedio de build_f160.js
+/db/oracle/apex/build/f160_src.sql
+
 __MACOSX
 monitoring_records.tsv

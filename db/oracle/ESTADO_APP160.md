@@ -6,9 +6,9 @@ Fecha: 2026-11-12.
 
 ## Hecho
 
-- **`db/oracle/apex/build/build_f160.js`** (Node) arma la app combinada. Rutas de entrada fijas en el script:
-  - base: `C:/Users/diego/OneDrive/Desktop/APEX_LOCAL/f154.sql`
-  - SPD: `db/oracle/apex/f100.sql`
+- **`db/oracle/apex/build/build_f160.js`** (Node) arma la app combinada. Entradas (rutas relativas al script):
+  - base: `db/oracle/apex/f154/` (export split de la app 154, APEX 24.2, en Latin-1);
+  - SPD: `db/oracle/apex/f100.sql`.
 
   De la base toma:
   - la aplicación y la interfaz;
@@ -20,7 +20,7 @@ Fecha: 2026-11-12.
   - las páginas 0, 1, 3, 13, 101, 9085-9087, 9998 y 9999.
 
   De SPD toma:
-  - el tema 24.1 con sus plantillas;
+  - el tema 24.1 con sus plantillas (los IDs de plantilla de Universal Theme 24.2 de la base se mapean a ellas: tabla `TPL`);
   - las 34 LOV;
   - los mensajes en español;
   - las páginas.
@@ -31,48 +31,63 @@ Fecha: 2026-11-12.
   - La lista completa de nombres y alias está en el script (arreglo `PAGES`).
   - No se migraron la página 53 "En construcción" (se usa la de la base, alias `EN-CONSTRUCCION`), el login y la página 0 de SPD.
   - Los botones de los formularios se movieron a la región "Breadcrumb Global" de la página 0 de la base.
-- **Conversión de la base de 24.2 a 24.1**, que es lo que tiene el contenedor local:
-  - los IDs de plantilla de Universal Theme 24.2 se mapean a las plantillas 24.1 equivalentes (tabla `TPL`);
-  - `p_attributes` de los ítems se convierte a `p_attribute_NN`;
-  - se quita `p_dialog_resizable`;
-  - el modo de compatibilidad queda en 21.2, porque 24.1 no acepta '24.2'.
-- **Importación local:** `build/run_import_160.sh` corre sin errores.
-  - Genera un offset nuevo para no chocar con la app 100.
-  - `db/oracle/apex/f160.sql` es la exportación 24.1 de ese estado. **Todavía no está validada en el navegador.**
-- **`db/oracle/siif_apex_local.sql`** (solo local) simula los objetos del SIIF que usa la base:
-  - los paquetes `SIIF_WEB_USUARIOS`, `WEB_UND_MFA_TOTP` y `UND_COMMOM`;
+- **Versión de APEX:** el contenedor local está en **APEX 24.2**, como producción. El build genera la app para 24.2 (modo de compatibilidad 24.2). La conversión a 24.1 que se usaba antes sigue disponible con `node build_f160.js f160_src.sql --24.1` (`p_attributes` → `p_attribute_NN`, sin `p_dialog_resizable`, compatibilidad 21.2).
+- **`db/oracle/apex/f160.sql`** es la exportación **24.2** de la app 160 desde el contenedor local. Se reimporta sin errores.
+- **App 106 "SIIF Web" (portal, alias `SIIF-MAIN`)** instalada en el workspace local `SPD` desde `db/oracle/apex/f106/` (export split) con `build/run_import_106.sh`.
+  - La base (154/160) redirige a la 106 para el login, el home y el logout. Al estar en el mismo workspace comparten la cookie de sesión (`&WORKSPACE_COOKIE.`), así que ya no hace falta tomar la sesión de `apex_workspace_sessions`.
+  - El portal muestra la tarjeta del módulo (el padre "SPD"), que abre la página 101 de `SIIF-SPD` con `G_MODULO` / `G_OPCION_MENU`.
+- **`db/oracle/siif_apex_local.sql`** (solo local) simula los objetos del SIIF que usan la 106 y la base:
+  - los paquetes `SIIF_WEB_USUARIOS` (incluye `validar_password_actual`), `WEB_UND_MFA_TOTP` (todos los métodos que llama la 106; en local no se exige MFA: `acceso_permitido` = TRUE) y `UND_COMMOM`;
   - las vistas `V_GEN_OPCIONES_SISTEMA_MENU` y `V_GEN_OPCIONES_USUARIO_ACT`;
-  - la tabla `OPCIONES_X_COMPANIA`;
-  - un menú SPD (`GEN_OPCIONES_SISTEMA_LOCAL`) que apunta a los alias `SPD_*`.
-
-  Login local: Municipio de Palmira, usuario `fgil666@gmail.com`, clave `Spd#2026`.
+  - las tablas `OPCIONES_X_COMPANIA` y `GEN_APEX_AUTH_TOKENS` (login por token, página 9991; DDL de `SVN_APEX/DB/scripts/init.sql`);
+  - el menú SPD (`GEN_OPCIONES_SISTEMA_LOCAL`), que apunta a los alias `SPD_*` de la aplicación `SIIF-SPD`:
+    - módulo `SEGUIMIENTO_PROYECTOS` (también es el `G_MODULO` que fija el login local);
+    - un único padre, "SPD" (opción `100`), y debajo el árbol del menú original de SPD;
+    - las opciones son números (aunque la columna es `varchar2`) de 3 dígitos, `100`-`162`, en preorden: el menú se ordena por `path_opcion`, que es texto, y con el mismo ancho el orden de texto coincide con el numérico.
+- **Prueba en navegador** (`build/tests/test_160.js`, Edge + playwright-core): login por la 106, portal, tarjeta → 101, menú SIIF, las páginas 1, 3, 101 y 1001-1052, migas y botones desde el menú, guardado de Entidad, Detalles → Estructura del plan (árbol, "Editar Eje" / "Crear Sector"), diálogo Datos de la Meta y formulario de Seguimiento con la grilla de colores. **Resultado: 55 páginas sin errores, 0 problemas.**
+  - 1060, 1061 y 1062 necesitan el ID del registro: se prueban entrando desde sus listados, no en el recorrido sin parámetros. Sin ID, 1060 y 1061 dan `ORA-01403`, igual que las páginas 60 y 61 de la app 100.
+  - Formato de fecha: la base usa `DS`; con idioma `es` se muestra `DD/MM/YYYY`, igual que en SPD.
 
 ## Pendiente
 
-1. **Prueba en navegador** (`build/tests/test_160.js`, Edge + playwright-core):
-   - Después del login, la base redirige a `f?p=106:1` (el portal, que no existe en local). Por eso la prueba toma el id de sesión de `apex_workspace_sessions`. Ese cambio ya está en el script y falta correrlo.
-   - En la primera corrida todo dio "ok" porque las páginas no cargaban (no había sesión): **no es una prueba válida**.
-   - Revisar:
-     - cada página 1001-1062;
-     - el menú SIIF y las migas al entrar desde el menú (`G_MODULO`/`G_OPCION_MENU`);
-     - los botones Regresar/Eliminar/Aplicar Cambios/Nuevo;
-     - el guardado de Entidad, el plan (grilla de niveles), la estructura (árbol), el diálogo Datos de la Meta y el formulario de Seguimiento con su grilla de colores;
-     - el formato de fecha: la base usa `DS` y SPD usaba `DD/MM/YYYY`.
-2. **Corregir lo que salga** en `build_f160.js` y volver a correr:
+1. **Validar la importación** del `f160.sql` final en el APEX 24.2 real. Después de importar conviene "Refrescar tema" (queda Universal Theme 24.1, que viene de la app 100) y revisar que el estilo actual sea "Vita (SIIF_WEB)".
+2. **Registrar las opciones SPD** en el menú del SIIF (opciones de sistema), con el ejecutable = alias `SPD_*` y la aplicación `SIIF-SPD`. Como guía sirve el árbol de `build/menu_inserts.sql` (igual al menú local de `siif_apex_local.sql`: módulo `SEGUIMIENTO_PROYECTOS`, padre único "SPD", opciones `100`-`162`).
+   - **Ojo:** en el SIIF, `GEN_OPCIONES_SISTEMA.MODULO` es `varchar2(20 char)` y `SEGUIMIENTO_PROYECTOS` tiene 21 caracteres. Hay que ampliar la columna (y revisar las demás tablas `GEN_OPCIONES_*` que guardan el módulo) o acortar el nombre. En local la columna es `varchar2(30)`.
+3. **Actualizar `db/oracle/README.md`** con la app 160 cuando quede probada en el ambiente real.
+4. Detalles vistos en la prueba (vienen de la app 100, no del armado):
+   - En el listado de Seguimientos (1045), "Periodo" tiene máscara con separador de miles y muestra `2.023`.
+   - Las migas y la opción resaltada del menú dependen de `G_OPCION_MENU`: si se entra a una página por URL directa (sin pasar por el menú) se ven las de la última opción elegida. Es el comportamiento de la base.
 
-   ```
-   node build_f160.js f160_src.sql && bash run_import_160.sh
-   ```
+## Cómo reconstruir y probar
 
-   Luego reexportar con `export_160.sql`. Para eso hay que copiar el `.sql` generado junto al `.sh`, porque el script lo busca en su carpeta.
-3. **Validar la importación** del `f160.sql` final en el APEX 24.2 real. Después de importar conviene "Refrescar tema" (queda Universal Theme 24.1) y revisar que el estilo actual sea "Vita (SIIF_WEB)".
-4. **Registrar las opciones SPD** en el menú del SIIF (opciones de sistema), con el ejecutable = alias `SPD_*` y la aplicación `SIIF-SPD`. Como guía sirve el árbol de `build/menu_inserts.sql`.
-5. **Actualizar `db/oracle/README.md`** con la app 160 cuando quede probada.
+Desde `db/oracle/apex/build/`:
+
+```
+node build_f160.js f160_src.sql && bash run_import_160.sh
+```
+
+Reexportar a `db/oracle/apex/f160.sql` (el script deja el export en `/tmp/f160.sql` del contenedor):
+
+```
+docker cp export_160.sql spd-oracle:/tmp/export_160.sql
+docker exec -e NLS_LANG=AMERICAN_AMERICA.AL32UTF8 spd-oracle sqlplus -s siif/siif@localhost/FREEPDB1 @/tmp/export_160.sql
+docker cp spd-oracle:/tmp/f160.sql ../f160.sql
+```
+
+Prueba: en `build/tests/`, `npm i` y `node test_160.js`.
+
+## Ambiente local
+
+- **`spd-oracle`**: Oracle 23 Free (`gvenzl/oracle-free:23`), PDB `FREEPDB1`, puerto 1521, `sys`/`system` = `oracle`, esquema `SIIF/siif`. APEX **24.2**, workspace `SPD` (esquema `SIIF`) con las apps 100, 106 y 160.
+  - Usuarios del workspace: `ADMIN` / `Spd#2026` (desarrollador) y `FGIL666@GMAIL.COM` / `Spd#2026` (login de la app 100, *Cuentas de APEX*).
+- **`spd-ords`**: ORDS 26.3 (`container-registry.oracle.com/database/ords:latest`), puerto 8080, sirve las imágenes de APEX 24.2 en `/i/`.
+  - ORDS 24.4 no se instala sobre `gvenzl/oracle-free` (falla al leer la información de parches de la base); 26.3 sí.
+- Orden de instalación en una base nueva, como `SIIF`: `siif_base_tables.sql` → `siif_spd_columns.sql` → `spd_schema.sql` → `spd_views.sql` → `spd_seed.sql` → (APEX y workspace) → `siif_apex_local.sql` → app 100 → `run_import_106.sh` → `run_import_160.sh` (o importar `f160.sql`).
+- URLs:
+  - Portal SIIF Web (entrada a la 160): `http://localhost:8080/ords/f?p=106:LOGIN:0::::P9999_NIT_COMPANIA:8913800073` (Municipio de Palmira), usuario `fgil666@gmail.com`, clave `Spd#2026`. La compañía va en la URL porque el selector del login solo se ve en modo desarrollo.
+  - App 100: `http://localhost:8080/ords/r/spd/spd/login`.
 
 ## Notas
 
-- La app 100 (`f100.sql`) sigue siendo la fuente de las páginas SPD. Los scripts de parche de la app 100 están en `build/` (`apply_patch.sh` aplica `plan_detail` → `plan_pages` → `company_filter` → `goals_pages` → `monitoring_page` → `ui_standard`).
-- Contenedores locales:
-  - `spd-oracle`: Oracle 23 Free + APEX 24.1, workspace SPD.
-  - `spd-ords`: puerto 8080.
-- La URL local de la app 160 es `http://localhost:8080/ords/r/spd/siif-spd/login`.
+- La app 100 (`f100.sql`) sigue siendo la fuente de las páginas SPD. Los scripts de parche de la app 100 están en `build/` (`apply_patch.sh` aplica `plan_detail` → `plan_pages` → `company_filter` → `goals_pages` → `monitoring_page` → `ui_standard`). Ojo: `apply_patch.sh` todavía usa el esquema `APEX_240100` y una ruta fija al repo; con APEX 24.2 el esquema es `APEX_240200`.
+- Los exports split de la 106 y la 154 (`db/oracle/apex/f106/`, `f154/`) son copia de `apexprod/apps/` y vienen en Latin-1: `run_import_106.sh` los pasa a UTF-8 dentro del contenedor y `build_f160.js` los lee como Latin-1.

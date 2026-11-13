@@ -41,9 +41,10 @@ Fecha: 2026-11-12.
   - las vistas `V_GEN_OPCIONES_SISTEMA_MENU` y `V_GEN_OPCIONES_USUARIO_ACT`;
   - las tablas `OPCIONES_X_COMPANIA` y `GEN_APEX_AUTH_TOKENS` (login por token, página 9991; DDL de `SVN_APEX/DB/scripts/init.sql`);
   - el menú SPD (`GEN_OPCIONES_SISTEMA_LOCAL`), que apunta a los alias `SPD_*` de la aplicación `SIIF-SPD`:
-    - módulo `SEGUIMIENTO_PROYECTOS` (también es el `G_MODULO` que fija el login local);
-    - un único padre, "SPD" (opción `100`), y debajo el árbol del menú original de SPD;
-    - las opciones son números (aunque la columna es `varchar2`) de 3 dígitos, `100`-`162`, en preorden: el menú se ordena por `path_opcion`, que es texto, y con el mismo ancho el orden de texto coincide con el numérico.
+    - módulo `SEGUIMIENTO_PRY` (también es el `G_MODULO` que fija el login local);
+    - un único padre, "SPD" (opción `30`), y debajo el árbol del menú original de SPD;
+    - las opciones son números (aunque la columna es `varchar2`) jerárquicos: cada hijo lleva el código del padre más `01`, `02`, … (Configuración `3001`, Usuarios `300101`, Seguimiento › Metas › Configuración `30030101`). Los hermanos tienen el mismo largo, así que el orden por `path_opcion` (texto) es el correcto.
+    - la descripción concatena las de los padres, sin el módulo (`SPD - Configuración - Usuarios`); la vista `V_GEN_OPCIONES_SISTEMA_MENU` (local y real) muestra como etiqueta lo que va después del último `-`.
 - **Prueba en navegador** (`build/tests/test_160.js`, Edge + playwright-core): login por la 106, portal, tarjeta → 101, menú SIIF, las páginas 1, 3, 101 y 1001-1052, migas y botones desde el menú, guardado de Entidad, Detalles → Estructura del plan (árbol, "Editar Eje" / "Crear Sector"), diálogo Datos de la Meta y formulario de Seguimiento con la grilla de colores. **Resultado: 55 páginas sin errores, 0 problemas.**
   - 1060, 1061 y 1062 necesitan el ID del registro: se prueban entrando desde sus listados, no en el recorrido sin parámetros. Sin ID, 1060 y 1061 dan `ORA-01403`, igual que las páginas 60 y 61 de la app 100.
   - Formato de fecha: la base usa `DS`; con idioma `es` se muestra `DD/MM/YYYY`, igual que en SPD.
@@ -51,8 +52,7 @@ Fecha: 2026-11-12.
 ## Pendiente
 
 1. **Validar la importación** del `f160.sql` final en el APEX 24.2 real. Después de importar conviene "Refrescar tema" (queda Universal Theme 24.1, que viene de la app 100) y revisar que el estilo actual sea "Vita (SIIF_WEB)".
-2. **Registrar las opciones SPD** en el menú del SIIF (opciones de sistema), con el ejecutable = alias `SPD_*` y la aplicación `SIIF-SPD`. Como guía sirve el árbol de `build/menu_inserts.sql` (igual al menú local de `siif_apex_local.sql`: módulo `SEGUIMIENTO_PROYECTOS`, padre único "SPD", opciones `100`-`162`).
-   - **Ojo:** en el SIIF, `GEN_OPCIONES_SISTEMA.MODULO` es `varchar2(20 char)` y `SEGUIMIENTO_PROYECTOS` tiene 21 caracteres. Hay que ampliar la columna (y revisar las demás tablas `GEN_OPCIONES_*` que guardan el módulo) o acortar el nombre. En local la columna es `varchar2(30)`.
+2. **Registrar las opciones SPD** en el menú del SIIF: correr `build/menu_inserts.sql` como `SIIF`, después de importar la app 160. Inserta en `GEN_OPCIONES_SISTEMA` las 63 opciones del módulo `SEGUIMIENTO_PRY` (padre único "SPD", opción `30`, e hijos jerárquicos; ejecutable = alias `SPD_*`, aplicación `SIIF-SPD`), con el mismo árbol del menú local de `siif_apex_local.sql`. Se puede re-ejecutar (solo inserta lo que falte). La activación por compañía y usuario se hace aparte.
 3. **Actualizar `db/oracle/README.md`** con la app 160 cuando quede probada en el ambiente real.
 4. Detalles vistos en la prueba (vienen de la app 100, no del armado):
    - En el listado de Seguimientos (1045), "Periodo" tiene máscara con separador de miles y muestra `2.023`.

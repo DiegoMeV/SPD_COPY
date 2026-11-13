@@ -1,63 +1,373 @@
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '100', null, 'SPD', 100, 'PADRE', 'SIIF-SPD', null, 'fa-line-chart');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '101', '100', 'Configuración', 101, 'PADRE', 'SIIF-SPD', null, 'fa-cog');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '102', '101', 'Usuarios', 102, 'FORM', 'SIIF-SPD', 'SPD_USUARIOS', 'fa-users');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '103', '101', 'Entidades', 103, 'FORM', 'SIIF-SPD', 'SPD_ENTIDADES', 'fa-building-o');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '104', '101', 'Planes de Desarrollo', 104, 'FORM', 'SIIF-SPD', 'SPD_PLANES_DESARROLLO', 'fa-tasks');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '105', '101', 'Metas', 105, 'FORM', 'SIIF-SPD', 'SPD_METAS', 'fa-bullseye');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '106', '101', 'Proyectos', 106, 'FORM', 'SIIF-SPD', 'SPD_PROYECTOS', 'fa-sitemap');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '107', '101', 'Seguimiento', 107, 'FORM', 'SIIF-SPD', 'SPD_SEGUIMIENTOS', 'fa-line-chart');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '108', '101', 'Políticas', 108, 'PADRE', 'SIIF-SPD', null, null);
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '109', '108', 'Componentes', 109, 'FORM', 'SIIF-SPD', 'SPD_COMPONENTES_POLITICA', 'fa-cube');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '110', '108', 'Nacionales', 110, 'FORM', 'SIIF-SPD', 'SPD_POLITICAS_NACIONALES', 'fa-flag');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '111', '108', 'Territoriales', 111, 'FORM', 'SIIF-SPD', 'SPD_POLITICAS_TERRITORIALES', 'fa-flag');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '112', '100', 'Catálogos', 112, 'PADRE', 'SIIF-SPD', null, 'fa-cubes');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '113', '112', 'ODS', 113, 'FORM', 'SIIF-SPD', 'SPD_ODS', 'fa-clipboard');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '114', '112', 'Unidades', 114, 'FORM', 'SIIF-SPD', 'SPD_UNIDADES', 'fa-cube');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '115', '112', 'Productos', 115, 'FORM', 'SIIF-SPD', 'SPD_PRODUCTOS', 'fa-list-alt');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '116', '100', 'Seguimiento', 116, 'PADRE', 'SIIF-SPD', null, 'fa-line-chart');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '117', '116', 'Metas', 117, 'PADRE', 'SIIF-SPD', null, 'fa-line-chart');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '118', '117', 'Configuración', 118, 'FORM', 'SIIF-SPD', 'SPD_SEGUIMIENTOS', 'fa-cog');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '119', '117', 'Metas', 119, 'FORM', 'SIIF-SPD', 'SPD_METAS', 'fa-bullseye');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '120', '117', 'Programación', 120, 'FORM', 'SIIF-SPD', 'SPD_PROGRAMACION_METAS', 'fa-clipboard');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '121', '117', 'Reporte', 121, 'FORM', 'SIIF-SPD', 'SPD_REPORTE_METAS', 'fa-file-o');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '122', '117', 'Validación', 122, 'FORM', 'SIIF-SPD', 'SPD_VALIDACION_METAS', 'fa-check');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '123', '117', 'Revisión', 123, 'FORM', 'SIIF-SPD', 'SPD_REVISION_METAS', 'fa-edit');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '124', '117', 'Tableros de Control', 124, 'FORM', 'SIIF-SPD', 'SPD_TABLERO_METAS', 'fa-pie-chart');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '125', '116', 'Proyectos', 125, 'PADRE', 'SIIF-SPD', null, 'fa-sitemap');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '126', '125', 'Configuración', 126, 'FORM', 'SIIF-SPD', 'SPD_SEGUIMIENTOS', 'fa-cog');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '127', '125', 'Proyectos', 127, 'FORM', 'SIIF-SPD', 'SPD_PROYECTOS', 'fa-list-ul');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '128', '125', 'Programación', 128, 'FORM', 'SIIF-SPD', 'SPD_PROGRAMACION_PROYECTOS', 'fa-clipboard');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '129', '125', 'Reporte', 129, 'FORM', 'SIIF-SPD', 'SPD_REPORTE_PROYECTOS', 'fa-file-o');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '130', '125', 'Validación', 130, 'FORM', 'SIIF-SPD', 'SPD_VALIDACION_PROYECTOS', 'fa-check');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '131', '125', 'Revisión', 131, 'FORM', 'SIIF-SPD', 'SPD_REVISION_PROYECTOS', 'fa-edit');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '132', '125', 'Tableros de Control', 132, 'FORM', 'SIIF-SPD', 'SPD_TABLERO_PROYECTOS', 'fa-pie-chart');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '133', '116', 'Planes de Acción', 133, 'PADRE', 'SIIF-SPD', null, 'fa-tasks');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '134', '133', 'Configuración', 134, 'FORM', 'SIIF-SPD', 'SPD_SEGUIMIENTOS', 'fa-cog');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '135', '133', 'Planes de Acción', 135, 'FORM', 'SIIF-SPD', 'SPD_PLANES_ACCION', 'fa-tasks');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '136', '133', 'Programación', 136, 'FORM', 'SIIF-SPD', 'SPD_PROGRAMACION_PLANES_ACCION', 'fa-clipboard');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '137', '133', 'Reporte', 137, 'FORM', 'SIIF-SPD', 'SPD_REPORTE_PLANES_ACCION', 'fa-file-o');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '138', '133', 'Validación', 138, 'FORM', 'SIIF-SPD', 'SPD_VALIDACION_PLANES_ACCION', 'fa-check');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '139', '133', 'Revisión', 139, 'FORM', 'SIIF-SPD', 'SPD_REVISION_PLANES_ACCION', 'fa-edit');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '140', '133', 'Tableros de Control', 140, 'FORM', 'SIIF-SPD', 'SPD_TABLERO_PLANES_ACCION', 'fa-pie-chart');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '141', '116', 'Políticas', 141, 'PADRE', 'SIIF-SPD', null, 'fa-flag');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '142', '141', 'Configuración', 142, 'FORM', 'SIIF-SPD', 'SPD_SEGUIMIENTOS', 'fa-cog');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '143', '141', 'Políticas', 143, 'FORM', 'SIIF-SPD', 'EN-CONSTRUCCION', 'fa-flag');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '144', '141', 'Programación', 144, 'FORM', 'SIIF-SPD', 'EN-CONSTRUCCION', 'fa-clipboard');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '145', '141', 'Reporte', 145, 'FORM', 'SIIF-SPD', 'EN-CONSTRUCCION', 'fa-file-o');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '146', '141', 'Validación', 146, 'FORM', 'SIIF-SPD', 'EN-CONSTRUCCION', 'fa-check');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '147', '141', 'Revisión', 147, 'FORM', 'SIIF-SPD', 'EN-CONSTRUCCION', 'fa-edit');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '148', '141', 'Tableros de Control', 148, 'FORM', 'SIIF-SPD', 'EN-CONSTRUCCION', 'fa-pie-chart');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '149', '100', 'Asistente', 149, 'FORM', 'SIIF-SPD', 'SPD_ASISTENTE', 'fa-magic');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '150', '100', 'Otros', 150, 'PADRE', 'SIIF-SPD', null, 'fa-ellipsis-h');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '151', '150', 'Inicio', 151, 'FORM', 'SIIF-SPD', 'SPD_INICIO', 'fa-home');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '152', '150', 'Niveles del plan', 152, 'FORM', 'SIIF-SPD', 'SPD_NIVELES_PLAN', 'fa-sitemap');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '153', '150', 'Metas de actividades', 153, 'FORM', 'SIIF-SPD', 'SPD_METAS_ACTIVIDADES', 'fa-tasks');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '154', '150', 'Metas por actividad', 154, 'FORM', 'SIIF-SPD', 'SPD_METAS_POR_ACTIVIDAD', 'fa-link');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '155', '150', 'Macroproyectos', 155, 'FORM', 'SIIF-SPD', 'SPD_MACROPROYECTOS', 'fa-cubes');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '156', '150', 'Ubicaciones', 156, 'FORM', 'SIIF-SPD', 'SPD_UBICACIONES', 'fa-map-marker');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '157', '150', 'Componentes por política', 157, 'FORM', 'SIIF-SPD', 'SPD_COMPONENTES_POR_POLITICA', 'fa-chain');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '158', '150', 'Historial de metas', 158, 'FORM', 'SIIF-SPD', 'SPD_HISTORIAL_METAS', 'fa-history');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '159', '150', 'Avance de metas', 159, 'FORM', 'SIIF-SPD', 'SPD_AVANCE_METAS', 'fa-tachometer');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '160', '150', 'Registros de seguimiento', 160, 'FORM', 'SIIF-SPD', 'SPD_REGISTROS_SEGUIMIENTO', 'fa-line-chart');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '161', '150', 'Tablero de seguimiento', 161, 'FORM', 'SIIF-SPD', 'SPD_TABLERO_SEGUIMIENTO', 'fa-dashboard');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '162', '150', 'Tablero financiero', 162, 'FORM', 'SIIF-SPD', 'SPD_TABLERO_FINANCIERO', 'fa-money');
+/* =============================================================================
+   SPD - Opciones del menú de la app 160 SIIF_SPD (alias SIIF-SPD) en GEN_OPCIONES_SISTEMA
+   Va en el SIIF real (ambiente de pruebas / clientes), después de importar la app 160.
+   En local NO: allí el menú lo crea siif_apex_local.sql (GEN_OPCIONES_SISTEMA_LOCAL),
+   con el mismo árbol.
+
+   - Módulo SEGUIMIENTO_PRY, un único padre "SPD" (opción 30) y debajo el árbol del menú
+     de SPD. Las opciones son jerárquicas: cada hijo lleva el código del padre más
+     01, 02, ... (Configuración 3001, Usuarios 300101).
+   - Tipo = REFERENCIA en los padres (tipo_llamada PADRE) y DOCUMENTO en las demás. Ejecutable = alias de la página en la app SIIF-SPD.
+   - Descripción = descripción del padre + ' - ' + etiqueta, sin el módulo
+     ("SPD - Configuración - Usuarios"). V_GEN_OPCIONES_SISTEMA_MENU muestra como
+     etiqueta lo que va después del último '-'.
+   - FC_CREACION / CREADO_POR / FC_ACTUALIZACION / ACTUALIZADO_POR los llena el trigger
+     GEN_OPCIONES_SISTEMA_BIU; ESTADO queda con su valor por defecto.
+   - Se puede re-ejecutar: solo inserta las opciones que no existan (módulo + opción).
+   - Solo crea las opciones. La activación por compañía y por usuario
+     (GEN_OPCIONES_COMPANIA / GEN_OPCIONES_USUARIO) se hace aparte.
+
+   Antes de correrlo: GEN_OPCIONES_SISTEMA.MODULO debe admitir 15 caracteres
+   (SEGUIMIENTO_PRY). Si no, el script se detiene sin insertar nada.
+   ============================================================================= */
+WHENEVER SQLERROR EXIT FAILURE ROLLBACK
+ALTER SESSION SET CURRENT_SCHEMA = SIIF;
+
+-- El nombre del módulo debe caber en la columna.
+DECLARE
+  c_modulo CONSTANT VARCHAR2(100) := 'SEGUIMIENTO_PRY';
+  l_largo  NUMBER;
+BEGIN
+  SELECT
+    char_length
+  INTO
+    l_largo
+  FROM
+    all_tab_columns
+  WHERE
+    owner = SYS_CONTEXT('USERENV', 'CURRENT_SCHEMA')
+    AND table_name = 'GEN_OPCIONES_SISTEMA'
+    AND column_name = 'MODULO';
+
+  IF LENGTH(c_modulo) > l_largo THEN
+    RAISE_APPLICATION_ERROR(-20001, 'El modulo ' || c_modulo || ' tiene ' || LENGTH(c_modulo)
+      || ' caracteres y GEN_OPCIONES_SISTEMA.MODULO admite ' || l_largo
+      || '. Amplie la columna o use un nombre mas corto. No se inserto ninguna opcion.');
+  END IF;
+END;
+/
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30', NULL, 'SPD', 'SEGUIMIENTO_PRY', 'REFERENCIA', 'PADRE', NULL, 'SIIF-SPD', 'fa-line-chart'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '3001', '30', UNISTR('SPD - Configuraci\00F3n'), 'SEGUIMIENTO_PRY', 'REFERENCIA', 'PADRE', NULL, 'SIIF-SPD', 'fa-cog'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '3001');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300101', '3001', UNISTR('SPD - Configuraci\00F3n - Usuarios'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_USUARIOS', 'SIIF-SPD', 'fa-users'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300101');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300102', '3001', UNISTR('SPD - Configuraci\00F3n - Entidades'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_ENTIDADES', 'SIIF-SPD', 'fa-building-o'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300102');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300103', '3001', UNISTR('SPD - Configuraci\00F3n - Planes de Desarrollo'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_PLANES_DESARROLLO', 'SIIF-SPD', 'fa-tasks'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300103');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300104', '3001', UNISTR('SPD - Configuraci\00F3n - Metas'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_METAS', 'SIIF-SPD', 'fa-bullseye'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300104');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300105', '3001', UNISTR('SPD - Configuraci\00F3n - Proyectos'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_PROYECTOS', 'SIIF-SPD', 'fa-sitemap'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300105');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300106', '3001', UNISTR('SPD - Configuraci\00F3n - Seguimiento'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_SEGUIMIENTOS', 'SIIF-SPD', 'fa-line-chart'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300106');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300107', '3001', UNISTR('SPD - Configuraci\00F3n - Pol\00EDticas'), 'SEGUIMIENTO_PRY', 'REFERENCIA', 'PADRE', NULL, 'SIIF-SPD', NULL
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300107');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30010701', '300107', UNISTR('SPD - Configuraci\00F3n - Pol\00EDticas - Componentes'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_COMPONENTES_POLITICA', 'SIIF-SPD', 'fa-cube'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30010701');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30010702', '300107', UNISTR('SPD - Configuraci\00F3n - Pol\00EDticas - Nacionales'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_POLITICAS_NACIONALES', 'SIIF-SPD', 'fa-flag'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30010702');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30010703', '300107', UNISTR('SPD - Configuraci\00F3n - Pol\00EDticas - Territoriales'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_POLITICAS_TERRITORIALES', 'SIIF-SPD', 'fa-flag'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30010703');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '3002', '30', UNISTR('SPD - Cat\00E1logos'), 'SEGUIMIENTO_PRY', 'REFERENCIA', 'PADRE', NULL, 'SIIF-SPD', 'fa-cubes'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '3002');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300201', '3002', UNISTR('SPD - Cat\00E1logos - ODS'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_ODS', 'SIIF-SPD', 'fa-clipboard'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300201');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300202', '3002', UNISTR('SPD - Cat\00E1logos - Unidades'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_UNIDADES', 'SIIF-SPD', 'fa-cube'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300202');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300203', '3002', UNISTR('SPD - Cat\00E1logos - Productos'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_PRODUCTOS', 'SIIF-SPD', 'fa-list-alt'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300203');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '3003', '30', 'SPD - Seguimiento', 'SEGUIMIENTO_PRY', 'REFERENCIA', 'PADRE', NULL, 'SIIF-SPD', 'fa-line-chart'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '3003');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300301', '3003', 'SPD - Seguimiento - Metas', 'SEGUIMIENTO_PRY', 'REFERENCIA', 'PADRE', NULL, 'SIIF-SPD', 'fa-line-chart'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300301');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030101', '300301', UNISTR('SPD - Seguimiento - Metas - Configuraci\00F3n'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_SEGUIMIENTOS', 'SIIF-SPD', 'fa-cog'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030101');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030102', '300301', 'SPD - Seguimiento - Metas - Metas', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_METAS', 'SIIF-SPD', 'fa-bullseye'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030102');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030103', '300301', UNISTR('SPD - Seguimiento - Metas - Programaci\00F3n'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_PROGRAMACION_METAS', 'SIIF-SPD', 'fa-clipboard'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030103');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030104', '300301', 'SPD - Seguimiento - Metas - Reporte', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_REPORTE_METAS', 'SIIF-SPD', 'fa-file-o'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030104');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030105', '300301', UNISTR('SPD - Seguimiento - Metas - Validaci\00F3n'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_VALIDACION_METAS', 'SIIF-SPD', 'fa-check'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030105');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030106', '300301', UNISTR('SPD - Seguimiento - Metas - Revisi\00F3n'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_REVISION_METAS', 'SIIF-SPD', 'fa-edit'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030106');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030107', '300301', 'SPD - Seguimiento - Metas - Tableros de Control', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_TABLERO_METAS', 'SIIF-SPD', 'fa-pie-chart'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030107');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300302', '3003', 'SPD - Seguimiento - Proyectos', 'SEGUIMIENTO_PRY', 'REFERENCIA', 'PADRE', NULL, 'SIIF-SPD', 'fa-sitemap'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300302');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030201', '300302', UNISTR('SPD - Seguimiento - Proyectos - Configuraci\00F3n'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_SEGUIMIENTOS', 'SIIF-SPD', 'fa-cog'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030201');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030202', '300302', 'SPD - Seguimiento - Proyectos - Proyectos', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_PROYECTOS', 'SIIF-SPD', 'fa-list-ul'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030202');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030203', '300302', UNISTR('SPD - Seguimiento - Proyectos - Programaci\00F3n'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_PROGRAMACION_PROYECTOS', 'SIIF-SPD', 'fa-clipboard'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030203');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030204', '300302', 'SPD - Seguimiento - Proyectos - Reporte', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_REPORTE_PROYECTOS', 'SIIF-SPD', 'fa-file-o'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030204');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030205', '300302', UNISTR('SPD - Seguimiento - Proyectos - Validaci\00F3n'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_VALIDACION_PROYECTOS', 'SIIF-SPD', 'fa-check'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030205');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030206', '300302', UNISTR('SPD - Seguimiento - Proyectos - Revisi\00F3n'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_REVISION_PROYECTOS', 'SIIF-SPD', 'fa-edit'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030206');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030207', '300302', 'SPD - Seguimiento - Proyectos - Tableros de Control', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_TABLERO_PROYECTOS', 'SIIF-SPD', 'fa-pie-chart'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030207');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300303', '3003', UNISTR('SPD - Seguimiento - Planes de Acci\00F3n'), 'SEGUIMIENTO_PRY', 'REFERENCIA', 'PADRE', NULL, 'SIIF-SPD', 'fa-tasks'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300303');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030301', '300303', UNISTR('SPD - Seguimiento - Planes de Acci\00F3n - Configuraci\00F3n'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_SEGUIMIENTOS', 'SIIF-SPD', 'fa-cog'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030301');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030302', '300303', UNISTR('SPD - Seguimiento - Planes de Acci\00F3n - Planes de Acci\00F3n'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_PLANES_ACCION', 'SIIF-SPD', 'fa-tasks'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030302');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030303', '300303', UNISTR('SPD - Seguimiento - Planes de Acci\00F3n - Programaci\00F3n'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_PROGRAMACION_PLANES_ACCION', 'SIIF-SPD', 'fa-clipboard'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030303');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030304', '300303', UNISTR('SPD - Seguimiento - Planes de Acci\00F3n - Reporte'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_REPORTE_PLANES_ACCION', 'SIIF-SPD', 'fa-file-o'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030304');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030305', '300303', UNISTR('SPD - Seguimiento - Planes de Acci\00F3n - Validaci\00F3n'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_VALIDACION_PLANES_ACCION', 'SIIF-SPD', 'fa-check'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030305');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030306', '300303', UNISTR('SPD - Seguimiento - Planes de Acci\00F3n - Revisi\00F3n'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_REVISION_PLANES_ACCION', 'SIIF-SPD', 'fa-edit'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030306');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030307', '300303', UNISTR('SPD - Seguimiento - Planes de Acci\00F3n - Tableros de Control'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_TABLERO_PLANES_ACCION', 'SIIF-SPD', 'fa-pie-chart'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030307');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300304', '3003', UNISTR('SPD - Seguimiento - Pol\00EDticas'), 'SEGUIMIENTO_PRY', 'REFERENCIA', 'PADRE', NULL, 'SIIF-SPD', 'fa-flag'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300304');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030401', '300304', UNISTR('SPD - Seguimiento - Pol\00EDticas - Configuraci\00F3n'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_SEGUIMIENTOS', 'SIIF-SPD', 'fa-cog'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030401');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030402', '300304', UNISTR('SPD - Seguimiento - Pol\00EDticas - Pol\00EDticas'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'EN-CONSTRUCCION', 'SIIF-SPD', 'fa-flag'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030402');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030403', '300304', UNISTR('SPD - Seguimiento - Pol\00EDticas - Programaci\00F3n'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'EN-CONSTRUCCION', 'SIIF-SPD', 'fa-clipboard'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030403');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030404', '300304', UNISTR('SPD - Seguimiento - Pol\00EDticas - Reporte'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'EN-CONSTRUCCION', 'SIIF-SPD', 'fa-file-o'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030404');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030405', '300304', UNISTR('SPD - Seguimiento - Pol\00EDticas - Validaci\00F3n'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'EN-CONSTRUCCION', 'SIIF-SPD', 'fa-check'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030405');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030406', '300304', UNISTR('SPD - Seguimiento - Pol\00EDticas - Revisi\00F3n'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'EN-CONSTRUCCION', 'SIIF-SPD', 'fa-edit'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030406');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '30030407', '300304', UNISTR('SPD - Seguimiento - Pol\00EDticas - Tableros de Control'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'EN-CONSTRUCCION', 'SIIF-SPD', 'fa-pie-chart'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '30030407');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '3004', '30', 'SPD - Asistente', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_ASISTENTE', 'SIIF-SPD', 'fa-magic'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '3004');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '3005', '30', 'SPD - Otros', 'SEGUIMIENTO_PRY', 'REFERENCIA', 'PADRE', NULL, 'SIIF-SPD', 'fa-ellipsis-h'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '3005');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300501', '3005', 'SPD - Otros - Inicio', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_INICIO', 'SIIF-SPD', 'fa-home'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300501');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300502', '3005', 'SPD - Otros - Niveles del plan', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_NIVELES_PLAN', 'SIIF-SPD', 'fa-sitemap'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300502');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300503', '3005', 'SPD - Otros - Metas de actividades', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_METAS_ACTIVIDADES', 'SIIF-SPD', 'fa-tasks'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300503');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300504', '3005', 'SPD - Otros - Metas por actividad', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_METAS_POR_ACTIVIDAD', 'SIIF-SPD', 'fa-link'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300504');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300505', '3005', 'SPD - Otros - Macroproyectos', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_MACROPROYECTOS', 'SIIF-SPD', 'fa-cubes'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300505');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300506', '3005', 'SPD - Otros - Ubicaciones', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_UBICACIONES', 'SIIF-SPD', 'fa-map-marker'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300506');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300507', '3005', UNISTR('SPD - Otros - Componentes por pol\00EDtica'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_COMPONENTES_POR_POLITICA', 'SIIF-SPD', 'fa-chain'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300507');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300508', '3005', 'SPD - Otros - Historial de metas', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_HISTORIAL_METAS', 'SIIF-SPD', 'fa-history'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300508');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300509', '3005', 'SPD - Otros - Avance de metas', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_AVANCE_METAS', 'SIIF-SPD', 'fa-tachometer'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300509');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300510', '3005', 'SPD - Otros - Registros de seguimiento', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_REGISTROS_SEGUIMIENTO', 'SIIF-SPD', 'fa-line-chart'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300510');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300511', '3005', 'SPD - Otros - Tablero de seguimiento', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_TABLERO_SEGUIMIENTO', 'SIIF-SPD', 'fa-dashboard'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300511');
+
+INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
+SELECT '300512', '3005', 'SPD - Otros - Tablero financiero', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_TABLERO_FINANCIERO', 'SIIF-SPD', 'fa-money'
+FROM   dual
+WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300512');
+
+COMMIT;
+
+-- Verificación: deben ser 63 opciones.
+SELECT
+  COUNT(*) opciones
+FROM
+  gen_opciones_sistema
+WHERE
+  modulo = 'SEGUIMIENTO_PRY';

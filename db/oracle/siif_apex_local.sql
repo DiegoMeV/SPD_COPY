@@ -26,10 +26,10 @@ end;
 /
 
 create table gen_opciones_sistema_local (
-  modulo        varchar2(30)  not null,
+  modulo        varchar2(20)  not null,
   opcion        varchar2(30)  not null,
   opc_padre     varchar2(30),
-  label         varchar2(200) not null,
+  descripcion   varchar2(200) not null,   -- "Padre - Hijo - Opción"; la etiqueta es lo que va después del último '-'
   orden         number,
   tipo_llamada  varchar2(10)  not null,   -- PADRE / FORM / REPORT / URL
   aplicacion    varchar2(30),
@@ -42,21 +42,26 @@ create table gen_opciones_sistema_local (
 
 create table opciones_x_compania (
   nit_compania    varchar2(20),
-  modulo          varchar2(30),
+  modulo          varchar2(20),
   opcion          varchar2(30),
   estado          varchar2(10),
   ejecutable_apex varchar2(255)
 );
 
+-- Igual a la vista real (SVN_APEX/DB/vistas/v_gen_opciones_sistema_menu.sql), sobre la tabla local.
 create or replace view v_gen_opciones_sistema_menu as
 select level                                          as lvl,
-       m.modulo, m.opcion, m.opc_padre, m.label, m.tipo_llamada, m.aplicacion,
-       m.ejecutable, m.parametros, m.valores, m.menu_icon,
+       m.opcion, m.opc_padre, m.modulo, m.tipo_llamada, m.aplicacion,
+       m.ejecutable, m.parametros, m.valores,
+       trim(substr(m.descripcion, instr(m.descripcion, '-', -1) + 1)) as label,
        sys_connect_by_path(m.opcion, '/')             as path_opcion,
-       '/' || m.modulo || sys_connect_by_path(m.label, '/') as path_label
+       sys_connect_by_path(
+         replace(trim(substr(m.descripcion, instr(m.descripcion, '-', -1) + 1)), '/', '-'),
+         ' / ')                                       as path_label,
+       m.menu_icon
   from gen_opciones_sistema_local m
  start with m.opc_padre is null
-connect by m.opc_padre = prior m.opcion and m.modulo = prior m.modulo;
+connect by nocycle prior m.opcion = m.opc_padre and prior m.modulo = m.modulo;
 
 create or replace view v_gen_opciones_usuario_act as
 select m.modulo, m.opcion, u.usuario, u.nit_compania, 'N' as solo_consulta
@@ -191,7 +196,7 @@ create or replace package body siif_web_usuarios as
     apex_util.set_session_state('G_NIT_COMPANIA', nit());
     apex_util.set_session_state('G_NOMBRE_COMPANIA', l_nombre);
     apex_util.set_session_state('G_CAMBIAR_PWD', 'N');
-    apex_util.set_session_state('G_MODULO', 'SEGUIMIENTO_PROYECTOS');
+    apex_util.set_session_state('G_MODULO', 'SEGUIMIENTO_PRY');
   end set_items_aplicacion;
 
   procedure cambiar_password (p_username in varchar2, p_nit_compania in varchar2, p_password in varchar2) is
@@ -209,70 +214,72 @@ end siif_web_usuarios;
 update compania set activar_apex = 'S'
  where nit_compania in (select distinct nit_compania from usuarios);
 
--- Menú SPD: módulo SEGUIMIENTO_PROYECTOS, un único padre "SPD" (opción 100) y debajo el árbol del
--- menú original (client/components/AppMenu/hooks.ts). Las opciones son números (varchar2) de 3 dígitos,
--- en preorden, para que el orden por path_opcion (texto) coincida con el numérico.
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '100', null, 'SPD', 100, 'PADRE', 'SIIF-SPD', null, 'fa-line-chart');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '101', '100', 'Configuración', 101, 'PADRE', 'SIIF-SPD', null, 'fa-cog');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '102', '101', 'Usuarios', 102, 'FORM', 'SIIF-SPD', 'SPD_USUARIOS', 'fa-users');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '103', '101', 'Entidades', 103, 'FORM', 'SIIF-SPD', 'SPD_ENTIDADES', 'fa-building-o');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '104', '101', 'Planes de Desarrollo', 104, 'FORM', 'SIIF-SPD', 'SPD_PLANES_DESARROLLO', 'fa-tasks');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '105', '101', 'Metas', 105, 'FORM', 'SIIF-SPD', 'SPD_METAS', 'fa-bullseye');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '106', '101', 'Proyectos', 106, 'FORM', 'SIIF-SPD', 'SPD_PROYECTOS', 'fa-sitemap');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '107', '101', 'Seguimiento', 107, 'FORM', 'SIIF-SPD', 'SPD_SEGUIMIENTOS', 'fa-line-chart');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '108', '101', 'Políticas', 108, 'PADRE', 'SIIF-SPD', null, null);
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '109', '108', 'Componentes', 109, 'FORM', 'SIIF-SPD', 'SPD_COMPONENTES_POLITICA', 'fa-cube');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '110', '108', 'Nacionales', 110, 'FORM', 'SIIF-SPD', 'SPD_POLITICAS_NACIONALES', 'fa-flag');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '111', '108', 'Territoriales', 111, 'FORM', 'SIIF-SPD', 'SPD_POLITICAS_TERRITORIALES', 'fa-flag');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '112', '100', 'Catálogos', 112, 'PADRE', 'SIIF-SPD', null, 'fa-cubes');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '113', '112', 'ODS', 113, 'FORM', 'SIIF-SPD', 'SPD_ODS', 'fa-clipboard');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '114', '112', 'Unidades', 114, 'FORM', 'SIIF-SPD', 'SPD_UNIDADES', 'fa-cube');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '115', '112', 'Productos', 115, 'FORM', 'SIIF-SPD', 'SPD_PRODUCTOS', 'fa-list-alt');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '116', '100', 'Seguimiento', 116, 'PADRE', 'SIIF-SPD', null, 'fa-line-chart');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '117', '116', 'Metas', 117, 'PADRE', 'SIIF-SPD', null, 'fa-line-chart');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '118', '117', 'Configuración', 118, 'FORM', 'SIIF-SPD', 'SPD_SEGUIMIENTOS', 'fa-cog');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '119', '117', 'Metas', 119, 'FORM', 'SIIF-SPD', 'SPD_METAS', 'fa-bullseye');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '120', '117', 'Programación', 120, 'FORM', 'SIIF-SPD', 'SPD_PROGRAMACION_METAS', 'fa-clipboard');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '121', '117', 'Reporte', 121, 'FORM', 'SIIF-SPD', 'SPD_REPORTE_METAS', 'fa-file-o');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '122', '117', 'Validación', 122, 'FORM', 'SIIF-SPD', 'SPD_VALIDACION_METAS', 'fa-check');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '123', '117', 'Revisión', 123, 'FORM', 'SIIF-SPD', 'SPD_REVISION_METAS', 'fa-edit');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '124', '117', 'Tableros de Control', 124, 'FORM', 'SIIF-SPD', 'SPD_TABLERO_METAS', 'fa-pie-chart');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '125', '116', 'Proyectos', 125, 'PADRE', 'SIIF-SPD', null, 'fa-sitemap');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '126', '125', 'Configuración', 126, 'FORM', 'SIIF-SPD', 'SPD_SEGUIMIENTOS', 'fa-cog');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '127', '125', 'Proyectos', 127, 'FORM', 'SIIF-SPD', 'SPD_PROYECTOS', 'fa-list-ul');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '128', '125', 'Programación', 128, 'FORM', 'SIIF-SPD', 'SPD_PROGRAMACION_PROYECTOS', 'fa-clipboard');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '129', '125', 'Reporte', 129, 'FORM', 'SIIF-SPD', 'SPD_REPORTE_PROYECTOS', 'fa-file-o');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '130', '125', 'Validación', 130, 'FORM', 'SIIF-SPD', 'SPD_VALIDACION_PROYECTOS', 'fa-check');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '131', '125', 'Revisión', 131, 'FORM', 'SIIF-SPD', 'SPD_REVISION_PROYECTOS', 'fa-edit');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '132', '125', 'Tableros de Control', 132, 'FORM', 'SIIF-SPD', 'SPD_TABLERO_PROYECTOS', 'fa-pie-chart');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '133', '116', 'Planes de Acción', 133, 'PADRE', 'SIIF-SPD', null, 'fa-tasks');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '134', '133', 'Configuración', 134, 'FORM', 'SIIF-SPD', 'SPD_SEGUIMIENTOS', 'fa-cog');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '135', '133', 'Planes de Acción', 135, 'FORM', 'SIIF-SPD', 'SPD_PLANES_ACCION', 'fa-tasks');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '136', '133', 'Programación', 136, 'FORM', 'SIIF-SPD', 'SPD_PROGRAMACION_PLANES_ACCION', 'fa-clipboard');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '137', '133', 'Reporte', 137, 'FORM', 'SIIF-SPD', 'SPD_REPORTE_PLANES_ACCION', 'fa-file-o');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '138', '133', 'Validación', 138, 'FORM', 'SIIF-SPD', 'SPD_VALIDACION_PLANES_ACCION', 'fa-check');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '139', '133', 'Revisión', 139, 'FORM', 'SIIF-SPD', 'SPD_REVISION_PLANES_ACCION', 'fa-edit');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '140', '133', 'Tableros de Control', 140, 'FORM', 'SIIF-SPD', 'SPD_TABLERO_PLANES_ACCION', 'fa-pie-chart');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '141', '116', 'Políticas', 141, 'PADRE', 'SIIF-SPD', null, 'fa-flag');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '142', '141', 'Configuración', 142, 'FORM', 'SIIF-SPD', 'SPD_SEGUIMIENTOS', 'fa-cog');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '143', '141', 'Políticas', 143, 'FORM', 'SIIF-SPD', 'EN-CONSTRUCCION', 'fa-flag');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '144', '141', 'Programación', 144, 'FORM', 'SIIF-SPD', 'EN-CONSTRUCCION', 'fa-clipboard');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '145', '141', 'Reporte', 145, 'FORM', 'SIIF-SPD', 'EN-CONSTRUCCION', 'fa-file-o');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '146', '141', 'Validación', 146, 'FORM', 'SIIF-SPD', 'EN-CONSTRUCCION', 'fa-check');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '147', '141', 'Revisión', 147, 'FORM', 'SIIF-SPD', 'EN-CONSTRUCCION', 'fa-edit');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '148', '141', 'Tableros de Control', 148, 'FORM', 'SIIF-SPD', 'EN-CONSTRUCCION', 'fa-pie-chart');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '149', '100', 'Asistente', 149, 'FORM', 'SIIF-SPD', 'SPD_ASISTENTE', 'fa-magic');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '150', '100', 'Otros', 150, 'PADRE', 'SIIF-SPD', null, 'fa-ellipsis-h');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '151', '150', 'Inicio', 151, 'FORM', 'SIIF-SPD', 'SPD_INICIO', 'fa-home');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '152', '150', 'Niveles del plan', 152, 'FORM', 'SIIF-SPD', 'SPD_NIVELES_PLAN', 'fa-sitemap');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '153', '150', 'Metas de actividades', 153, 'FORM', 'SIIF-SPD', 'SPD_METAS_ACTIVIDADES', 'fa-tasks');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '154', '150', 'Metas por actividad', 154, 'FORM', 'SIIF-SPD', 'SPD_METAS_POR_ACTIVIDAD', 'fa-link');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '155', '150', 'Macroproyectos', 155, 'FORM', 'SIIF-SPD', 'SPD_MACROPROYECTOS', 'fa-cubes');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '156', '150', 'Ubicaciones', 156, 'FORM', 'SIIF-SPD', 'SPD_UBICACIONES', 'fa-map-marker');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '157', '150', 'Componentes por política', 157, 'FORM', 'SIIF-SPD', 'SPD_COMPONENTES_POR_POLITICA', 'fa-chain');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '158', '150', 'Historial de metas', 158, 'FORM', 'SIIF-SPD', 'SPD_HISTORIAL_METAS', 'fa-history');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '159', '150', 'Avance de metas', 159, 'FORM', 'SIIF-SPD', 'SPD_AVANCE_METAS', 'fa-tachometer');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '160', '150', 'Registros de seguimiento', 160, 'FORM', 'SIIF-SPD', 'SPD_REGISTROS_SEGUIMIENTO', 'fa-line-chart');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '161', '150', 'Tablero de seguimiento', 161, 'FORM', 'SIIF-SPD', 'SPD_TABLERO_SEGUIMIENTO', 'fa-dashboard');
-insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, label, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PROYECTOS', '162', '150', 'Tablero financiero', 162, 'FORM', 'SIIF-SPD', 'SPD_TABLERO_FINANCIERO', 'fa-money');
+-- Menú SPD: módulo SEGUIMIENTO_PRY, un único padre "SPD" (opción 30) y debajo el árbol del
+-- menú original (client/components/AppMenu/hooks.ts). Las opciones son números (en varchar2)
+-- jerárquicos: cada hijo lleva el código del padre más 01, 02, ... (Configuración 3001, Usuarios 300101).
+-- La descripción concatena las de los padres (sin el módulo): "SPD - Configuración - Usuarios".
+-- La vista toma como etiqueta lo que va después del último '-', como la vista real.
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30', null, 'SPD', 1, 'PADRE', 'SIIF-SPD', null, 'fa-line-chart');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '3001', '30', 'SPD - Configuración', 2, 'PADRE', 'SIIF-SPD', null, 'fa-cog');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300101', '3001', 'SPD - Configuración - Usuarios', 3, 'FORM', 'SIIF-SPD', 'SPD_USUARIOS', 'fa-users');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300102', '3001', 'SPD - Configuración - Entidades', 4, 'FORM', 'SIIF-SPD', 'SPD_ENTIDADES', 'fa-building-o');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300103', '3001', 'SPD - Configuración - Planes de Desarrollo', 5, 'FORM', 'SIIF-SPD', 'SPD_PLANES_DESARROLLO', 'fa-tasks');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300104', '3001', 'SPD - Configuración - Metas', 6, 'FORM', 'SIIF-SPD', 'SPD_METAS', 'fa-bullseye');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300105', '3001', 'SPD - Configuración - Proyectos', 7, 'FORM', 'SIIF-SPD', 'SPD_PROYECTOS', 'fa-sitemap');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300106', '3001', 'SPD - Configuración - Seguimiento', 8, 'FORM', 'SIIF-SPD', 'SPD_SEGUIMIENTOS', 'fa-line-chart');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300107', '3001', 'SPD - Configuración - Políticas', 9, 'PADRE', 'SIIF-SPD', null, null);
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30010701', '300107', 'SPD - Configuración - Políticas - Componentes', 10, 'FORM', 'SIIF-SPD', 'SPD_COMPONENTES_POLITICA', 'fa-cube');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30010702', '300107', 'SPD - Configuración - Políticas - Nacionales', 11, 'FORM', 'SIIF-SPD', 'SPD_POLITICAS_NACIONALES', 'fa-flag');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30010703', '300107', 'SPD - Configuración - Políticas - Territoriales', 12, 'FORM', 'SIIF-SPD', 'SPD_POLITICAS_TERRITORIALES', 'fa-flag');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '3002', '30', 'SPD - Catálogos', 13, 'PADRE', 'SIIF-SPD', null, 'fa-cubes');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300201', '3002', 'SPD - Catálogos - ODS', 14, 'FORM', 'SIIF-SPD', 'SPD_ODS', 'fa-clipboard');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300202', '3002', 'SPD - Catálogos - Unidades', 15, 'FORM', 'SIIF-SPD', 'SPD_UNIDADES', 'fa-cube');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300203', '3002', 'SPD - Catálogos - Productos', 16, 'FORM', 'SIIF-SPD', 'SPD_PRODUCTOS', 'fa-list-alt');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '3003', '30', 'SPD - Seguimiento', 17, 'PADRE', 'SIIF-SPD', null, 'fa-line-chart');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300301', '3003', 'SPD - Seguimiento - Metas', 18, 'PADRE', 'SIIF-SPD', null, 'fa-line-chart');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030101', '300301', 'SPD - Seguimiento - Metas - Configuración', 19, 'FORM', 'SIIF-SPD', 'SPD_SEGUIMIENTOS', 'fa-cog');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030102', '300301', 'SPD - Seguimiento - Metas - Metas', 20, 'FORM', 'SIIF-SPD', 'SPD_METAS', 'fa-bullseye');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030103', '300301', 'SPD - Seguimiento - Metas - Programación', 21, 'FORM', 'SIIF-SPD', 'SPD_PROGRAMACION_METAS', 'fa-clipboard');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030104', '300301', 'SPD - Seguimiento - Metas - Reporte', 22, 'FORM', 'SIIF-SPD', 'SPD_REPORTE_METAS', 'fa-file-o');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030105', '300301', 'SPD - Seguimiento - Metas - Validación', 23, 'FORM', 'SIIF-SPD', 'SPD_VALIDACION_METAS', 'fa-check');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030106', '300301', 'SPD - Seguimiento - Metas - Revisión', 24, 'FORM', 'SIIF-SPD', 'SPD_REVISION_METAS', 'fa-edit');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030107', '300301', 'SPD - Seguimiento - Metas - Tableros de Control', 25, 'FORM', 'SIIF-SPD', 'SPD_TABLERO_METAS', 'fa-pie-chart');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300302', '3003', 'SPD - Seguimiento - Proyectos', 26, 'PADRE', 'SIIF-SPD', null, 'fa-sitemap');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030201', '300302', 'SPD - Seguimiento - Proyectos - Configuración', 27, 'FORM', 'SIIF-SPD', 'SPD_SEGUIMIENTOS', 'fa-cog');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030202', '300302', 'SPD - Seguimiento - Proyectos - Proyectos', 28, 'FORM', 'SIIF-SPD', 'SPD_PROYECTOS', 'fa-list-ul');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030203', '300302', 'SPD - Seguimiento - Proyectos - Programación', 29, 'FORM', 'SIIF-SPD', 'SPD_PROGRAMACION_PROYECTOS', 'fa-clipboard');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030204', '300302', 'SPD - Seguimiento - Proyectos - Reporte', 30, 'FORM', 'SIIF-SPD', 'SPD_REPORTE_PROYECTOS', 'fa-file-o');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030205', '300302', 'SPD - Seguimiento - Proyectos - Validación', 31, 'FORM', 'SIIF-SPD', 'SPD_VALIDACION_PROYECTOS', 'fa-check');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030206', '300302', 'SPD - Seguimiento - Proyectos - Revisión', 32, 'FORM', 'SIIF-SPD', 'SPD_REVISION_PROYECTOS', 'fa-edit');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030207', '300302', 'SPD - Seguimiento - Proyectos - Tableros de Control', 33, 'FORM', 'SIIF-SPD', 'SPD_TABLERO_PROYECTOS', 'fa-pie-chart');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300303', '3003', 'SPD - Seguimiento - Planes de Acción', 34, 'PADRE', 'SIIF-SPD', null, 'fa-tasks');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030301', '300303', 'SPD - Seguimiento - Planes de Acción - Configuración', 35, 'FORM', 'SIIF-SPD', 'SPD_SEGUIMIENTOS', 'fa-cog');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030302', '300303', 'SPD - Seguimiento - Planes de Acción - Planes de Acción', 36, 'FORM', 'SIIF-SPD', 'SPD_PLANES_ACCION', 'fa-tasks');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030303', '300303', 'SPD - Seguimiento - Planes de Acción - Programación', 37, 'FORM', 'SIIF-SPD', 'SPD_PROGRAMACION_PLANES_ACCION', 'fa-clipboard');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030304', '300303', 'SPD - Seguimiento - Planes de Acción - Reporte', 38, 'FORM', 'SIIF-SPD', 'SPD_REPORTE_PLANES_ACCION', 'fa-file-o');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030305', '300303', 'SPD - Seguimiento - Planes de Acción - Validación', 39, 'FORM', 'SIIF-SPD', 'SPD_VALIDACION_PLANES_ACCION', 'fa-check');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030306', '300303', 'SPD - Seguimiento - Planes de Acción - Revisión', 40, 'FORM', 'SIIF-SPD', 'SPD_REVISION_PLANES_ACCION', 'fa-edit');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030307', '300303', 'SPD - Seguimiento - Planes de Acción - Tableros de Control', 41, 'FORM', 'SIIF-SPD', 'SPD_TABLERO_PLANES_ACCION', 'fa-pie-chart');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300304', '3003', 'SPD - Seguimiento - Políticas', 42, 'PADRE', 'SIIF-SPD', null, 'fa-flag');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030401', '300304', 'SPD - Seguimiento - Políticas - Configuración', 43, 'FORM', 'SIIF-SPD', 'SPD_SEGUIMIENTOS', 'fa-cog');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030402', '300304', 'SPD - Seguimiento - Políticas - Políticas', 44, 'FORM', 'SIIF-SPD', 'EN-CONSTRUCCION', 'fa-flag');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030403', '300304', 'SPD - Seguimiento - Políticas - Programación', 45, 'FORM', 'SIIF-SPD', 'EN-CONSTRUCCION', 'fa-clipboard');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030404', '300304', 'SPD - Seguimiento - Políticas - Reporte', 46, 'FORM', 'SIIF-SPD', 'EN-CONSTRUCCION', 'fa-file-o');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030405', '300304', 'SPD - Seguimiento - Políticas - Validación', 47, 'FORM', 'SIIF-SPD', 'EN-CONSTRUCCION', 'fa-check');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030406', '300304', 'SPD - Seguimiento - Políticas - Revisión', 48, 'FORM', 'SIIF-SPD', 'EN-CONSTRUCCION', 'fa-edit');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '30030407', '300304', 'SPD - Seguimiento - Políticas - Tableros de Control', 49, 'FORM', 'SIIF-SPD', 'EN-CONSTRUCCION', 'fa-pie-chart');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '3004', '30', 'SPD - Asistente', 50, 'FORM', 'SIIF-SPD', 'SPD_ASISTENTE', 'fa-magic');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '3005', '30', 'SPD - Otros', 51, 'PADRE', 'SIIF-SPD', null, 'fa-ellipsis-h');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300501', '3005', 'SPD - Otros - Inicio', 52, 'FORM', 'SIIF-SPD', 'SPD_INICIO', 'fa-home');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300502', '3005', 'SPD - Otros - Niveles del plan', 53, 'FORM', 'SIIF-SPD', 'SPD_NIVELES_PLAN', 'fa-sitemap');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300503', '3005', 'SPD - Otros - Metas de actividades', 54, 'FORM', 'SIIF-SPD', 'SPD_METAS_ACTIVIDADES', 'fa-tasks');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300504', '3005', 'SPD - Otros - Metas por actividad', 55, 'FORM', 'SIIF-SPD', 'SPD_METAS_POR_ACTIVIDAD', 'fa-link');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300505', '3005', 'SPD - Otros - Macroproyectos', 56, 'FORM', 'SIIF-SPD', 'SPD_MACROPROYECTOS', 'fa-cubes');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300506', '3005', 'SPD - Otros - Ubicaciones', 57, 'FORM', 'SIIF-SPD', 'SPD_UBICACIONES', 'fa-map-marker');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300507', '3005', 'SPD - Otros - Componentes por política', 58, 'FORM', 'SIIF-SPD', 'SPD_COMPONENTES_POR_POLITICA', 'fa-chain');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300508', '3005', 'SPD - Otros - Historial de metas', 59, 'FORM', 'SIIF-SPD', 'SPD_HISTORIAL_METAS', 'fa-history');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300509', '3005', 'SPD - Otros - Avance de metas', 60, 'FORM', 'SIIF-SPD', 'SPD_AVANCE_METAS', 'fa-tachometer');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300510', '3005', 'SPD - Otros - Registros de seguimiento', 61, 'FORM', 'SIIF-SPD', 'SPD_REGISTROS_SEGUIMIENTO', 'fa-line-chart');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300511', '3005', 'SPD - Otros - Tablero de seguimiento', 62, 'FORM', 'SIIF-SPD', 'SPD_TABLERO_SEGUIMIENTO', 'fa-dashboard');
+insert into gen_opciones_sistema_local (modulo, opcion, opc_padre, descripcion, orden, tipo_llamada, aplicacion, ejecutable, menu_icon) values ('SEGUIMIENTO_PRY', '300512', '3005', 'SPD - Otros - Tablero financiero', 63, 'FORM', 'SIIF-SPD', 'SPD_TABLERO_FINANCIERO', 'fa-money');
 commit;

@@ -9,7 +9,7 @@ create table tmp_apex_export (name varchar2(255), contents clob);
 declare
   l_files apex_t_export_files;
 begin
-  apex_util.set_workspace(p_workspace => 'SPD');
+  apex_util.set_workspace(p_workspace => 'SIIFWEB');
   l_files := apex_export.get_application(p_application_id => 100, p_with_comments => true);
   for i in 1 .. l_files.count loop
     insert into tmp_apex_export values (l_files(i).name, l_files(i).contents);

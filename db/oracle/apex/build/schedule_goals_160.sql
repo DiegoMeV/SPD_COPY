@@ -142,7 +142,7 @@ declare
       p_heading_alignment => p_align, p_column_alignment => p_align, p_tz_dependent => 'N', p_use_as_row_header => 'N');
   end;
 begin
-  apex_application_install.set_workspace('SPD');
+  apex_application_install.set_workspace('SIIFWEB');
   l_ws := apex_application_install.get_workspace_id;
   wwv_flow_imp.import_begin(p_version_yyyy_mm_dd => '2024.11.30', p_release => '24.2.0',
     p_default_workspace_id => l_ws, p_default_application_id => c_app, p_default_id_offset => 0,

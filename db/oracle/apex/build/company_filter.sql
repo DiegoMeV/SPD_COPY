@@ -30,7 +30,7 @@ declare
     l_n := l_n + sql%rowcount;
   end;
 begin
-  l_sgid := apex_util.find_security_group_id(p_workspace => 'SPD');
+  l_sgid := apex_util.find_security_group_id(p_workspace => 'SIIFWEB');
   wwv_flow_security.g_security_group_id := l_sgid;
   wwv_flow_imp.import_begin(p_version_yyyy_mm_dd => '2024.05.31', p_release => '24.1.0',
     p_default_workspace_id => l_sgid, p_default_application_id => c_app, p_default_id_offset => 0,

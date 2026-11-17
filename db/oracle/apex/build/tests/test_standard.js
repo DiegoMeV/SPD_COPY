@@ -15,7 +15,7 @@ const { chromium } = require('playwright-core');
     const tb = await page.$$eval('.a-Toolbar button, .a-Toolbar .a-Button', b => [...new Set(b.filter(x => x.offsetParent).map(x => x.innerText.trim()).filter(Boolean))]);
     console.log(`== ${label}\n   migas: ${crumbs.join(' / ')}\n   botones cabecera: ${head.join(' | ')}\n   barra grilla/reporte: ${tb.join(' | ')}`);
   };
-  await page.goto('http://localhost:8080/ords/r/spd/spd/login');
+  await page.goto('http://localhost:8080/ords/r/siifweb/spd/login');
   await page.fill('#P9999_USERNAME', 'ADMIN'); await page.fill('#P9999_PASSWORD', process.env.SPD_PASS);
   await Promise.all([page.waitForURL(u => !String(u).includes('/login')), page.click('.t-Button--hot')]);
   const s = new URL(page.url()).searchParams.get('session');

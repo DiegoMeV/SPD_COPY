@@ -314,7 +314,7 @@ end;~', '#W#', p_window), '#F#', p_filter);
       p_button_condition_type => 'VAL_OF_ITEM_IN_COND_EQ_COND2', p_button_condition => 'P1064_DATA_EDITABLE', p_button_condition2 => 'S');
   end;
 begin
-  apex_application_install.set_workspace('SPD');
+  apex_application_install.set_workspace('SIIFWEB');
   l_ws := apex_application_install.get_workspace_id;
   wwv_flow_imp.import_begin(p_version_yyyy_mm_dd => '2024.11.30', p_release => '24.2.0',
     p_default_workspace_id => l_ws, p_default_application_id => c_app, p_default_id_offset => 0,

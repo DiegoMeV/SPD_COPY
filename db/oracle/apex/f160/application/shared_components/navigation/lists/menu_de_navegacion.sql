@@ -1,7 +1,7 @@
-prompt --application/shared_components/navigation/lists/menú_de_navegación
+prompt --application/shared_components/navigation/lists/menu_de_navegacion
 begin
 --   Manifest
---     LIST: Menú de Navegación
+--     LIST: Menu de Navegacion
 --   Manifest End
 wwv_flow_imp.component_begin (
  p_version_yyyy_mm_dd=>'2024.11.30'
@@ -13,9 +13,9 @@ wwv_flow_imp.component_begin (
 );
 wwv_flow_imp_shared.create_list(
  p_id=>wwv_flow_imp.id(645792499588681124)
-,p_name=>unistr('Men\00FA de Navegaci\00F3n')
+,p_name=>'Menu de Navegacion'
 ,p_list_status=>'PUBLIC'
-,p_version_scn=>35446683803
+,p_version_scn=>4036532
 );
 wwv_flow_imp_shared.create_list_item(
  p_id=>wwv_flow_imp.id(645804296571681171)

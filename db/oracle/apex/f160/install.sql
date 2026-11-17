@@ -3,7 +3,7 @@ prompt --install
 @@application/delete_application.sql
 @@application/create_application.sql
 @@application/user_interfaces.sql
-@@application/shared_components/navigation/lists/menú_de_navegación.sql
+@@application/shared_components/navigation/lists/menu_de_navegacion.sql
 @@application/shared_components/navigation/lists/barra_de_navegacion_principal.sql
 @@application/shared_components/navigation/lists/siif_menu.sql
 @@application/shared_components/navigation/lists/siif_navegacion_opcion.sql
@@ -14,7 +14,7 @@ prompt --install
 @@application/shared_components/files/icons_app_icon_256_rounded_png.sql
 @@application/shared_components/files/icons_app_icon_512_png.sql
 @@application/plugin_settings.sql
-@@application/shared_components/security/authorizations/derechos_de_administración.sql
+@@application/shared_components/security/authorizations/derechos_de_administracion.sql
 @@application/shared_components/navigation/navigation_bar.sql
 @@application/shared_components/logic/application_processes/cambiar_password.sql
 @@application/shared_components/logic/application_processes/descargar_archivo.sql
@@ -87,7 +87,7 @@ prompt --install
 @@application/shared_components/user_interface/lovs/spd_usado_para.sql
 @@application/pages/page_groups.sql
 @@application/comments.sql
-@@application/shared_components/navigation/breadcrumbs/ruta_de_navegación.sql
+@@application/shared_components/navigation/breadcrumbs/ruta_de_navegacion.sql
 @@application/shared_components/navigation/breadcrumbentry.sql
 @@application/shared_components/user_interface/templates/page/drawer.sql
 @@application/shared_components/user_interface/templates/page/master_detail.sql

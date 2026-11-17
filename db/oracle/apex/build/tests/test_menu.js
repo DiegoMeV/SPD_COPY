@@ -13,7 +13,7 @@ const entries = fs.readFileSync(process.argv[2], 'utf8').trim().split('\n')
   page.on('pageerror', e => problems.push(`[${current}] JS: ${e.message.slice(0, 160)}`));
   page.on('response', r => { if (r.status() >= 400) problems.push(`[${current}] HTTP ${r.status()} ${r.url().slice(0, 120)}`); });
 
-  await page.goto('http://localhost:8080/ords/r/spd/spd/login');
+  await page.goto('http://localhost:8080/ords/r/siifweb/spd/login');
   await page.fill('#P9999_USERNAME', 'ADMIN');
   await page.fill('#P9999_PASSWORD', process.env.SPD_PASS);
   await Promise.all([page.waitForURL(u => !String(u).includes('/login')), page.click('.t-Button--hot')]);

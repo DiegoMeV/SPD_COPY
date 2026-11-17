@@ -15,7 +15,8 @@
 
    Marca: todas las filas SPD_* llevan CREATED_BY = 999999; los proyectos USUARIO = 'DEMO_SPD'
    y número 2024000001..; se puede re-ejecutar (primero borra lo que creó antes).
-   No modifica datos existentes. Ejecutar como SIIF.
+   Solo cambia datos existentes en un punto: deja la demo 2024-3 como única configuración
+   activa de la compañía (la app React toma la primera activa). Ejecutar como SIIF.
    ============================================================================= */
 SET SERVEROUTPUT ON
 SET DEFINE OFF
@@ -32,6 +33,7 @@ DECLARE
   cfgs t_cfgs;
 
   v_colors CLOB;
+  v_dates  VARCHAR2(1000);
   v_id     NUMBER;
   v_goal   NUMBER;
   v_level  NUMBER;
@@ -50,14 +52,30 @@ DECLARE
   FUNCTION status_for(p_status VARCHAR2, p_r NUMBER) RETURN VARCHAR2 IS
   BEGIN
     CASE p_status
-      WHEN 'REVIEWING'  THEN RETURN CASE WHEN p_r < 10 THEN 'REPORTED'  WHEN p_r < 40 THEN 'VALIDATED'
-                                         WHEN p_r < 65 THEN 'REVIEWED'  WHEN p_r < 90 THEN 'APPROVED'
-                                         ELSE 'REJECTED' END;
+      -- la mayoría revisadas, para que los tableros de control (que solo muestran REVIEWED) tengan datos;
+      -- APPROVED no se usa: el original nunca lo asigna y lo muestra como 'Sin Programar'
+      WHEN 'REVIEWING'  THEN RETURN CASE WHEN p_r < 8 THEN 'REPORTED'  WHEN p_r < 20 THEN 'VALIDATED'
+                                         WHEN p_r < 92 THEN 'REVIEWED' ELSE 'REJECTED' END;
       WHEN 'VALIDATING' THEN RETURN CASE WHEN p_r < 50 THEN 'REPORTED'  WHEN p_r < 85 THEN 'VALIDATED'
                                          ELSE 'REJECTED' END;
-      WHEN 'REPORTING'  THEN RETURN CASE WHEN p_r < 60 THEN 'PLANNED'   ELSE 'REPORTED' END;
+      -- la activa (la que abren React y APEX por defecto) recorre todo el flujo para que Reporte,
+      -- Validación, Revisión y los tableros tengan datos sin cambiar de seguimiento
+      WHEN 'REPORTING'  THEN RETURN CASE WHEN p_r < 25 THEN 'PLANNED'   WHEN p_r < 45 THEN 'REPORTED'
+                                         WHEN p_r < 65 THEN 'VALIDATED' WHEN p_r < 95 THEN 'REVIEWED'
+                                         ELSE 'REJECTED' END;
       ELSE                   RETURN CASE WHEN p_r < 30 THEN 'COPIED'    ELSE 'PLANNED' END;
     END CASE;
+  END;
+
+  -- Ventana de fechas (arreglo JSON [inicio, fin]) de la etapa p_stage para una configuración
+  -- que está en la etapa p_current (1 programación, 2 reporte, 3 validación, 4 revisión):
+  -- la etapa actual va de hoy-10 a hoy+20 días (la app React solo habilita las acciones dentro
+  -- de la ventana), las anteriores ya pasaron y las siguientes vienen después.
+  FUNCTION win(p_stage NUMBER, p_current NUMBER) RETURN VARCHAR2 IS
+    d DATE := TRUNC(SYSDATE) + (p_stage - p_current) * 30 - 10;
+  BEGIN
+    RETURN '["' || TO_CHAR(d, 'YYYY-MM-DD') || 'T05:00:00.000Z","'
+                || TO_CHAR(d + 30, 'YYYY-MM-DD') || 'T04:59:59.000Z"]';
   END;
 
   PROCEDURE add_history(p_goal NUMBER, p_rec NUMBER, p_event VARCHAR2, p_desc VARCHAR2, p_days NUMBER) IS
@@ -81,8 +99,9 @@ DECLARE
   -- Crea el registro de una meta en una configuración, con recursos, adjunto e historial
   PROCEDURE add_record(p_cfg t_cfg, p_goal NUMBER, p_goal_value NUMBER, p_accum VARCHAR2,
                        p_name VARCHAR2) IS
-    r      NUMBER := h(p_goal, p_cfg.id);
+    r      NUMBER := h(p_goal, p_cfg.sub);   -- subperiodo (no el ID): mismo reparto en cada recarga
     st     VARCHAR2(20) := status_for(p_cfg.status, r);
+    v_type SPD_GOAL.GOAL_TYPE%TYPE;
     prog   NUMBER;
     ach    NUMBER;
     phys   NUMBER;
@@ -91,6 +110,12 @@ DECLARE
     d0     NUMBER := (p_cfg.sub - 1) * 91;   -- días desde 2024-01-01 al inicio del trimestre
     rep    BOOLEAN := st IN ('REPORTED','VALIDATED','REVIEWED','APPROVED','REJECTED');
   BEGIN
+    -- activa: proyectos y planes de acción casi todos revisados (sus tableros se ven por entidad)
+    SELECT GOAL_TYPE INTO v_type FROM SPD_GOAL WHERE ID = p_goal;
+    IF p_cfg.status = 'REPORTING' AND v_type IN ('PROJECT','ACTION_PLAN') THEN
+      st  := CASE WHEN r < 15 THEN 'VALIDATED' ELSE 'REVIEWED' END;
+      rep := TRUE;
+    END IF;
     prog := CASE WHEN p_accum = 'STOCK' THEN NVL(p_goal_value, 100)
                  ELSE ROUND(NVL(p_goal_value, 100) / 4, 2) END;
     IF prog = 0 THEN prog := 1; END IF;
@@ -170,8 +195,11 @@ DECLARE
 
 BEGIN
   /* ---------------------------------------------------------------- limpieza */
+  -- también lo que se haya guardado desde las pantallas sobre las configuraciones / metas demo
   DELETE FROM SPD_GOAL_HISTORY WHERE CREATED_BY = c_demo
-     OR MONITORING_RECORD_ID IN (SELECT ID FROM SPD_MONITORING_RECORD WHERE CREATED_BY = c_demo);
+     OR GOAL_ID IN (SELECT ID FROM SPD_GOAL WHERE CREATED_BY = c_demo)
+     OR MONITORING_RECORD_ID IN (SELECT ID FROM SPD_MONITORING_RECORD WHERE CREATED_BY = c_demo
+        OR MONITORING_CONFIG_ID IN (SELECT ID FROM SPD_MONITORING_CONFIG WHERE CREATED_BY = c_demo));
   DELETE FROM SPD_MONITORING_RECORD_ATTACH WHERE MONITORING_RECORD_ID IN
     (SELECT ID FROM SPD_MONITORING_RECORD WHERE CREATED_BY = c_demo
         OR MONITORING_CONFIG_ID IN (SELECT ID FROM SPD_MONITORING_CONFIG WHERE CREATED_BY = c_demo));
@@ -185,16 +213,43 @@ BEGIN
   DELETE FROM SPD_GOAL WHERE CREATED_BY = c_demo AND PARENT_GOAL_ID IS NOT NULL;
   DELETE FROM SPD_GOAL WHERE CREATED_BY = c_demo;
   DELETE FROM PROYECTO WHERE NIT_COMPANIA = c_nit AND USUARIO = 'DEMO_SPD';
+  -- ubicaciones demo (CODE 'DEMO-...'): hijos primero
+  DELETE FROM SPD_GEO_LOCATION WHERE NIT_COMPANIA = c_nit AND CODE LIKE 'DEMO-%' AND PARENT_LOCATION_ID IS NOT NULL;
+  DELETE FROM SPD_GEO_LOCATION WHERE NIT_COMPANIA = c_nit AND CODE LIKE 'DEMO-%';
+
+  /* ---------------------------------------------------------------- ubicaciones (para la focalización) */
+  INSERT INTO SPD_GEO_LOCATION (NIT_COMPANIA, CODE, NAME, LOCATION_TYPE)
+  VALUES (c_nit, 'DEMO-76520', 'Palmira', 'MUNICIPALITY') RETURNING ID INTO v_id;
+  FOR u IN (SELECT 'DEMO-C1' c, 'Comuna 1 - Zona Norte' n, 'DISTRICT' t FROM dual UNION ALL
+            SELECT 'DEMO-C2', 'Comuna 2 - Zona Oriente', 'DISTRICT' FROM dual UNION ALL
+            SELECT 'DEMO-C3', 'Comuna 3 - Centro', 'DISTRICT' FROM dual UNION ALL
+            SELECT 'DEMO-C4', 'Comuna 4 - Zona Sur', 'DISTRICT' FROM dual UNION ALL
+            SELECT 'DEMO-ROZO', 'Corregimiento Rozo', 'TOWNSHIP' FROM dual UNION ALL
+            SELECT 'DEMO-AMAIME', 'Corregimiento Amaime', 'TOWNSHIP' FROM dual UNION ALL
+            SELECT 'DEMO-TORRE', 'Corregimiento La Torre', 'TOWNSHIP' FROM dual UNION ALL
+            SELECT 'DEMO-TIENDANUEVA', 'Corregimiento Tienda Nueva', 'TOWNSHIP' FROM dual) LOOP
+    INSERT INTO SPD_GEO_LOCATION (NIT_COMPANIA, CODE, NAME, LOCATION_TYPE, PARENT_LOCATION_ID)
+    VALUES (c_nit, u.c, u.n, u.t, v_id);
+  END LOOP;
 
   /* ---------------------------------------------------------------- configuraciones */
-  SELECT COLORS_CONFIG INTO v_colors FROM SPD_MONITORING_CONFIG
-  WHERE  NIT_COMPANIA = c_nit AND COLORS_CONFIG IS NOT NULL AND ROWNUM = 1;
+  -- rangos de color completos (formato React, con etiqueta): algunos seguimientos de Palmira
+  -- los tienen sin límites y todo saldría del último color
+  v_colors := '[{"fromValue":0,"toValue":50,"includeFromValue":true,"includeToValue":true,"color":"#f5222d","label":"Bajo"},'
+           || '{"fromValue":50,"toValue":80,"includeFromValue":false,"includeToValue":true,"color":"#fadb14","label":"Medio"},'
+           || '{"fromValue":80,"toValue":100,"includeFromValue":false,"includeToValue":true,"color":"#52c41a","label":"Alto"}]';
 
   FOR i IN 1 .. 4 LOOP
     cfgs(i).sub    := i;
     cfgs(i).status := CASE i WHEN 1 THEN 'REVIEWING' WHEN 2 THEN 'VALIDATING'
                              WHEN 3 THEN 'REPORTING' ELSE 'SCHEDULING' END;
     cfgs(i).origin := CASE i WHEN 4 THEN 'USER_AND_FINANCIAL' ELSE 'FINANCIAL' END;
+    v_dates := '{"scheduling":' || win(1, 5 - i) || ',"reporting":' || win(2, 5 - i)
+            || ',"validating":' || win(3, 5 - i) || ',"reviewing":' || win(4, 5 - i) || '}';
+    IF i = 3 THEN   -- activa: reporte, validación y revisión abiertas hoy (acciones habilitadas en React)
+      v_dates := '{"scheduling":' || win(1, 2) || ',"reporting":' || win(2, 2)
+              || ',"validating":' || win(2, 2) || ',"reviewing":' || win(2, 2) || '}';
+    END IF;
     INSERT INTO SPD_MONITORING_CONFIG
       (USED_FOR, NIT_COMPANIA, IS_ACTIVE, PLAN, PERIOD, SUBPERIOD, PERIODICITY, SPENT_DOCS, WEIGHTING_TYPE,
        DATES_CONFIG, COLORS_CONFIG, STATUS, MONITORING_RESOURCES_ORIGIN, SUPPORT_PRODUCT_MONITORING,
@@ -202,20 +257,19 @@ BEGIN
     VALUES
       ('DEVELOPMENT_PLANS', c_nit, CASE i WHEN 3 THEN 'S' ELSE 'N' END, c_plan, 2024, i, 3,
        '["COMMITMENT","OBLIGATION"]', 'FINANCIAL',
-       '{"scheduling":["' || TO_CHAR(DATE '2024-01-01' + (i-1)*91, 'YYYY-MM-DD') || 'T05:00:00.000Z","'
-                          || TO_CHAR(DATE '2024-01-01' + (i-1)*91 + 14, 'YYYY-MM-DD') || 'T05:00:00.000Z"],'
-       || '"reporting":["'  || TO_CHAR(DATE '2024-01-01' + (i-1)*91 + 55, 'YYYY-MM-DD') || 'T05:00:00.000Z","'
-                          || TO_CHAR(DATE '2024-01-01' + (i-1)*91 + 70, 'YYYY-MM-DD') || 'T05:00:00.000Z"],'
-       || '"validating":["' || TO_CHAR(DATE '2024-01-01' + (i-1)*91 + 70, 'YYYY-MM-DD') || 'T05:00:00.000Z","'
-                          || TO_CHAR(DATE '2024-01-01' + (i-1)*91 + 78, 'YYYY-MM-DD') || 'T05:00:00.000Z"],'
-       || '"reviewing":["'  || TO_CHAR(DATE '2024-01-01' + (i-1)*91 + 78, 'YYYY-MM-DD') || 'T05:00:00.000Z","'
-                          || TO_CHAR(DATE '2024-01-01' + (i-1)*91 + 88, 'YYYY-MM-DD') || 'T05:00:00.000Z"]}',
+       v_dates,
        v_colors, cfgs(i).status, cfgs(i).origin, 'N', 'N', c_types, c_demo)
     RETURNING ID INTO cfgs(i).id;
   END LOOP;
 
+  -- La app React toma como "activa" la primera configuración con IS_ACTIVE = 'S' y la vuelve a
+  -- fijar cada vez que recarga la lista: se deja solo la demo 2024-3 como activa de la compañía.
+  -- (Único cambio sobre datos existentes; APEX no usa este indicador.)
+  UPDATE SPD_MONITORING_CONFIG SET IS_ACTIVE = 'N'
+  WHERE  NIT_COMPANIA = c_nit AND IS_ACTIVE = 'S' AND NVL(CREATED_BY, 0) <> c_demo;
+
   /* ---------------------------------------------------------------- proyectos y planes de acción */
-  FOR p IN (SELECT ROWNUM AS n, e.ID AS ENTITY_ID, e.CODIGO_ENT_PRY, x.NOMBRE, x.VALOR
+  FOR p IN (SELECT ROW_NUMBER() OVER (ORDER BY x.k) AS n, e.ID AS ENTITY_ID, e.CODIGO_ENT_PRY, x.NOMBRE, x.VALOR
             FROM  (SELECT 1 k, '76520IRV'  c, 'Mejoramiento de la malla vial urbana de Palmira' NOMBRE, 4200000000 VALOR FROM dual UNION ALL
                    SELECT 2, '76520SGSC', 'Fortalecimiento de la convivencia y la seguridad ciudadana', 1350000000 FROM dual UNION ALL
                    SELECT 3, '76520SPS',  'Ampliación de la cobertura de vacunación en zona rural', 980000000 FROM dual UNION ALL
@@ -244,7 +298,7 @@ BEGIN
     END LOOP;
   END LOOP;
 
-  FOR a IN (SELECT ROWNUM AS n, e.ID AS ENTITY_ID, x.NOMBRE
+  FOR a IN (SELECT ROW_NUMBER() OVER (ORDER BY x.k) AS n, e.ID AS ENTITY_ID, x.NOMBRE
             FROM  (SELECT 1 k, '76520SGSC' c, 'Plan de acción de gobierno y participación ciudadana' NOMBRE FROM dual UNION ALL
                    SELECT 2, '76520SPS',  'Plan de acción en salud pública' FROM dual UNION ALL
                    SELECT 3, '76520SE',   'Plan de acción de calidad educativa' FROM dual UNION ALL
@@ -256,15 +310,22 @@ BEGIN
     WHERE  NIT_COMPANIA = c_nit AND PLAN = c_plan AND ENTITY_ID = a.ENTITY_ID AND GOAL_TYPE = 'PRODUCT';
     v_id := new_goal('ACTION_PLAN', 'PA-2024-' || LPAD(a.n, 2, '0'), a.NOMBRE, 'Porcentaje de cumplimiento del plan',
                      a.ENTITY_ID, v_level, NULL, 0, 100, 'PORCENTAJE', NULL);
+    -- metas del plan de acción (ACTION_PLAN_ACTIVITY), que son las que se programan y reportan
+    FOR m IN 1 .. 2 LOOP
+      v_goal := new_goal('ACTION_PLAN_ACTIVITY', 'PA-2024-' || LPAD(a.n, 2, '0') || '.M' || m,
+                         CASE m WHEN 1 THEN 'Jornadas de socialización - ' ELSE 'Seguimiento a compromisos - ' END || a.NOMBRE,
+                         NULL, a.ENTITY_ID, v_level, v_id, 0, 6 * m, 'NÚMERO', NULL);
+    END LOOP;
   END LOOP;
 
   /* ---------------------------------------------------------------- registros de seguimiento */
   FOR i IN 1 .. 4 LOOP
     FOR g IN (SELECT ID, GOAL_TYPE, GOAL_VALUE, ACCUMULATION_TYPE, NAME FROM SPD_GOAL
               WHERE  NIT_COMPANIA = c_nit AND PLAN = c_plan
-              AND    GOAL_TYPE IN ('PRODUCT','PROJECT','ACTIVITY','ACTION_PLAN')) LOOP
-      -- metas de producto: ~1 de cada 4 (unas 65 por trimestre); proyectos y planes: todas
-      IF g.GOAL_TYPE <> 'PRODUCT' OR MOD(h(g.ID, 0) + i, 4) = 0 THEN
+              AND    GOAL_TYPE IN ('PRODUCT','PROJECT','ACTIVITY','ACTION_PLAN','ACTION_PLAN_ACTIVITY')) LOOP
+      -- metas de producto: ~1 de cada 4 por trimestre, y todas en 2024-1 (revisión, para los tableros);
+      -- proyectos y planes: todas
+      IF g.GOAL_TYPE <> 'PRODUCT' OR i IN (1, 3) OR MOD(h(g.ID, 0) + i, 4) = 0 THEN
         add_record(cfgs(i), g.ID, g.GOAL_VALUE, g.ACCUMULATION_TYPE, g.NAME);
       END IF;
     END LOOP;

@@ -464,16 +464,23 @@ ALTER TRIGGER "BI_USUARIOS" ENABLE;
 
 /* -----------------------------------------------------------------------------
    V_PROYECTO (versión mínima local)
-   En el SIIF real esta vista ya existe con muchas más columnas; aquí solo se crean
-   las que usa la aplicación APEX, con los mismos nombres.
+   En el SIIF real esta vista ya existe con muchas más columnas; aquí se crean las que
+   usan la aplicación APEX (NOMBRE_ENT_PRY, VALOR_PROYECTO) y la app React (columnas de
+   PROYECTO más NOMBRE_PROYECTO, ID_PLAN, DESC_PLAN, VIGENCIA y NOMBRE_PROGRAMA / _SECTOR /
+   _EJE, obligatorias en su GraphQL).
    ----------------------------------------------------------------------------- */
 CREATE OR REPLACE VIEW V_PROYECTO AS
-SELECT p.NIT_COMPANIA,
-       p.PROYECTO,
-       p.NOMBRE,
-       p.PLAN,
-       p.CODIGO_ENT_PRY,
+SELECT p.*,
        e.NOMBRE_ENT_PRY,
-       p.VALOR AS VALOR_PROYECTO
+       p.VALOR   AS VALOR_PROYECTO,
+       p.NOMBRE  AS NOMBRE_PROYECTO,
+       p.PLAN    AS ID_PLAN,
+       NVL(pd.NOMBRE, 'Plan ' || p.PLAN) AS DESC_PLAN,
+       p.ANO     AS VIGENCIA,
+       -- en local no están las tablas de programas / sectores / ejes del SIIF
+       'Programa ' || p.PROGRAMA AS NOMBRE_PROGRAMA,
+       'Sector '   || p.SECTOR   AS NOMBRE_SECTOR,
+       'Eje '      || p.EJE      AS NOMBRE_EJE
 FROM   PROYECTO p
-LEFT JOIN ENTIDADES_PRY e ON e.NIT_COMPANIA = p.NIT_COMPANIA AND e.CODIGO_ENT_PRY = p.CODIGO_ENT_PRY;
+LEFT JOIN ENTIDADES_PRY e    ON e.NIT_COMPANIA = p.NIT_COMPANIA AND e.CODIGO_ENT_PRY = p.CODIGO_ENT_PRY
+LEFT JOIN PLAN_DESARROLLO pd ON pd.NIT_COMPANIA = p.NIT_COMPANIA AND pd.PLAN = p.PLAN;

@@ -210,7 +210,8 @@ WITH res AS (
          g.GOAL_TYPE,
          CASE WHEN g.GOAL_TYPE IN ('PRODUCT','RESULT','IMPACT','WELL_BEING') THEN 'METAS'
               WHEN g.GOAL_TYPE IN ('PROJECT','ACTIVITY')                    THEN 'PROYECTOS'
-              WHEN g.GOAL_TYPE = 'ACTION_PLAN'                              THEN 'PLANES' END AS GOAL_GROUP,
+              WHEN g.GOAL_TYPE IN ('ACTION_PLAN','ACTION_PLAN_ACTIVITY')    THEN 'PLANES' END AS GOAL_GROUP,
+         g.PARENT_GOAL_ID,
          g.CODE, g.NAME, g.INDICATOR, g.BASE_VALUE, g.GOAL_VALUE, g.ACCUMULATION_TYPE, g.PROJECT_CODE,
          e.CODIGO_ENT_PRY                             AS ENTITY_CODE,
          e.CODIGO_ENT_PRY || ' - ' || e.NOMBRE_ENT_PRY AS ENTITY_NAME,
@@ -226,6 +227,8 @@ WITH res AS (
          rp.TOTAL                                     AS PAYMENTS,
          ROUND(rc.FINANCIAL_INDICATOR * 100, 2)       AS FIN_PROGRESS_COMMITMENT,
          ROUND(ro.FINANCIAL_INDICATOR * 100, 2)       AS FIN_PROGRESS_OBLIGATION,
+         ROUND(rp.FINANCIAL_INDICATOR * 100, 2)       AS FIN_PROGRESS_PAYMENT,
+         mc.SUBPERIOD,
          (SELECT COUNT(*) FROM SPD_MONITORING_RECORD_RESOURCE x
            WHERE x.MONITORING_RECORD_ID = mr.ID AND x.RESOURCE_TYPE IN ('MANUAL','DEFINITIVE')) AS SCHEDULED_RESOURCES,
          CASE WHEN mc.MONITORING_RESOURCES_ORIGIN = 'USER_AND_FINANCIAL' THEN 2 ELSE 1 END AS REQUIRED_RESOURCES
@@ -233,7 +236,10 @@ WITH res AS (
   JOIN   SPD_GOAL g ON g.NIT_COMPANIA = mc.NIT_COMPANIA AND g.PLAN = mc.PLAN
          AND (mc.GOAL_TYPES IS NULL
               OR INSTR(mc.GOAL_TYPES, '"' || g.GOAL_TYPE || '"') > 0
-              OR (g.GOAL_TYPE = 'PROJECT' AND INSTR(mc.GOAL_TYPES, '"ACTIVITY"') > 0))
+              OR (g.GOAL_TYPE = 'PROJECT' AND INSTR(mc.GOAL_TYPES, '"ACTIVITY"') > 0)
+              -- las actividades van con su proyecto y las metas de plan con su plan de acción (como en React)
+              OR (g.GOAL_TYPE = 'ACTIVITY' AND INSTR(mc.GOAL_TYPES, '"PROJECT"') > 0)
+              OR (g.GOAL_TYPE = 'ACTION_PLAN_ACTIVITY' AND INSTR(mc.GOAL_TYPES, '"ACTION_PLAN"') > 0))
   JOIN   ENTIDADES_PRY e ON e.ID = g.ENTITY_ID
   LEFT JOIN PLAN_DESARROLLO pd     ON pd.NIT_COMPANIA = mc.NIT_COMPANIA AND pd.PLAN = mc.PLAN
   LEFT JOIN SPD_DEV_PLAN_LEVEL l   ON l.ID = g.DEV_PLAN_LEVEL_ID
@@ -259,3 +265,45 @@ SELECT st.*,
        CASE WHEN SCHEDULE_STATUS = 'Reportada'  THEN 'Sin Validar'  ELSE SCHEDULE_STATUS END AS VALIDATION_STATUS,
        CASE WHEN SCHEDULE_STATUS = 'Validada'   THEN 'Sin Revisar'  ELSE SCHEDULE_STATUS END AS REVIEW_STATUS
 FROM   st;
+
+
+-- Focalización de cada registro de seguimiento (SPD_MONITORING_RECORD.TARGET_MATRIX), una fila por localización:
+-- TARGET_MATRIX = {"ed": {"localizationTab0": {...}, ...}, "org": {...}, "re": {...}} (formato del original).
+-- POS es la posición de la localización dentro de la sección (mismo orden que JSON_OBJECT_T.get_keys).
+CREATE OR REPLACE VIEW V_SPD_TARGET_MATRIX AS
+SELECT r.ID AS RECORD_ID, 'ed' AS SECTION, jt.POS, NVL(jt.LABEL, 'Localización?') AS LOCALIZATION_LABEL,
+       jt.H, jt.M, jt.U, jt.R, NVL(jt.H, 0) + NVL(jt.M, 0) AS TOTAL_PEOPLE,
+       CAST(NULL AS VARCHAR2(4000)) AS ORG_TYPE, CAST(NULL AS VARCHAR2(4000)) AS ORG_OBJECT,
+       CAST(NULL AS NUMBER) AS NUM_BENEFICIARIES, CAST(NULL AS VARCHAR2(4000)) AS POPULATION_DESC,
+       CAST(NULL AS NUMBER) AS CANINE, CAST(NULL AS NUMBER) AS FELINE, CAST(NULL AS NUMBER) AS OTHERS,
+       CAST(NULL AS VARCHAR2(4000)) AS FLORA
+FROM   SPD_MONITORING_RECORD r,
+       JSON_TABLE(r.TARGET_MATRIX, '$.ed.*' COLUMNS (
+         POS   FOR ORDINALITY,
+         LABEL VARCHAR2(1000) PATH '$.localizationLabel',
+         H NUMBER PATH '$.genre.h', M NUMBER PATH '$.genre.m',
+         U NUMBER PATH '$.zone.u',  R NUMBER PATH '$.zone.r')) jt
+WHERE  r.TARGET_MATRIX IS NOT NULL
+UNION ALL
+SELECT r.ID, 'org', jt.POS, NVL(jt.LABEL, 'Localización?'),
+       NULL, NULL, NULL, NULL, NULL,
+       jt.ORG_TYPE, jt.ORG_OBJECT, jt.NUM_BENEFICIARIES, jt.POPULATION_DESC,
+       NULL, NULL, NULL, NULL
+FROM   SPD_MONITORING_RECORD r,
+       JSON_TABLE(r.TARGET_MATRIX, '$.org.*' COLUMNS (
+         POS   FOR ORDINALITY,
+         LABEL VARCHAR2(1000) PATH '$.localizationLabel',
+         ORG_TYPE VARCHAR2(4000) PATH '$.orgType', ORG_OBJECT VARCHAR2(4000) PATH '$.orgObject',
+         NUM_BENEFICIARIES NUMBER PATH '$.numBeneficiaries', POPULATION_DESC VARCHAR2(4000) PATH '$.populationDesc')) jt
+WHERE  r.TARGET_MATRIX IS NOT NULL
+UNION ALL
+SELECT r.ID, 're', jt.POS, NVL(jt.LABEL, 'Localización?'),
+       NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+       NVL(jt.CM, 0) + NVL(jt.CF, 0), NVL(jt.FM, 0) + NVL(jt.FF, 0), NVL(jt.OTM, 0) + NVL(jt.OTF, 0), jt.FLORA
+FROM   SPD_MONITORING_RECORD r,
+       JSON_TABLE(r.TARGET_MATRIX, '$.re.*' COLUMNS (
+         POS   FOR ORDINALITY,
+         LABEL VARCHAR2(1000) PATH '$.localizationLabel',
+         CM NUMBER PATH '$.canine.m', CF NUMBER PATH '$.canine.f', FM NUMBER PATH '$.feline.m', FF NUMBER PATH '$.feline.f',
+         OTM NUMBER PATH '$.others.m', OTF NUMBER PATH '$.others.f', FLORA VARCHAR2(4000) PATH '$.flora')) jt
+WHERE  r.TARGET_MATRIX IS NOT NULL;

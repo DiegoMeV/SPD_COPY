@@ -1,0 +1,402 @@
+prompt --application/pages/page_01050
+begin
+--   Manifest
+--     PAGE: 01050
+--   Manifest End
+wwv_flow_imp.component_begin (
+ p_version_yyyy_mm_dd=>'2024.11.30'
+,p_release=>'24.2.0'
+,p_default_workspace_id=>4267703994621115
+,p_default_application_id=>160
+,p_default_id_offset=>1641014699613402
+,p_default_owner=>'SIIF'
+);
+wwv_flow_imp_page.create_page(
+ p_id=>1050
+,p_name=>'SPD_Tablero de seguimiento'
+,p_alias=>'SPD_TABLERO_SEGUIMIENTO'
+,p_step_title=>'Tablero de seguimiento'
+,p_autocomplete_on_off=>'OFF'
+,p_page_template_options=>'#DEFAULT#'
+,p_protection_level=>'C'
+,p_page_component_map=>'04'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(40374332901163367)
+,p_plug_name=>'Registros por estado'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_imp.id(39534998195162909)
+,p_plug_display_sequence=>50
+,p_location=>null
+,p_plug_source_type=>'NATIVE_JET_CHART'
+);
+wwv_flow_imp_page.create_jet_chart(
+ p_id=>wwv_flow_imp.id(40374716157163368)
+,p_region_id=>wwv_flow_imp.id(40374332901163367)
+,p_chart_type=>'pie'
+,p_animation_on_display=>'auto'
+,p_animation_on_data_change=>'auto'
+,p_hide_and_show_behavior=>'withRescale'
+,p_hover_behavior=>'dim'
+,p_stack=>'off'
+,p_stack_label=>'off'
+,p_connect_nulls=>'Y'
+,p_value_position=>'auto'
+,p_value_format_type=>'decimal'
+,p_value_decimal_places=>0
+,p_value_format_scaling=>'auto'
+,p_sorting=>'label-asc'
+,p_fill_multi_series_gaps=>true
+,p_tooltip_rendered=>'Y'
+,p_show_series_name=>true
+,p_show_group_name=>true
+,p_show_value=>true
+,p_show_label=>true
+,p_show_row=>true
+,p_show_start=>true
+,p_show_end=>true
+,p_show_progress=>true
+,p_show_baseline=>true
+,p_legend_rendered=>'off'
+,p_legend_position=>'auto'
+,p_overview_rendered=>'off'
+,p_horizontal_grid=>'auto'
+,p_vertical_grid=>'auto'
+,p_gauge_orientation=>'circular'
+,p_gauge_plot_area=>'on'
+,p_show_gauge_value=>true
+);
+wwv_flow_imp_page.create_jet_chart_series(
+ p_id=>wwv_flow_imp.id(40375227855163368)
+,p_chart_id=>wwv_flow_imp.id(40374716157163368)
+,p_seq=>10
+,p_name=>'Series 1'
+,p_data_source_type=>'SQL'
+,p_data_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select nvl(to_char(RECORD_STATUS_LABEL), ''(Sin dato)'') as LABEL,',
+'       count(*) as VALUE',
+'from   V_SPD_MONITORING where NIT_COMPANIA = :G_NIT_COMPANIA group  by RECORD_STATUS_LABEL',
+'order  by 2 desc'))
+,p_max_row_count=>20
+,p_series_type=>'pie'
+,p_items_value_column_name=>'VALUE'
+,p_items_label_column_name=>'LABEL'
+,p_items_label_rendered=>true
+,p_items_label_position=>'auto'
+,p_items_label_display_as=>'LABEL'
+,p_threshold_display=>'onIndicator'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(40375860405163368)
+,p_plug_name=>unistr('Avance f\00EDsico promedio por entidad (%)')
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_imp.id(39534998195162909)
+,p_plug_display_sequence=>60
+,p_plug_new_grid_row=>false
+,p_location=>null
+,p_plug_source_type=>'NATIVE_JET_CHART'
+);
+wwv_flow_imp_page.create_jet_chart(
+ p_id=>wwv_flow_imp.id(40376310676163368)
+,p_region_id=>wwv_flow_imp.id(40375860405163368)
+,p_chart_type=>'bar'
+,p_animation_on_display=>'auto'
+,p_animation_on_data_change=>'auto'
+,p_orientation=>'vertical'
+,p_hide_and_show_behavior=>'withRescale'
+,p_hover_behavior=>'dim'
+,p_stack=>'off'
+,p_stack_label=>'off'
+,p_connect_nulls=>'Y'
+,p_value_position=>'auto'
+,p_sorting=>'label-asc'
+,p_fill_multi_series_gaps=>true
+,p_tooltip_rendered=>'Y'
+,p_show_series_name=>true
+,p_show_group_name=>true
+,p_show_value=>true
+,p_show_label=>true
+,p_show_row=>true
+,p_show_start=>true
+,p_show_end=>true
+,p_show_progress=>true
+,p_show_baseline=>true
+,p_legend_rendered=>'off'
+,p_legend_position=>'auto'
+,p_overview_rendered=>'off'
+,p_horizontal_grid=>'auto'
+,p_vertical_grid=>'auto'
+,p_gauge_orientation=>'circular'
+,p_gauge_plot_area=>'on'
+,p_show_gauge_value=>true
+);
+wwv_flow_imp_page.create_jet_chart_series(
+ p_id=>wwv_flow_imp.id(40378002784163368)
+,p_chart_id=>wwv_flow_imp.id(40376310676163368)
+,p_seq=>10
+,p_name=>'Series 1'
+,p_data_source_type=>'SQL'
+,p_data_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select nvl(to_char(ENTITY_NAME), ''(Sin dato)'') as LABEL,',
+'       round(avg(PHYSICAL_PROGRESS_PCT), 2) as VALUE',
+'from   V_SPD_MONITORING where NIT_COMPANIA = :G_NIT_COMPANIA group  by ENTITY_NAME',
+'order  by 2 desc'))
+,p_max_row_count=>20
+,p_series_type=>'bar'
+,p_items_value_column_name=>'VALUE'
+,p_items_label_column_name=>'LABEL'
+,p_items_label_rendered=>false
+,p_items_label_position=>'auto'
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
+);
+wwv_flow_imp_page.create_jet_chart_axis(
+ p_id=>wwv_flow_imp.id(40377396368163368)
+,p_chart_id=>wwv_flow_imp.id(40376310676163368)
+,p_axis=>'y'
+,p_is_rendered=>'on'
+,p_format_type=>'decimal'
+,p_decimal_places=>0
+,p_format_scaling=>'auto'
+,p_baseline_scaling=>'zero'
+,p_position=>'auto'
+,p_major_tick_rendered=>'auto'
+,p_minor_tick_rendered=>'auto'
+,p_tick_label_rendered=>'on'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
+);
+wwv_flow_imp_page.create_jet_chart_axis(
+ p_id=>wwv_flow_imp.id(40376789171163368)
+,p_chart_id=>wwv_flow_imp.id(40376310676163368)
+,p_axis=>'x'
+,p_is_rendered=>'on'
+,p_baseline_scaling=>'zero'
+,p_major_tick_rendered=>'auto'
+,p_minor_tick_rendered=>'auto'
+,p_tick_label_rendered=>'on'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(40378530269163369)
+,p_plug_name=>unistr('Avance f\00EDsico promedio por tipo de meta (%)')
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_imp.id(39534998195162909)
+,p_plug_display_sequence=>70
+,p_location=>null
+,p_plug_source_type=>'NATIVE_JET_CHART'
+);
+wwv_flow_imp_page.create_jet_chart(
+ p_id=>wwv_flow_imp.id(40378927793163369)
+,p_region_id=>wwv_flow_imp.id(40378530269163369)
+,p_chart_type=>'bar'
+,p_animation_on_display=>'auto'
+,p_animation_on_data_change=>'auto'
+,p_orientation=>'vertical'
+,p_hide_and_show_behavior=>'withRescale'
+,p_hover_behavior=>'dim'
+,p_stack=>'off'
+,p_stack_label=>'off'
+,p_connect_nulls=>'Y'
+,p_value_position=>'auto'
+,p_sorting=>'label-asc'
+,p_fill_multi_series_gaps=>true
+,p_tooltip_rendered=>'Y'
+,p_show_series_name=>true
+,p_show_group_name=>true
+,p_show_value=>true
+,p_show_label=>true
+,p_show_row=>true
+,p_show_start=>true
+,p_show_end=>true
+,p_show_progress=>true
+,p_show_baseline=>true
+,p_legend_rendered=>'off'
+,p_legend_position=>'auto'
+,p_overview_rendered=>'off'
+,p_horizontal_grid=>'auto'
+,p_vertical_grid=>'auto'
+,p_gauge_orientation=>'circular'
+,p_gauge_plot_area=>'on'
+,p_show_gauge_value=>true
+);
+wwv_flow_imp_page.create_jet_chart_series(
+ p_id=>wwv_flow_imp.id(40380632912163369)
+,p_chart_id=>wwv_flow_imp.id(40378927793163369)
+,p_seq=>10
+,p_name=>'Series 1'
+,p_data_source_type=>'SQL'
+,p_data_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select nvl(to_char(GOAL_TYPE_LABEL), ''(Sin dato)'') as LABEL,',
+'       round(avg(PHYSICAL_PROGRESS_PCT), 2) as VALUE',
+'from   V_SPD_MONITORING where NIT_COMPANIA = :G_NIT_COMPANIA group  by GOAL_TYPE_LABEL',
+'order  by 2 desc'))
+,p_max_row_count=>20
+,p_series_type=>'bar'
+,p_items_value_column_name=>'VALUE'
+,p_items_label_column_name=>'LABEL'
+,p_items_label_rendered=>false
+,p_items_label_position=>'auto'
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
+);
+wwv_flow_imp_page.create_jet_chart_axis(
+ p_id=>wwv_flow_imp.id(40379493950163369)
+,p_chart_id=>wwv_flow_imp.id(40378927793163369)
+,p_axis=>'x'
+,p_is_rendered=>'on'
+,p_baseline_scaling=>'zero'
+,p_major_tick_rendered=>'auto'
+,p_minor_tick_rendered=>'auto'
+,p_tick_label_rendered=>'on'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
+);
+wwv_flow_imp_page.create_jet_chart_axis(
+ p_id=>wwv_flow_imp.id(40380026225163369)
+,p_chart_id=>wwv_flow_imp.id(40378927793163369)
+,p_axis=>'y'
+,p_is_rendered=>'on'
+,p_format_type=>'decimal'
+,p_decimal_places=>0
+,p_format_scaling=>'auto'
+,p_baseline_scaling=>'zero'
+,p_position=>'auto'
+,p_major_tick_rendered=>'auto'
+,p_minor_tick_rendered=>'auto'
+,p_tick_label_rendered=>'on'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(40381310731163369)
+,p_plug_name=>'Registros por periodo'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_imp.id(39534998195162909)
+,p_plug_display_sequence=>80
+,p_plug_new_grid_row=>false
+,p_location=>null
+,p_plug_source_type=>'NATIVE_JET_CHART'
+);
+wwv_flow_imp_page.create_jet_chart(
+ p_id=>wwv_flow_imp.id(40381646422163369)
+,p_region_id=>wwv_flow_imp.id(40381310731163369)
+,p_chart_type=>'line'
+,p_animation_on_display=>'auto'
+,p_animation_on_data_change=>'auto'
+,p_orientation=>'vertical'
+,p_hide_and_show_behavior=>'withRescale'
+,p_hover_behavior=>'dim'
+,p_stack=>'off'
+,p_stack_label=>'off'
+,p_connect_nulls=>'Y'
+,p_value_position=>'auto'
+,p_sorting=>'label-asc'
+,p_fill_multi_series_gaps=>true
+,p_tooltip_rendered=>'Y'
+,p_show_series_name=>true
+,p_show_group_name=>true
+,p_show_value=>true
+,p_show_label=>true
+,p_show_row=>true
+,p_show_start=>true
+,p_show_end=>true
+,p_show_progress=>true
+,p_show_baseline=>true
+,p_legend_rendered=>'off'
+,p_legend_position=>'auto'
+,p_overview_rendered=>'off'
+,p_horizontal_grid=>'auto'
+,p_vertical_grid=>'auto'
+,p_gauge_orientation=>'circular'
+,p_gauge_plot_area=>'on'
+,p_show_gauge_value=>true
+);
+wwv_flow_imp_page.create_jet_chart_series(
+ p_id=>wwv_flow_imp.id(40383386685163370)
+,p_chart_id=>wwv_flow_imp.id(40381646422163369)
+,p_seq=>10
+,p_name=>'Series 1'
+,p_data_source_type=>'SQL'
+,p_data_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select nvl(to_char(MONITORING_PERIOD), ''(Sin dato)'') as LABEL,',
+'       count(*) as VALUE',
+'from   V_SPD_MONITORING where NIT_COMPANIA = :G_NIT_COMPANIA group  by MONITORING_PERIOD',
+'order  by 1'))
+,p_max_row_count=>20
+,p_series_type=>'line'
+,p_items_value_column_name=>'VALUE'
+,p_items_label_column_name=>'LABEL'
+,p_items_label_rendered=>false
+,p_items_label_position=>'auto'
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
+);
+wwv_flow_imp_page.create_jet_chart_axis(
+ p_id=>wwv_flow_imp.id(40382133464163369)
+,p_chart_id=>wwv_flow_imp.id(40381646422163369)
+,p_axis=>'x'
+,p_is_rendered=>'on'
+,p_baseline_scaling=>'zero'
+,p_major_tick_rendered=>'auto'
+,p_minor_tick_rendered=>'auto'
+,p_tick_label_rendered=>'on'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
+);
+wwv_flow_imp_page.create_jet_chart_axis(
+ p_id=>wwv_flow_imp.id(40382764236163369)
+,p_chart_id=>wwv_flow_imp.id(40381646422163369)
+,p_axis=>'y'
+,p_is_rendered=>'on'
+,p_format_type=>'decimal'
+,p_decimal_places=>0
+,p_format_scaling=>'auto'
+,p_baseline_scaling=>'zero'
+,p_position=>'auto'
+,p_major_tick_rendered=>'auto'
+,p_minor_tick_rendered=>'auto'
+,p_tick_label_rendered=>'on'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
+);
+wwv_flow_imp.component_end;
+end;
+/

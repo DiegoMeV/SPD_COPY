@@ -1,0 +1,83 @@
+prompt --application/shared_components/user_interface/lovs/spd_tipo_de_usuario_siif
+begin
+--   Manifest
+--     SPD - TIPO DE USUARIO SIIF
+--   Manifest End
+wwv_flow_imp.component_begin (
+ p_version_yyyy_mm_dd=>'2024.11.30'
+,p_release=>'24.2.0'
+,p_default_workspace_id=>4267703994621115
+,p_default_application_id=>160
+,p_default_id_offset=>1641014699613402
+,p_default_owner=>'SIIF'
+);
+wwv_flow_imp_shared.create_list_of_values(
+ p_id=>wwv_flow_imp.id(40769868144163573)
+,p_lov_name=>'SPD - TIPO DE USUARIO SIIF'
+,p_lov_query=>'.'||wwv_flow_imp.id(40769868144163573)||'.'
+,p_location=>'STATIC'
+,p_version_scn=>2578761
+);
+wwv_flow_imp_shared.create_static_lov_data(
+ p_id=>wwv_flow_imp.id(40769994017163573)
+,p_lov_disp_sequence=>10
+,p_lov_disp_value=>'DIRECTIVO'
+,p_lov_return_value=>'DIRECTIVO'
+);
+wwv_flow_imp_shared.create_static_lov_data(
+ p_id=>wwv_flow_imp.id(40770019488163573)
+,p_lov_disp_sequence=>20
+,p_lov_disp_value=>'SAYAYIN'
+,p_lov_return_value=>'SAYAYIN'
+);
+wwv_flow_imp_shared.create_static_lov_data(
+ p_id=>wwv_flow_imp.id(40770130419163573)
+,p_lov_disp_sequence=>30
+,p_lov_disp_value=>'SAYAYINNOMINA'
+,p_lov_return_value=>'SAYAYINNOMINA'
+);
+wwv_flow_imp_shared.create_static_lov_data(
+ p_id=>wwv_flow_imp.id(40770256443163573)
+,p_lov_disp_sequence=>40
+,p_lov_disp_value=>'CONSULTA'
+,p_lov_return_value=>'CONSULTA'
+);
+wwv_flow_imp_shared.create_static_lov_data(
+ p_id=>wwv_flow_imp.id(40770368930163573)
+,p_lov_disp_sequence=>50
+,p_lov_disp_value=>'DISPONIBILIDADES'
+,p_lov_return_value=>'DISPONIBILIDADES'
+);
+wwv_flow_imp_shared.create_static_lov_data(
+ p_id=>wwv_flow_imp.id(40770497770163573)
+,p_lov_disp_sequence=>60
+,p_lov_disp_value=>'SAYAYINPPTO'
+,p_lov_return_value=>'SAYAYINPPTO'
+);
+wwv_flow_imp_shared.create_static_lov_data(
+ p_id=>wwv_flow_imp.id(40770607456163573)
+,p_lov_disp_sequence=>70
+,p_lov_disp_value=>'COMPROMISOS'
+,p_lov_return_value=>'COMPROMISOS'
+);
+wwv_flow_imp_shared.create_static_lov_data(
+ p_id=>wwv_flow_imp.id(40770651859163573)
+,p_lov_disp_sequence=>80
+,p_lov_disp_value=>'SAYAYINALM'
+,p_lov_return_value=>'SAYAYINALM'
+);
+wwv_flow_imp_shared.create_static_lov_data(
+ p_id=>wwv_flow_imp.id(40770782446163573)
+,p_lov_disp_sequence=>90
+,p_lov_disp_value=>'OBLIGACIONES'
+,p_lov_return_value=>'OBLIGACIONES'
+);
+wwv_flow_imp_shared.create_static_lov_data(
+ p_id=>wwv_flow_imp.id(40770837576163573)
+,p_lov_disp_sequence=>100
+,p_lov_disp_value=>'AUXILIAR'
+,p_lov_return_value=>'AUXILIAR'
+);
+wwv_flow_imp.component_end;
+end;
+/

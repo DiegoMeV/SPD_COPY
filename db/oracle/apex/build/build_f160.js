@@ -3,7 +3,7 @@
 //   Por defecto el resultado es para APEX 24.2 (la versión de producción y del contenedor local).
 //   Con --24.1 se convierte la base a 24.1 (p_attributes -> p_attribute_NN, sin p_dialog_resizable,
 //   modo de compatibilidad 21.2), para importarla en un APEX 24.1.
-// Se importa en el contenedor local (run_import_160.sh) y luego se reexporta con apex_export (export_160.sql).
+// HISTÓRICO (ver rebuild_160_legacy.sh): la fuente de la app ahora es el export dividido db/oracle/apex/f160.
 const fs = require('fs');
 const path = require('path');
 const F154 = path.join(__dirname, '..', 'f154');      // export split de la app 154 (install.sql + application/)

@@ -1,0 +1,22 @@
+prompt --application/shared_components/logic/build_options
+begin
+--   Manifest
+--     BUILD OPTIONS: 160
+--   Manifest End
+wwv_flow_imp.component_begin (
+ p_version_yyyy_mm_dd=>'2024.11.30'
+,p_release=>'24.2.0'
+,p_default_workspace_id=>4267703994621115
+,p_default_application_id=>160
+,p_default_id_offset=>1641014699613402
+,p_default_owner=>'SIIF'
+);
+wwv_flow_imp_shared.create_build_option(
+ p_id=>wwv_flow_imp.id(645791437960681119)
+,p_build_option_name=>'Comentado'
+,p_build_option_status=>'EXCLUDE'
+,p_version_scn=>35446683760
+);
+wwv_flow_imp.component_end;
+end;
+/

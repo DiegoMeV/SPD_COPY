@@ -43,3 +43,6 @@ next-env.d.ts
 
 __MACOSX
 monitoring_records.tsv
+# pruebas APEX (Edge + playwright-core)
+db/oracle/apex/build/tests/node_modules/
+db/oracle/apex/build/tests/*.png

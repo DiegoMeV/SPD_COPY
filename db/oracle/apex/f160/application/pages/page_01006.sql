@@ -1,0 +1,413 @@
+prompt --application/pages/page_01006
+begin
+--   Manifest
+--     PAGE: 01006
+--   Manifest End
+wwv_flow_imp.component_begin (
+ p_version_yyyy_mm_dd=>'2024.11.30'
+,p_release=>'24.2.0'
+,p_default_workspace_id=>4267703994621115
+,p_default_application_id=>160
+,p_default_id_offset=>1641014699613402
+,p_default_owner=>'SIIF'
+);
+wwv_flow_imp_page.create_page(
+ p_id=>1006
+,p_name=>'SPD_Planes de desarrollo'
+,p_alias=>'SPD_PLANES_DESARROLLO'
+,p_step_title=>'Planes de desarrollo'
+,p_autocomplete_on_off=>'OFF'
+,p_page_template_options=>'#DEFAULT#'
+,p_protection_level=>'C'
+,p_help_text=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'<p>To find data enter a search term into the search dialog, or click on the column headings to limit the records returned.</p>',
+'',
+'<p>You can perform numerous functions by clicking the <strong>Actions</strong> button. This includes selecting the columns that are displayed / hidden and their display sequence, plus numerous data and format functions.  You can also define additiona'
+||'l views of the data using the chart, group by, and pivot options.</p>',
+'',
+'<p>If you want to save your customizations select report, or click download to unload the data. Enter you email address and time frame under subscription to be sent the data on a regular basis.<p>',
+'',
+'<p>For additional information click Help at the bottom of the Actions menu.</p> ',
+'',
+'<p>Click the <strong>Reset</strong> button to reset the interactive report back to the default settings.</p>'))
+,p_page_component_map=>'18'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(39886769636163105)
+,p_plug_name=>'Planes de desarrollo'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_display_sequence=>10
+,p_query_type=>'TABLE'
+,p_query_table=>'PLAN_DESARROLLO'
+,p_query_where=>'NIT_COMPANIA = :G_NIT_COMPANIA'
+,p_include_rowid_column=>false
+,p_plug_source_type=>'NATIVE_IR'
+,p_prn_page_header=>'Planes de desarrollo'
+);
+wwv_flow_imp_page.create_worksheet(
+ p_id=>wwv_flow_imp.id(39886880917163105)
+,p_name=>'Planes de desarrollo'
+,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_no_data_found_message=>'No data found.'
+,p_base_pk1=>'PLAN'
+,p_base_pk2=>'NIT_COMPANIA'
+,p_pagination_type=>'ROWS_X_TO_Y'
+,p_pagination_display_pos=>'BOTTOM_RIGHT'
+,p_report_list_mode=>'TABS'
+,p_lazy_loading=>false
+,p_show_detail_link=>'C'
+,p_show_notify=>'Y'
+,p_download_formats=>'CSV:HTML:XLSX:PDF'
+,p_enable_mail_download=>'Y'
+,p_detail_link=>'f?p=&APP_ID.:1060:&APP_SESSION.::&DEBUG.:1060:P1060_NIT_COMPANIA,P1060_PLAN:\#NIT_COMPANIA#\,\#PLAN#\'
+,p_detail_link_text=>'<span role="img" aria-label="Edit" class="fa fa-edit" title="Edit"></span>'
+,p_owner=>'ADMIN'
+,p_internal_uid=>38245866217549703
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39887899237163105)
+,p_db_column_name=>'NIT_COMPANIA'
+,p_display_order=>1
+,p_is_primary_key=>'Y'
+,p_column_identifier=>'A'
+,p_column_label=>unistr('Compa\00F1\00EDa')
+,p_column_type=>'STRING'
+,p_heading_alignment=>'LEFT'
+,p_tz_dependent=>'N'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39888287411163105)
+,p_db_column_name=>'PLAN'
+,p_display_order=>2
+,p_is_primary_key=>'Y'
+,p_column_identifier=>'B'
+,p_column_label=>unistr('C\00F3digo')
+,p_column_type=>'NUMBER'
+,p_heading_alignment=>'LEFT'
+,p_tz_dependent=>'N'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39888704833163106)
+,p_db_column_name=>'NOMBRE'
+,p_display_order=>3
+,p_column_identifier=>'C'
+,p_column_label=>'Nombre'
+,p_column_type=>'STRING'
+,p_heading_alignment=>'LEFT'
+,p_tz_dependent=>'N'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39890262569163106)
+,p_db_column_name=>'GOBERNANTE'
+,p_display_order=>4
+,p_column_identifier=>'G'
+,p_column_label=>'Gobernante'
+,p_column_type=>'STRING'
+,p_heading_alignment=>'LEFT'
+,p_tz_dependent=>'N'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39889099249163106)
+,p_db_column_name=>'FECHA_INICIO'
+,p_display_order=>5
+,p_column_identifier=>'D'
+,p_column_label=>'Fecha Inicio'
+,p_column_type=>'DATE'
+,p_heading_alignment=>'LEFT'
+,p_tz_dependent=>'N'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39889511112163106)
+,p_db_column_name=>'FECHA_FIN'
+,p_display_order=>6
+,p_column_identifier=>'E'
+,p_column_label=>'Fecha Fin'
+,p_column_type=>'DATE'
+,p_heading_alignment=>'LEFT'
+,p_tz_dependent=>'N'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39889855353163106)
+,p_db_column_name=>'OBJETIVO'
+,p_display_order=>6
+,p_column_identifier=>'F'
+,p_column_label=>'Objetivo'
+,p_column_type=>'STRING'
+,p_display_text_as=>'HIDDEN_ESCAPE_SC'
+,p_heading_alignment=>'LEFT'
+,p_tz_dependent=>'N'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39890616504163106)
+,p_db_column_name=>'ID'
+,p_display_order=>8
+,p_column_identifier=>'H'
+,p_column_label=>'ID'
+,p_column_type=>'NUMBER'
+,p_display_text_as=>'HIDDEN_ESCAPE_SC'
+,p_heading_alignment=>'RIGHT'
+,p_column_alignment=>'RIGHT'
+,p_tz_dependent=>'N'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39891090340163106)
+,p_db_column_name=>'ETIQUETA_EJE_SINGULAR'
+,p_display_order=>9
+,p_column_identifier=>'I'
+,p_column_label=>'Etiqueta eje (singular)'
+,p_column_type=>'STRING'
+,p_display_text_as=>'HIDDEN_ESCAPE_SC'
+,p_heading_alignment=>'LEFT'
+,p_tz_dependent=>'N'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39891466726163106)
+,p_db_column_name=>'ETIQUETA_EJE_PLURAL'
+,p_display_order=>10
+,p_column_identifier=>'J'
+,p_column_label=>'Etiqueta eje (plural)'
+,p_column_type=>'STRING'
+,p_display_text_as=>'HIDDEN_ESCAPE_SC'
+,p_heading_alignment=>'LEFT'
+,p_tz_dependent=>'N'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39891818642163106)
+,p_db_column_name=>'ETIQUETA_SECTOR_SINGULAR'
+,p_display_order=>11
+,p_column_identifier=>'K'
+,p_column_label=>'Etiqueta sector (singular)'
+,p_column_type=>'STRING'
+,p_display_text_as=>'HIDDEN_ESCAPE_SC'
+,p_heading_alignment=>'LEFT'
+,p_tz_dependent=>'N'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39892314652163106)
+,p_db_column_name=>'ETIQUETA_SECTOR_PLURAL'
+,p_display_order=>12
+,p_column_identifier=>'L'
+,p_column_label=>'Etiqueta sector (plural)'
+,p_column_type=>'STRING'
+,p_display_text_as=>'HIDDEN_ESCAPE_SC'
+,p_heading_alignment=>'LEFT'
+,p_tz_dependent=>'N'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39892713892163107)
+,p_db_column_name=>'ETIQUETA_PROGRAMA_SINGULAR'
+,p_display_order=>13
+,p_column_identifier=>'M'
+,p_column_label=>'Etiqueta programa (singular)'
+,p_column_type=>'STRING'
+,p_display_text_as=>'HIDDEN_ESCAPE_SC'
+,p_heading_alignment=>'LEFT'
+,p_tz_dependent=>'N'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39893019832163107)
+,p_db_column_name=>'ETIQUETA_PROGRAMA_PLURAL'
+,p_display_order=>14
+,p_column_identifier=>'N'
+,p_column_label=>'Etiqueta programa (plural)'
+,p_column_type=>'STRING'
+,p_display_text_as=>'HIDDEN_ESCAPE_SC'
+,p_heading_alignment=>'LEFT'
+,p_tz_dependent=>'N'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39893510319163107)
+,p_db_column_name=>'ETIQUETA_SUBPROGRAMA_SINGULAR'
+,p_display_order=>15
+,p_column_identifier=>'O'
+,p_column_label=>'Etiqueta subprograma (singular)'
+,p_column_type=>'STRING'
+,p_display_text_as=>'HIDDEN_ESCAPE_SC'
+,p_heading_alignment=>'LEFT'
+,p_tz_dependent=>'N'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39893881983163107)
+,p_db_column_name=>'ETIQUETA_SUBPROGRAMA_PLURAL'
+,p_display_order=>16
+,p_column_identifier=>'P'
+,p_column_label=>'Etiqueta subprograma (plural)'
+,p_column_type=>'STRING'
+,p_display_text_as=>'HIDDEN_ESCAPE_SC'
+,p_heading_alignment=>'LEFT'
+,p_tz_dependent=>'N'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39894275594163107)
+,p_db_column_name=>'MANEJA_SECTOR'
+,p_display_order=>17
+,p_column_identifier=>'Q'
+,p_column_label=>'Maneja sector'
+,p_column_type=>'STRING'
+,p_display_text_as=>'HIDDEN_ESCAPE_SC'
+,p_heading_alignment=>'LEFT'
+,p_tz_dependent=>'N'
+,p_rpt_named_lov=>wwv_flow_imp.id(40760407243163572)
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39894696798163107)
+,p_db_column_name=>'NIVEL_MR'
+,p_display_order=>18
+,p_column_identifier=>'R'
+,p_column_label=>'Nivel de metas de resultado'
+,p_column_type=>'NUMBER'
+,p_display_text_as=>'HIDDEN_ESCAPE_SC'
+,p_heading_alignment=>'RIGHT'
+,p_column_alignment=>'RIGHT'
+,p_format_mask=>'999G999G999G999G999G999G999G999G999G990'
+,p_tz_dependent=>'N'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39895108201163107)
+,p_db_column_name=>'NIVEL_MP'
+,p_display_order=>19
+,p_column_identifier=>'S'
+,p_column_label=>'Nivel de metas de producto'
+,p_column_type=>'NUMBER'
+,p_display_text_as=>'HIDDEN_ESCAPE_SC'
+,p_heading_alignment=>'RIGHT'
+,p_column_alignment=>'RIGHT'
+,p_format_mask=>'999G999G999G999G999G999G999G999G999G990'
+,p_tz_dependent=>'N'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39895491584163107)
+,p_db_column_name=>'SPD_ACTIVO'
+,p_display_order=>20
+,p_column_identifier=>'T'
+,p_column_label=>'Activo en SPD'
+,p_column_type=>'STRING'
+,p_display_text_as=>'HIDDEN_ESCAPE_SC'
+,p_heading_alignment=>'LEFT'
+,p_tz_dependent=>'N'
+,p_rpt_named_lov=>wwv_flow_imp.id(40760407243163572)
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39895833449163107)
+,p_db_column_name=>'SPD_INICIO_GOBIERNO'
+,p_display_order=>21
+,p_column_identifier=>'U'
+,p_column_label=>'Inicio del gobierno (SPD)'
+,p_column_type=>'DATE'
+,p_display_text_as=>'HIDDEN_ESCAPE_SC'
+,p_heading_alignment=>'LEFT'
+,p_tz_dependent=>'N'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39896292818163107)
+,p_db_column_name=>'SPD_FIN_GOBIERNO'
+,p_display_order=>22
+,p_column_identifier=>'V'
+,p_column_label=>'Fin del gobierno (SPD)'
+,p_column_type=>'DATE'
+,p_display_text_as=>'HIDDEN_ESCAPE_SC'
+,p_heading_alignment=>'LEFT'
+,p_tz_dependent=>'N'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39896651175163107)
+,p_db_column_name=>'SPD_CONFIG'
+,p_display_order=>23
+,p_column_identifier=>'W'
+,p_column_label=>unistr('Configuraci\00F3n SPD (JSON)')
+,p_allow_sorting=>'N'
+,p_allow_ctrl_breaks=>'N'
+,p_allow_aggregations=>'N'
+,p_allow_computations=>'N'
+,p_allow_charting=>'N'
+,p_allow_group_by=>'N'
+,p_allow_pivot=>'N'
+,p_column_type=>'CLOB'
+,p_display_text_as=>'HIDDEN_ESCAPE_SC'
+,p_heading_alignment=>'LEFT'
+,p_tz_dependent=>'N'
+,p_rpt_show_filter_lov=>'N'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(39897023623163108)
+,p_db_column_name=>'SPD_ORIGEN_ACTIVIDADES'
+,p_display_order=>24
+,p_column_identifier=>'X'
+,p_column_label=>'Origen de actividades (SPD)'
+,p_column_type=>'STRING'
+,p_display_text_as=>'HIDDEN_ESCAPE_SC'
+,p_heading_alignment=>'LEFT'
+,p_tz_dependent=>'N'
+,p_rpt_named_lov=>wwv_flow_imp.id(40768452442163573)
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_rpt(
+ p_id=>wwv_flow_imp.id(40489814307163418)
+,p_application_user=>'APXWS_DEFAULT'
+,p_report_seq=>10
+,p_report_alias=>'388488'
+,p_status=>'PUBLIC'
+,p_is_default=>'Y'
+,p_report_columns=>'NIT_COMPANIA:PLAN:NOMBRE:GOBERNANTE:FECHA_INICIO:FECHA_FIN'
+,p_sort_direction_1=>'ASC'
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(39897590905163108)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_imp.id(645812698170947339)
+,p_button_name=>'CREATE'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#:t-Button--iconLeft'
+,p_button_template_id=>wwv_flow_imp.id(39599033835162924)
+,p_button_image_alt=>'Nuevo'
+,p_button_position=>'CREATE'
+,p_button_redirect_url=>'f?p=&APP_ID.:1007:&APP_SESSION.::&DEBUG.:1007::'
+,p_icon_css_classes=>'fa-file-plus'
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(39897824859163108)
+,p_name=>'Edit Report - Dialog Closed'
+,p_event_sequence=>10
+,p_triggering_element_type=>'REGION'
+,p_triggering_region_id=>wwv_flow_imp.id(39886769636163105)
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'apexafterclosedialog'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(39898336005163108)
+,p_event_id=>wwv_flow_imp.id(39897824859163108)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_imp.id(39886769636163105)
+,p_attribute_01=>'N'
+);
+wwv_flow_imp.component_end;
+end;
+/

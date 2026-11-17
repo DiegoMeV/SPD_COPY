@@ -1,0 +1,673 @@
+prompt --application/shared_components/globalization/messages
+begin
+--   Manifest
+--     MESSAGES: 160
+--   Manifest End
+wwv_flow_imp.component_begin (
+ p_version_yyyy_mm_dd=>'2024.11.30'
+,p_release=>'24.2.0'
+,p_default_workspace_id=>4267703994621115
+,p_default_application_id=>160
+,p_default_id_offset=>1641014699613402
+,p_default_owner=>'SIIF'
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41248781870911858)
+,p_name=>'APEX.CLOSE_NOTIFICATION'
+,p_message_language=>'es'
+,p_message_text=>'Cerrar'
+,p_is_js_message=>true
+,p_version_scn=>2668299
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41248555165911858)
+,p_name=>'APEX.DIALOG.CANCEL'
+,p_message_language=>'es'
+,p_message_text=>'Cancelar'
+,p_is_js_message=>true
+,p_version_scn=>2668299
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41248671094911858)
+,p_name=>'APEX.DIALOG.CLOSE'
+,p_message_language=>'es'
+,p_message_text=>'Cerrar'
+,p_is_js_message=>true
+,p_version_scn=>2668299
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41248432650911858)
+,p_name=>'APEX.DIALOG.OK'
+,p_message_language=>'es'
+,p_message_text=>'Aceptar'
+,p_is_js_message=>true
+,p_version_scn=>2668299
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41247216957911858)
+,p_name=>'APEX.GV.DELETED_COUNT'
+,p_message_language=>'es'
+,p_message_text=>'%0 filas eliminadas'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41246771778911858)
+,p_name=>'APEX.GV.PAGE_RANGE_XYZ'
+,p_message_language=>'es'
+,p_message_text=>'%0 - %1 de %2'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41246913839911858)
+,p_name=>'APEX.GV.SELECTION_COUNT'
+,p_message_language=>'es'
+,p_message_text=>'%0 filas seleccionadas'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41247035198911858)
+,p_name=>'APEX.GV.SELECT_ALL_ROWS'
+,p_message_language=>'es'
+,p_message_text=>'Seleccionar todas las filas'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41247191282911858)
+,p_name=>'APEX.GV.SELECT_ROW'
+,p_message_language=>'es'
+,p_message_text=>'Seleccionar fila'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41246916558911858)
+,p_name=>'APEX.GV.TOTAL_PAGES'
+,p_message_language=>'es'
+,p_message_text=>'Total %0'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41240520671911857)
+,p_name=>'APEX.IG.ACTIONS'
+,p_message_language=>'es'
+,p_message_text=>'Acciones'
+,p_is_js_message=>true
+,p_version_scn=>2668297
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41240971666911857)
+,p_name=>'APEX.IG.ADD_ROW'
+,p_message_language=>'es'
+,p_message_text=>'Nuevo'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41245690589911857)
+,p_name=>'APEX.IG.AGGREGATE'
+,p_message_language=>'es'
+,p_message_text=>'Totalizar'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41242210990911857)
+,p_name=>'APEX.IG.CANCEL'
+,p_message_language=>'es'
+,p_message_text=>'Cancelar'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41241968466911857)
+,p_name=>'APEX.IG.CHANGES_SAVED'
+,p_message_language=>'es'
+,p_message_text=>'Cambios guardados'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41244297690911857)
+,p_name=>'APEX.IG.CHART'
+,p_message_language=>'es'
+,p_message_text=>unistr('Gr\00E1fico')
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41243446364911857)
+,p_name=>'APEX.IG.COLUMNS'
+,p_message_language=>'es'
+,p_message_text=>'Columnas'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41245895067911857)
+,p_name=>'APEX.IG.COMPUTE'
+,p_message_language=>'es'
+,p_message_text=>'Calcular'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41246034739911858)
+,p_name=>'APEX.IG.CONTROL_BREAK'
+,p_message_language=>'es'
+,p_message_text=>'Corte de control'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41243883372911857)
+,p_name=>'APEX.IG.DATA'
+,p_message_language=>'es'
+,p_message_text=>'Datos'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41242271916911857)
+,p_name=>'APEX.IG.DELETE'
+,p_message_language=>'es'
+,p_message_text=>'Eliminar'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41242413970911857)
+,p_name=>'APEX.IG.DELETE_ROW'
+,p_message_language=>'es'
+,p_message_text=>'Eliminar fila'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41242442976911857)
+,p_name=>'APEX.IG.DELETE_ROWS'
+,p_message_language=>'es'
+,p_message_text=>'Eliminar filas'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41245094614911857)
+,p_name=>'APEX.IG.DOWNLOAD'
+,p_message_language=>'es'
+,p_message_text=>'Descargar'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41242561258911857)
+,p_name=>'APEX.IG.DUPLICATE_ROW'
+,p_message_language=>'es'
+,p_message_text=>'Duplicar fila'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41242626436911857)
+,p_name=>'APEX.IG.DUPLICATE_ROWS'
+,p_message_language=>'es'
+,p_message_text=>'Duplicar filas'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41240811543911857)
+,p_name=>'APEX.IG.EDIT'
+,p_message_language=>'es'
+,p_message_text=>'Editar'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41243620532911857)
+,p_name=>'APEX.IG.FILTER'
+,p_message_language=>'es'
+,p_message_text=>'Filtrar'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41244103481911857)
+,p_name=>'APEX.IG.FORMAT'
+,p_message_language=>'es'
+,p_message_text=>'Formato'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41241247260911857)
+,p_name=>'APEX.IG.GO'
+,p_message_language=>'es'
+,p_message_text=>'Ir'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41244510551911857)
+,p_name=>'APEX.IG.GROUP_BY'
+,p_message_language=>'es'
+,p_message_text=>'Agrupar por'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41245244263911857)
+,p_name=>'APEX.IG.HELP'
+,p_message_language=>'es'
+,p_message_text=>'Ayuda'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41246262541911858)
+,p_name=>'APEX.IG.HIGHLIGHT'
+,p_message_language=>'es'
+,p_message_text=>'Resaltar'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41242074447911857)
+,p_name=>'APEX.IG.NO_DATA_FOUND'
+,p_message_language=>'es'
+,p_message_text=>'No se encontraron datos'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41244679322911857)
+,p_name=>'APEX.IG.PIVOT'
+,p_message_language=>'es'
+,p_message_text=>'Pivotar'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41242781848911857)
+,p_name=>'APEX.IG.REFRESH_ROW'
+,p_message_language=>'es'
+,p_message_text=>'Refrescar fila'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41242850176911857)
+,p_name=>'APEX.IG.REFRESH_ROWS'
+,p_message_language=>'es'
+,p_message_text=>'Refrescar filas'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41244869845911857)
+,p_name=>'APEX.IG.REPORT'
+,p_message_language=>'es'
+,p_message_text=>'Reporte'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41241056327911857)
+,p_name=>'APEX.IG.RESET'
+,p_message_language=>'es'
+,p_message_text=>'Restablecer'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41242926534911857)
+,p_name=>'APEX.IG.REVERT_CHANGES'
+,p_message_language=>'es'
+,p_message_text=>'Revertir cambios'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41243039986911857)
+,p_name=>'APEX.IG.REVERT_ROWS'
+,p_message_language=>'es'
+,p_message_text=>'Revertir filas'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41246500571911858)
+,p_name=>'APEX.IG.ROWS_PER_PAGE'
+,p_message_language=>'es'
+,p_message_text=>unistr('Filas por p\00E1gina')
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41243177031911857)
+,p_name=>'APEX.IG.ROW_ACTIONS'
+,p_message_language=>'es'
+,p_message_text=>'Acciones de fila'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41240894901911857)
+,p_name=>'APEX.IG.SAVE'
+,p_message_language=>'es'
+,p_message_text=>'Guardar'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41241458769911857)
+,p_name=>'APEX.IG.SEARCH'
+,p_message_language=>'es'
+,p_message_text=>'Buscar'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41241653880911857)
+,p_name=>'APEX.IG.SEARCH.ALL_COLUMNS'
+,p_message_language=>'es'
+,p_message_text=>'Buscar: Todas las columnas de texto'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41241800647911857)
+,p_name=>'APEX.IG.SEARCH.COLUMN'
+,p_message_language=>'es'
+,p_message_text=>'Buscar: %0'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41243371522911857)
+,p_name=>'APEX.IG.SELECTION'
+,p_message_language=>'es'
+,p_message_text=>unistr('Selecci\00F3n')
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41243217006911857)
+,p_name=>'APEX.IG.SINGLE_ROW_VIEW'
+,p_message_language=>'es'
+,p_message_text=>'Vista de un registro'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41245463102911857)
+,p_name=>'APEX.IG.SORT'
+,p_message_language=>'es'
+,p_message_text=>'Ordenar'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41248133580911858)
+,p_name=>'APEX.PAGE_ITEM_IS_REQUIRED'
+,p_message_language=>'es'
+,p_message_text=>'#LABEL# es obligatorio.'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41240667151911857)
+,p_name=>'APEXIR_ACTIONS'
+,p_message_language=>'es'
+,p_message_text=>'Acciones'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41245785237911857)
+,p_name=>'APEXIR_AGGREGATE'
+,p_message_language=>'es'
+,p_message_text=>'Totalizar'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41244332625911857)
+,p_name=>'APEXIR_CHART'
+,p_message_language=>'es'
+,p_message_text=>unistr('Gr\00E1fico')
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41243611290911857)
+,p_name=>'APEXIR_COLUMNS'
+,p_message_language=>'es'
+,p_message_text=>'Columnas'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41245961340911857)
+,p_name=>'APEXIR_COMPUTE'
+,p_message_language=>'es'
+,p_message_text=>'Calcular'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41246214263911858)
+,p_name=>'APEXIR_CONTROL_BREAK'
+,p_message_language=>'es'
+,p_message_text=>'Corte de control'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41243945838911857)
+,p_name=>'APEXIR_DATA'
+,p_message_language=>'es'
+,p_message_text=>'Datos'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41248311747911858)
+,p_name=>'APEXIR_DELETE_CONFIRM_JS_DIALOG'
+,p_message_language=>'es'
+,p_message_text=>unistr('\00BFDesea eliminar este registro?')
+,p_version_scn=>2668299
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41245154508911857)
+,p_name=>'APEXIR_DOWNLOAD'
+,p_message_language=>'es'
+,p_message_text=>'Descargar'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41243718946911857)
+,p_name=>'APEXIR_FILTER'
+,p_message_language=>'es'
+,p_message_text=>'Filtrar'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41244148077911857)
+,p_name=>'APEXIR_FORMAT'
+,p_message_language=>'es'
+,p_message_text=>'Formato'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41241390830911857)
+,p_name=>'APEXIR_GO'
+,p_message_language=>'es'
+,p_message_text=>'Ir'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41244532677911857)
+,p_name=>'APEXIR_GROUP_BY'
+,p_message_language=>'es'
+,p_message_text=>'Agrupar por'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41245320777911857)
+,p_name=>'APEXIR_HELP'
+,p_message_language=>'es'
+,p_message_text=>'Ayuda'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41246371756911858)
+,p_name=>'APEXIR_HIGHLIGHT'
+,p_message_language=>'es'
+,p_message_text=>'Resaltar'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41244800984911857)
+,p_name=>'APEXIR_PIVOT'
+,p_message_language=>'es'
+,p_message_text=>'Pivotar'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41245013280911857)
+,p_name=>'APEXIR_REPORT'
+,p_message_language=>'es'
+,p_message_text=>'Reporte'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41241207722911857)
+,p_name=>'APEXIR_RESET'
+,p_message_language=>'es'
+,p_message_text=>'Restablecer'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41246559931911858)
+,p_name=>'APEXIR_ROWS_PER_PAGE'
+,p_message_language=>'es'
+,p_message_text=>unistr('Filas por p\00E1gina')
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41246647513911858)
+,p_name=>'APEXIR_SAVE_REPORT'
+,p_message_language=>'es'
+,p_message_text=>'Guardar reporte'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41241518780911857)
+,p_name=>'APEXIR_SEARCH'
+,p_message_language=>'es'
+,p_message_text=>'Buscar'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41241904074911857)
+,p_name=>'APEXIR_SEARCH_COLUMN'
+,p_message_language=>'es'
+,p_message_text=>'Buscar: %0'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41245593757911857)
+,p_name=>'APEXIR_SORT'
+,p_message_language=>'es'
+,p_message_text=>'Ordenar'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41248407569911858)
+,p_name=>'DELETE_MSG'
+,p_message_language=>'es'
+,p_message_text=>unistr('\00BFDesea eliminar este registro?')
+,p_is_js_message=>true
+,p_version_scn=>2668299
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41247944428911858)
+,p_name=>'FLOW.SINGLE_VALIDATION_ERROR'
+,p_message_language=>'es'
+,p_message_text=>unistr('Se present\00F3 1 error')
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41248055085911858)
+,p_name=>'FLOW.VALIDATION_ERROR'
+,p_message_language=>'es'
+,p_message_text=>'Se presentaron %0 errores'
+,p_is_js_message=>true
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41247820598911858)
+,p_name=>'SUCCESS_MSG.ROWS_DELETED'
+,p_message_language=>'es'
+,p_message_text=>'%0 registro(s) eliminado(s).'
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41247616206911858)
+,p_name=>'SUCCESS_MSG.ROWS_INSERTED'
+,p_message_language=>'es'
+,p_message_text=>'%0 registro(s) creado(s).'
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41247800804911858)
+,p_name=>'SUCCESS_MSG.ROWS_UPDATED'
+,p_message_language=>'es'
+,p_message_text=>'%0 registro(s) actualizado(s).'
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41247408415911858)
+,p_name=>'SUCCESS_MSG.SINGLE_ROW_CREATED'
+,p_message_language=>'es'
+,p_message_text=>'Registro creado.'
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41247559588911858)
+,p_name=>'SUCCESS_MSG.SINGLE_ROW_DELETED'
+,p_message_language=>'es'
+,p_message_text=>'Registro eliminado.'
+,p_version_scn=>2668298
+);
+wwv_flow_imp_shared.create_message(
+ p_id=>wwv_flow_imp.id(41247504530911858)
+,p_name=>'SUCCESS_MSG.SINGLE_ROW_UPDATED'
+,p_message_language=>'es'
+,p_message_text=>'Registro actualizado.'
+,p_version_scn=>2668298
+);
+wwv_flow_imp.component_end;
+end;
+/

@@ -1,6 +1,6 @@
 #!/bin/bash
 # Importa la app 106 (SIIF Web, portal de entrada; export split en db/oracle/apex/f106) en el
-# workspace SPD del contenedor local. Debe ir antes que la 160: la base (154/160) redirige a la 106
+# workspace SIIFWEB del contenedor local. Debe ir antes que la 160: la base (154/160) redirige a la 106
 # para el login, el home y el logout, y comparten sesión por estar en el mismo workspace.
 # Requiere que ya se haya corrido db/oracle/siif_apex_local.sql (stubs de los objetos del SIIF).
 # Login local: http://localhost:8080/ords/f?p=106:LOGIN:0::::P9999_NIT_COMPANIA:8913800073

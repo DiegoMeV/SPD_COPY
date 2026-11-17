@@ -81,7 +81,7 @@ declare
       p_error_display_location => 'INLINE_IN_NOTIFICATION');
   end;
 begin
-  l_ws := apex_util.find_security_group_id(p_workspace => 'SPD');
+  l_ws := apex_util.find_security_group_id(p_workspace => 'SIIFWEB');
   apex_util.set_security_group_id(l_ws);
   wwv_flow_imp.import_begin(p_version_yyyy_mm_dd => '2024.11.30', p_release => '24.2.0',
     p_default_workspace_id => l_ws, p_default_application_id => c_app, p_default_id_offset => 0,

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Importa la app 160 (SIIF_SPD) desde el export dividido db/oracle/apex/f160 en el workspace SPD del
+# Importa la app 160 (SIIF_SPD) desde el export dividido db/oracle/apex/f160 en el workspace SIIFWEB del
 # contenedor local, igual que run_import_106.sh. Va después de la 106 (login / portal).
 #
 # Flujo de trabajo (varios desarrolladores):

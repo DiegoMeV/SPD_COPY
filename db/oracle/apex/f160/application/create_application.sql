@@ -18,7 +18,7 @@ wwv_imp_workspace.create_flow(
 ,p_alias=>nvl(wwv_flow_application_install.get_application_alias,'SIIF-SPD')
 ,p_page_view_logging=>'YES'
 ,p_page_protection_enabled_y_n=>'Y'
-,p_checksum_salt_last_reset=>'20261117144905'
+,p_checksum_salt_last_reset=>'20261117185737'
 ,p_bookmark_checksum_function=>'SH512'
 ,p_on_max_session_timeout_url=>'f?p=106:LOGIN:0::::P9999_NIT_COMPANIA:&G_NIT_COMPANIA.'
 ,p_max_session_idle_sec=>900
@@ -52,7 +52,7 @@ wwv_imp_workspace.create_flow(
 ,p_substitution_string_01=>'APP_NAME'
 ,p_substitution_value_01=>unistr('SIIF Web - Portal Autenticaci\00F3n')
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
-,p_version_scn=>3984030
+,p_version_scn=>4036537
 ,p_print_server_type=>'NATIVE'
 ,p_file_storage=>'DB'
 ,p_is_pwa=>'Y'

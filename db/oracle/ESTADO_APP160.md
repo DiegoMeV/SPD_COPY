@@ -136,7 +136,7 @@ Fecha: 2026-11-12.
 La fuente de la app es el **export dividido `db/oracle/apex/f160/`**: un archivo por página (`application/pages/page_01011.sql`) y por componente compartido, más `install.sql`. Es el mismo formato de la 106. Exportar dos veces seguidas da los mismos archivos, así que el diff de git muestra solo lo que cambió.
 
 1. **Traer la app** al APEX local (después de la 106): `bash db/oracle/apex/build/run_import_160.sh`. Importa sin desplazar IDs, así que los IDs del export se mantienen.
-2. **Hacer los cambios en el Constructor de aplicaciones** (`http://localhost:8080/ords/r/apex`, workspace `SPD`).
+2. **Hacer los cambios en el Constructor de aplicaciones** (`http://localhost:8080/ords/r/apex`, workspace `SIIFWEB`).
 3. **Exportar** desde la raíz del repo, con Node 20: `node db/oracle/apex/build/export_split.js 160`. Reescribe `f160/` completo, así que los componentes eliminados también desaparecen.
 4. **Revisar el diff y hacer commit.** Para evitar conflictos, cada persona trabaja sus páginas. Los componentes compartidos (listas de valores, plantillas, ítems de aplicación) se coordinan.
 
@@ -152,14 +152,14 @@ Pruebas: en `build/tests/`, `npm i` y luego:
 
 ## Ambiente local
 
-- **`spd-oracle`**: Oracle 23 Free (`gvenzl/oracle-free:23`), PDB `FREEPDB1`, puerto 1521, `sys`/`system` = `oracle`, esquema `SIIF/siif`. APEX **24.2**, workspace `SPD` (esquema `SIIF`) con las apps 100, 106 y 160.
+- **`spd-oracle`**: Oracle 23 Free (`gvenzl/oracle-free:23`), PDB `FREEPDB1`, puerto 1521, `sys`/`system` = `oracle`, esquema `SIIF/siif`. APEX **24.2**, workspace `SIIFWEB` (esquema `SIIF`) con las apps 100, 106 y 160.
   - Usuarios del workspace: `ADMIN` / `Spd#2026` (desarrollador) y `FGIL666@GMAIL.COM` / `Spd#2026` (login de la app 100, *Cuentas de APEX*).
 - **`spd-ords`**: ORDS 26.3 (`container-registry.oracle.com/database/ords:latest`), puerto 8080, sirve las imágenes de APEX 24.2 en `/i/`.
   - ORDS 24.4 no se instala sobre `gvenzl/oracle-free` (falla al leer la información de parches de la base); 26.3 sí.
 - Orden de instalación en una base nueva, como `SIIF`: `siif_base_tables.sql` → `siif_spd_columns.sql` → `spd_schema.sql` → `spd_views.sql` → `spd_seed.sql` → (APEX y workspace) → `siif_apex_local.sql` → app 100 → `run_import_106.sh` → `run_import_160.sh` (importa `f160/install.sql`).
 - URLs:
   - Portal SIIF Web (entrada a la 160): `http://localhost:8080/ords/f?p=106:LOGIN:0::::P9999_NIT_COMPANIA:8913800073` (Municipio de Palmira), usuario `fgil666@gmail.com`, clave `Spd#2026`. La compañía va en la URL porque el selector del login solo se ve en modo desarrollo.
-  - App 100: `http://localhost:8080/ords/r/spd/spd/login`.
+  - App 100: `http://localhost:8080/ords/r/siifweb/spd/login`.
 
 ## Notas
 

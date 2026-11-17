@@ -20,7 +20,7 @@ const out = path.resolve(__dirname, '..', `f${app}`);
       `declare
          l_files apex_t_export_files;
        begin
-         apex_util.set_workspace(p_workspace => 'SPD');
+         apex_util.set_workspace(p_workspace => 'SIIFWEB');
          l_files := apex_export.get_application(p_application_id => :app, p_split => true, p_with_date => false,
                       p_with_ir_public_reports => true, p_with_comments => true);
          open :rc for select name, contents from table(l_files);
@@ -32,7 +32,16 @@ const out = path.resolve(__dirname, '..', `f${app}`);
     while ((batch = await rs.getRows(500)).length) r.rows.push(...batch);
     await rs.close();
     r.rows = r.rows.map(([NAME, CONTENTS]) => ({ NAME, CONTENTS }));
-    if (!r.rows.length) throw new Error(`La aplicación ${app} no existe en el workspace SPD`);
+    if (!r.rows.length) throw new Error(`La aplicación ${app} no existe en el workspace SIIFWEB`);
+
+    // APEX arma el nombre de cada archivo con el nombre del componente. Si lleva tildes/ñ, el
+    // install.sql queda con rutas no ASCII y el import (SQL*Plus/SQLcl/zip en Windows, Latin-1)
+    // no encuentra el archivo ("menÃº_de_navegaciÃ³n.sql"). Renombrar el componente sin tildes,
+    // como "Menu de Navegacion" en la 106.
+    const bad = r.rows.map(x => x.NAME).filter(nm => /[^\x20-\x7E]/.test(nm));
+    if (bad.length) {
+      throw new Error('Componentes con tildes en el nombre (renómbrelos en APEX sin tildes):\n  ' + bad.join('\n  '));
+    }
 
     if (fs.existsSync(out)) {
       for (const f of fs.readdirSync(out)) fs.rmSync(path.join(out, f), { recursive: true, force: true });

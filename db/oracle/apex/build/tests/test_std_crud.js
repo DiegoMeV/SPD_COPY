@@ -6,7 +6,7 @@ const { chromium } = require('playwright-core');
   const nav = async (fn) => { await Promise.all([page.waitForNavigation(), fn()]); await page.waitForLoadState('networkidle'); };
   const msgs = () => page.$$eval('.t-Alert-body, .a-Notification-item', e => [...new Set(e.map(x => x.innerText.trim().replace(/\s+/g, ' ')))]);
   const head = () => page.$$eval('.t-BreadcrumbRegion .t-Button', b => b.filter(x => x.offsetParent).map(x => x.innerText.trim()));
-  await page.goto('http://localhost:8080/ords/r/spd/spd/login');
+  await page.goto('http://localhost:8080/ords/r/siifweb/spd/login');
   await page.fill('#P9999_USERNAME', 'ADMIN'); await page.fill('#P9999_PASSWORD', process.env.SPD_PASS);
   await Promise.all([page.waitForURL(u => !String(u).includes('/login')), page.click('.t-Button--hot')]);
   const s = new URL(page.url()).searchParams.get('session');

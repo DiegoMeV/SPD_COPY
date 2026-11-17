@@ -1,7 +1,7 @@
-prompt --application/shared_components/navigation/breadcrumbs/ruta_de_navegación
+prompt --application/shared_components/navigation/breadcrumbs/ruta_de_navegacion
 begin
 --   Manifest
---     MENU: Ruta de Navegación
+--     MENU: Ruta de Navegacion
 --   Manifest End
 wwv_flow_imp.component_begin (
  p_version_yyyy_mm_dd=>'2024.11.30'
@@ -13,7 +13,7 @@ wwv_flow_imp.component_begin (
 );
 wwv_flow_imp_shared.create_menu(
  p_id=>wwv_flow_imp.id(645792005305681121)
-,p_name=>unistr('Ruta de Navegaci\00F3n')
+,p_name=>'Ruta de Navegacion'
 );
 wwv_flow_imp_shared.create_menu_option(
  p_id=>wwv_flow_imp.id(645792157876681122)

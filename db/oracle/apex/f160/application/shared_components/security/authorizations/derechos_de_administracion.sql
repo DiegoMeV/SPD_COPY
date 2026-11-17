@@ -1,7 +1,7 @@
-prompt --application/shared_components/security/authorizations/derechos_de_administración
+prompt --application/shared_components/security/authorizations/derechos_de_administracion
 begin
 --   Manifest
---     SECURITY SCHEME: Derechos de administración
+--     SECURITY SCHEME: Derechos de administracion
 --   Manifest End
 wwv_flow_imp.component_begin (
  p_version_yyyy_mm_dd=>'2024.11.30'
@@ -13,11 +13,11 @@ wwv_flow_imp.component_begin (
 );
 wwv_flow_imp_shared.create_security_scheme(
  p_id=>wwv_flow_imp.id(645797212941681155)
-,p_name=>unistr('Derechos de administraci\00F3n')
+,p_name=>'Derechos de administracion'
 ,p_scheme_type=>'NATIVE_FUNCTION_BODY'
 ,p_attribute_01=>'return true;'
 ,p_error_message=>'Privilegios insuficientes. El usuario no es administrador.'
-,p_version_scn=>35446683789
+,p_version_scn=>4036537
 ,p_caching=>'BY_USER_BY_PAGE_VIEW'
 );
 wwv_flow_imp.component_end;

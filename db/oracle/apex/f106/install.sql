@@ -89,6 +89,7 @@ prompt --install
 @@application/pages/page_00004.sql
 @@application/pages/page_00085.sql
 @@application/pages/page_00101.sql
+@@application/pages/page_09004.sql
 @@application/pages/page_09085.sql
 @@application/pages/page_09991.sql
 @@application/pages/page_09996.sql

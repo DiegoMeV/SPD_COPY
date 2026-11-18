@@ -11,6 +11,7 @@ Scripts para crear las tablas de SPD en Oracle (esquema `SIIF`) y la aplicación
 | `spd_schema.sql` | Crea las 18 tablas `SPD_*` | Sí |
 | `spd_views.sql` | Vistas para reportes, tableros y listas de valores (`V_SPD_*`), incluidas `V_SPD_PLAN_LEVEL_CONFIG` (definición de niveles de cada plan, desde `SPD_CONFIG`) y `V_SPD_MONITORING_COLORS` (colores de indicadores, desde `COLORS_CONFIG`) | Sí |
 | `spd_seed.sql` | Datos de prueba (Palmira y Risaralda, catálogos, usuarios) | **No.** Solo para pruebas |
+| `spd_seed_mini.sql` | Semilla mínima para desarrollo en la compañía `891900853` (UCEVA, debe existir; no la crea): 1 entidad, 1 plan, 1 proyecto y 1 seguimiento activo, con una meta en cada estado para recorrer todas las opciones del menú. Todo lo que crea empieza por "SPD" (códigos `SPD-...`, nombres `SPD ...`, usuario `SPD_DEMO`) y al re-ejecutarse borra solo eso; no necesita `spd_seed.sql` | **No.** Solo para desarrollo |
 | `apex/f100.sql` | Aplicación APEX 24.1 | Sí |
 
 Orden de ejecución, conectado como el dueño del esquema (`SIIF`):
@@ -20,8 +21,11 @@ Orden de ejecución, conectado como el dueño del esquema (`SIIF`):
 @siif_spd_columns.sql
 @spd_schema.sql
 @spd_views.sql
-@spd_seed.sql           -- opcional, datos de prueba
+@spd_seed.sql           -- opcional, datos de prueba (completos)
+@spd_seed_mini.sql      -- opcional, datos mínimos (en vez de spd_seed.sql)
 ```
+
+Con `spd_seed_mini.sql` + `siif_apex_local.sql` se entra a la 160 eligiendo **UCEVA** en el login, con el usuario `SPD_DEMO` y la clave local `Spd#2026`.
 
 Probado en Oracle 23 Free. Usa columnas `IDENTITY`, `DEFAULT ON NULL` y `CHECK ... IS JSON`, disponibles desde Oracle 12c, así que debería funcionar en 19c.
 

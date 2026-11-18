@@ -19,13 +19,13 @@ wwv_flow_imp_page.create_page(
 ,p_autocomplete_on_off=>'OFF'
 ,p_html_page_header=>'<style>.spd-badge{display:inline-block;min-width:20px;padding:0 6px;margin-left:6px;border-radius:10px;font-size:11px;line-height:18px;color:#fff;text-align:center;background:#13c2c2;vertical-align:middle}.spd-badge--PRODUCT{background:#9FD912}.spd-b'
 ||'adge--RESULT,.spd-badge--WELL_BEING,.spd-badge--IMPACT{background:#52c41a}.spd-badge--ACTIVITY{background:#1677ff}.spd-badge--PROJECT{background:green}.spd-badge--ACTION_PLAN{background:blueviolet}.spd-badge--ACTION_PLAN_ACTIVITY{background:orange}.s'
-||'pd-badge--TOTAL{background:#1677ff}</style>'
+||'pd-badge--TOTAL{background:#1677ff}.spd-type-summary{display:flex;flex-wrap:wrap;gap:6px 16px;margin:0 0 8px}.spd-type-summary .spd-badge{margin:0 4px 0 0}.spd-type-badge{margin-left:0!important}</style>'
 ,p_javascript_code_onload=>wwv_flow_string.join(wwv_flow_t_varchar2(
 unistr('var t = $("#spd_goal_tree"), L = {PRODUCT: "Producto", RESULT: "Resultado", WELL_BEING: "Bienestar", IMPACT: "Impacto", ACTIVITY: "Actividad", PROJECT: "Proyecto", ACTION_PLAN: "Plan de Acci\00F3n", ACTION_PLAN_ACTIVITY: "Meta de Plan de Acci\00F3n", PUBLIC_')
 ||unistr('POLITIC: "Pol\00EDtica P\00FAblica"};'),
-'// badges por tipo de meta: la etiqueta trae el sufijo {{TIPO:n,...}}',
+'// badge con el total de metas del nodo (y sus hijos): la etiqueta trae el sufijo {{TOTAL:n}}',
 'function spdBadges() { t.find(".a-TreeView-label").each(function () { var e = $(this), m = e.text().match(/^(.*) \{\{(.*)\}\}$/); if (m) { e.text(m[1]); m[2].split(",").forEach(function (x) { var p = x.split(":"); e.append($("<span>").addClass("spd-b'
-||'adge spd-badge--" + p[0]).attr("title", p[1] + " metas de " + (L[p[0]] || p[0])).text(p[1])); }); } }); }',
+||'adge spd-badge--" + p[0]).attr("title", p[0] === "TOTAL" ? p[1] + " metas" : p[1] + " metas de " + (L[p[0]] || p[0])).text(p[1])); }); } }); }',
 't.on("treeviewexpansionstatechange", function () { setTimeout(spdBadges, 0); });',
 'var s = t.treeView("getSelection"); if (s.length) { t.treeView("expand", s); }',
 'spdBadges();'))
@@ -684,11 +684,11 @@ wwv_flow_imp_page.create_page_plug(
 '  select connect_by_root ID as ROOT_ID, ID from SPD_DEV_PLAN_LEVEL',
 '   start with NIT_COMPANIA = :G_NIT_COMPANIA and PLAN = :P1010_PLAN connect by prior ID = PARENT_ID),',
 'cnt as (',
-'  select r.ROOT_ID, g.GOAL_TYPE, count(*) as N from r join SPD_GOAL g on g.DEV_PLAN_LEVEL_ID = r.ID group by r.ROOT_ID, g.GOAL_TYPE',
+'  select r.ROOT_ID, count(*) as N from r join SPD_GOAL g on g.DEV_PLAN_LEVEL_ID = r.ID group by r.ROOT_ID',
 '  union all',
-'  select 0, GOAL_TYPE, count(*) from SPD_GOAL where NIT_COMPANIA = :G_NIT_COMPANIA and PLAN = :P1010_PLAN group by GOAL_TYPE),',
+'  select 0, count(*) from SPD_GOAL where NIT_COMPANIA = :G_NIT_COMPANIA and PLAN = :P1010_PLAN having count(*) > 0),',
 'sfx as (',
-'  select ROOT_ID, '' {{'' || listagg(GOAL_TYPE || '':'' || N, '','') within group (order by GOAL_TYPE) || ''}}'' as SUFFIX from cnt group by ROOT_ID),',
+'  select ROOT_ID, '' {{TOTAL:'' || N || ''}}'' as SUFFIX from cnt),',
 'n as (',
 '  select 0 as VALUE, null as PARENT, NOMBRE as TITLE, null as CODE from PLAN_DESARROLLO',
 '   where NIT_COMPANIA = :G_NIT_COMPANIA and PLAN = :P1010_PLAN',
@@ -729,13 +729,20 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_display_point=>'SUB_REGIONS'
 ,p_query_type=>'SQL'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select g.ID, g.CODE, g.NAME, g.INDICATOR, g.BASE_VALUE, g.GOAL_VALUE',
+'select g.ID, g.CODE, g.NAME, g.INDICATOR, g.BASE_VALUE, g.GOAL_VALUE,',
+'       ''<span class="spd-badge spd-type-badge spd-badge--'' || g.GOAL_TYPE || ''">'' ||',
+'       case g.GOAL_TYPE when ''PRODUCT'' then ''Producto'' when ''RESULT'' then ''Resultado''',
+'                        when ''WELL_BEING'' then ''Bienestar'' when ''IMPACT'' then ''Impacto''',
+'                        when ''ACTIVITY'' then ''Actividad'' when ''PROJECT'' then ''Proyecto''',
+unistr('                        when ''ACTION_PLAN'' then ''Plan de Acci\00F3n'' when ''ACTION_PLAN_ACTIVITY'' then ''Meta de Plan de Acci\00F3n'''),
+unistr('                        when ''PUBLIC_POLITIC'' then ''Pol\00EDtica P\00FAblica'' else g.GOAL_TYPE end || ''</span>'' as TYPE_HTML'),
 '  from SPD_GOAL g',
 ' where g.NIT_COMPANIA = :G_NIT_COMPANIA and g.PLAN = :P1010_PLAN',
 '   and (nvl(:P1010_NODE, ''0'') = ''0''',
 '        or g.DEV_PLAN_LEVEL_ID in (select ID from SPD_DEV_PLAN_LEVEL start with ID = to_number(:P1010_NODE) connect by prior ID = PARENT_ID))'))
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_ajax_items_to_submit=>'P1010_PLAN,P1010_NODE'
+,p_plug_header=>'<div class="spd-type-summary">&P1010_NODE_SUMMARY!RAW.</div>'
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(41226377176911763)
@@ -913,6 +920,35 @@ wwv_flow_imp_page.create_region_column(
 ,p_duplicate_value=>true
 ,p_include_in_export=>true
 );
+wwv_flow_imp_page.create_region_column(
+ p_id=>wwv_flow_imp.id(51010000000000001)
+,p_name=>'TYPE_HTML'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'TYPE_HTML'
+,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_DISPLAY_ONLY'
+,p_heading=>'Tipo'
+,p_label=>'Tipo'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>110
+,p_value_alignment=>'LEFT'
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'based_on', 'VALUE',
+  'format', 'HTML',
+  'send_on_page_submit', 'N')).to_clob
+,p_enable_filter=>false
+,p_filter_is_required=>false
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_enable_control_break=>false
+,p_enable_hide=>true
+,p_enable_pivot=>false
+,p_is_primary_key=>false
+,p_duplicate_value=>true
+,p_include_in_export=>false
+);
 wwv_flow_imp_page.create_interactive_grid(
  p_id=>wwv_flow_imp.id(41227008271911763)
 ,p_internal_uid=>39585993572298361
@@ -968,7 +1004,7 @@ wwv_flow_imp_page.create_ig_report_column(
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(41227404292911763)
 ,p_view_id=>wwv_flow_imp.id(41227125051911763)
-,p_display_seq=>2
+,p_display_seq=>3
 ,p_column_id=>wwv_flow_imp.id(41226527982911763)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -976,7 +1012,7 @@ wwv_flow_imp_page.create_ig_report_column(
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(41227509053911763)
 ,p_view_id=>wwv_flow_imp.id(41227125051911763)
-,p_display_seq=>3
+,p_display_seq=>4
 ,p_column_id=>wwv_flow_imp.id(41226667300911763)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -984,7 +1020,7 @@ wwv_flow_imp_page.create_ig_report_column(
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(41227521321911763)
 ,p_view_id=>wwv_flow_imp.id(41227125051911763)
-,p_display_seq=>4
+,p_display_seq=>5
 ,p_column_id=>wwv_flow_imp.id(41226735540911763)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -992,10 +1028,19 @@ wwv_flow_imp_page.create_ig_report_column(
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(41227620573911763)
 ,p_view_id=>wwv_flow_imp.id(41227125051911763)
-,p_display_seq=>5
+,p_display_seq=>6
 ,p_column_id=>wwv_flow_imp.id(41226892772911763)
 ,p_is_visible=>true
 ,p_is_frozen=>false
+);
+wwv_flow_imp_page.create_ig_report_column(
+ p_id=>wwv_flow_imp.id(51010000000000002)
+,p_view_id=>wwv_flow_imp.id(41227125051911763)
+,p_display_seq=>2
+,p_column_id=>wwv_flow_imp.id(51010000000000001)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>185
 );
 wwv_flow_imp_page.create_page_button(
  p_id=>wwv_flow_imp.id(39979776023163139)
@@ -1070,6 +1115,19 @@ wwv_flow_imp_page.create_page_item(
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
   'value_protected', 'Y')).to_clob
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(51010000000000003)
+,p_name=>'P1010_NODE_SUMMARY'
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_imp.id(41225619297911762)
+,p_prompt=>'Metas por tipo'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_cSize=>30
+,p_field_template=>wwv_flow_imp.id(39596958012162922)
+,p_item_template_options=>'#DEFAULT#'
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'value_protected', 'N')).to_clob
 );
 wwv_flow_imp_page.create_page_da_event(
  p_id=>wwv_flow_imp.id(39980095630163139)
@@ -1147,6 +1205,25 @@ unistr('  -- plan por defecto: el activo de la compa\00F1\00EDa (o el m\00E1s re
 '  end if;',
 '  if :P1010_NODE = ''0'' then',
 '    select max(NOMBRE) into :P1010_NODE_NAME from PLAN_DESARROLLO where NIT_COMPANIA = :G_NIT_COMPANIA and PLAN = :P1010_PLAN;',
+'  end if;',
+'  -- desglose por tipo de las metas del nodo (y sus hijos), arriba de la grilla "Metas de ..."',
+'  :P1010_NODE_SUMMARY := null;',
+'  for c in (select GOAL_TYPE, count(*) as N from SPD_GOAL g',
+'             where g.NIT_COMPANIA = :G_NIT_COMPANIA and g.PLAN = :P1010_PLAN',
+'               and (:P1010_NODE = ''0'' or g.DEV_PLAN_LEVEL_ID in',
+'                    (select ID from SPD_DEV_PLAN_LEVEL start with ID = to_number(:P1010_NODE) connect by prior ID = PARENT_ID))',
+'             group by GOAL_TYPE',
+'             order by decode(GOAL_TYPE, ''RESULT'', 1, ''WELL_BEING'', 2, ''IMPACT'', 3, ''PRODUCT'', 4, ''PROJECT'', 5,',
+'                             ''ACTIVITY'', 6, ''ACTION_PLAN'', 7, ''ACTION_PLAN_ACTIVITY'', 8, 9)) loop',
+'    :P1010_NODE_SUMMARY := :P1010_NODE_SUMMARY || ''<span><span class="spd-badge spd-badge--'' || c.GOAL_TYPE || ''">''',
+'      || c.N || ''</span>'' || case c.GOAL_TYPE',
+'           when ''PRODUCT'' then ''Producto'' when ''RESULT'' then ''Resultado'' when ''WELL_BEING'' then ''Bienestar''',
+'           when ''IMPACT'' then ''Impacto'' when ''ACTIVITY'' then ''Actividad'' when ''PROJECT'' then ''Proyecto''',
+unistr('           when ''ACTION_PLAN'' then ''Plan de Acci\00F3n'' when ''ACTION_PLAN_ACTIVITY'' then ''Meta de Plan de Acci\00F3n'''),
+unistr('           when ''PUBLIC_POLITIC'' then ''Pol\00EDtica P\00FAblica'' else c.GOAL_TYPE end || ''</span>'';'),
+'  end loop;',
+'  if :P1010_NODE_SUMMARY is null then',
+'    :P1010_NODE_SUMMARY := ''<span>Sin metas</span>'';',
 '  end if;',
 'end;'))
 ,p_process_clob_language=>'PLSQL'

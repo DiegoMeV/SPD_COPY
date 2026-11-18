@@ -22,7 +22,7 @@ wwv_imp_workspace.create_flow(
 ,p_bookmark_checksum_function=>'SH512'
 ,p_on_max_session_timeout_url=>'f?p=106:LOGIN:0::::P9999_NIT_COMPANIA:&G_NIT_COMPANIA.'
 ,p_max_session_idle_sec=>900
-,p_on_max_idle_timeout_url=>'f?p=106:LOGIN:0::::P9999_NIT_COMPANIA:&G_NIT_COMPANIA.'
+,p_on_max_idle_timeout_url=>'f?p=106:9004:0'
 ,p_session_timeout_warning_sec=>300
 ,p_compatibility_mode=>'24.2'
 ,p_flow_language=>'es'

@@ -76,9 +76,9 @@ wwv_flow_imp_shared.create_theme_style(
 ,p_is_public=>true
 ,p_is_accessible=>true
 ,p_theme_roller_input_file_urls=>'#THEME_FILES#less/theme/Vita.less'
-,p_theme_roller_config=>'{"classes":[],"vars":{"@g_Nav_Style":"light","@Nav-Exp":"300px"},"customCSS":":root {\n    --ut-hero-region-icon-container-size: 128px;\n    --ut-login-logo-size: 128px;\n}\n\n.t-Login-logo, .t-HeroRegion-icon {\n    background: rgba(255, 255, 255, 0'
-||'.5);\n}\n\n.t-TreeNav .a-TreeView-node--topLevel .a-TreeView-row.is-current, .t-TreeNav .a-TreeView-node--topLevel .a-TreeView-row.is-selected, .t-TreeNav .a-TreeView-node--topLevel .a-TreeView-row.is-current--top.is-selected {\n \n    background-col'
-||'or: var(--u-color-1) ;\n}","useCustomLess":"N"}'
+,p_theme_roller_config=>'{"classes":[],"vars":{"@g_Nav_Style":"dark","@Nav-Exp":"300px","@g_Accent-BG":"#0e529a","@g_Header-BG":"#0e529a","@g_Header-FG":"#ffffff","@g_Nav-BG":"#122135","@g_Nav-FG":"#ededed","@g_Nav-Active-BG":"#122135","@g_Nav-Active-FG":"#fafafa"},"customCS'
+||'S":":root {\n    --ut-hero-region-icon-container-size: 128px;\n    --ut-login-logo-size: 128px;\n}\n\n.t-Login-logo, .t-HeroRegion-icon {\n    background: rgb(255, 255, 255);\n}\n\n.t-TreeNav .a-TreeView-node--topLevel .a-TreeView-row.is-current, .t-'
+||'TreeNav .a-TreeView-node--topLevel .a-TreeView-row.is-selected, .t-TreeNav .a-TreeView-node--topLevel .a-TreeView-row.is-current--top.is-selected {\n \n    background-color: var(--u-color-1) ;\n}","useCustomLess":"N"}'
 ,p_theme_roller_output_file_url=>'#THEME_DB_FILES#60454776860008683.css'
 ,p_theme_roller_read_only=>false
 );

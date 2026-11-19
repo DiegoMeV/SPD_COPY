@@ -40,7 +40,7 @@ const NIT = '8913800073';   // Municipio de Palmira
     console.log('tarjeta ->', page.url().replace(B, '').slice(0, 100), '|', await page.title(), (await errs()).join(';'));
   }
 
-  await go('SPD_USUARIOS');
+  await go('SPD_INICIO');
   const menu = await page.$$eval('#t_TreeNav .a-TreeView-label', els => els.map(e => e.textContent.trim()));
   console.log('menú SIIF:', menu.slice(0, 12).join(' | '));
   console.log('logo/usuario:', (await page.innerText('.t-Header').catch(() => '')).replace(/\s+/g, ' ').slice(0, 160));
@@ -57,22 +57,20 @@ const NIT = '8913800073';   // Municipio de Palmira
   }
 
   // navegación desde el menú SIIF (fija G_MODULO / G_OPCION_MENU -> breadcrumb global)
-  await go('SPD_USUARIOS');
-  // El menú tiene un único padre "SPD": Entidades queda en el nivel 3 y el árbol no lo pinta hasta expandirlo.
+  await go('SPD_INICIO');
+  // El menú tiene un único padre "SPD": Planes de Desarrollo queda en el nivel 3 y el árbol no lo pinta hasta expandirlo.
   await page.evaluate(() => window.apex && apex.jQuery('#t_TreeNav').treeView('expandAll')).catch(() => {});
-  const href = await page.$eval('#t_TreeNav a[href*="SPD_ENTIDADES"], #t_TreeNav a[href*="spd_entidades"]', a => a.href).catch(() => null);
-  console.log('enlace de menú Entidades:', href && href.slice(0, 160));
+  const menuAll = await page.$$eval('#t_TreeNav .a-TreeView-label', els => els.map(e => e.textContent.trim()));
+  for (const fuera of ['Usuarios', 'Entidades', 'Niveles del plan', 'Ubicaciones', 'Historial de metas'])
+    if (menuAll.includes(fuera)) problems.push(`[menú] no debe estar la opción "${fuera}"`);
+  const href = await page.$eval('#t_TreeNav a[href*="SPD_PLANES_DESARROLLO"], #t_TreeNav a[href*="spd_planes_desarrollo"]', a => a.href).catch(() => null);
+  console.log('enlace de menú Planes de Desarrollo:', href && href.slice(0, 160));
   if (href) {
-    current = 'menu->entidades'; await page.goto(href); await page.waitForLoadState('networkidle');
+    current = 'menu->planes'; await page.goto(href); await page.waitForLoadState('networkidle');
     console.log('  migas:', (await page.$$eval('.t-Breadcrumb-item', e => e.map(x => x.innerText.trim()))).join(' / '));
     console.log('  botones cabecera:', (await page.$$eval('.t-BreadcrumbRegion .t-Button', b => b.filter(x => x.offsetParent).map(x => x.innerText.trim()))).join(' | '));
-    current = 'entidad editar';
-    await Promise.all([page.waitForNavigation(), page.click('.a-IRR-table td a >> nth=0')]);
-    await page.waitForLoadState('networkidle');
-    console.log('  form entidad:', page.url().split('?')[0].split('/').pop(), '| botones:', (await page.$$eval('.t-BreadcrumbRegion .t-Button', b => b.filter(x => x.offsetParent).map(x => x.innerText.trim()))).join(' | '));
-    await Promise.all([page.waitForNavigation(), page.click('button:has-text("Aplicar Cambios")')]);
-    await page.waitForLoadState('networkidle');
-    console.log('  tras guardar:', page.url().split('?')[0].split('/').pop(), (await errs()).join(' ; '), await page.$$eval('.t-Alert-body, .a-Notification-item', e => e.map(x => x.innerText.trim()).join(' ')));
+    const heads = await page.$$eval('.a-IRR-table th', e => e.map(x => x.innerText.trim()));
+    if (heads.some(h => /Compa/i.test(h))) problems.push('[1006] no debe mostrarse la columna Compañía');
   }
 
   // plan: detalle -> editar (grilla niveles) -> estructura -> nodo

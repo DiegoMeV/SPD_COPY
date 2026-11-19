@@ -72,6 +72,7 @@ wwv_flow_imp_page.create_worksheet_column(
 ,p_column_identifier=>'A'
 ,p_column_label=>unistr('Compa\00F1\00EDa')
 ,p_column_type=>'STRING'
+,p_display_text_as=>'HIDDEN_ESCAPE_SC'
 ,p_heading_alignment=>'LEFT'
 ,p_tz_dependent=>'N'
 ,p_use_as_row_header=>'N'
@@ -371,7 +372,7 @@ wwv_flow_imp_page.create_worksheet_rpt(
 ,p_report_alias=>'388488'
 ,p_status=>'PUBLIC'
 ,p_is_default=>'Y'
-,p_report_columns=>'NIT_COMPANIA:PLAN:NOMBRE:GOBERNANTE:FECHA_INICIO:FECHA_FIN'
+,p_report_columns=>'PLAN:NOMBRE:GOBERNANTE:FECHA_INICIO:FECHA_FIN'
 ,p_sort_direction_1=>'ASC'
 );
 wwv_flow_imp_page.create_page_button(

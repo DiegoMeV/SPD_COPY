@@ -6,10 +6,10 @@
 
    - Módulo SEGUIMIENTO_PRY, un único padre "SPD" (opción 30) y debajo el árbol del menú
      de SPD. Las opciones son jerárquicas: cada hijo lleva el código del padre más
-     01, 02, ... (Configuración 3001, Usuarios 300101).
+     01, 02, ... (Configuración 3001, Planes de Desarrollo 300103).
    - Tipo = REFERENCIA en los padres (tipo_llamada PADRE) y DOCUMENTO en las demás. Ejecutable = alias de la página en la app SIIF-SPD.
    - Descripción = descripción del padre + ' - ' + etiqueta, sin el módulo
-     ("SPD - Configuración - Usuarios"). V_GEN_OPCIONES_SISTEMA_MENU muestra como
+     ("SPD - Configuración - Metas"). V_GEN_OPCIONES_SISTEMA_MENU muestra como
      etiqueta lo que va después del último '-'.
    - FC_CREACION / CREADO_POR / FC_ACTUALIZACION / ACTUALIZADO_POR los llena el trigger
      GEN_OPCIONES_SISTEMA_BIU; ESTADO queda con su valor por defecto.
@@ -56,16 +56,6 @@ INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, 
 SELECT '3001', '30', UNISTR('SPD - Configuraci\00F3n'), 'SEGUIMIENTO_PRY', 'REFERENCIA', 'PADRE', NULL, 'SIIF-SPD', 'fa-cog'
 FROM   dual
 WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '3001');
-
-INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
-SELECT '300101', '3001', UNISTR('SPD - Configuraci\00F3n - Usuarios'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_USUARIOS', 'SIIF-SPD', 'fa-users'
-FROM   dual
-WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300101');
-
-INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
-SELECT '300102', '3001', UNISTR('SPD - Configuraci\00F3n - Entidades'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_ENTIDADES', 'SIIF-SPD', 'fa-building-o'
-FROM   dual
-WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300102');
 
 INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
 SELECT '300103', '3001', UNISTR('SPD - Configuraci\00F3n - Planes de Desarrollo'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_PLANES_DESARROLLO', 'SIIF-SPD', 'fa-tasks'
@@ -308,51 +298,6 @@ FROM   dual
 WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300501');
 
 INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
-SELECT '300502', '3005', 'SPD - Otros - Niveles del plan', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_NIVELES_PLAN', 'SIIF-SPD', 'fa-sitemap'
-FROM   dual
-WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300502');
-
-INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
-SELECT '300503', '3005', 'SPD - Otros - Metas de actividades', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_METAS_ACTIVIDADES', 'SIIF-SPD', 'fa-tasks'
-FROM   dual
-WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300503');
-
-INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
-SELECT '300504', '3005', 'SPD - Otros - Metas por actividad', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_METAS_POR_ACTIVIDAD', 'SIIF-SPD', 'fa-link'
-FROM   dual
-WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300504');
-
-INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
-SELECT '300505', '3005', 'SPD - Otros - Macroproyectos', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_MACROPROYECTOS', 'SIIF-SPD', 'fa-cubes'
-FROM   dual
-WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300505');
-
-INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
-SELECT '300506', '3005', 'SPD - Otros - Ubicaciones', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_UBICACIONES', 'SIIF-SPD', 'fa-map-marker'
-FROM   dual
-WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300506');
-
-INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
-SELECT '300507', '3005', UNISTR('SPD - Otros - Componentes por pol\00EDtica'), 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_COMPONENTES_POR_POLITICA', 'SIIF-SPD', 'fa-chain'
-FROM   dual
-WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300507');
-
-INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
-SELECT '300508', '3005', 'SPD - Otros - Historial de metas', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_HISTORIAL_METAS', 'SIIF-SPD', 'fa-history'
-FROM   dual
-WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300508');
-
-INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
-SELECT '300509', '3005', 'SPD - Otros - Avance de metas', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_AVANCE_METAS', 'SIIF-SPD', 'fa-tachometer'
-FROM   dual
-WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300509');
-
-INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
-SELECT '300510', '3005', 'SPD - Otros - Registros de seguimiento', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_REGISTROS_SEGUIMIENTO', 'SIIF-SPD', 'fa-line-chart'
-FROM   dual
-WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300510');
-
-INSERT INTO gen_opciones_sistema (opcion, opc_padre, descripcion, modulo, tipo, tipo_llamada, ejecutable, aplicacion, menu_icon)
 SELECT '300511', '3005', 'SPD - Otros - Tablero de seguimiento', 'SEGUIMIENTO_PRY', 'DOCUMENTO', 'FORM', 'SPD_TABLERO_SEGUIMIENTO', 'SIIF-SPD', 'fa-dashboard'
 FROM   dual
 WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENTO_PRY' AND opcion = '300511');
@@ -364,7 +309,7 @@ WHERE  NOT EXISTS (SELECT 1 FROM gen_opciones_sistema WHERE modulo = 'SEGUIMIENT
 
 COMMIT;
 
--- Verificación: deben ser 63 opciones.
+-- Verificación: deben ser 52 opciones.
 SELECT
   COUNT(*) opciones
 FROM

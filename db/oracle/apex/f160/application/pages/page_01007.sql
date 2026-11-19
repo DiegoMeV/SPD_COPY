@@ -435,7 +435,7 @@ wwv_flow_imp_page.create_page_branch(
 wwv_flow_imp_page.create_page_branch(
  p_id=>wwv_flow_imp.id(41217960386911626)
 ,p_branch_name=>'Volver al reporte'
-,p_branch_action=>'f?p=&APP_ID.:1060:&APP_SESSION.::&DEBUG.:1060:P1060_NIT_COMPANIA,P1060_PLAN:&P1007_NIT_COMPANIA.,&P1007_PLAN.&success_msg=#SUCCESS_MSG#'
+,p_branch_action=>'f?p=&APP_ID.:1007:&APP_SESSION.::&DEBUG.:1007:P1007_NIT_COMPANIA,P1007_PLAN:&P1007_NIT_COMPANIA.,&P1007_PLAN.&success_msg=#SUCCESS_MSG#'
 ,p_branch_point=>'AFTER_PROCESSING'
 ,p_branch_type=>'REDIRECT_URL'
 ,p_branch_sequence=>20

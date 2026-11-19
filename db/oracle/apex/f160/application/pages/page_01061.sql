@@ -321,7 +321,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_item_plug_id=>wwv_flow_imp.id(41223050457911673)
 ,p_prompt=>'Sector DNP'
 ,p_display_as=>'NATIVE_SELECT_LIST'
-,p_lov=>'select CODE || '' - '' || NAME d, ID r from SPD_PRODUCT_CATALOG where PARENT_ID is null order by CODE'
+,p_lov=>'select NAME d, CODE r from V_SPD_LOV_SECTOR where NIT_COMPANIA = :G_NIT_COMPANIA order by CODE'
 ,p_lov_display_null=>'YES'
 ,p_cSize=>30
 ,p_colspan=>8
@@ -395,7 +395,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_item_plug_id=>wwv_flow_imp.id(41224161426911674)
 ,p_prompt=>'Sector DNP'
 ,p_display_as=>'NATIVE_SELECT_LIST'
-,p_lov=>'select CODE || '' - '' || NAME d, ID r from SPD_PRODUCT_CATALOG where PARENT_ID is null order by CODE'
+,p_lov=>'select NAME d, CODE r from V_SPD_LOV_SECTOR where NIT_COMPANIA = :G_NIT_COMPANIA order by CODE'
 ,p_lov_display_null=>'YES'
 ,p_cSize=>30
 ,p_colspan=>8
@@ -474,7 +474,7 @@ wwv_flow_imp_page.create_page_process(
 'begin',
 '  update SPD_DEV_PLAN_LEVEL',
 '     set CODE = :P1061_CODE, NAME = :P1061_NAME,',
-'         PRODUCT_CATALOG_ID = case when :P1061_IS_SECTOR = ''S'' then to_number(:P1061_SECTOR) else PRODUCT_CATALOG_ID end,',
+'         SECTOR_CODE = case when :P1061_IS_SECTOR = ''S'' then :P1061_SECTOR else SECTOR_CODE end,',
 '         WEIGHTING = to_number(:P1061_WEIGHTING), UPDATED_AT = systimestamp',
 '   where ID = :P1061_NODE and NIT_COMPANIA = :P1061_NIT_COMPANIA and PLAN = :P1061_PLAN;',
 'end;'))
@@ -525,9 +525,9 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
 '',
 'begin',
-'  insert into SPD_DEV_PLAN_LEVEL (NIT_COMPANIA, PLAN, CODE, NAME, "LEVEL", PARENT_ID, PRODUCT_CATALOG_ID, WEIGHTING)',
+'  insert into SPD_DEV_PLAN_LEVEL (NIT_COMPANIA, PLAN, CODE, NAME, "LEVEL", PARENT_ID, SECTOR_CODE, WEIGHTING)',
 '  values (:P1061_NIT_COMPANIA, :P1061_PLAN, :P1061_NEW_CODE, :P1061_NEW_NAME, to_number(:P1061_LEVEL) + 1,',
-'          nullif(to_number(:P1061_NODE), 0), to_number(:P1061_NEW_SECTOR), to_number(:P1061_NEW_WEIGHTING));',
+'          nullif(to_number(:P1061_NODE), 0), :P1061_NEW_SECTOR, to_number(:P1061_NEW_WEIGHTING));',
 '  :P1061_NEW_CODE := null; :P1061_NEW_NAME := null; :P1061_NEW_SECTOR := null; :P1061_NEW_WEIGHTING := null;',
 'end;'))
 ,p_process_clob_language=>'PLSQL'
@@ -564,7 +564,7 @@ unistr('    -- sin configuraci\00F3n: niveles gen\00E9ricos 1..9'),
 '  :P1061_NODE := nvl(:P1061_NODE, ''0'');',
 '  if :P1061_NODE <> ''0'' then',
 '    begin',
-'      select CODE, NAME, PRODUCT_CATALOG_ID, WEIGHTING, nvl("LEVEL", 1), PARENT_ID',
+'      select CODE, NAME, SECTOR_CODE, WEIGHTING, nvl("LEVEL", 1), PARENT_ID',
 '        into :P1061_CODE, :P1061_NAME, :P1061_SECTOR, :P1061_WEIGHTING, :P1061_LEVEL, :P1061_PARENT',
 '        from SPD_DEV_PLAN_LEVEL',
 '       where ID = :P1061_NODE and NIT_COMPANIA = :P1061_NIT_COMPANIA and PLAN = :P1061_PLAN;',

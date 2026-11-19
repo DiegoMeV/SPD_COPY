@@ -1,5 +1,5 @@
 // App React (Next, puerto 3000): login en Palmira y recorrido de las pantallas de Seguimiento
-// con los datos demo (db/oracle/spd_demo_seguimiento.sql + spd_demo_to_postgres.js).
+// con los datos demo de Palmira (los scripts que los creaban, spd_demo_seguimiento.sql y spd_demo_to_postgres.js, se eliminaron).
 // Reporta errores de GraphQL, errores JS y filas visibles por pantalla.
 // Uso: npm i && node test_react_seguimiento.js   (CFG=2024-3 elige otro seguimiento)   (requiere `yarn dev` corriendo)
 const { chromium } = require('playwright-core');

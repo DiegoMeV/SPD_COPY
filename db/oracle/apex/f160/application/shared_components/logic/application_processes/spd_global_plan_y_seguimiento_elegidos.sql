@@ -23,7 +23,7 @@ wwv_flow_imp_shared.create_flow_process(
 '  if :APP_PAGE_ID between 1030 and 1044 and v(''P'' || :APP_PAGE_ID || ''_MC'') is not null then',
 '    :G_SEGUIMIENTO := v(''P'' || :APP_PAGE_ID || ''_MC'');',
 '  end if;',
-'  if :APP_PAGE_ID in (1009, 1010, 1011, 1046) and v(''P'' || :APP_PAGE_ID || ''_PLAN'') is not null then',
+'  if :APP_PAGE_ID in (1009, 1010, 1011, 1028, 1029, 1046) and v(''P'' || :APP_PAGE_ID || ''_PLAN'') is not null then',
 '    :G_PLAN := v(''P'' || :APP_PAGE_ID || ''_PLAN'');',
 '  end if;',
 'end;'))

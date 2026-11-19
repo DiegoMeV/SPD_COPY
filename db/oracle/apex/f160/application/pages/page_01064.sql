@@ -180,6 +180,7 @@ wwv_flow_imp_page.create_page_plug(
 unistr('    return ''<div class="spd-alert">La meta no tiene programaci\00F3n en este seguimiento.</div>'';'),
 '  end if;',
 '  for g in (select g.*, e.CODIGO_ENT_PRY, e.NOMBRE_ENT_PRY, dl.CODE as L_CODE, dl.NAME as L_NAME,',
+'                   (select u.NOMBRE_UNIDAD from UNIDADES_PRY u where u.NIT_COMPANIA = g.NIT_COMPANIA and u.CODIGO_UND = g.UNIT_CODE) as UNITS_NAME,',
 '                   (select c.SINGULAR_NAME from V_SPD_PLAN_LEVEL_CONFIG c',
 '                     where c.NIT_COMPANIA = g.NIT_COMPANIA and c.PLAN = g.PLAN and c.NUM = dl."LEVEL") as LEVEL_LABEL',
 '              from SPD_GOAL g',
@@ -209,7 +210,7 @@ unistr('    if :P1064_GOAL_TYPE <> ''PROJECT'' then bar(''Avance F\00EDsico'', x
 '  end loop;',
 '  for d in (select jt.DOC, jt.POS from SPD_MONITORING_CONFIG mc,',
 '                   json_table(mc.SPENT_DOCS, ''$[*]'' columns (POS for ordinality, DOC varchar2(20) path ''$'')) jt',
-'             where mc.ID = :P1064_MC order by jt.POS) loop',
+'             where mc.ID = :P1064_MC and jt.DOC <> ''PAYMENT'' order by jt.POS) loop',
 '    declare',
 '      fi number;',
 '    begin',
@@ -1770,7 +1771,7 @@ unistr('  if l_appr is null and l_base = ''MANUAL'' then   -- plan sin programac
 '  end if;',
 '  for d in (select jt.DOC, jt.POS from SPD_MONITORING_CONFIG mc,',
 '                   json_table(mc.SPENT_DOCS, ''$[*]'' columns (POS for ordinality, DOC varchar2(20) path ''$'')) jt',
-'             where mc.ID = :P1064_MC order by jt.POS) loop',
+'             where mc.ID = :P1064_MC and jt.DOC <> ''PAYMENT'' order by jt.POS) loop',
 '    declare',
 '      fi number;',
 '    begin',
@@ -1943,7 +1944,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cHeight=>1
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(3680214459607292)
@@ -1956,7 +1957,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cHeight=>1
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(3680327977607292)
@@ -1969,7 +1970,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cHeight=>1
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(3680408282607292)
@@ -1982,7 +1983,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cHeight=>1
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(3680594799607293)
@@ -1995,7 +1996,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cHeight=>1
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(3680665253607293)
@@ -2008,7 +2009,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cHeight=>1
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(3680725205607293)
@@ -2021,7 +2022,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cHeight=>1
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(3680824727607293)
@@ -2034,7 +2035,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cHeight=>1
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(3680976958607293)
@@ -2047,7 +2048,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cHeight=>1
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(3681072996607293)
@@ -2060,7 +2061,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cHeight=>1
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(3681114802607293)
@@ -2073,7 +2074,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cHeight=>1
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(3681206640607293)
@@ -2086,7 +2087,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cHeight=>1
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(3681371243607293)
@@ -2099,7 +2100,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cHeight=>1
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(3681485396607293)
@@ -2112,7 +2113,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cHeight=>1
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(3681564626607293)
@@ -2125,7 +2126,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cHeight=>1
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(3681694624607293)
@@ -2138,7 +2139,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cHeight=>1
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(3681766608607293)
@@ -2151,7 +2152,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cHeight=>1
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(3681897603607293)
@@ -2177,7 +2178,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cHeight=>1
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(3682259821607294)
@@ -2294,6 +2295,7 @@ wwv_flow_imp_page.create_page_process(
 '',
 'declare',
 '  rec    SPD_MONITORING_RECORD%rowtype;',
+'  mc     SPD_MONITORING_CONFIG%rowtype;',
 '  l_status varchar2(20);',
 '  l_event  varchar2(20);',
 '  l_sched  varchar2(20) := case when :P1064_GOAL_TYPE in (''ACTION_PLAN'', ''ACTION_PLAN_ACTIVITY'') then ''MANUAL'' else ''DEFINITIVE'' end;',
@@ -2349,6 +2351,21 @@ unistr('    raise_application_error(-20001, ''Valor num\00E9rico no v\00E1lido: 
 '                  v(15), v(16), v(17), v(18), v(19), :P1064_USER_ID);',
 '  end;',
 'begin',
+'  select * into mc from SPD_MONITORING_CONFIG where ID = :P1064_MC and NIT_COMPANIA = :G_NIT_COMPANIA;',
+'  -- la ventana de fechas se recalcula al guardar: no se usa el valor calculado al abrir el formulario',
+'  begin',
+'    select case when systimestamp between from_tz(to_timestamp(substr(case case :P1064_MODE when ''REPORT'' then ''reporting'' when ''VALIDATE'' then ''validating'' when ''REVIEW'' then ''reviewing'' end when ''scheduling'' then json_value(mc.DATES_CONFIG, ''$.sche'
+||'duling[0]'') when ''reporting'' then json_value(mc.DATES_CONFIG, ''$.reporting[0]'') when ''validating'' then json_value(mc.DATES_CONFIG, ''$.validating[0]'') when ''reviewing'' then json_value(mc.DATES_CONFIG, ''$.reviewing[0]'') end, 1, 23), ''YYYY-MM-DD"T"HH24:'
+||'MI:SS.FF3''), ''UTC'')',
+'                                      and from_tz(to_timestamp(substr(case case :P1064_MODE when ''REPORT'' then ''reporting'' when ''VALIDATE'' then ''validating'' when ''REVIEW'' then ''reviewing'' end when ''scheduling'' then json_value(mc.DATES_CONFIG, ''$.sche'
+||'duling[1]'') when ''reporting'' then json_value(mc.DATES_CONFIG, ''$.reporting[1]'') when ''validating'' then json_value(mc.DATES_CONFIG, ''$.validating[1]'') when ''reviewing'' then json_value(mc.DATES_CONFIG, ''$.reviewing[1]'') end, 1, 23), ''YYYY-MM-DD"T"HH24:'
+||'MI:SS.FF3''), ''UTC'')',
+'                then ''S'' else ''N'' end into :P1064_DATE_OK from dual;',
+'  exception when others then :P1064_DATE_OK := ''N'';',
+'  end;',
+'  if :P1064_DATE_OK <> ''S'' then',
+unistr('    raise_application_error(-20001, ''El seguimiento no est\00E1 en fechas para esta etapa.'');'),
+'  end if;',
 '  if :P1064_REC_ID is null then',
 unistr('    raise_application_error(-20001, ''No se encontr\00F3 la programaci\00F3n de la meta'');'),
 '  elsif :P1064_EDITABLE <> ''S'' then',
@@ -2467,8 +2484,10 @@ wwv_flow_imp_page.create_page_process(
 '  :P1064_DATE_OK := ''N'';',
 '  if l_window is not null then',
 '    begin',
-'      if systimestamp between ts(json_value(mc.DATES_CONFIG, ''$.'' || l_window || ''[0]''))',
-'                          and ts(json_value(mc.DATES_CONFIG, ''$.'' || l_window || ''[1]'')) then',
+'      if systimestamp between ts(case l_window when ''reporting'' then json_value(mc.DATES_CONFIG, ''$.reporting[0]'') when ''validating'' then json_value(mc.DATES_CONFIG, ''$.validating[0]'') when ''reviewing'' then json_value(mc.DATES_CONFIG, ''$.reviewing[0]'
+||''') end)',
+'                          and ts(case l_window when ''reporting'' then json_value(mc.DATES_CONFIG, ''$.reporting[1]'') when ''validating'' then json_value(mc.DATES_CONFIG, ''$.validating[1]'') when ''reviewing'' then json_value(mc.DATES_CONFIG, ''$.reviewing[1]'
+||''') end) then',
 '        :P1064_DATE_OK := ''S'';',
 '      end if;',
 '    exception when others then null;',

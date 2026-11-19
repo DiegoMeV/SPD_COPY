@@ -115,6 +115,16 @@ wwv_flow_imp_page.create_page_button(
 ,p_database_action=>'INSERT'
 );
 wwv_flow_imp_page.create_page_branch(
+ p_id=>wwv_flow_imp.id(5110100900000001)
+,p_branch_name=>'Quedarse en el formulario'
+,p_branch_action=>'f?p=&APP_ID.:1009:&APP_SESSION.::&DEBUG.:1009:P1009_ID:&P1009_ID.&success_msg=#SUCCESS_MSG#'
+,p_branch_point=>'AFTER_PROCESSING'
+,p_branch_type=>'REDIRECT_URL'
+,p_branch_sequence=>5
+,p_branch_condition_type=>'REQUEST_IN_CONDITION'
+,p_branch_condition=>'SAVE,CREATE'
+);
+wwv_flow_imp_page.create_page_branch(
  p_id=>wwv_flow_imp.id(41190929049896678)
 ,p_branch_name=>'Volver al reporte'
 ,p_branch_action=>'f?p=&APP_ID.:1008:&APP_SESSION.::&DEBUG.:::&success_msg=#SUCCESS_MSG#'
@@ -361,17 +371,17 @@ wwv_flow_imp_page.create_page_item(
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(39905565117163111)
-,p_name=>'P1009_PRODUCT_CATALOG_ID'
-,p_source_data_type=>'NUMBER'
+,p_name=>'P1009_SECTOR_CODE'
+,p_source_data_type=>'VARCHAR2'
 ,p_item_sequence=>1250
 ,p_item_plug_id=>wwv_flow_imp.id(39900642688163109)
 ,p_item_source_plug_id=>wwv_flow_imp.id(39900642688163109)
 ,p_use_cache_before_default=>'NO'
-,p_prompt=>unistr('Producto del cat\00E1logo')
-,p_source=>'PRODUCT_CATALOG_ID'
+,p_prompt=>'Sector DNP'
+,p_source=>'SECTOR_CODE'
 ,p_source_type=>'REGION_SOURCE_COLUMN'
 ,p_display_as=>'NATIVE_SELECT_LIST'
-,p_named_lov=>'SPD - PRODUCTOS'
+,p_lov=>'select NAME d, CODE r from V_SPD_LOV_SECTOR where NIT_COMPANIA = :G_NIT_COMPANIA order by CODE'
 ,p_lov_display_null=>'YES'
 ,p_cSize=>32
 ,p_cMaxlength=>255

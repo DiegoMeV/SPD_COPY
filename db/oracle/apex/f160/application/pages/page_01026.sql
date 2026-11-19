@@ -46,7 +46,8 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_template=>wwv_flow_imp.id(39482454929162902)
 ,p_plug_display_sequence=>20
 ,p_query_type=>'TABLE'
-,p_query_table=>'SPD_UNIT'
+,p_query_table=>'UNIDADES_PRY'
+,p_query_where=>'NIT_COMPANIA = :G_NIT_COMPANIA'
 ,p_include_rowid_column=>false
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_prn_page_header=>'Unidades'
@@ -80,14 +81,14 @@ wwv_flow_imp_page.create_region_column(
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(40139031415163233)
-,p_name=>'ID'
+,p_name=>'NIT_COMPANIA'
 ,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'ID'
-,p_data_type=>'NUMBER'
+,p_source_expression=>'NIT_COMPANIA'
+,p_data_type=>'VARCHAR2'
 ,p_session_state_data_type=>'VARCHAR2'
-,p_is_query_only=>true
+,p_is_query_only=>false
 ,p_item_type=>'NATIVE_HIDDEN'
-,p_heading=>'ID'
+,p_heading=>'NIT_COMPANIA'
 ,p_heading_alignment=>'LEFT'
 ,p_display_sequence=>30
 ,p_value_alignment=>'LEFT'
@@ -97,14 +98,16 @@ wwv_flow_imp_page.create_region_column(
 ,p_use_as_row_header=>false
 ,p_enable_hide=>true
 ,p_is_primary_key=>true
+,p_default_type=>'ITEM'
+,p_default_expression=>'G_NIT_COMPANIA'
 ,p_duplicate_value=>true
 ,p_include_in_export=>false
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(40140092439163233)
-,p_name=>'NAME'
+,p_name=>'NOMBRE_UNIDAD'
 ,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'NAME'
+,p_source_expression=>'NOMBRE_UNIDAD'
 ,p_data_type=>'VARCHAR2'
 ,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>false
@@ -120,7 +123,7 @@ wwv_flow_imp_page.create_region_column(
   'resizable', 'Y',
   'trim_spaces', 'BOTH')).to_clob
 ,p_is_required=>true
-,p_max_length=>500
+,p_max_length=>255
 ,p_enable_filter=>true
 ,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
 ,p_filter_is_required=>false
@@ -138,9 +141,9 @@ wwv_flow_imp_page.create_region_column(
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(40141043385163233)
-,p_name=>'INITIALS'
+,p_name=>'SIGLA'
 ,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'INITIALS'
+,p_source_expression=>'SIGLA'
 ,p_data_type=>'VARCHAR2'
 ,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>false
@@ -157,7 +160,7 @@ wwv_flow_imp_page.create_region_column(
   'subtype', 'TEXT',
   'trim_spaces', 'BOTH')).to_clob
 ,p_is_required=>false
-,p_max_length=>50
+,p_max_length=>15
 ,p_enable_filter=>true
 ,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
 ,p_filter_is_required=>false
@@ -171,6 +174,40 @@ wwv_flow_imp_page.create_region_column(
 ,p_enable_pivot=>false
 ,p_is_primary_key=>false
 ,p_duplicate_value=>true
+,p_include_in_export=>true
+);
+wwv_flow_imp_page.create_region_column(
+ p_id=>wwv_flow_imp.id(51026000000000001)
+,p_name=>'CODIGO_UND'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'CODIGO_UND'
+,p_data_type=>'NUMBER'
+,p_session_state_data_type=>'VARCHAR2'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_NUMBER_FIELD'
+,p_heading=>unistr('C\00F3digo')
+,p_label=>unistr('C\00F3digo')
+,p_heading_alignment=>'RIGHT'
+,p_display_sequence=>35
+,p_value_alignment=>'RIGHT'
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'max_value', '999',
+  'min_value', '1',
+  'number_alignment', 'right',
+  'virtual_keyboard', 'numeric')).to_clob
+,p_is_required=>true
+,p_enable_filter=>true
+,p_filter_is_required=>false
+,p_filter_lov_type=>'NONE'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_enable_control_break=>false
+,p_enable_hide=>true
+,p_enable_pivot=>false
+,p_is_primary_key=>true
+,p_default_type=>'SQL_QUERY'
+,p_default_expression=>'select nvl(max(CODIGO_UND), 0) + 1 from UNIDADES_PRY where NIT_COMPANIA = :G_NIT_COMPANIA'
+,p_duplicate_value=>false
 ,p_include_in_export=>true
 );
 wwv_flow_imp_page.create_interactive_grid(
@@ -247,6 +284,15 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_column_id=>wwv_flow_imp.id(40141043385163233)
 ,p_is_visible=>true
 ,p_is_frozen=>false
+);
+wwv_flow_imp_page.create_ig_report_column(
+ p_id=>wwv_flow_imp.id(51026000000000002)
+,p_view_id=>wwv_flow_imp.id(40137371555163232)
+,p_display_seq=>1
+,p_column_id=>wwv_flow_imp.id(51026000000000001)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>100
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(40142086981163233)

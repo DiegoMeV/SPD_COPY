@@ -33,6 +33,17 @@ wwv_flow_imp_page.create_page(
 ,p_page_component_map=>'18'
 );
 wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(5110102900000010)
+,p_plug_name=>'Plan de desarrollo'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_imp.id(39544800752162911)
+,p_plug_display_sequence=>5
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'expand_shortcuts', 'N',
+  'output_as', 'TEXT',
+  'show_line_breaks', 'Y')).to_clob
+);
+wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(40153637165163240)
 ,p_plug_name=>unistr('Planes de Acci\00F3n')
 ,p_region_template_options=>'#DEFAULT#'
@@ -42,9 +53,10 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select * from (',
 'select g.ID, l.CODE || '' '' || l.NAME as NIVEL_PLAN, g.CODE || '' - '' || g.NAME as PLAN_ACCION, g.PROJECT_CODE, e.CODIGO_ENT_PRY || '' - '' || e.NOMBRE_ENT_PRY as ENTIDAD, g.NIT_COMPANIA from SPD_GOAL g join ENTIDADES_PRY e on e.ID = g.ENTITY_ID left joi'
-||'n SPD_DEV_PLAN_LEVEL l on l.ID = g.DEV_PLAN_LEVEL_ID where g.GOAL_TYPE = ''ACTION_PLAN''',
+||'n SPD_DEV_PLAN_LEVEL l on l.ID = g.DEV_PLAN_LEVEL_ID where g.GOAL_TYPE = ''ACTION_PLAN'' and g.PLAN = :P1029_PLAN',
 ') where NIT_COMPANIA = :G_NIT_COMPANIA'))
 ,p_plug_source_type=>'NATIVE_IR'
+,p_ajax_items_to_submit=>'P1029_PLAN'
 ,p_prn_page_header=>unistr('Planes de Acci\00F3n')
 );
 wwv_flow_imp_page.create_worksheet(
@@ -154,6 +166,38 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_redirect_url=>'f?p=&APP_ID.:1029:&APP_SESSION.::&DEBUG.:RR::'
 ,p_icon_css_classes=>'fa-undo-alt'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(5110102900000011)
+,p_name=>'P1029_PLAN'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_imp.id(5110102900000010)
+,p_prompt=>'Plan de desarrollo'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'SPD - PLANES DE DESARROLLO'
+,p_cSize=>30
+,p_field_template=>wwv_flow_imp.id(39596958012162922)
+,p_item_template_options=>'#DEFAULT#'
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'page_action_on_selection', 'SUBMIT')).to_clob
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(5110102900000012)
+,p_process_sequence=>10
+,p_process_point=>'BEFORE_HEADER'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Plan por defecto'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'begin',
+'  -- el elegido en la sesion (G_PLAN), el activo de la compania o el mas reciente',
+'  :P1029_PLAN := nvl(:P1029_PLAN, :G_PLAN);',
+'  if :P1029_PLAN is null then',
+'    select max(PLAN) keep (dense_rank first order by case when SPD_ACTIVO = ''S'' then 0 else 1 end, PLAN desc)',
+'      into :P1029_PLAN from PLAN_DESARROLLO where NIT_COMPANIA = :G_NIT_COMPANIA;',
+'  end if;',
+'end;'))
+,p_process_clob_language=>'PLSQL'
+,p_internal_uid=>5110102900000012
 );
 wwv_flow_imp.component_end;
 end;

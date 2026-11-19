@@ -301,7 +301,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_name=>'P1062_PRODUCT'
 ,p_item_sequence=>260
 ,p_item_plug_id=>wwv_flow_imp.id(41228164573911763)
-,p_prompt=>'Indicador de Producto'
+,p_prompt=>'Producto'
 ,p_display_as=>'NATIVE_DISPLAY_ONLY'
 ,p_cSize=>30
 ,p_display_when=>'P1062_PRODUCT'
@@ -401,7 +401,8 @@ wwv_flow_imp_page.create_page_process(
 'begin',
 '  for g in (select g.*, e.CODIGO_ENT_PRY, e.NOMBRE_ENT_PRY, l.CODE as L_CODE, l.NAME as L_NAME, l."LEVEL" as L_LEVEL,',
 '                   (select pp.CODE || '' - '' || pp.NAME from SPD_PUBLIC_POLITIC pp where pp.ID = g.PUBLIC_POLITIC_ID) as POLITIC,',
-'                   (select pc.CODE || '' - '' || pc.NAME from SPD_PRODUCT_CATALOG pc where pc.ID = g.PRODUCT_CATALOG_ID) as PRODUCT,',
+'                   (select p.CODIGO || '' - '' || p.NOMBRE from PRODUCTOS_PRY p where p.ID = g.PRODUCT_ID) as PRODUCT,',
+'                   (select u.NOMBRE_UNIDAD from UNIDADES_PRY u where u.NIT_COMPANIA = g.NIT_COMPANIA and u.CODIGO_UND = g.UNIT_CODE) as UNITS_NAME,',
 '                   (select c.SINGULAR_NAME from V_SPD_PLAN_LEVEL_CONFIG c',
 '                     where c.NIT_COMPANIA = g.NIT_COMPANIA and c.PLAN = g.PLAN and c.NUM = l."LEVEL") as LEVEL_LABEL',
 '              from SPD_GOAL g',

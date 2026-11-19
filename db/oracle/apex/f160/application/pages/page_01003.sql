@@ -115,6 +115,16 @@ wwv_flow_imp_page.create_page_button(
 ,p_database_action=>'INSERT'
 );
 wwv_flow_imp_page.create_page_branch(
+ p_id=>wwv_flow_imp.id(5110100300000001)
+,p_branch_name=>'Quedarse en el formulario'
+,p_branch_action=>'f?p=&APP_ID.:1003:&APP_SESSION.::&DEBUG.:1003:P1003_NIT_COMPANIA,P1003_USUARIO:&P1003_NIT_COMPANIA.,&P1003_USUARIO.&success_msg=#SUCCESS_MSG#'
+,p_branch_point=>'AFTER_PROCESSING'
+,p_branch_type=>'REDIRECT_URL'
+,p_branch_sequence=>5
+,p_branch_condition_type=>'REQUEST_IN_CONDITION'
+,p_branch_condition=>'SAVE,CREATE'
+);
+wwv_flow_imp_page.create_page_branch(
  p_id=>wwv_flow_imp.id(41190794335896678)
 ,p_branch_name=>'Volver al reporte'
 ,p_branch_action=>'f?p=&APP_ID.:1002:&APP_SESSION.::&DEBUG.:::&success_msg=#SUCCESS_MSG#'

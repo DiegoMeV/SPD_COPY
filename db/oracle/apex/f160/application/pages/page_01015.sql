@@ -115,6 +115,16 @@ wwv_flow_imp_page.create_page_button(
 ,p_database_action=>'INSERT'
 );
 wwv_flow_imp_page.create_page_branch(
+ p_id=>wwv_flow_imp.id(5110101500000001)
+,p_branch_name=>'Quedarse en el formulario'
+,p_branch_action=>'f?p=&APP_ID.:1015:&APP_SESSION.::&DEBUG.:1015:P1015_ID:&P1015_ID.&success_msg=#SUCCESS_MSG#'
+,p_branch_point=>'AFTER_PROCESSING'
+,p_branch_type=>'REDIRECT_URL'
+,p_branch_sequence=>5
+,p_branch_condition_type=>'REQUEST_IN_CONDITION'
+,p_branch_condition=>'SAVE,CREATE'
+);
+wwv_flow_imp_page.create_page_branch(
  p_id=>wwv_flow_imp.id(41190245372896677)
 ,p_branch_name=>'Volver al reporte'
 ,p_branch_action=>'f?p=&APP_ID.:1014:&APP_SESSION.::&DEBUG.:::&success_msg=#SUCCESS_MSG#'

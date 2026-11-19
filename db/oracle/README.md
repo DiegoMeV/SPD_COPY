@@ -6,26 +6,37 @@ Scripts para crear las tablas de SPD en Oracle (esquema `SIIF`) y la aplicación
 
 | Archivo | Qué hace | ¿Va en el SIIF real? |
 |---|---|---|
-| `siif_base_tables.sql` | Crea `COMPANIA`, `ENTIDADES_PRY`, `PLAN_DESARROLLO`, `PROYECTO` y `USUARIOS` (DDL original del SIIF) y una versión mínima de la vista `V_PROYECTO` | **No.** Solo para ambientes locales o de desarrollo |
+| `siif_base_tables.sql` | Crea `COMPANIA`, `ENTIDADES_PRY`, `PLAN_DESARROLLO`, `PROYECTO`, `USUARIOS`, `PRODUCTOS_PRY` y `UNIDADES_PRY` (DDL original del SIIF) y una versión mínima de la vista `V_PROYECTO` | **No.** Solo para ambientes locales |
 | `siif_spd_columns.sql` | Agrega columnas `SPD_*` a `ENTIDADES_PRY` y `PLAN_DESARROLLO` | Sí, **revisado por el DBA**: es el único script que modifica tablas del SIIF (solo agrega columnas opcionales) |
-| `spd_schema.sql` | Crea las 18 tablas `SPD_*` | Sí |
+| `spd_schema.sql` | Crea las 16 tablas `SPD_*` | Sí |
+| `spd_migracion_productos_unidades.sql` | Para bases que ya tenían una versión anterior de `spd_schema.sql` (con `SPD_UNIT` y `SPD_PRODUCT_CATALOG`): pasa unidades y productos de las metas a `UNIDADES_PRY` / `PRODUCTOS_PRY` (crea los que falten en la compañía), el sector de los niveles a `SECTOR_CODE`, borra las tablas anteriores y crea las FK nuevas. Se puede volver a ejecutar | Solo donde ya existían las tablas `SPD_*` (desarrollo) |
 | `spd_views.sql` | Vistas para reportes, tableros y listas de valores (`V_SPD_*`), incluidas `V_SPD_PLAN_LEVEL_CONFIG` (definición de niveles de cada plan, desde `SPD_CONFIG`) y `V_SPD_MONITORING_COLORS` (colores de indicadores, desde `COLORS_CONFIG`) | Sí |
-| `spd_seed.sql` | Datos de prueba (Palmira y Risaralda, catálogos, usuarios) | **No.** Solo para pruebas |
+| `spd_seed_prueba2.sql` | Semilla de prueba más completa en la compañía `891900853` (UCEVA, debe existir; no la crea): 2 entidades, plan de 5 niveles con 2 ramas, metas que cumplen la regla de niveles (impacto, resultado, producto, proyectos, planes de acción), 2 proyectos y 2 seguimientos (uno cerrado y uno activo con todas las etapas abiertas). Los nombres empiezan por "SPD PRUEBA 2 ", los códigos por `SPDP2`, usuario `SPDP2_DEMO`; al re-ejecutarse borra solo eso | **No.** Solo para desarrollo |
 | `spd_seed_mini.sql` | Semilla mínima para desarrollo en la compañía `891900853` (UCEVA, debe existir; no la crea): 1 entidad, 1 plan, 1 proyecto y 1 seguimiento activo, con una meta en cada estado para recorrer todas las opciones del menú. Todo lo que crea empieza por "SPD" (códigos `SPD-...`, nombres `SPD ...`, usuario `SPD_DEMO`) y al re-ejecutarse borra solo eso; no necesita `spd_seed.sql` | **No.** Solo para desarrollo |
 | `apex/f100.sql` | Aplicación APEX 24.1 | Sí |
 
 Orden de ejecución, conectado como el dueño del esquema (`SIIF`):
 
 ```
-@siif_base_tables.sql   -- solo en local / desarrollo
+@siif_base_tables.sql   -- solo en local
 @siif_spd_columns.sql
 @spd_schema.sql
 @spd_views.sql
-@spd_seed.sql           -- opcional, datos de prueba (completos)
-@spd_seed_mini.sql      -- opcional, datos mínimos (en vez de spd_seed.sql)
+@spd_seed_mini.sql      -- opcional, datos mínimos
+@spd_seed_prueba2.sql   -- opcional, datos de prueba más completos (puede ir junto con la mini)
 ```
 
-Con `spd_seed_mini.sql` + `siif_apex_local.sql` se entra a la 160 eligiendo **UCEVA** en el login, con el usuario `SPD_DEMO` y la clave local `Spd#2026`.
+En la base de desarrollo, donde ya estaban las tablas `SPD_*` con `SPD_UNIT` y `SPD_PRODUCT_CATALOG`:
+
+```
+@spd_migracion_productos_unidades.sql
+@spd_views.sql
+@spd_seed_mini.sql      -- opcional
+@spd_seed_prueba2.sql   -- opcional
+```
+y luego reinstalar la aplicación 160.
+
+Con `spd_seed_mini.sql` + `siif_apex_local.sql` se entra a la 160 eligiendo **UCEVA** en el login, con el usuario `SPD_DEMO` (o `SPDP2_DEMO` con `spd_seed_prueba2.sql`) y la clave local `Spd#2026`.
 
 Probado en Oracle 23 Free. Usa columnas `IDENTITY`, `DEFAULT ON NULL` y `CHECK ... IS JSON`, disponibles desde Oracle 12c, así que debería funcionar en 19c.
 
@@ -38,11 +49,16 @@ Probado en Oracle 23 Free. Usa columnas `IDENTITY`, `DEFAULT ON NULL` y `CHECK .
 | `dev_plan` | `PLAN_DESARROLLO` (`NIT_COMPANIA`, `PLAN`) + columnas `SPD_*` |
 | `user_account` | `USUARIOS` (`NIT_COMPANIA`, `USUARIO`) |
 | `siif_proyecto` | `PROYECTO` (`NIT_COMPANIA`, `PROYECTO`) |
+| `product_catalog` | `PRODUCTOS_PRY` (`ID`): `SPD_GOAL.PRODUCT_ID` |
+| `unit` | `UNIDADES_PRY` (`NIT_COMPANIA`, `CODIGO_UND`): `SPD_GOAL.UNIT_CODE` y `PI_UNIT_CODE` |
 | el resto (`goal`, `monitoring_*`, ...) | tablas nuevas `SPD_*` |
 
 - Las tablas SPD se enlazan al plan por `(NIT_COMPANIA, PLAN)`, porque `PLAN_DESARROLLO.ID` no tiene `UNIQUE`.
 - `CREATED_BY` / `UPDATED_BY` guardan `USUARIOS.ID` (sin FK, porque esa columna tampoco es única).
 - La tabla `goal` se llama `SPD_GOAL` porque `SPD_META` ya existe en el SIIF.
+- Las unidades y los productos son de cada compañía (en PostgreSQL eran globales). La meta guarda el código de la unidad, no su nombre.
+- El "Sector DNP" de un nivel del plan (`SPD_DEV_PLAN_LEVEL.SECTOR_CODE`) es un código sin FK: los 2 primeros dígitos de `PRODUCTOS_PRY.PROGRAMA` (vista `V_SPD_LOV_SECTOR`). El SIIF no tiene tabla de sectores DNP, así que la lista muestra "Sector NN" sin nombre.
+- El catálogo de productos ya no tiene el nivel "Indicador" (Sector › Programa › Producto › Indicador): las metas apuntan al producto.
 
 ## Aplicación APEX (`apex/f100.sql`)
 
@@ -66,7 +82,7 @@ Es igual al de la aplicación original de SPD (`client/components/AppMenu/hooks.
 | Configuración › Proyectos | Reporte sobre la vista `V_PROYECTO` del SIIF (Proyecto, Nombre, Entidad) |
 | Configuración › Seguimiento | Crear y editar en una página (no diálogo). Parámetros de seguimiento: "Seguimiento para" y "Documento de ejecución" como casillas y las 8 fechas de programación / reporte / validación / revisión. Debajo, **Colores de Indicadores** (Desde, Incluye desde?, Hasta, Incluye hasta?, Color, Etiqueta) con la vista previa de la barra de colores; se guarda en `COLORS_CONFIG` con el botón del formulario |
 | Configuración › Políticas › Componentes / Nacionales / Territoriales | Reporte + formulario; nacionales = paz y víctimas, territoriales con año inicial y final |
-| Catálogos › ODS / Unidades / Productos | Grillas (ODS, unidades); productos como Sector › Programa › Producto › Indicador |
+| Catálogos › ODS / Unidades / Productos | Grillas (ODS; unidades de la compañía en `UNIDADES_PRY`); productos de la compañía (`PRODUCTOS_PRY`) como Sector › Programa › Producto |
 | Seguimiento › Metas, Proyectos, Planes de Acción › Programación / Reporte / Validación / Revisión | Listado de metas por seguimiento con su estado en esa etapa ("Sin Programar", "Sin Reportar", "Sin Validar", "Sin Revisar"…) — vista `V_SPD_GOAL_MONITORING` |
 | Seguimiento › … › Tableros de Control | Tabla "Avance de Metas": programado, ejecutado, apropiado, compromisos, obligaciones, avance físico y financiero |
 | Seguimiento › Planes de Acción › Planes de Acción | Listado de planes de acción |

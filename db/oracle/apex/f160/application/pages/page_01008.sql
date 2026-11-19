@@ -177,15 +177,13 @@ wwv_flow_imp_page.create_worksheet_column(
 );
 wwv_flow_imp_page.create_worksheet_column(
  p_id=>wwv_flow_imp.id(39920942213163115)
-,p_db_column_name=>'PRODUCT_CATALOG_ID'
+,p_db_column_name=>'SECTOR_CODE'
 ,p_display_order=>10
 ,p_column_identifier=>'J'
-,p_column_label=>unistr('Producto del cat\00E1logo')
+,p_column_label=>'Sector DNP'
 ,p_column_type=>'STRING'
-,p_display_text_as=>'LOV_ESCAPE_SC'
 ,p_heading_alignment=>'LEFT'
 ,p_tz_dependent=>'N'
-,p_rpt_named_lov=>wwv_flow_imp.id(39905654405163111)
 ,p_use_as_row_header=>'N'
 );
 wwv_flow_imp_page.create_worksheet_column(
@@ -231,7 +229,7 @@ wwv_flow_imp_page.create_worksheet_rpt(
 ,p_report_alias=>'388810'
 ,p_status=>'PUBLIC'
 ,p_is_default=>'Y'
-,p_report_columns=>'IS_ACTIVE:NIT_COMPANIA:PLAN:CODE:NAME:LEVEL:PARENT_ID:WEIGHTING:PRODUCT_CATALOG_ID:CREATED_AT:UPDATED_AT'
+,p_report_columns=>'IS_ACTIVE:NIT_COMPANIA:PLAN:CODE:NAME:LEVEL:PARENT_ID:WEIGHTING:SECTOR_CODE:CREATED_AT:UPDATED_AT'
 ,p_sort_column_1=>'IS_ACTIVE'
 ,p_sort_direction_1=>'ASC'
 );

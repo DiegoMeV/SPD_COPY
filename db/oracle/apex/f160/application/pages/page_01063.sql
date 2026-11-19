@@ -192,6 +192,7 @@ unistr('                    ''Recursos CN'', ''Recursos CD'', ''Recursos SGR'', 
 '',
 '  -- resumen de la meta (GoalSummary) y actividades (GoalActivities)',
 '  for g in (select g.*, e.CODIGO_ENT_PRY, e.NOMBRE_ENT_PRY, dl.CODE as L_CODE, dl.NAME as L_NAME,',
+'                   (select u.NOMBRE_UNIDAD from UNIDADES_PRY u where u.NIT_COMPANIA = g.NIT_COMPANIA and u.CODIGO_UND = g.UNIT_CODE) as UNITS_NAME,',
 '                   (select c.SINGULAR_NAME from V_SPD_PLAN_LEVEL_CONFIG c',
 '                     where c.NIT_COMPANIA = g.NIT_COMPANIA and c.PLAN = g.PLAN and c.NUM = dl."LEVEL") as LEVEL_LABEL',
 '              from SPD_GOAL g',
@@ -360,7 +361,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cSize=>30
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1826116598136878)
@@ -372,7 +373,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cSize=>30
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1826275264136878)
@@ -384,7 +385,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cSize=>30
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1826387216136878)
@@ -396,7 +397,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cSize=>30
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1826472636136878)
@@ -408,7 +409,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cSize=>30
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1826579404136878)
@@ -420,7 +421,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cSize=>30
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1826677343136878)
@@ -432,7 +433,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cSize=>30
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1826781620136878)
@@ -444,7 +445,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cSize=>30
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1826834047136878)
@@ -456,7 +457,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cSize=>30
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1826911785136878)
@@ -468,7 +469,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cSize=>30
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1827031780136878)
@@ -480,7 +481,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cSize=>30
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1827196906136878)
@@ -492,7 +493,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cSize=>30
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1827269942136878)
@@ -504,7 +505,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cSize=>30
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1827378119136878)
@@ -516,7 +517,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cSize=>30
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1827402248136879)
@@ -528,7 +529,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cSize=>30
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1827509662136879)
@@ -540,7 +541,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cSize=>30
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1827674235136879)
@@ -552,7 +553,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_cSize=>30
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'value_protected', 'N')).to_clob
+  'value_protected', 'Y')).to_clob
 );
 wwv_flow_imp_page.create_page_da_event(
  p_id=>wwv_flow_imp.id(1828302700136880)
@@ -629,6 +630,15 @@ unistr('    raise_application_error(-20001, ''Valor num\00E9rico no v\00E1lido: 
 '  -- se vuelve a validar en el servidor (fechas y estado)',
 '  select max(SCHEDULE_STATUS), max(GOAL_TYPE), max(MONITORING_RECORD_ID) into l_status, l_type, l_rec',
 '    from V_SPD_GOAL_MONITORING where MONITORING_CONFIG_ID = mc.ID and GOAL_ID = :P1063_GOAL_ID and GOAL_GROUP = nvl('''', GOAL_GROUP);',
+'  -- la ventana de fechas se recalcula al guardar: no se usa el valor calculado al abrir el formulario',
+'  begin',
+'    select case when systimestamp between from_tz(to_timestamp(substr(case ''scheduling'' when ''scheduling'' then json_value(mc.DATES_CONFIG, ''$.scheduling[0]'') when ''reporting'' then json_value(mc.DATES_CONFIG, ''$.reporting[0]'') when ''validating'' then j'
+||'son_value(mc.DATES_CONFIG, ''$.validating[0]'') when ''reviewing'' then json_value(mc.DATES_CONFIG, ''$.reviewing[0]'') end, 1, 23), ''YYYY-MM-DD"T"HH24:MI:SS.FF3''), ''UTC'')',
+'                                      and from_tz(to_timestamp(substr(case ''scheduling'' when ''scheduling'' then json_value(mc.DATES_CONFIG, ''$.scheduling[1]'') when ''reporting'' then json_value(mc.DATES_CONFIG, ''$.reporting[1]'') when ''validating'' then j'
+||'son_value(mc.DATES_CONFIG, ''$.validating[1]'') when ''reviewing'' then json_value(mc.DATES_CONFIG, ''$.reviewing[1]'') end, 1, 23), ''YYYY-MM-DD"T"HH24:MI:SS.FF3''), ''UTC'')',
+'                then ''S'' else ''N'' end into :P1063_DATE_OK from dual;',
+'  exception when others then :P1063_DATE_OK := ''N'';',
+'  end;',
 '  if :P1063_DATE_OK <> ''S'' then',
 unistr('    raise_application_error(-20001, ''El seguimiento no est\00E1 en fechas de programaci\00F3n.'');'),
 '  elsif l_status in (''Validada'', ''Revisada'') or l_type = ''ACTION_PLAN'' then',

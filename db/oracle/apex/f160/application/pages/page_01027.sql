@@ -39,7 +39,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_template=>wwv_flow_imp.id(39482454929162902)
 ,p_plug_display_sequence=>10
 ,p_query_type=>'SQL'
-,p_plug_source=>'select ID, SECTOR, PROGRAMA, PRODUCTO, INDICADOR from V_SPD_PRODUCT_INDICATORS'
+,p_plug_source=>'select ID, SECTOR, PROGRAMA, PRODUCTO, DESCRIPCION from V_SPD_PRODUCTS where NIT_COMPANIA = :G_NIT_COMPANIA'
 ,p_plug_source_type=>'NATIVE_IR'
 ,p_prn_page_header=>'Productos'
 );
@@ -108,10 +108,10 @@ wwv_flow_imp_page.create_worksheet_column(
 );
 wwv_flow_imp_page.create_worksheet_column(
  p_id=>wwv_flow_imp.id(40146338222163236)
-,p_db_column_name=>'INDICADOR'
+,p_db_column_name=>'DESCRIPCION'
 ,p_display_order=>4
 ,p_column_identifier=>'E'
-,p_column_label=>'Indicador'
+,p_column_label=>unistr('Descripci\00F3n')
 ,p_column_type=>'STRING'
 ,p_heading_alignment=>'LEFT'
 ,p_tz_dependent=>'N'
@@ -124,7 +124,7 @@ wwv_flow_imp_page.create_worksheet_rpt(
 ,p_report_alias=>'391470'
 ,p_status=>'PUBLIC'
 ,p_is_default=>'Y'
-,p_report_columns=>'ID:SECTOR:PROGRAMA:PRODUCTO:INDICADOR'
+,p_report_columns=>'ID:SECTOR:PROGRAMA:PRODUCTO:DESCRIPCION'
 );
 wwv_flow_imp_page.create_page_button(
  p_id=>wwv_flow_imp.id(40146791013163236)

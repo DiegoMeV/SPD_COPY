@@ -519,7 +519,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select case d.DOC when ''COMMITMENT'' then ''Compromisos'' when ''OBLIGATION'' then ''Obligaciones'' else ''Pagos'' end as d, d.DOC as r',
 '  from SPD_MONITORING_CONFIG mc, json_table(mc.SPENT_DOCS, ''$[*]'' columns (POS for ordinality, DOC varchar2(20) path ''$'')) d',
-' where mc.ID = :P1034_MC order by d.POS'))
+' where mc.ID = :P1034_MC and d.DOC <> ''PAYMENT'' order by d.POS'))
 ,p_cSize=>30
 ,p_cHeight=>1
 ,p_begin_on_new_line=>'N'
@@ -638,7 +638,7 @@ wwv_flow_imp_page.create_page_process(
 '  select coalesce(max(case when d.DOC = :P1034_SPENT then d.DOC end), max(d.DOC) keep (dense_rank first order by d.POS), ''COMMITMENT'')',
 '    into :P1034_SPENT',
 '    from SPD_MONITORING_CONFIG mc, json_table(mc.SPENT_DOCS, ''$[*]'' columns (POS for ordinality, DOC varchar2(20) path ''$'')) d',
-'   where mc.ID = :P1034_MC;',
+'   where mc.ID = :P1034_MC and d.DOC <> ''PAYMENT'';',
 'end;',
 'end;'))
 ,p_process_clob_language=>'PLSQL'

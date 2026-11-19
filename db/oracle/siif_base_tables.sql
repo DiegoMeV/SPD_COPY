@@ -1,13 +1,13 @@
 /* =============================================================================
    SIIF - Tablas base existentes que usa SPD
-   COMPANIA, ENTIDADES_PRY, PLAN_DESARROLLO, PROYECTO, USUARIOS
+   COMPANIA, ENTIDADES_PRY, PLAN_DESARROLLO, PROYECTO, USUARIOS, PRODUCTOS_PRY, UNIDADES_PRY
 
    SOLO PARA AMBIENTES LOCALES O DE DESARROLLO.
    En el SIIF estas tablas ya existen: NO ejecutar este script allí.
 
    Es el DDL original del SIIF, con estos ajustes para poder crearlo aislado:
    - Se crean las secuencias que usan los triggers (SEQ_ENTIDADES_PRY, SEQ_ESTRUCTURA_PLAN,
-     SEQ_USUARIOS).
+     SEQ_USUARIOS, SEQ_PRODUCTOS_PRY).
    - Quedan comentadas las FK hacia tablas que no están aquí
      (PROGRAMA_PRY, SECTORES_CONTA, PROGRAMAS_CONTA, DIVISION, DEPENDENCIA).
    - Quedan comentados los triggers que dependen de objetos del SIIF que no están aquí:
@@ -15,12 +15,13 @@
      TRG_REPLICAR_OPCIONES_USUARIO_NUEVO (GEN_OPCIONES_*).
 
    Orden: 1) este archivo  2) siif_spd_columns.sql  3) spd_schema.sql
-          4) spd_views.sql  5) spd_seed.sql
+          4) spd_views.sql  5) spd_seed_mini.sql / spd_seed_prueba2.sql
    ============================================================================= */
 
 CREATE SEQUENCE SEQ_ENTIDADES_PRY  START WITH 1 INCREMENT BY 1 NOCACHE;
 CREATE SEQUENCE SEQ_ESTRUCTURA_PLAN START WITH 1 INCREMENT BY 1 NOCACHE;
 CREATE SEQUENCE SEQ_USUARIOS        START WITH 1 INCREMENT BY 1 NOCACHE;
+CREATE SEQUENCE SEQ_PRODUCTOS_PRY   START WITH 1 INCREMENT BY 1 NOCACHE;
 
 
 /* -----------------------------------------------------------------------------
@@ -460,6 +461,54 @@ ALTER TRIGGER "BI_USUARIOS" ENABLE;
 -- Triggers del SIIF omitidos (dependen de objetos que no hacen parte de este script):
 --   AUD_BD_USUARIOS, AUD_BU_USUARIOS, AUD_BI_USUARIOS  -> UND_AUDITORIA.AUDIT
 --   TRG_REPLICAR_OPCIONES_USUARIO_NUEVO               -> GEN_OPCIONES_COMPANIA / GEN_OPCIONES_USUARIO
+
+
+/* -----------------------------------------------------------------------------
+   PRODUCTOS_PRY (productos de los proyectos; los usa SPD_GOAL.PRODUCT_ID)
+   ----------------------------------------------------------------------------- */
+CREATE TABLE "PRODUCTOS_PRY"
+   (	"NIT_COMPANIA" VARCHAR2(20) NOT NULL ENABLE,
+	"ID" NUMBER NOT NULL ENABLE,
+	"CODIGO" VARCHAR2(20) NOT NULL ENABLE,
+	"NOMBRE" VARCHAR2(300) NOT NULL ENABLE,
+	"DESCRIPCION" VARCHAR2(1000),
+	"PROGRAMA" VARCHAR2(20)
+   ) ;
+CREATE UNIQUE INDEX "PK_PRODUCTOS_PRY" ON "PRODUCTOS_PRY" ("ID")
+  ;
+ALTER TABLE "PRODUCTOS_PRY" ADD CONSTRAINT "PK_PRODUCTOS_PRY" PRIMARY KEY ("ID")
+  USING INDEX "PK_PRODUCTOS_PRY"  ENABLE;
+
+CREATE OR REPLACE EDITIONABLE TRIGGER "BI_PRODUCTOS_PRY"
+BEFORE INSERT ON productos_pry FOR EACH ROW
+BEGIN
+    IF :NEW.id IS NULL THEN
+        SELECT SEQ_productos_pry.NextVal
+        INTO :NEW.id FROM DUAL;
+    END IF;
+END;
+/
+ALTER TRIGGER "BI_PRODUCTOS_PRY" ENABLE;
+
+
+/* -----------------------------------------------------------------------------
+   UNIDADES_PRY (unidades de medida; las usan SPD_GOAL.UNIT_CODE y PI_UNIT_CODE)
+   ----------------------------------------------------------------------------- */
+CREATE TABLE "UNIDADES_PRY"
+   (	"NIT_COMPANIA" VARCHAR2(15) NOT NULL ENABLE,
+	"CODIGO_UND" NUMBER(3,0) NOT NULL ENABLE,
+	"NOMBRE_UNIDAD" VARCHAR2(255) NOT NULL ENABLE,
+	"SIGLA" VARCHAR2(15)
+   ) ;
+CREATE UNIQUE INDEX "UNIDADES_PRY_PK" ON "UNIDADES_PRY" ("NIT_COMPANIA", "CODIGO_UND")
+  ;
+ALTER TABLE "UNIDADES_PRY" ADD CONSTRAINT "UNIDADES_PRY_PK" PRIMARY KEY ("NIT_COMPANIA", "CODIGO_UND")
+  USING INDEX "UNIDADES_PRY_PK"  ENABLE;
+
+COMMENT ON COLUMN "UNIDADES_PRY"."CODIGO_UND" IS 'Consecutivo de la unidad de medida';
+COMMENT ON COLUMN "UNIDADES_PRY"."NOMBRE_UNIDAD" IS 'Nombre de la unidad de medida';
+COMMENT ON COLUMN "UNIDADES_PRY"."SIGLA" IS 'Sigla de la unidad';
+COMMENT ON TABLE "UNIDADES_PRY"  IS 'Aquí se registran las diferentes unidades de medida de actividades e insumos de los proyectos';
 
 
 /* -----------------------------------------------------------------------------

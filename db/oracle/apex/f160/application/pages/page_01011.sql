@@ -116,6 +116,16 @@ wwv_flow_imp_page.create_page_button(
 ,p_database_action=>'INSERT'
 );
 wwv_flow_imp_page.create_page_branch(
+ p_id=>wwv_flow_imp.id(5110101100000001)
+,p_branch_name=>'Quedarse en el formulario'
+,p_branch_action=>'f?p=&APP_ID.:1011:&APP_SESSION.::&DEBUG.:1011:P1011_ID:&P1011_ID.&success_msg=#SUCCESS_MSG#'
+,p_branch_point=>'AFTER_PROCESSING'
+,p_branch_type=>'REDIRECT_URL'
+,p_branch_sequence=>5
+,p_branch_condition_type=>'REQUEST_IN_CONDITION'
+,p_branch_condition=>'SAVE,CREATE'
+);
+wwv_flow_imp_page.create_page_branch(
  p_id=>wwv_flow_imp.id(41191049844896678)
 ,p_branch_name=>'Volver al reporte'
 ,p_branch_action=>'f?p=&APP_ID.:1010:&APP_SESSION.::&DEBUG.:::&success_msg=#SUCCESS_MSG#'
@@ -565,14 +575,14 @@ wwv_flow_imp_page.create_page_item(
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(39932971834163119)
-,p_name=>'P1011_UNITS_NAME'
-,p_source_data_type=>'VARCHAR2'
+,p_name=>'P1011_UNIT_CODE'
+,p_source_data_type=>'NUMBER'
 ,p_item_sequence=>1440
 ,p_item_plug_id=>wwv_flow_imp.id(39925727427163117)
 ,p_item_source_plug_id=>wwv_flow_imp.id(39925727427163117)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'Unidad medida'
-,p_source=>'UNITS_NAME'
+,p_source=>'UNIT_CODE'
 ,p_source_type=>'REGION_SOURCE_COLUMN'
 ,p_display_as=>'NATIVE_SELECT_LIST'
 ,p_named_lov=>'SPD - UNIDADES'
@@ -731,14 +741,14 @@ wwv_flow_imp_page.create_page_item(
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(39936108348163120)
-,p_name=>'P1011_PRODUCT_CATALOG_ID'
+,p_name=>'P1011_PRODUCT_ID'
 ,p_source_data_type=>'NUMBER'
 ,p_item_sequence=>1470
 ,p_item_plug_id=>wwv_flow_imp.id(39925727427163117)
 ,p_item_source_plug_id=>wwv_flow_imp.id(39925727427163117)
 ,p_use_cache_before_default=>'NO'
-,p_prompt=>'Indicador de Producto'
-,p_source=>'PRODUCT_CATALOG_ID'
+,p_prompt=>'Producto'
+,p_source=>'PRODUCT_ID'
 ,p_source_type=>'REGION_SOURCE_COLUMN'
 ,p_display_as=>'NATIVE_SELECT_LIST'
 ,p_named_lov=>'SPD - PRODUCTOS'
@@ -856,14 +866,14 @@ wwv_flow_imp_page.create_page_item(
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(39938047519163121)
-,p_name=>'P1011_PI_UNITS_NAME'
-,p_source_data_type=>'VARCHAR2'
+,p_name=>'P1011_PI_UNIT_CODE'
+,p_source_data_type=>'NUMBER'
 ,p_item_sequence=>1510
 ,p_item_plug_id=>wwv_flow_imp.id(39925727427163117)
 ,p_item_source_plug_id=>wwv_flow_imp.id(39925727427163117)
 ,p_use_cache_before_default=>'NO'
-,p_prompt=>'Unidad medida (indicador de producto)'
-,p_source=>'PI_UNITS_NAME'
+,p_prompt=>'Unidad medida (producto)'
+,p_source=>'PI_UNIT_CODE'
 ,p_source_type=>'REGION_SOURCE_COLUMN'
 ,p_display_as=>'NATIVE_SELECT_LIST'
 ,p_named_lov=>'SPD - UNIDADES'
@@ -1171,6 +1181,38 @@ wwv_flow_imp_page.create_page_item(
 ,p_is_persistent=>'N'
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
   'number_of_columns', '2')).to_clob
+);
+wwv_flow_imp_page.create_page_validation(
+ p_id=>wwv_flow_imp.id(51101100000000002)
+,p_validation_name=>'Tipo de meta segun el nivel del plan'
+,p_validation_sequence=>290
+,p_validation=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'declare',
+'  l_level number;',
+'  l_need  number;',
+'begin',
+'  if :P1011_DEV_PLAN_LEVEL_ID is null then',
+'    return null;',
+'  end if;',
+'  select max("LEVEL") into l_level from SPD_DEV_PLAN_LEVEL where ID = to_number(:P1011_DEV_PLAN_LEVEL_ID);',
+'  -- nivel 1 = impacto, nivel 2 = sin metas, nivel 3 = resultado, nivel 4 = producto, nivel 5 = plan de accion',
+'  if l_level = 2 then',
+unistr('    return ''El nivel 2 de la estructura del plan no lleva metas: elija un nivel 1 (impacto), 3 (resultado), 4 (producto) o 5 (plan de acci\00F3n).'';'),
+'  end if;',
+'  l_need := case :P1011_GOAL_TYPE when ''IMPACT'' then 1 when ''RESULT'' then 3 when ''PRODUCT'' then 4 when ''ACTION_PLAN'' then 5 end;',
+'  if l_need is not null and l_level <> l_need then',
+'    return ''Las metas de '' || case :P1011_GOAL_TYPE when ''IMPACT'' then ''impacto'' when ''RESULT'' then ''resultado''',
+unistr('                                    when ''PRODUCT'' then ''producto'' else ''plan de acci\00F3n'' end'),
+'        || '' van en el nivel '' || l_need || '' de la estructura del plan (el elegido es de nivel '' || l_level || '').'';',
+'  end if;',
+'  return null;',
+'end;'))
+,p_validation2=>'PLSQL'
+,p_validation_type=>'FUNC_BODY_RETURNING_ERR_TEXT'
+,p_validation_condition=>'SAVE,CREATE'
+,p_validation_condition_type=>'REQUEST_IN_CONDITION'
+,p_associated_item=>wwv_flow_imp.id(39928191394163118)
+,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
 );
 wwv_flow_imp_page.create_page_validation(
  p_id=>wwv_flow_imp.id(39939013290163121)

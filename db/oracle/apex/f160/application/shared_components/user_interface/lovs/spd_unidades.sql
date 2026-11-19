@@ -16,10 +16,11 @@ wwv_flow_imp_shared.create_list_of_values(
 ,p_lov_name=>'SPD - UNIDADES'
 ,p_source_type=>'TABLE'
 ,p_location=>'LOCAL'
-,p_query_table=>'SPD_UNIT'
-,p_return_column_name=>'NAME'
-,p_display_column_name=>'NAME'
-,p_default_sort_column_name=>'NAME'
+,p_query_table=>'UNIDADES_PRY'
+,p_query_where=>'NIT_COMPANIA = :G_NIT_COMPANIA'
+,p_return_column_name=>'CODIGO_UND'
+,p_display_column_name=>'NOMBRE_UNIDAD'
+,p_default_sort_column_name=>'NOMBRE_UNIDAD'
 ,p_default_sort_direction=>'ASC'
 ,p_version_scn=>2578767
 );

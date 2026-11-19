@@ -64,9 +64,10 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_display_point=>'SUB_REGIONS'
 ,p_query_type=>'TABLE'
 ,p_query_table=>'SPD_GOAL'
-,p_query_where=>'NIT_COMPANIA = :G_NIT_COMPANIA'
+,p_query_where=>'NIT_COMPANIA = :G_NIT_COMPANIA and PLAN = :P1010_PLAN'
 ,p_include_rowid_column=>false
 ,p_plug_source_type=>'NATIVE_IR'
+,p_ajax_items_to_submit=>'P1010_PLAN'
 ,p_prn_page_header=>'Metas'
 );
 wwv_flow_imp_page.create_worksheet(
@@ -312,11 +313,11 @@ wwv_flow_imp_page.create_worksheet_column(
 );
 wwv_flow_imp_page.create_worksheet_column(
  p_id=>wwv_flow_imp.id(39969794516163135)
-,p_db_column_name=>'UNITS_NAME'
+,p_db_column_name=>'UNIT_CODE'
 ,p_display_order=>18
 ,p_column_identifier=>'R'
 ,p_column_label=>'Unidad de medida'
-,p_column_type=>'STRING'
+,p_column_type=>'NUMBER'
 ,p_display_text_as=>'HIDDEN_ESCAPE_SC'
 ,p_heading_alignment=>'LEFT'
 ,p_tz_dependent=>'N'
@@ -412,10 +413,10 @@ wwv_flow_imp_page.create_worksheet_column(
 );
 wwv_flow_imp_page.create_worksheet_column(
  p_id=>wwv_flow_imp.id(39972526561163136)
-,p_db_column_name=>'PRODUCT_CATALOG_ID'
+,p_db_column_name=>'PRODUCT_ID'
 ,p_display_order=>25
 ,p_column_identifier=>'Y'
-,p_column_label=>unistr('Producto del cat\00E1logo')
+,p_column_label=>'Producto'
 ,p_column_type=>'STRING'
 ,p_display_text_as=>'HIDDEN_ESCAPE_SC'
 ,p_heading_alignment=>'LEFT'
@@ -477,11 +478,11 @@ wwv_flow_imp_page.create_worksheet_column(
 );
 wwv_flow_imp_page.create_worksheet_column(
  p_id=>wwv_flow_imp.id(39974533990163137)
-,p_db_column_name=>'PI_UNITS_NAME'
+,p_db_column_name=>'PI_UNIT_CODE'
 ,p_display_order=>30
 ,p_column_identifier=>'AD'
 ,p_column_label=>'Unidad (plan indicativo)'
-,p_column_type=>'STRING'
+,p_column_type=>'NUMBER'
 ,p_display_text_as=>'HIDDEN_ESCAPE_SC'
 ,p_heading_alignment=>'LEFT'
 ,p_tz_dependent=>'N'
@@ -739,7 +740,7 @@ unistr('                        when ''PUBLIC_POLITIC'' then ''Pol\00EDtica P\00
 '  from SPD_GOAL g',
 ' where g.NIT_COMPANIA = :G_NIT_COMPANIA and g.PLAN = :P1010_PLAN',
 '   and (nvl(:P1010_NODE, ''0'') = ''0''',
-'        or g.DEV_PLAN_LEVEL_ID in (select ID from SPD_DEV_PLAN_LEVEL start with ID = to_number(:P1010_NODE) connect by prior ID = PARENT_ID))'))
+'        or g.DEV_PLAN_LEVEL_ID = to_number(:P1010_NODE))'))
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_ajax_items_to_submit=>'P1010_PLAN,P1010_NODE'
 ,p_plug_header=>'<div class="spd-type-summary">&P1010_NODE_SUMMARY!RAW.</div>'
@@ -1042,6 +1043,17 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_frozen=>false
 ,p_width=>185
 );
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(51010000000000010)
+,p_plug_name=>'Plan de desarrollo'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_imp.id(39544800752162911)
+,p_plug_display_sequence=>1
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'expand_shortcuts', 'N',
+  'output_as', 'TEXT',
+  'show_line_breaks', 'Y')).to_clob
+);
 wwv_flow_imp_page.create_page_button(
  p_id=>wwv_flow_imp.id(39979776023163139)
 ,p_button_sequence=>10
@@ -1067,7 +1079,7 @@ wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(41225800645911763)
 ,p_name=>'P1010_PLAN'
 ,p_item_sequence=>10
-,p_item_plug_id=>wwv_flow_imp.id(41225619297911762)
+,p_item_plug_id=>wwv_flow_imp.id(51010000000000010)
 ,p_prompt=>'Plan de desarrollo'
 ,p_display_as=>'NATIVE_SELECT_LIST'
 ,p_named_lov=>'SPD - PLANES DE DESARROLLO'
@@ -1189,12 +1201,13 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
 '',
 'begin',
-'  select count(*) into :P1010_TOTAL from SPD_GOAL where NIT_COMPANIA = :G_NIT_COMPANIA;',
-unistr('  -- plan por defecto: el activo de la compa\00F1\00EDa (o el m\00E1s reciente)'),
+unistr('  -- plan por defecto: el elegido en la sesi\00F3n (G_PLAN), el activo de la compa\00F1\00EDa o el m\00E1s reciente'),
+'  :P1010_PLAN := nvl(:P1010_PLAN, :G_PLAN);',
 '  if :P1010_PLAN is null then',
 '    select max(PLAN) keep (dense_rank first order by case when SPD_ACTIVO = ''S'' then 0 else 1 end, PLAN desc)',
 '      into :P1010_PLAN from PLAN_DESARROLLO where NIT_COMPANIA = :G_NIT_COMPANIA;',
 '  end if;',
+'  select count(*) into :P1010_TOTAL from SPD_GOAL where NIT_COMPANIA = :G_NIT_COMPANIA and PLAN = :P1010_PLAN;',
 '  :P1010_NODE := nvl(:P1010_NODE, ''0'');',
 '  if :P1010_NODE <> ''0'' then',
 '    begin',
@@ -1206,12 +1219,11 @@ unistr('  -- plan por defecto: el activo de la compa\00F1\00EDa (o el m\00E1s re
 '  if :P1010_NODE = ''0'' then',
 '    select max(NOMBRE) into :P1010_NODE_NAME from PLAN_DESARROLLO where NIT_COMPANIA = :G_NIT_COMPANIA and PLAN = :P1010_PLAN;',
 '  end if;',
-'  -- desglose por tipo de las metas del nodo (y sus hijos), arriba de la grilla "Metas de ..."',
+'  -- desglose por tipo de las metas del nodo elegido (solo ese nivel), arriba de la grilla "Metas de ..."',
 '  :P1010_NODE_SUMMARY := null;',
 '  for c in (select GOAL_TYPE, count(*) as N from SPD_GOAL g',
 '             where g.NIT_COMPANIA = :G_NIT_COMPANIA and g.PLAN = :P1010_PLAN',
-'               and (:P1010_NODE = ''0'' or g.DEV_PLAN_LEVEL_ID in',
-'                    (select ID from SPD_DEV_PLAN_LEVEL start with ID = to_number(:P1010_NODE) connect by prior ID = PARENT_ID))',
+'               and (:P1010_NODE = ''0'' or g.DEV_PLAN_LEVEL_ID = to_number(:P1010_NODE))',
 '             group by GOAL_TYPE',
 '             order by decode(GOAL_TYPE, ''RESULT'', 1, ''WELL_BEING'', 2, ''IMPACT'', 3, ''PRODUCT'', 4, ''PROJECT'', 5,',
 '                             ''ACTIVITY'', 6, ''ACTION_PLAN'', 7, ''ACTION_PLAN_ACTIVITY'', 8, 9)) loop',

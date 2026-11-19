@@ -13,7 +13,7 @@
 -- El menú local (GEN_OPCIONES_SISTEMA_LOCAL) replica el menú original de SPD,
 -- apuntando a los alias SPD_* de la app 160.
 -- Login local: cualquier usuario de USUARIOS con la clave 'Spd#2026'.
--- Ejecutar como SIIF, después de siif_base_tables.sql y spd_seed.sql.
+-- Ejecutar como SIIF, después de siif_base_tables.sql y spd_seed_mini.sql / spd_seed_prueba2.sql.
 -- =============================================================================
 
 set define off

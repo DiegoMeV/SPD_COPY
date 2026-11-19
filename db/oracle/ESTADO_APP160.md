@@ -92,7 +92,7 @@ Fecha: 2026-11-12.
       - Guarda en el mismo formato JSON que React: claves `localizationTabN`, `localization` como arreglo de ID, `localizationLabel`, y la etnia dentro de `ageCycles`. Al cerrarse, el 1064 refresca las grillas.
       - Los campos del formulario salen de una tabla de definiciones en `track_160.sql` (sección | región | ítem | ruta JSON | etiqueta | tipo).
       - Prueba: `build/tests/test_focalizacion_160.js`.
-      - Las ubicaciones de prueba de Palmira (`CODE` `DEMO-…`) las crea `spd_demo_seguimiento.sql`, y `spd_demo_to_postgres.js` las copia con el mismo ID.
+      - Las ubicaciones de prueba de Palmira (`CODE` `DEMO-…`) las creaba `spd_demo_seguimiento.sql` (eliminado; ahora las semillas son `spd_seed_mini.sql` y `spd_seed_prueba2.sql`).
     - **Guardar** replica `saveTrackingMonitoringRecord`, con estos cálculos:
       - avance físico = min(logro / programado, 1);
       - avance financiero por documento = min(ejecutado / apropiado, 1), contra `MANUAL` en planes de acción;
@@ -156,7 +156,7 @@ Pruebas: en `build/tests/`, `npm i` y luego:
   - Usuarios del workspace: `ADMIN` / `Spd#2026` (desarrollador) y `FGIL666@GMAIL.COM` / `Spd#2026` (login de la app 100, *Cuentas de APEX*).
 - **`spd-ords`**: ORDS 26.3 (`container-registry.oracle.com/database/ords:latest`), puerto 8080, sirve las imágenes de APEX 24.2 en `/i/`.
   - ORDS 24.4 no se instala sobre `gvenzl/oracle-free` (falla al leer la información de parches de la base); 26.3 sí.
-- Orden de instalación en una base nueva, como `SIIF`: `siif_base_tables.sql` → `siif_spd_columns.sql` → `spd_schema.sql` → `spd_views.sql` → `spd_seed.sql` → (APEX y workspace) → `siif_apex_local.sql` → app 100 → `run_import_106.sh` → `run_import_160.sh` (importa `f160/install.sql`).
+- Orden de instalación en una base nueva, como `SIIF`: `siif_base_tables.sql` → `siif_spd_columns.sql` → `spd_schema.sql` → `spd_views.sql` → `spd_seed_mini.sql` y/o `spd_seed_prueba2.sql` → (APEX y workspace) → `siif_apex_local.sql` → app 100 → `run_import_106.sh` → `run_import_160.sh` (importa `f160/install.sql`).
 - URLs:
   - Portal SIIF Web (entrada a la 160): `http://localhost:8080/ords/f?p=106:LOGIN:0::::P9999_NIT_COMPANIA:8913800073` (Municipio de Palmira), usuario `fgil666@gmail.com`, clave `Spd#2026`. La compañía va en la URL porque el selector del login solo se ve en modo desarrollo.
   - App 100: `http://localhost:8080/ords/r/siifweb/spd/login`.

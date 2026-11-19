@@ -46,7 +46,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_query_type=>'SQL'
 ,p_plug_source=>'select POS, FROM_VALUE, INCLUDE_FROM, TO_VALUE, INCLUDE_TO, COLOR, LABEL from V_SPD_MONITORING_COLORS where ID = :P1046_ID'
 ,p_query_order_by_type=>'STATIC'
-,p_query_order_by=>'POS'
+,p_query_order_by=>'FROM_VALUE, TO_VALUE'
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_ajax_items_to_submit=>'P1046_ID'
 ,p_prn_page_header=>'Colores de Indicadores'
@@ -495,6 +495,16 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_condition=>'P1046_ID'
 ,p_button_condition_type=>'ITEM_IS_NULL'
 ,p_database_action=>'INSERT'
+);
+wwv_flow_imp_page.create_page_branch(
+ p_id=>wwv_flow_imp.id(5110104600000001)
+,p_branch_name=>'Quedarse en el formulario'
+,p_branch_action=>'f?p=&APP_ID.:1046:&APP_SESSION.::&DEBUG.:1046:P1046_ID:&P1046_ID.&success_msg=#SUCCESS_MSG#'
+,p_branch_point=>'AFTER_PROCESSING'
+,p_branch_type=>'REDIRECT_URL'
+,p_branch_sequence=>5
+,p_branch_condition_type=>'REQUEST_IN_CONDITION'
+,p_branch_condition=>'SAVE,CREATE'
 );
 wwv_flow_imp_page.create_page_branch(
  p_id=>wwv_flow_imp.id(41230565506911807)
@@ -1320,12 +1330,13 @@ wwv_flow_imp_page.create_page_process(
 'declare',
 '  l_html varchar2(32767);',
 'begin',
-'  for c in (select FROM_VALUE, TO_VALUE, COLOR, LABEL, INCLUDE_FROM from V_SPD_MONITORING_COLORS',
-'             where ID = :P1046_ID and TO_VALUE is not null order by POS) loop',
+'  for c in (select FROM_VALUE, TO_VALUE, COLOR, LABEL, INCLUDE_FROM, INCLUDE_TO from V_SPD_MONITORING_COLORS',
+'             where ID = :P1046_ID and TO_VALUE is not null order by FROM_VALUE, TO_VALUE) loop',
 '    l_html := l_html || ''<div style="flex:'' || to_char(greatest(nvl(c.TO_VALUE, 0) - nvl(c.FROM_VALUE, 0), 1), ''TM9'', ''NLS_NUMERIC_CHARACTERS=''''.,'''''')',
 '           || '' 1 0;text-align:center"><div style="font-size:12px">''',
 '           || apex_escape.html(c.LABEL) || case when c.LABEL is not null then '': '' end',
-'           || case when c.INCLUDE_FROM = ''S'' then ''['' else ''('' end || c.FROM_VALUE || ''-'' || c.TO_VALUE || '']</div>''',
+'           || case when c.INCLUDE_FROM = ''S'' then ''['' else ''('' end || c.FROM_VALUE || ''-'' || c.TO_VALUE',
+'           || case when c.INCLUDE_TO = ''N'' then '')'' else '']'' end || ''</div>''',
 '           || ''<div style="height:22px;background:'' || apex_escape.html_attribute(c.COLOR) || ''"></div></div>'';',
 '  end loop;',
 '  :P1046_COLORS_PREVIEW := case when l_html is not null then ''<div style="display:flex;width:100%;min-width:800px;max-width:1200px">'' || l_html || ''</div>'' end;',

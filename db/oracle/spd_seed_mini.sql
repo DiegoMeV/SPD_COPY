@@ -2,7 +2,7 @@
    SPD - Semilla mínima para Oracle (ambientes locales o de desarrollo)
    -----------------------------------------------------------------------------
    Pocos datos, pero suficientes para recorrer todas las opciones del menú de la
-   app 160 (SIIF_SPD). Alternativa liviana a spd_seed.sql: no la necesita.
+   app 160 (SIIF_SPD). Hay una semilla más completa: spd_seed_prueba2.sql (pueden estar las dos).
 
    Compañía: 891900853 (UCEVA). Debe existir: el script NO crea ni modifica COMPANIA.
 
@@ -23,16 +23,17 @@
      Configuración
        Usuarios ............ 1 usuario, asociado a la entidad
        Entidades ........... 1 entidad (presupuesto manual)
-       Planes de Desarrollo  1 plan 2024-2027 con 4 niveles (Eje > Sector > Programa >
-                             Subprograma) y su estructura: 1 nodo por nivel
+       Planes de Desarrollo  1 plan 2024-2027 con 5 niveles (Eje > Sector > Programa >
+                             Subprograma > Plan de acción) y 1 nodo por nivel
        Metas ............... 1 de resultado, 4 de producto, 1 proyecto con 2 actividades,
                              1 plan de acción con 2 actividades
        Proyectos ........... 1 proyecto en PROYECTO (V_PROYECTO)
        Seguimiento ......... 1 configuración activa 2026-4 con colores de indicadores
        Políticas ........... 1 componente, 1 política de paz, 1 de víctimas, 1 territorial
-     Catálogos ............. ODS, unidades y 1 rama del catálogo de productos. Son tablas
-                             globales: usa los registros que ya existan y solo crea
-                             (con prefijo "SPD") los que falten; no se borran.
+     Catálogos ............. ODS (tabla global), unidades (UNIDADES_PRY) y 1 producto
+                             (PRODUCTOS_PRY) de la compañía: usa los registros que ya
+                             existan (por nombre / código) y solo crea, con prefijo "SPD",
+                             los que falten; no se borran.
      Seguimiento (Metas / Proyectos / Planes de Acción)
        Programación, Reporte, Validación, Revisión y Tableros: con todas las etapas
        abiertas hoy y una meta en cada estado:
@@ -68,10 +69,11 @@ DECLARE
   n        NUMBER;
 
   -- estructura del plan
-  v_l1 NUMBER; v_l2 NUMBER; v_l3 NUMBER; v_l4 NUMBER;
+  v_l1 NUMBER; v_l2 NUMBER; v_l3 NUMBER; v_l4 NUMBER; v_l5 NUMBER;
   -- catálogos
   v_ods9 NUMBER; v_ods11 NUMBER;
-  v_cat_sector NUMBER; v_cat_prog NUMBER; v_cat_prod NUMBER; v_cat_ind NUMBER;
+  v_prod NUMBER;   -- PRODUCTOS_PRY.ID
+  v_km   NUMBER;   -- UNIDADES_PRY.CODIGO_UND de Kilómetros
   -- políticas, macroproyecto
   v_comp NUMBER; v_peace NUMBER; v_victims NUMBER; v_territ NUMBER; v_macro NUMBER;
   -- metas
@@ -144,36 +146,43 @@ DECLARE
     RETURN v;
   END;
 
-  PROCEDURE unit(p_name VARCHAR2, p_initials VARCHAR2) IS
-    k NUMBER;
-  BEGIN
-    SELECT COUNT(*) INTO k FROM SPD_UNIT WHERE NAME IN (p_name, 'SPD ' || p_name);
-    IF k = 0 THEN
-      INSERT INTO SPD_UNIT (NAME, INITIALS) VALUES ('SPD ' || p_name, p_initials);
-    END IF;
-  END;
-
-  FUNCTION product(p_code VARCHAR2, p_name VARCHAR2, p_parent NUMBER, p_units VARCHAR2,
-                   p_leaf VARCHAR2) RETURN NUMBER IS
+  -- Unidad de medida de la compañía (UNIDADES_PRY): usa la que exista con ese nombre (con o sin
+  -- prefijo SPD, sin importar mayúsculas) o la crea con prefijo SPD y el siguiente CODIGO_UND.
+  -- Devuelve CODIGO_UND.
+  FUNCTION unit(p_name VARCHAR2, p_initials VARCHAR2 DEFAULT NULL) RETURN NUMBER IS
     v NUMBER;
   BEGIN
-    SELECT MIN(ID) INTO v FROM SPD_PRODUCT_CATALOG WHERE CODE = p_code;
+    SELECT MIN(CODIGO_UND) INTO v FROM UNIDADES_PRY
+     WHERE NIT_COMPANIA = c_nit AND UPPER(TRIM(NOMBRE_UNIDAD)) IN (UPPER(p_name), UPPER('SPD ' || p_name));
     IF v IS NULL THEN
-      INSERT INTO SPD_PRODUCT_CATALOG (CODE, NAME, UNITS_NAME, PARENT_ID, IS_PRINCIPAL,
-                                       IS_NATIONAL, IS_TERRITORIAL, IS_LEAF)
-      VALUES (p_code, 'SPD ' || p_name, p_units, p_parent, 'S', 'S', 'S', p_leaf)
+      SELECT NVL(MAX(CODIGO_UND), 0) + 1 INTO v FROM UNIDADES_PRY WHERE NIT_COMPANIA = c_nit;
+      INSERT INTO UNIDADES_PRY (NIT_COMPANIA, CODIGO_UND, NOMBRE_UNIDAD, SIGLA)
+      VALUES (c_nit, v, 'SPD ' || p_name, p_initials);
+    END IF;
+    RETURN v;
+  END;
+
+  -- Producto de la compañía (PRODUCTOS_PRY): usa el que exista con ese código o lo crea con prefijo SPD.
+  -- Devuelve PRODUCTOS_PRY.ID (lo asigna el trigger BI_PRODUCTOS_PRY).
+  FUNCTION product(p_code VARCHAR2, p_name VARCHAR2, p_programa VARCHAR2) RETURN NUMBER IS
+    v NUMBER;
+  BEGIN
+    SELECT MIN(ID) INTO v FROM PRODUCTOS_PRY WHERE NIT_COMPANIA = c_nit AND CODIGO = p_code;
+    IF v IS NULL THEN
+      INSERT INTO PRODUCTOS_PRY (NIT_COMPANIA, CODIGO, NOMBRE, DESCRIPCION, PROGRAMA)
+      VALUES (c_nit, p_code, 'SPD ' || p_name, 'Producto de prueba SPD', p_programa)
       RETURNING ID INTO v;
     END IF;
     RETURN v;
   END;
 
   FUNCTION plan_level(p_code VARCHAR2, p_name VARCHAR2, p_level NUMBER, p_parent NUMBER,
-                      p_product NUMBER DEFAULT NULL) RETURN NUMBER IS
+                      p_sector VARCHAR2 DEFAULT NULL) RETURN NUMBER IS
     v NUMBER;
   BEGIN
     INSERT INTO SPD_DEV_PLAN_LEVEL (NIT_COMPANIA, PLAN, CODE, NAME, "LEVEL", PARENT_ID, WEIGHTING,
-                                    PRODUCT_CATALOG_ID)
-    VALUES (c_nit, v_plan, p_code, 'SPD ' || p_name, p_level, p_parent, 100, p_product)
+                                    SECTOR_CODE)
+    VALUES (c_nit, v_plan, p_code, 'SPD ' || p_name, p_level, p_parent, 100, p_sector)
     RETURNING ID INTO v;
     RETURN v;
   END;
@@ -182,14 +191,15 @@ DECLARE
                     p_level NUMBER, p_parent NUMBER, p_accum VARCHAR2, p_base NUMBER, p_value NUMBER,
                     p_units VARCHAR2, p_project VARCHAR2 DEFAULT NULL) RETURN NUMBER IS
     v NUMBER;
+    u NUMBER := unit(p_units);
   BEGIN
     INSERT INTO SPD_GOAL
       (NIT_COMPANIA, PARENT_GOAL_ID, PLAN, DEV_PLAN_LEVEL_ID, ENTITY_ID, GOAL_TYPE, CODE, NAME,
-       INDICATOR, DESCRIPTION, ACCUMULATION_TYPE, BASE_VALUE, GOAL_VALUE, UNITS_FACTOR, UNITS_NAME,
+       INDICATOR, DESCRIPTION, ACCUMULATION_TYPE, BASE_VALUE, GOAL_VALUE, UNITS_FACTOR, UNIT_CODE,
        WEIGHTING, PROJECT_CODE, START_DATE, END_DATE, CREATED_BY)
     VALUES
       (c_nit, p_parent, v_plan, p_level, v_ent, p_type, 'SPD-' || p_code, 'SPD ' || p_name,
-       p_indicator, 'Meta de prueba SPD', p_accum, p_base, p_value, 1, p_units,
+       p_indicator, 'Meta de prueba SPD', p_accum, p_base, p_value, 1, u,
        100, p_project, TIMESTAMP '2024-01-01 00:00:00 -05:00', TIMESTAMP '2027-12-31 00:00:00 -05:00',
        v_user)
     RETURNING ID INTO v;
@@ -298,15 +308,15 @@ BEGIN
   DELETE FROM SPD_DEV_PLAN_LEVEL WHERE NIT_COMPANIA = c_nit AND PLAN = v_plan;
 
   DELETE FROM SPD_PUBLIC_POLITIC_TO_COMP
-   WHERE PUBLIC_POLITIC_ID IN (SELECT ID FROM SPD_PUBLIC_POLITIC WHERE NIT_COMPANIA = c_nit AND NAME LIKE 'SPD %')
-      OR COMPONENT_ID IN (SELECT ID FROM SPD_PUBLIC_POLITIC_COMPONENT WHERE NIT_COMPANIA = c_nit AND NAME LIKE 'SPD %');
-  DELETE FROM SPD_PUBLIC_POLITIC           WHERE NIT_COMPANIA = c_nit AND NAME LIKE 'SPD %';
-  DELETE FROM SPD_PUBLIC_POLITIC_COMPONENT WHERE NIT_COMPANIA = c_nit AND NAME LIKE 'SPD %';
-  DELETE FROM SPD_MACRO_PROJECT            WHERE NIT_COMPANIA = c_nit AND NAME LIKE 'SPD %';
-  DELETE FROM SPD_GEO_LOCATION WHERE NIT_COMPANIA = c_nit AND NAME LIKE 'SPD %' AND PARENT_LOCATION_ID IS NOT NULL;
-  DELETE FROM SPD_GEO_LOCATION WHERE NIT_COMPANIA = c_nit AND NAME LIKE 'SPD %';
+   WHERE PUBLIC_POLITIC_ID IN (SELECT ID FROM SPD_PUBLIC_POLITIC WHERE NIT_COMPANIA = c_nit AND NAME LIKE 'SPD %' AND NAME NOT LIKE 'SPD PRUEBA 2 %')
+      OR COMPONENT_ID IN (SELECT ID FROM SPD_PUBLIC_POLITIC_COMPONENT WHERE NIT_COMPANIA = c_nit AND NAME LIKE 'SPD %' AND NAME NOT LIKE 'SPD PRUEBA 2 %');
+  DELETE FROM SPD_PUBLIC_POLITIC           WHERE NIT_COMPANIA = c_nit AND NAME LIKE 'SPD %' AND NAME NOT LIKE 'SPD PRUEBA 2 %';
+  DELETE FROM SPD_PUBLIC_POLITIC_COMPONENT WHERE NIT_COMPANIA = c_nit AND NAME LIKE 'SPD %' AND NAME NOT LIKE 'SPD PRUEBA 2 %';
+  DELETE FROM SPD_MACRO_PROJECT            WHERE NIT_COMPANIA = c_nit AND NAME LIKE 'SPD %' AND NAME NOT LIKE 'SPD PRUEBA 2 %';
+  DELETE FROM SPD_GEO_LOCATION WHERE NIT_COMPANIA = c_nit AND NAME LIKE 'SPD %' AND NAME NOT LIKE 'SPD PRUEBA 2 %' AND PARENT_LOCATION_ID IS NOT NULL;
+  DELETE FROM SPD_GEO_LOCATION WHERE NIT_COMPANIA = c_nit AND NAME LIKE 'SPD %' AND NAME NOT LIKE 'SPD PRUEBA 2 %';
 
-  DELETE FROM PROYECTO        WHERE NIT_COMPANIA = c_nit AND USUARIO = c_user AND NOMBRE LIKE 'SPD %';
+  DELETE FROM PROYECTO        WHERE NIT_COMPANIA = c_nit AND USUARIO = c_user AND NOMBRE LIKE 'SPD %' AND NOMBRE NOT LIKE 'SPD PRUEBA 2 %';
   DELETE FROM USUARIOS        WHERE NIT_COMPANIA = c_nit AND USUARIO = c_user;
   siif_structure(p_delete => TRUE);   -- eje / sector / programa del plan de prueba
   DELETE FROM PLAN_DESARROLLO WHERE NIT_COMPANIA = c_nit AND NOMBRE = c_plan_name;
@@ -333,7 +343,8 @@ BEGIN
           '{"levels":[{"number":1,"singularName":"Eje","pluralName":"Ejes"},'
           || '{"number":2,"singularName":"Sector","pluralName":"Sectores","isSectorLevel":true},'
           || '{"number":3,"singularName":"Programa","pluralName":"Programas","goalType":"RESULT"},'
-          || '{"number":4,"singularName":"Subprograma","pluralName":"Subprogramas","goalType":"PRODUCT"}]}',
+          || '{"number":4,"singularName":"Subprograma","pluralName":"Subprogramas","goalType":"PRODUCT"},'
+          || '{"number":5,"singularName":"Plan de acción","pluralName":"Planes de acción","goalType":"ACTION_PLAN"}]}',
           'SIIF');
 
   siif_structure(p_delete => FALSE);  -- eje 1 > sector 1 > programa 1, que usa el proyecto
@@ -355,20 +366,19 @@ BEGIN
   v_ods9  := ods('Industria, innovación e infraestructura');
   v_ods11 := ods('Ciudades y comunidades sostenibles');
   v_id    := ods('Fin de la pobreza');
-  unit('Kilómetros', 'Km');
-  unit('Número', 'Nro');
-  unit('Porcentaje', '%');
-
-  v_cat_sector := product('24',        'Transporte', NULL, NULL, 'N');
-  v_cat_prog   := product('2402',      'Infraestructura red vial regional', v_cat_sector, NULL, 'N');
-  v_cat_prod   := product('2402041',   'Vía terciaria mejorada', v_cat_prog, NULL, 'N');
-  v_cat_ind    := product('240204100', 'Vía terciaria mejorada', v_cat_prod, 'Kilómetros', 'S');
+  -- unidades y producto de la compañía (UNIDADES_PRY / PRODUCTOS_PRY)
+  v_km := unit('Kilómetros', 'Km');
+  v_id := unit('Número', 'Nro');
+  v_id := unit('Porcentaje', '%');
+  v_id := unit('Minutos', 'Min');
+  v_prod := product('2402041', 'Vía terciaria mejorada', '2402');   -- sector DNP 24 Transporte
 
   /* ================================================================ estructura del plan */
   v_l1 := plan_level('1',        'Municipio conectado', 1, NULL);
-  v_l2 := plan_level('1.24',     'Transporte', 2, v_l1, v_cat_sector);
+  v_l2 := plan_level('1.24',     'Transporte', 2, v_l1, '24');
   v_l3 := plan_level('1.24.1',   'Vías para la competitividad', 3, v_l2);
   v_l4 := plan_level('1.24.1.1', 'Red vial terciaria', 4, v_l3);
+  v_l5 := plan_level('1.24.1.1.1', 'Plan de acción de infraestructura', 5, v_l4);
 
   /* ================================================================ políticas, macroproyecto, ubicaciones */
   INSERT INTO SPD_PUBLIC_POLITIC_COMPONENT (NIT_COMPANIA, CODE, NAME, DESCRIPTION, CREATED_BY)
@@ -412,10 +422,10 @@ BEGIN
                    v_l4, v_r1, 'ACCUMULATED', 0, 400, 'Número');
   -- SPD-MP-01 con todos los vínculos del formulario de metas
   UPDATE SPD_GOAL
-     SET ODS_IDS = '[' || v_ods9 || ',' || v_ods11 || ']', PRODUCT_CATALOG_ID = v_cat_ind,
+     SET ODS_IDS = '[' || v_ods9 || ',' || v_ods11 || ']', PRODUCT_ID = v_prod,
          PUBLIC_POLITIC_ID = v_territ, PUBLIC_POLITIC_COMPONENT_ID = v_comp,
          PEACE_POLITIC_ID = v_peace, VICTIMS_POLITIC_ID = v_victims, MACRO_PROJECT_ID = v_macro,
-         PI_BASE_VALUE = 0, PI_GOAL_VALUE = 20, PI_UNITS_FACTOR = 1, PI_UNITS_NAME = 'Kilómetros'
+         PI_BASE_VALUE = 0, PI_GOAL_VALUE = 20, PI_UNITS_FACTOR = 1, PI_UNIT_CODE = v_km
    WHERE ID = v_p1;
   UPDATE SPD_GOAL SET ODS_IDS = '[' || v_ods9 || ']', MACRO_PROJECT_ID = v_macro WHERE ID = v_p2;
 
@@ -428,11 +438,11 @@ BEGIN
                     v_l4, v_pry, 'ACCUMULATED', 0, 20, 'Kilómetros', TO_CHAR(v_pry_no));
 
   v_pa := new_goal('ACTION_PLAN', 'PA-01', 'Plan de acción 2026 - Secretaría de Infraestructura',
-                   'Porcentaje de cumplimiento del plan', v_l4, NULL, 'ACCUMULATED', 0, 100, 'Porcentaje');
+                   'Porcentaje de cumplimiento del plan', v_l5, NULL, 'ACCUMULATED', 0, 100, 'Porcentaje');
   v_m1 := new_goal('ACTION_PLAN_ACTIVITY', 'PA-01.M1', 'Socializar las obras con las juntas de acción comunal',
-                   'Jornadas realizadas', v_l4, v_pa, 'ACCUMULATED', 0, 4, 'Número');
+                   'Jornadas realizadas', v_l5, v_pa, 'ACCUMULATED', 0, 4, 'Número');
   v_m2 := new_goal('ACTION_PLAN_ACTIVITY', 'PA-01.M2', 'Hacer seguimiento a los contratos de obra',
-                   'Informes de seguimiento', v_l4, v_pa, 'ACCUMULATED', 0, 12, 'Número');
+                   'Informes de seguimiento', v_l5, v_pa, 'ACCUMULATED', 0, 12, 'Número');
 
   -- Otros > Metas de actividades (meta de producto <-> actividad del proyecto)
   INSERT INTO SPD_GOAL_TO_ACTIVITY (NIT_COMPANIA, GOAL_ID, ACTIVITY_ID, CREATED_BY)

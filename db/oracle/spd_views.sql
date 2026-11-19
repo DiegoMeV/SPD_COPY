@@ -29,7 +29,8 @@ SELECT g.ID,
        l.NAME                                AS DEV_PLAN_LEVEL_NAME,
        g.BASE_VALUE,
        g.GOAL_VALUE,
-       g.UNITS_NAME,
+       g.UNIT_CODE,
+       u.NOMBRE_UNIDAD                       AS UNITS_NAME,
        g.WEIGHTING,
        g.IS_ACTIVE,
        g.START_DATE,
@@ -37,7 +38,8 @@ SELECT g.ID,
 FROM   SPD_GOAL g
 JOIN   ENTIDADES_PRY e           ON e.ID = g.ENTITY_ID
 LEFT JOIN PLAN_DESARROLLO pd     ON pd.NIT_COMPANIA = g.NIT_COMPANIA AND pd.PLAN = g.PLAN
-LEFT JOIN SPD_DEV_PLAN_LEVEL l   ON l.ID = g.DEV_PLAN_LEVEL_ID;
+LEFT JOIN SPD_DEV_PLAN_LEVEL l   ON l.ID = g.DEV_PLAN_LEVEL_ID
+LEFT JOIN UNIDADES_PRY u         ON u.NIT_COMPANIA = g.NIT_COMPANIA AND u.CODIGO_UND = g.UNIT_CODE;
 
 
 -- Listas de valores (valor + texto a mostrar) para los formularios de APEX.
@@ -54,7 +56,14 @@ CREATE OR REPLACE VIEW V_SPD_LOV_GOAL AS
 SELECT ID, NIT_COMPANIA, CODE || NVL2(NAME, ' - ' || SUBSTR(NAME, 1, 200), NULL) AS NAME FROM SPD_GOAL;
 
 CREATE OR REPLACE VIEW V_SPD_LOV_PRODUCT AS
-SELECT ID, CODE || ' - ' || SUBSTR(NAME, 1, 300) AS NAME FROM SPD_PRODUCT_CATALOG;
+SELECT ID, NIT_COMPANIA, CODIGO || ' - ' || NOMBRE AS NAME FROM PRODUCTOS_PRY;
+
+-- Sectores DNP: 2 primeros dígitos del programa de los productos de cada compañía
+-- (el SIIF no tiene una tabla de sectores DNP; SPD_DEV_PLAN_LEVEL.SECTOR_CODE guarda el código)
+CREATE OR REPLACE VIEW V_SPD_LOV_SECTOR AS
+SELECT DISTINCT NIT_COMPANIA, SUBSTR(PROGRAMA, 1, 2) AS CODE, 'Sector ' || SUBSTR(PROGRAMA, 1, 2) AS NAME
+FROM   PRODUCTOS_PRY
+WHERE  PROGRAMA IS NOT NULL;
 
 -- Colores de indicadores de cada configuración de seguimiento (SPD_MONITORING_CONFIG.COLORS_CONFIG), una fila por rango
 CREATE OR REPLACE VIEW V_SPD_MONITORING_COLORS AS
@@ -173,19 +182,16 @@ SELECT ID, NIT_COMPANIA, GOAL_CODE || ' / ' || MONITORING_PERIOD || ' / ' || REC
 FROM   V_SPD_MONITORING;
 
 
--- Catálogo de productos en una fila por indicador (o por producto si no tiene indicadores):
--- Sector > Programa > Producto > Indicador, como en la pantalla original
-CREATE OR REPLACE VIEW V_SPD_PRODUCT_INDICATORS AS
-SELECT NVL(i.ID, p.ID)                       AS ID,
-       s.CODE  || ' - ' || s.NAME            AS SECTOR,
-       pr.CODE || ' - ' || pr.NAME           AS PROGRAMA,
-       p.CODE  || ' - ' || p.NAME            AS PRODUCTO,
-       NVL2(i.ID, i.CODE || ' - ' || i.NAME, NULL) AS INDICADOR,
-       NVL(i.CODE, p.CODE)                   AS CODE
-FROM   SPD_PRODUCT_CATALOG p
-JOIN   SPD_PRODUCT_CATALOG pr ON pr.ID = p.PARENT_ID
-JOIN   SPD_PRODUCT_CATALOG s  ON s.ID  = pr.PARENT_ID AND s.PARENT_ID IS NULL
-LEFT JOIN SPD_PRODUCT_CATALOG i ON i.PARENT_ID = p.ID;
+-- Catálogo de productos (PRODUCTOS_PRY) con su sector y programa: Sector > Programa > Producto
+CREATE OR REPLACE VIEW V_SPD_PRODUCTS AS
+SELECT p.ID,
+       p.NIT_COMPANIA,
+       SUBSTR(p.PROGRAMA, 1, 2)       AS SECTOR,
+       p.PROGRAMA,
+       p.CODIGO || ' - ' || p.NOMBRE  AS PRODUCTO,
+       p.CODIGO                       AS CODE,
+       p.DESCRIPCION
+FROM   PRODUCTOS_PRY p;
 
 
 -- Metas por seguimiento: una fila por (configuración de seguimiento, meta) con el estado de la meta

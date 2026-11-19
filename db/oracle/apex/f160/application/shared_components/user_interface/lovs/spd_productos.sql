@@ -17,6 +17,7 @@ wwv_flow_imp_shared.create_list_of_values(
 ,p_source_type=>'TABLE'
 ,p_location=>'LOCAL'
 ,p_query_table=>'V_SPD_LOV_PRODUCT'
+,p_query_where=>'NIT_COMPANIA = :G_NIT_COMPANIA'
 ,p_return_column_name=>'ID'
 ,p_display_column_name=>'NAME'
 ,p_default_sort_column_name=>'NAME'
